@@ -1,0 +1,284 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Location Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+<div class="page page-admin-setup" id="step_location" ng-app="step_location">
+	<div class="row">
+		 <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Administrator</a></li>
+                <li><a href="">Setup</a></li>
+                <li class="active"><a href="">Step2</a></li>
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-cogs"></span>&nbsp;&nbsp;Step&nbsp;&nbsp;2.2</strong>    				
+                </div>
+                <div class="panel-body row">
+					<div class="col-lg-12" style="padding: 0px; margin-top: -15px; ">
+						<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/2.2.jpg">					
+						<div class="setup-progress">
+							<div class="progress">
+								<div class="progress-bar progress1" style="width: 20%;">Organizational Setup
+									(100%)
+								</div>
+								<div class="progress-bar progress2" style="width: 20%;">
+									Location Setup (20%)
+								</div>
+								<div class="progress-bar progress3" style="width: 20%;">
+									Department Setup (0%)
+								</div>
+								<div class="progress-bar progress4" style="width: 20%;">
+									Region Setup (0%)
+								</div>
+								<div class="progress-bar progress5" style="width: 20%;">Job
+									Titles Setup (0%)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="post" action="{{ request.path }}" id="step_location" ng-controller="LocationForm as settings">
+						{% csrf_token %}
+						<div class="setup-help text-right">
+							<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i> Watch Me</a>
+						</div>
+						
+						<div class="col-lg-12">	
+							<div class="row">	
+								<!-- Modal -->
+								<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title" id="myModalLabel">HHLEARN -
+													Setup Help Video</h4>
+											</div>
+											<div class="modal-body">
+												<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													Close
+												</button>
+					
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
+							</div>
+
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						
+									{% if organization.total_number_of_locations == 1 %}
+									<p>
+						
+										For each of the locations you have loaded we need to collect information that ensures
+										that we educate your staff on the exact information that they need so that your
+										organization meets all geographic regulatory requirements. Please provide the
+										information
+										below for each location.
+									</p>
+						
+									{% endif %}
+						
+									{% if organization.total_number_of_locations > 1 %}
+						
+									<p>
+										For the location you loaded we need to collect information that ensures that we educate
+										your staff on the exact information that they need so that your organization meets all
+										geographic regulatory requirements. Please provide the information below for your
+										location.
+									</p>
+									{% endif %}
+								</div>
+							</div>
+						
+							{{ formset.management_form }}
+							{% for form in formset %}
+						
+								{{ form.id }}
+						
+								<div class="row">
+									<div class="col-sm-6 col-md-6 col-lg-6">
+										<div class="form-group  {% if form.short_name.errors %}has-error{% endif %}">
+											<label for="short_name">Location Name</label>											
+											<span class="label label-important">{{ form.short_name.errors|first }}</span>
+											<div class="form-controls">
+												{{ form.short_name }}
+												<span class="icon glyphicon glyphicon-star"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group  {% if form.hippa_notice_location.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="hippa_notice_location">
+														{{ form.hippa_notice_location.label }}</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-6 col-md-6 col-lg-6">
+													<span class="label label-important">{{ form.hippa_notice_location.errors|first }}</span>
+													<div class="form-controls">
+														{{ form.hippa_notice_location }}
+														<span class="icon glyphicon glyphicon-star"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+						
+						
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group  {% if form.emergency_location.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="emergency_locationv">{{ form.emergency_location.label }}</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-6 col-md-6 col-lg-6">
+													<span class="label label-important">{{ form.emergency_location.errors|first }}</span>
+													<div class="form-controls">
+														{{ form.emergency_location }}
+														<span class="icon glyphicon glyphicon-star"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+						
+								{% if organization.is_electronic_postings_enabled.value == 1  and organization.is_electronic_postings_consistent.value == 0 %}
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.use_electronic_posting.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="use_electronic_posting">{{ form.use_electronic_posting.label }}</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-6 col-md-6 col-lg-6">
+													<span class="label label-important">{{ form.use_electronic_posting.errors|first }}</span>
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.use_electronic_posting.name}}" {% if form.use_electronic_posting.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+								{% endif %}
+						
+								{% if organization.is_organization_accredited.value == 1 and organization.is_accredited_by_same_agency.value == 0 %}
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.is_accredited.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="use_electronic_posting">{{ form.is_accredited.label }}</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.is_accredited.errors|first }}</span>
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.is_accredited.name}}" {% if form.is_accredited.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>													
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+								{% endif %}
+						
+								{% if organization.is_organization_accredited.value == 1  and organization.is_accredited_by_same_agency.value == 0 %}
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.accreditation_agency.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="accreditation_agency">{{ form.accreditation_agency.label }}</label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6 col-md-6 col-lg-6">
+													<div class="form-controls">
+														<span class="ui-select">
+															<select name="form-{{ forloop.counter0 }}-{{ form.accreditation_agency.name }}" class="select-block " id="selectpicker">														
+																{% for accreditation_agency in form.fields.accreditation_agency.queryset %}
+																	<option {% if accreditation_agency.name  == form.data.accreditation_agency %}selected="selected"{% endif %} value="{{ accreditation_agency.id }}">{{ accreditation_agency.name }}</option>															
+																{% endfor for %}										
+															</select>
+														</span>										
+													</div>
+												</div>
+											</div>											
+										</div>
+									</div>
+						
+								</div>
+								{% endif %}
+								<hr/>
+						
+							{% endfor %}
+						
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<p class="text-center">
+										<a href="{% url 'admin_setup_location_2_1' %}" class="btn btn-blue btn-wide setup-back-button hidden-print">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">Save
+											& Next
+										</button>
+									</p>								
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/location/js/location.js"></script>
+
+{% endblock %}

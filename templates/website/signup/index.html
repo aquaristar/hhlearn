@@ -1,0 +1,289 @@
+{% extends "website/_page.html" %}
+{% block title %}HHLEARN - Home{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+	<div class="row">
+
+		<h1 class="span12">Signup</h1>
+
+		<div class="span12">
+			<ul class="breadcrumb">
+				<li><a href="{% url 'signup' %}">Signup</a> <span class="divider">/</span></li>
+				<li class="active">Contact Info</li>
+			</ul>
+		</div>
+
+	</div>
+
+
+	<div class="row">
+	<div class="span12 plan-box">
+
+	<ul id="planTab" class="nav nav-tabs">
+
+		<li class="active">
+			<a href="{% url 'signup' %}">
+				Contact Info
+			</a>
+		</li>
+
+		<li class="">
+			<a href="{% url 'signup_terms' %}">
+				Terms
+			</a>
+		</li>
+
+		<li class="">
+			<a href="{% url 'signup_payment' %}">
+				Payment Info
+			</a>
+		</li>
+
+		<li class="">
+			<a href="{% url 'signup_thank_you' %}">
+				Complete
+			</a>
+		</li>
+
+
+	</ul>
+	<div id="" class="tab-content">
+
+
+	<div class="tab-pane active" id="contact">
+
+	<h3 class="mtl text-center"> Contact Information</h3>
+
+	<p class="singup-text pbm">
+		A subscription to HHLEARN is only pennies a day. The price to subscribe is based on the range of
+		employees
+		that are loaded. The pricing points have been designed for common organizational sizes. There is
+		no
+		prorating of each employee on the system. Once an employee is deactivated they cannot be
+		reactivated.
+		Their records are stored, but cannot be utilized like an active employee. This limitation is
+		only used
+		to prevent organizations from turning employees on and off and to keep their employee limits
+		within the
+		subscribed quantity.
+	</p>
+
+	<p class="text-center"><span class="required">* </span> Required Fields</p>
+
+
+	{% if form.errors %}
+
+		<div class="row">
+
+
+			<div class="span6">
+				<div class="alert mbm alert-error fade in">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					Please fix the following errros.
+				</div>
+			</div>
+
+
+		</div>
+
+	{% endif %}
+
+	<div class="row">
+	<div class="span12">
+
+	<form method="post" id="contact-form">
+
+	{% csrf_token %}
+
+	<div class="row">
+		<div class="span3">
+			<div class="row">
+				<div class="span3">
+					<div class="control-group {% if form.user_name.errors %}error{% endif %}">
+						<label>User Name
+							<span class="required">* </span></label>
+						<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+						       data-original-title="{{ form.user_name.errors|first }}" type="text"
+						       class="span3 ie7-margin " id="user_name" name="user_name" value="{{ form.data.user_name }}">
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+		<div class="span3">
+			<div class="control-group {% if form.email_address.errors %}error{% endif %}">
+				<label>Email Address <span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.email_address.errors|first }}" type="text" class="span3 ie7-margin"
+				       id="email_address" name="email_address" value="{{ form.data.email_address }}">
+
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span3">
+			<div class="control-group {% if form.first_name.errors %}error{% endif %}">
+				<label>First Name <span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.user_name.errors|first }}" type="text"
+				       class="span3 ie7-margin" id="first_name" name="first_name" value="{{ form.data.first_name }}">
+			</div>
+		</div>
+		<div class="span3">
+			<div class="control-group {% if form.last_name.errors %}error{% endif %}">
+				<label>Last Name <span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.last_name.errors|first }}" type="text" id="last_name"
+				       class="span3 ie7-margin" name="last_name" value="{{ form.data.last_name }}">
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="row">
+		<div class="span6">
+			<div class="alert mbm alert-info fade in">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<i class="fa fa-info-circle prs"></i>  Password must be at least 5 characters and must include at least one upper case letter, one lower case letter, and one numeric digit.
+			</div>
+		</div>
+	</div>
+	<div class="row">
+
+
+
+
+		<div class="span3">
+			<div class="control-group {% if form.password.errors %}error{% endif %}">
+				<label>Password<span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.password.errors|first }}" type="password" id="password"
+				       class="span3 ie7-margin" name="password" value="{{ form.data.password }}">
+
+			</div>
+
+		</div>
+		<div class="span3">
+			<div class="control-group {% if form.confirm_password.errors %}error{% endif %}">
+				<label>Confirm Password <span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.confirm_password.errors|first }}" type="password" id="confirm_password"
+				       class="span3 ie7-margin" name="confirm_password" value="{{ form.data.confirm_password }}">
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="span23">
+			<div class="control-group {% if form.org_name.errors %}error{% endif %}">
+				<label>Organization Name
+					<span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.org_name.errors|first }}" type="text" id="org_name"
+				       class="span6 ie7-margin" name="org_name" value="{{ form.data.org_name }}">
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="span3">
+			<div class="control-group {% if form.street_address_1.errors %}error{% endif %}">
+				<label>Street Address 1 <span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.street_address_1.errors|first }}" type="text" id="street_address_1"
+				       class="span3 ie7-margin" name="street_address_1" value="{{ form.data.street_address_1 }}">
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+
+		<div class="span3">
+			<div class="control-group {% if form.street_address_2.errors %}error{% endif %}">
+				<label>Street Address 2 </label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.street_address_2.errors|first }}" type="text" id="street_address_2"
+				       class="span3 ie7-margin" name="street_address_2" value="{{ form.data.street_address_2 }}">
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="span3">
+			<div class="control-group {% if form.city.errors %}error{% endif %}">
+				<label>City <span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.city.errors|first }}" type="text" id="city"
+				       class="span3 ie7-margin" name="city" value="{{ form.data.city }}">
+			</div>
+		</div>
+		<div class="span2">
+			<label>State<span class="required">* </span> {{ form.state.errors|first }}</label>
+
+			<select style="height: 35px; width: 185px;" class="span2" name="state" id="state">
+
+				<option value = "">Select State</option>
+
+				{% comment %}
+					since "state.id " is an integer and "form.data.state" is string so we need to convert "form.data.state" to
+					string by adding 0 to it by doing "form.data.state|add:0" ;)
+				{% endcomment %}
+
+				{% for state in form.fields.state.queryset %}
+					<option {% if state.id  == form.data.state|add:0 %}selected="selected"{% endif %} value = "{{ state.id }}">{{state.name}}</option>
+				{% endfor for %}
+
+			</select>
+		</div>
+		<div class="span1">
+			<div class="control-group {% if form.zip_code.errors %}error{% endif %}">
+				<label>Zip Code <span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.zip_code.errors|first }}" type="text" id="zip_code"
+				       class="span1 ie7-margin" name="zip_code" value="{{ form.data.zip_code }}">
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+
+		<div class="button-align offset3 span3">
+			<!--<a href="{% url 'signup_terms' %}" id="submit-newsletter" class=" button_medium">
+							Next</a>   -->
+
+			<button type="submit" class="button_medium">Next</button>
+		</div>
+	</div>
+	<hr>
+	</form>
+
+
+	</div>
+	</div>
+
+
+	</div>
+
+
+	</div>
+	</div>
+	</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	    <title>HHLEARN</title>
+		<link href="{{STATIC_URL}}dashboard/common/lib/fontawesome/v4.2.0/css/font-awesome.css" rel="stylesheet">
+		
+	    <!-- theme -->
+	    <link href="{{STATIC_URL}}website/rockox/css/rockox.css" rel="stylesheet">
+	    
+		<!-- animation -->
+	    <link href="{{STATIC_URL}}website/rockox/css/animate.css" rel="stylesheet">
+	    
+	    <!-- piecharts -->
+	    <link rel="stylesheet" href="{{STATIC_URL}}website/rockox/css/pie-charts-style.css">
+		
+	    <!-- Add fancyBox -->
+		<link rel="stylesheet" href="{{STATIC_URL}}website/rockox/css/jquery.fancybox.css?v=2.1.5" media="screen">
+	
+		<!-- jcarousel styling -->
+		<link rel="stylesheet" href="{{STATIC_URL}}website/rockox/css/skin.css">
+	    
+	    <!-- Bootstrap -->
+	    <link href="{{STATIC_URL}}website/rockox/css/bootstrap.css" rel="stylesheet">
+	    <link href="{{STATIC_URL}}website/rockox/css/dark_theme.css" rel="stylesheet">
+	    
+	    <!-- Glyphicons-->
+	    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons-social.css" />
+		
+		<!--<link href="{{STATIC_URL}}dashboard/common/css/style.css" rel="stylesheet">-->
+		
+	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+  	</head>
+  	<body class="fixed-header" data-spy="scroll" data-target=".navbar">
+  	
+    	<div id="wrapper">
+	    <!-- BEGIN HEADER -->
+	    <header id="home">
+		    <nav class="navbar navbar-default" role="navigation">
+	          <div class="container">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <div class="navbar-header">
+	              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	              </button>
+	              <!-- BEGIN LOGO -->
+	              <a class="navbar-brand" href="#home"><img src="{{STATIC_URL}}website/common/img/logo_305x100.png" height="82px" alt=""></a>
+	              <!-- END LOGO -->
+	            </div>
+	        
+	            <!-- Collect the nav links, forms, and other content for toggling -->
+	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	            	<!-- BEGIN NAVIGATION -->
+	                  <ul class="nav navbar-nav">
+	                    <li class="active">
+	                    	<a href="#" class="item" target="_self" data-toggle="modal" data-target=".menu-modal" data-placement="right">
+								<i class="icon glyphicons justify"></i>
+								<span>Menu</span>
+							</a>
+						</li>
+	                    <li>
+	                    	<a href="/login/" class="item" target="_self">
+								<i class="icon glyphicons user"></i>
+								<span>Login</span>
+							</a>
+	                    </li>
+	                    <li>
+	                    	<a href="" class="item" target="_self">
+								<i class="icon glyphicons home"></i>
+								<span>Home</span>
+							</a>
+	                    </li>                    
+	                  </ul>
+	            	<!-- END NAVIGATION -->
+	            </div><!-- /.navbar-collapse -->
+	          </div><!-- /.container-fluid -->
+	    </nav>
+	    </header>
+   		<!-- END HEADER --> 
+    
+    	<section class="parallax-main-banner" style="padding: 92px 0;">
+    		<figure>
+            <div id="heading">
+            	<!-- BEGIN CAROUSEL -->
+		        <div id="mycarousel" class="jcarousel-skin-tango">
+		            <ul>
+		                <li>
+		                    <h1>Benefits</h1>
+		                    <div class="clearfix"></div>
+		                    <h2>How We Can Help Your Organization</h2>
+		                </li>
+		                <li>
+		                    <h1>Features</h1>
+		                    <div class="clearfix"></div>
+		                    <h2>The Most Features of Any LMS</h2>
+		                </li>
+		                <li>
+		                    <h1>Accuracy</h1>
+		                    <div class="clearfix"></div>
+		                    <h2>HHLEARN is the #MOST<font color="#F60426">ACCURATE</font>LMS</h2>
+		                </li>
+		                <li>
+		                    <h1>Why Train?</h1>
+		                    <div class="clearfix"></div>
+		                    <h2>When You Can HHLEARN!</h2>
+		                </li>
+		                <li>
+		                    <h1>High Tech</h1>
+		                    <div class="clearfix"></div>
+		                    <h2>Deceptively Simple</h2>
+		                </li>
+		            </ul>
+		        </div>
+		        <!-- /END CAROUSEL -->          
+        	</div>
+            <!-- BEGIN TABS BTN -->
+            <div class="tabs-btn green">
+                <div class="container">
+                    <ul>
+                        <li>
+                        	<a href="#heading" id="tab-btn1" class="active">
+	                        	<i class="glyphicons parents"></i>
+	                        	<p><span>Employee-centric</span>Designed around each<br> employee's specific job needs.</p>
+                        	</a>
+                        </li>
+                        <li>
+                        	<a href="#heading" id="tab-btn2">
+                        		<i class="glyphicons bank"></i>
+                        		<p><span>Learning Methods</span>Effective education involves<br> understanding how adults learn.</p>                        		
+                        	</a>
+                        </li>
+                        <li>
+                        	<a href="#heading" id="tab-btn3">
+                        		<i class="glyphicons show_big_thumbnails"></i>
+                        		<p><span>Modular Design</span>Modular design allows access<br> to be tailored for each user.</p>                        		
+                        	</a></li>
+                        <li>
+                        	<a href="#heading" id="tab-btn4">
+                        		<i class="glyphicons fishes"></i>
+                        		<p><span>Individuality</span>Taking into account that<br> each learner is different.</p>
+                        	</a>
+                        </li>
+                        <li>
+                        	<a href="#heading" id="tab-btn5">
+                        		<i class="fa fa-line-chart"></i>
+                        		<p><span>Return on investment </span>Employee education is <br>important - make it realistic.</p>
+                        	</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /END TABS BTN -->
+            </figure>
+    	</section>
+	    <!-- END BANNER -->   
+	    
+	    <!-- BEGIN SERVICES SECTION -->
+	    <section class="services-sec gray-bg border" id="services" style="padding: 92px 0;">
+	        <div class="container">
+	        	<!-- BEGIN TAB 1 -->
+	            <div class="tab1" id="tab1">
+	                <ul class="row clearfix">
+	                <li class="col-md-4 col-sm-4 bounceIn" data-delay="100">
+	                    <div class="service-sec">                   
+	                        <a href="#." ><span class="green"><i class="glyphicons send img-circle open"></i></span></a>
+	                        <h3>Customized on-the-fly</h3>
+	                        <p>Each course is customized for each emplyoee. HHLEARN uses dynamic technology to cusomize each course for the user and their organization.</p>
+	                    </div>
+	                </li>
+	                
+	                <li class="col-md-4 col-sm-4 bounceIn" data-delay="200">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="green"><i class="fa fa-code img-circle open"></i></span></a>
+	                        <h3>Job Title Curriculums</h3>
+	                        <p>Course curriculums are designed specifically arround 
+	                        	each job descripotion in the home health industry and are 
+	                        	customizable to meet your organization's specific needs.</p>
+	                    </div>
+	                </li>
+	                <li class="col-md-4 col-sm-4 bounceIn" data-delay="300">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="green"><i class="glyphicons person-running img-circle open"></i></span></a>
+	                        <h3>Self-Directed</h3>
+	                        <p>Our role is to facilitate employee's movement 
+	                        	toward more self-directed and responsible learning, as 
+	                        	well as to foster the employee's internal motivation to learn.</p>
+	                    </div>
+	                </li>
+	            </ul>
+	            <div class="clearfix"></div>
+	            </div>
+	            <!-- /END TAB 1 -->
+	            <!-- BEGIN TAB 2 -->
+	            <div class="tab2" id="tab2">
+	                <ul class="row">
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="yellow"><i class="glyphicons old_man img-circle open"></i></span></a>
+	                        <h3>AN·DRA·GŌ·GY</h3>
+	                        <p>Andragogy emphasizes the value of the process of learning.
+	                        	Malcolm knowles (theorist of adult education), defined 
+	                        	andragogy as "the art and science of helping adults learn."
+	                        </p>
+	                    </div>
+	                </li>
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="yellow"><i class="glyphicons user-key img-circle open"></i></span></a>
+	                        <h3>Adult-Learning Principles</h3>
+	                        <p>HHLEARN uses the six principles of adult learning 
+	                        	defined by knowles: autonomous and self-directed, 
+	                        	life experiences and knowledge, goal-oriented, 
+	                        	relevancy-oriented, practical, and respected.</p>
+	                    </div>
+	                </li>
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="yellow"><i class="glyphicons user-flag img-circle open"></i></span></a>
+	                        <h3>Knowledge, skills & abilities</h3>
+	                        <p>We teach KSAs: a list of special qualifications 
+	                        	and personal attributes that employees need 
+	                        	to have for a particular job.</p>
+	                    </div>
+	                </li>
+	            </ul>
+	            <div class="clearfix"></div>
+	            </div>
+	            <!-- /END TAB 2 -->
+	            <!-- BEGIN TAB 3 -->
+	            <div class="tab3" id="tab3">
+	                <ul class="row">
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="red"><i class="glyphicons sort img-circle"></i></span></a>
+	                        <h3>Super Chunk</h3>
+	                        <p>HHLEARN is built in module "super chunks" 
+	                        	(okay, we admit that was added for humor), so 
+	                        	each learner only has access to waht is necessary.</p>
+	                    </div>
+	                </li>
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="red"><i class="glyphicons cardio img-circle"></i></span></a>
+	                        <h3>The Essentials</h3>
+	                        <p>The Small Business Edition (SBE) provides a 
+	                        	cost-effective collection of modules that 
+	                        	addresses the essential needs of all organizations.</p>
+	                    </div>
+	                </li>
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="red"><i class="glyphicons bell img-circle"></i></span></a>
+	                        <h3>Bells & whistles</h3>
+	                        <p>The Professional Edition (PRO) is an all-inclusive 
+	                        	version that, in addition to all SBE modules, provides 
+	                        	access to all special features and the ability to customize 
+	                        	the site to help your organization outperform the rest.</p>
+	                    </div>
+	                </li>
+	            </ul>
+	            <div class="clearfix"></div>
+	            </div>
+	            <!-- /END TAB 3 -->
+	            <!-- BEGIN TAB 4 -->
+	            <div class="tab4" id="tab4">
+	                <ul class="row">
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="blue"><i class="glyphicons girl img-circle"></i></span></a>
+	                        <h3>To each her own</h3>
+	                        <p>Every individual learns differently; we provide 
+	                        	course information in visual, audiovisual, and audible 
+	                        	formats. We even allow user profile management  
+	                        	so additional features can assure greater learning.</p>
+	                    </div>
+	                </li>
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="blue"><i class="glyphicons thumbs_up img-circle"></i></span></a>
+	                        <h3>Social Butterfuly</h3>
+	                        <p>Motivation to learn is important, and in today's 
+	                        	social world, we believe that learners want to 
+	                        	share their successes with their friends and colleagues; 
+	                        	social media motivates performance.</p>
+	                    </div>
+	                </li>
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="blue"><i class="glyphicons flag img-circle"></i></span></a>
+	                        <h3>Milestones</h3>
+	                        <p>Keeping employees motivate to learn and perform 
+	                        	their job is very difficult. We at HHLEARN have built-in 
+	                        	2 types of Milestones: the automatically earned and the 
+	                        	employer-awarded. We believe in constant appraisal.</p>
+	                    </div>
+	                </li>
+	            </ul>
+	            <div class="clearfix"></div>
+	            </div>
+	            <!-- /END TAB 4 -->
+	            <!-- BEGIN TAB 5 -->
+	            <div class="tab5" id="tab5">
+	                <ul class="row">
+	                <li class="col-md-4 col-sm-4">
+	                <div class="service-sec">
+	                    <a href="#."><span class="purple"><i class="glyphicons piggy-bank img-circle"></i></span></a>
+	                    <h3>Pygmalion Effect</h3>
+	                    <p>"The greater the expectation placed upon employees, the better 
+	                    	they perform." HHLEARN develops educational resources that 
+	                    	enable each organization to benefit from lower training costs, 
+	                    	increased patient satisfaction, and better patient outcomes.</p>
+	                </div>
+	                </li>
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="purple"><i class="glyphicons keynote img-circle"></i></span></a>
+	                        <h3>Why Educate?</h3>
+	                        <p>Providing training is not enough; almost every learning 
+	                        	System is easy to cheat. On HHLEARN, we incorporate 
+	                        	patent-pending technologies to assure you that your 
+	                        	educational dollars are spent on useful LEARNING.</p>
+	                    </div>
+	                </li>
+	                <li class="col-md-4 col-sm-4">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="purple"><i class="glyphicons underground img-circle"></i></span></a>
+	                        <h3>Money for nothing</h3>
+	                        <p>HHLEARN is the only learning content management 
+	                        	system that provides accurate (and up-to-date) learning 
+	                        	resources. We do not take your moeny and leave it up 
+	                        	to you. HHLEARN is the #MostAccurateLMS.</p>
+	                    </div>
+	                </li>
+	            </ul>
+	            <div class="clearfix"></div>
+	            </div>
+	            <!-- /END TAB 5 -->
+	        </div>
+	    	<div class="clearfix"></div>
+	    </section>
+	    <!-- END SERVICES SECTION -->
+	    
+	
+		<!-- BEGIN EXPERIENCE SECTION -->
+		<section class="no-padding-bottom experience" id="features">
+	    	<div class="container">
+	        	<!-- BEGIN HEADING -->
+	        	<h1 class="text-center yellow">Features
+	        		<span>
+	        			HHLEARN's building blocks are modules.&nbsp; Modules are the key to training effecitively.       			
+	        		</span>
+	        	</h1>
+	            <!-- END HEADING -->
+	            <div class="row">
+	                <div class="col-md-12">
+	                	<!-- BEGIN EXPERIENCE CONTENT -->
+	                	<div class="experience-content text-center bounceIn" data-delay="100">
+		        			<p>We built the #MostAccurateLMS by incorporating a modular approach. HHLEARN has a myriad of modules that allow the system 
+		        			administrator to assign the appropriate modules to the organization, to a specific location, to a specific department, and even 
+		        			 an individual learner. By using a modular approach, your staff have access to the modules they need to improve their KSAs and your 
+		        			 organization only pays for the essential modules; saving money and better education, woo-hoo!.</p>
+	    				</div>
+	                    <!-- END EXPERIENCE CONTENT -->
+	                </div>
+	            </div>
+	            <div class="row">
+	            	<!-- BEGIN DEVICES -->
+	                <div class="col-md-12 text-center devices bounceInUp" data-delay="100"><img src="{{STATIC_URL}}website/rockox/images/features/features-01.png" alt=""></div>
+	                <!-- END DEVICES -->
+	            </div>
+	        </div>
+	    </section>
+	    <!-- END Features SECTION -->
+	   
+	    <section class="tri-secs gray-bg border">
+		    <div class="container">
+	        <div class="row">
+	            <div class="col-md-6 flipInY" data-delay="100">
+	            	<!-- BEGIN TRI SECTION -->
+	                <div class="tri-sec text-center">
+	                    <i class="glyphicons podium blue"></i>
+	                    <h3 class="blue">Simplicity</h3>
+	                    <p>
+	                    	HHLEARN takes the guesswork out of employee education and training.
+	                    	HHLEARN is designed so all that organizations have to do is assign a job title.
+	                    	Once a job title is applied, a course curriculum is assigned.
+	                    	Employees can start training immediately.
+	                    </p>
+	                </div>
+	                <!-- END TRI SECTION -->
+	            </div>
+	            <div class="col-md-6 flipInY" data-delay="100">
+	            	<!-- BEGIN TRI SECTION -->
+	                <div class="tri-sec text-center">
+	                    <i class="glyphicons cluster green"></i>
+	                    <h3 class="green">Flexibility</h3>
+	                    <p>
+	                    	HHLEARN can be tailored to match each organization's design.
+	                    	The HHLEARN system has the flexibility to uniquely setup individual 
+	                    	locations, departments, regions, and even employees; you are never 
+	                    	stuck with general settings that affect everyone.
+	                    </p>
+	                </div>
+	                <!-- END TRI SECTION -->
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-md-6 flipInY" data-delay="300">
+	            	<!-- BEGIN TRI SECTION -->
+	                <div class="tri-sec text-center last">
+	                    <i class="fa fa-toggle-on yellow"></i>
+	                    <h3 class="yellow">Turn on and off</h3>
+	                    <p>
+	                    	Modular design makes turning on features easy. Our modules are: Adding Custom Courses*, 
+	                    	Benchmarking (External* & Internal), Employee-Santion Monitoring*, Forms Library (System, 
+	                    	DRM*, and Custom*), Inservice Tracking (Basic & Custom*), Messaging, Verified Messaging*, 
+	                    	Basic Monthly Safety Program. Custom Monthly Safety Program*. Publications Library (System, 
+	                    	DRM*, and Custom*), Videos Library (System and Custom*). *Requires PRO Edition.
+	                    </p>
+	                </div>
+	                <!-- END TRI SECTION -->
+	            </div>
+	            <div class="col-md-6 flipInY">
+	            	<!-- BEGIN TRI SECTION -->
+	                <div class="tri-sec text-center last" data-delay="300">
+	                    <i class="glyphicons scale-classic red"></i>
+	                    <h3 class="red">Law of the land</h3>
+	                    <p>
+	                    	The home health industry (homecare, homehealth, DMEPOS, hospice, 
+	                    	and pharmacy) is regulated to the point of being overwhelming. HHLEARN 
+	                    	has simplified this! We track federal, state, county, and city laws, in addition, 
+	                    	we track accreditation organization standards. We link all of these regulations 
+	                    	to each system resource. In 2 clicks you can see how you meet each standard.
+	                    </p>
+	                </div>
+	                <!-- END TRI SECTION -->
+	            </div>
+	        </div>
+	    </div>
+	    </section>
+	    
+	    <section class="pricing tables" data-stellar-background-ratio="-0.2" id="pricing" style="background-position: 0% -88.8px;">
+	        <div class="overlay"></div>
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md-3 fadeInUp" data-delay="200">
+	                	<!-- BEGIN TABLE -->
+	                    <div class="table yellow-table text-center">
+	                        <span class="table-heading">Free Trial</span>
+	                        <p class="price"><span><strong>FREE</strong></span></p>
+	                        <ul class="list-unstyled">
+	                            <li>See Pricing Schedule&nbsp;&nbsp;
+	                            	<i class="glyphicons money"
+	                            	 data-toggle="content-popover"
+	                            	 data-trigger="hover" data-title="Monthly SBE Pricing" data-placement="left">
+	                            	 	<div class="popover-content" style="display:none;">
+		                            	 	<table class="reference" style="">
+		                            	 		<thead><tr><th>Users</th><th>Monthly</th></tr></thead>
+		                            	 		<tbody>
+		                            	 			<tr><td>1 - 9 Users</td><td>$20</td></tr>
+		                            	 			<tr><td>10 - 24 Users</td><td>$54</td></tr>
+		                            	 			<tr><td>25 - 49 Users</td><td>$89</td></tr>
+		                            	 			<tr><td>50 - 74 Users</td><td>$136</td></tr>
+		                            	 			<tr><td>75 - 99 Users</td><td>$174</td></tr>
+		                            	 			<tr><td>100 - 149 Users</td><td>$224</td></tr>
+		                            	 			<tr><td>150 - 199 Users</td><td>$279</td></tr>
+		                            	 			<tr><td>200 - 299 Users</td><td>$349</td></tr>
+		                            	 			<tr><td>300 - 399 Users</td><td>$419</td></tr>
+		                            	 			<tr><td>400 - 499 Users</td><td>$450</td></tr>
+		                            	 			<tr><td>Unlimited Users</td><td>$480</td></tr>
+		                            	 		</tbody>
+		                            	 	</table>
+		                            	 	<span style="width:200px;">
+		                            	 		*Monthly pricing after the free trial period has expired. A 1-month fee will be authorized at
+		                            	 		 the initiation of the free trial to verify payment method. 
+		                            	 	</span>
+	                            	 	</div>
+	                            	</i>
+	                           	</li>
+	                            <li>7 Modules&nbsp;&nbsp;
+	                            	<i class="glyphicons modal-window"
+	                            	 data-toggle="content-popover"
+	                            	 data-trigger="hover" data-title="SBE Modules" data-placement="left">
+	                            	 	<div class="popover-content" style="display:none;">
+		                            	 	<table class="reference" style="">
+		                            	 		<thead><tr><th>Active Modules</th></tr></thead>
+		                            	 		<tbody>
+		                            	 			<tr><td>Benchmarking(Internal)</td></tr>	                            	 			
+		                            	 			<tr><td>Forms Library</td></tr>
+		                            	 			<tr><td>Inservice Tracking</td></tr>
+		                            	 			<tr><td>Messaging</td></tr>
+		                            	 			<tr><td>Monthly Safety Program</td></tr>
+		                            	 			<tr><td>Publications Library</td></tr>
+		                            	 			<tr><td>Videos Library</td></tr>
+		                            	 		</tbody>
+		                            	 	</table>
+	                            	 	</div>
+	                            	</i>
+	                            </li>
+	                            <li>NO CONTRACTS</li>
+	                            <li>1 Month Free Trial&nbsp;&nbsp;
+	                            	<i class="glyphicons circle_info"
+	                            		data-toggle="popover"
+	                            		data-content="Some of the features on HHLEARN are limited during the free trail. These features become full-featured after trial period is completed and a paid subscription has commenced." 
+	                            	   data-trigger="hover" data-title="Limited Features" data-placement="left">                            	
+	                            	</i>
+	                            </li>
+	                            <li>Modules Are Limited During Trial</li>
+	                            <li>
+	                            	<i data-toggle="popover" 
+	                            	   data-content="HHLEARN is available by phone 8 am - 5 pm Pacific Time, Monday - Friday, except major holidays, for our FREE Trial Customers." 
+	                            	   data-trigger="hover" data-title="Phone" data-placement="top"
+	                            	   class="glyphicons phone_alt"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons message_new"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN will respond 8 am - 5 pm Pacific Time, Monday - Friday, except major holidays for our Free Trial Customers." 
+	                            	   data-trigger="hover" data-title="Email" data-placement="top"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons conversation"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN Instant Chat is available 8 am - 5 pm Pacific Time, Monday - Friday, except major holidays, for our FREE Trial Customers." 
+	                            	   data-trigger="hover" data-title="Instant Chat" data-placement="top"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons clock"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN is available 8 am - 5 pm Pacific Time, Monday - Friday, except major holidays, for our FREE Trial Customers." 
+	                            	   data-trigger="hover" data-title="Support" data-placement="top"></i>&nbsp;&nbsp;                            	
+	                            </li>
+	                        </ul>
+	                        <a class="btn btn-yellow" href="#.">Sign UP</a>
+	                    </div>
+	                	<!-- END TABLE -->
+	                </div>
+	                <div class="col-md-3 fadeInUp" data-delay="200">
+	                	<!-- BEGIN TABLE -->
+	                    <div class="table green-table text-center">
+	                        <span class="table-heading">LMS Conversion</span>
+	                        <p class="price"><span><strong>FREE</strong></span></p>
+	                        <ul class="list-unstyled">
+	                            <li>See Pricing Schedule&nbsp;&nbsp;
+	                            	<i class="glyphicons money"
+	                            	 data-toggle="content-popover"
+	                            	 data-trigger="hover" data-title="Monthly PRO Pricing*" data-placement="left">
+	                            	 	<div class="popover-content" style="display:none;">
+		                            	 	<table class="reference" style="">
+		                            	 		<thead><tr><th>Users</th><th>Monthly</th></tr></thead>
+		                            	 		<tbody>	                            	 			
+		                            	 			<tr><td>1 - 9 Users</td><td>$25</td></tr>
+		                            	 			<tr><td>10 - 24 Users</td><td>$68</td></tr>
+		                            	 			<tr><td>25 - 49 Users</td><td>$111</td></tr>
+		                            	 			<tr><td>50 - 74 Users</td><td>$171</td></tr>
+		                            	 			<tr><td>75 - 99 Users</td><td>$218</td></tr>
+		                            	 			<tr><td>100 - 149 Users</td><td>$280</td></tr>
+		                            	 			<tr><td>150 - 199 Users</td><td>$349</td></tr>
+		                            	 			<tr><td>200 - 299 Users</td><td>$437</td></tr>
+		                            	 			<tr><td>300 - 399 Users</td><td>$524</td></tr>
+		                            	 			<tr><td>400 - 499 Users</td><td>$562</td></tr>
+		                            	 			<tr><td>Unlimited Users</td><td>$600</td></tr>
+		                            	 		</tbody>
+		                            	 	</table>
+		                            	 	<span style="width:200px;">
+		                            	 		*Monthly pricing after the free trial period has expired. A 1-month fee will be authorized at
+		                            	 		 the initiation of the free trial to verify payment method. 
+		                            	 	</span>
+	                            	 	</div>
+	                            	</i>
+	                           	</li>
+	                            <li>18 Modules&nbsp;&nbsp;
+	                            	<i class="glyphicons modal-window"
+	                            	 data-toggle="content-popover"
+	                            	 data-trigger="hover" data-title="PRO Modules" data-placement="left">
+	                            	 	<div class="popover-content" style="display:none;">
+		                            	 	<table class="reference" style="">
+		                            	 		<thead><tr><th>Active Modules</th></tr></thead>
+		                            	 		<tbody>	                            	 			
+		                            	 			<tr><td>Adding Custom Courses</td></tr>	                            	 			
+		                            	 			<tr><td>Benchmarking(External)</td></tr>
+		                            	 			<tr><td>Benchmarking(Internal)</td></tr>
+		                            	 			<tr><td>Employee-Sanction Monitoring</td></tr>
+		                            	 			<tr><td>Forms(DRM)</td></tr>
+		                            	 			<tr><td>Forms Library</td></tr>
+		                            	 			<tr><td>Forms Library(Custom)</td></tr>
+		                            	 			<tr><td>Inservice Tracking</td></tr>
+		                            	 			<tr><td>Inservice Tracking(Custom)</td></tr>
+		                            	 			<tr><td>Messaging</td></tr>
+		                            	 			<tr><td>Messaging(Verified)</td></tr>
+		                            	 			<tr><td>Monthly Safety Program</td></tr>
+		                            	 			<tr><td>Monthly Safety Program(Custom)</td></tr>
+		                            	 			<tr><td>Publications(DRM)</td></tr>
+		                            	 			<tr><td>Publications Library</td></tr>
+		                            	 			<tr><td>Publications Library(Custom)</td></tr>
+		                            	 			<tr><td>Videos Library</td></tr>
+		                            	 			<tr><td>Videos Library(Custom)</td></tr>
+		                            	 		</tbody>
+		                            	 	</table>
+	                            	 	</div>
+	                            	</i>
+	                            </li>
+	                            <li>NO CONTRACTS</li>
+	                            <li>3 Month Free Trial&nbsp;&nbsp;
+	                            	<i class="glyphicons circle_info"
+	                            		data-toggle="popover"
+	                            		data-content="Some of the features on HHLEARN are limited during the free trail. These features become full-featured after trial period is completed and a paid subscription has commenced." 
+	                            	   data-trigger="hover" data-title="Full Features" data-placement="left">                            	
+	                            	</i>
+	                            </li>
+	                            <li>Modules Are Limited During Trial</li>
+	                            <li>
+	                            	<i data-toggle="popover" 
+	                            	   data-content="HHLEARN is available by phone 8 am - 5 pm Pacific Time, Monday - Friday, except major holidays, for our FREE Trial Customers." 
+	                            	   data-trigger="hover" data-title="Phone" data-placement="top"
+	                            	   class="glyphicons phone_alt"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons message_new"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN will respond 8 am - 5 pm Pacific Time, Monday - Friday, except major holidays for our Free Trial Customers." 
+	                            	   data-trigger="hover" data-title="Email" data-placement="top"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons conversation"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN Instant Chat is available 8 am - 5 pm Pacific Time, Monday - Friday, except major holidays, for our FREE Trial Customers." 
+	                            	   data-trigger="hover" data-title="Instant Chat" data-placement="top"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons clock"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN is available 8 am - 5 pm Pacific Time, Monday - Friday, except major holidays, for our FREE Trial Customers." 
+	                            	   data-trigger="hover" data-title="Support" data-placement="top"></i>&nbsp;&nbsp;                            	
+	                            </li>
+	                        </ul>
+	                        <a class="btn btn-green" href="#.">Sign UP</a>
+	                    </div>
+	                    <!-- END TABLE -->
+	                </div>
+	                <div class="col-md-3 fadeInUp" data-delay="600">
+	                	<!-- BEGIN TABLE -->
+	                    <div class="table blue-table text-center">
+	                        <span class="table-heading">Small Business</span>
+	                        <div>
+	                        	<span class="price-before">starting at</span><p class="price"><span class="currency">$</span><span><strong>20</strong></span>
+	                        		&nbsp;a month</p>
+	                        </div>
+	                        <ul class="list-unstyled">
+	                            <li>See Pricing Schedule&nbsp;&nbsp;
+	                            	<i class="glyphicons money"
+	                            	 data-toggle="content-popover"
+	                            	 data-trigger="hover" data-title="Monthly SBE Pricing" data-placement="left">
+	                            	 	<div class="popover-content" style="display:none;">
+		                            	 	<table class="reference" style="">
+		                            	 		<thead><tr><th>Users</th><th>Monthly</th></tr></thead>
+		                            	 		<tbody>
+		                            	 			<tr><td>1 - 9 Users</td><td>$20</td></tr>
+		                            	 			<tr><td>10 - 24 Users</td><td>$54</td></tr>
+		                            	 			<tr><td>25 - 49 Users</td><td>$89</td></tr>
+		                            	 			<tr><td>50 - 74 Users</td><td>$136</td></tr>
+		                            	 			<tr><td>75 - 99 Users</td><td>$174</td></tr>
+		                            	 			<tr><td>100 - 149 Users</td><td>$224</td></tr>
+		                            	 			<tr><td>150 - 199 Users</td><td>$279</td></tr>
+		                            	 			<tr><td>200 - 299 Users</td><td>$349</td></tr>
+		                            	 			<tr><td>300 - 399 Users</td><td>$419</td></tr>
+		                            	 			<tr><td>400 - 499 Users</td><td>$450</td></tr>
+		                            	 			<tr><td>Unlimited Users</td><td>$480</td></tr>
+		                            	 		</tbody>
+		                            	 	</table>	                            	 	
+	                            	 	</div>
+	                            	</i>
+	                           	</li>
+	                            <li>7 Modules&nbsp;&nbsp;
+	                            	<i class="glyphicons modal-window"
+	                            	 data-toggle="content-popover"
+	                            	 data-trigger="hover" data-title="SBE Modules" data-placement="left">
+	                            	 	<div class="popover-content" style="display:none;">
+		                            	 	<table class="reference" style="">
+		                            	 		<thead><tr><th>Active Modules</th></tr></thead>
+		                            	 		<tbody>
+		                            	 			<tr><td>Benchmarking(Internal)</td></tr>	                            	 			
+		                            	 			<tr><td>Forms Library</td></tr>
+		                            	 			<tr><td>Inservice Tracking</td></tr>
+		                            	 			<tr><td>Messaging</td></tr>
+		                            	 			<tr><td>Monthly Safety Program</td></tr>
+		                            	 			<tr><td>Publications Library</td></tr>
+		                            	 			<tr><td>Videos Library</td></tr>
+		                            	 		</tbody>
+		                            	 	</table>
+	                            	 	</div>
+	                            	</i>
+	                            </li>
+	                            <li>NO CONTRACTS</li>
+	                            <li>Full Features Active&nbsp;&nbsp;
+	                            	<i class="glyphicons circle_info"
+	                            		data-toggle="popover"
+	                            		data-content="All the SBE features on HHLEARN are not limited. The only limitations are the features that are designed for employees and administrators at HHLEARN. Free versions have modules with limited functionality." 
+	                            	   data-trigger="hover" data-title="Full Features" data-placement="left">                            	
+	                            	</i>
+	                            </li>                            
+	                            <li>Includes Only Basic Modules</li>
+	                            <li>
+	                            	<i data-toggle="popover" 
+	                            	   data-content="HHLEARN is available by phone 9 am- 5 pm PACIFIC Time, Monday - Friday, except major holidays, for our SBE version customers." 
+	                            	   data-trigger="hover" data-title="Phone" data-placement="top"
+	                            	   class="glyphicons phone_alt"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons message_new"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN will respond 9 am - 5 pm Pacific Time, Monday - Friday, except major holidays for our SBE version customers." 
+	                            	   data-trigger="hover" data-title="Email" data-placement="top"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons conversation"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN Instant Chat is available 8am- 5pm PACIFIC Time, Monday - Friday, except major holidays, for our SBE version customers." 
+	                            	   data-trigger="hover" data-title="Instant Chat" data-placement="top"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons clock"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN is available 8am- 5pm PACIFIC Time, Monday - Friday, except major holidays, for our SBE version customers." 
+	                            	   data-trigger="hover" data-title="Support" data-placement="top"></i>&nbsp;&nbsp;                            	
+	                            </li>
+	                        </ul>
+	                        <a class="btn btn-blue" href="#.">Sign UP</a>
+	                    </div>
+	                    <!-- END TABLE -->
+	                </div>
+	                <div class="col-md-3 fadeInUp" data-delay="800">
+	                	<!-- BEGIN TABLE -->
+	                    <div class="table red-table text-center">
+	                        <span class="table-heading">Professional</span>
+	                        <div>
+	                        	<span class="price-before">starting at</span><p class="price"><span class="currency">$</span><span><strong>25</strong></span>
+	                        		&nbsp;a month</p>
+	                        </div>
+	                        <ul class="list-unstyled">
+	                            <li>See Pricing Schedule&nbsp;&nbsp;
+	                            	<i class="glyphicons money"
+	                            	 data-toggle="content-popover"
+	                            	 data-trigger="hover" data-title="Monthly PRO Pricing" data-placement="left">
+	                            	 	<div class="popover-content" style="display:none;">
+		                            	 	<table class="reference" style="">
+		                            	 		<thead><tr><th>Users</th><th>Monthly</th></tr></thead>
+		                            	 		<tbody>	                            	 			
+		                            	 			<tr><td>1 - 9 Users</td><td>$25</td></tr>
+		                            	 			<tr><td>10 - 24 Users</td><td>$68</td></tr>
+		                            	 			<tr><td>25 - 49 Users</td><td>$111</td></tr>
+		                            	 			<tr><td>50 - 74 Users</td><td>$171</td></tr>
+		                            	 			<tr><td>75 - 99 Users</td><td>$218</td></tr>
+		                            	 			<tr><td>100 - 149 Users</td><td>$280</td></tr>
+		                            	 			<tr><td>150 - 199 Users</td><td>$349</td></tr>
+		                            	 			<tr><td>200 - 299 Users</td><td>$437</td></tr>
+		                            	 			<tr><td>300 - 399 Users</td><td>$524</td></tr>
+		                            	 			<tr><td>400 - 499 Users</td><td>$562</td></tr>
+		                            	 			<tr><td>Unlimited Users</td><td>$600</td></tr>
+		                            	 		</tbody>
+		                            	 	</table>	                            	 	
+	                            	 	</div>
+	                            	</i>
+	                           	</li>
+	                            <li>18 Modules&nbsp;&nbsp;
+	                            	<i class="glyphicons modal-window"
+	                            	 data-toggle="content-popover"
+	                            	 data-trigger="hover" data-title="PRO Modules" data-placement="left">
+	                            	 	<div class="popover-content" style="display:none;">
+		                            	 	<table class="reference" style="">
+		                            	 		<thead><tr><th>Active Modules</th></tr></thead>
+		                            	 		<tbody>	                            	 			
+		                            	 			<tr><td>Adding Custom Courses</td></tr>	                            	 			
+		                            	 			<tr><td>Benchmarking(External)</td></tr>
+		                            	 			<tr><td>Benchmarking(Internal)</td></tr>
+		                            	 			<tr><td>Employee-Sanction Monitoring</td></tr>
+		                            	 			<tr><td>Forms(DRM)</td></tr>
+		                            	 			<tr><td>Forms Library</td></tr>
+		                            	 			<tr><td>Forms Library(Custom)</td></tr>
+		                            	 			<tr><td>Inservice Tracking</td></tr>
+		                            	 			<tr><td>Inservice Tracking(Custom)</td></tr>
+		                            	 			<tr><td>Messaging</td></tr>
+		                            	 			<tr><td>Messaging(Verified)</td></tr>
+		                            	 			<tr><td>Monthly Safety Program</td></tr>
+		                            	 			<tr><td>Monthly Safety Program(Custom)</td></tr>
+		                            	 			<tr><td>Publications(DRM)</td></tr>
+		                            	 			<tr><td>Publications Library</td></tr>
+		                            	 			<tr><td>Publications Library(Custom)</td></tr>
+		                            	 			<tr><td>Videos Library</td></tr>
+		                            	 			<tr><td>Videos Library(Custom)</td></tr>
+		                            	 		</tbody>
+		                            	 	</table>
+	                            	 	</div>
+	                            	</i>
+	                            </li>
+	                            <li>NO CONTRACTS</li>
+	                            <li>Full Features Active&nbsp;&nbsp;
+	                            	<i class="glyphicons circle_info"
+	                            		data-toggle="popover"
+	                            		data-content="All the features on HHLEARN are not limited. The only limitations are the features that are designed for employees and administrators at HHLEARN. Free versions have modules with limited functionality." 
+	                            	   data-trigger="hover" data-title="Full Features" data-placement="left">                            	
+	                            	</i>
+	                            </li>
+	                            <li>All Active Modules Included</li>
+	                            <li>
+	                            	<i data-toggle="popover" 
+	                            	   data-content="HHLEARN is available by phone 24/7, except major holidays, for our PRO version customers." 
+	                            	   data-trigger="hover" data-title="Phone" data-placement="top"
+	                            	   class="glyphicons phone_alt"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons message_new"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN will respond 24/7, except major holidays, for our PRO version customers." 
+	                            	   data-trigger="hover" data-title="Email" data-placement="top"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons conversation"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN Instant Chat is available 24/7, except major holidays, for our PRO version customers." 
+	                            	   data-trigger="hover" data-title="Instant Chat" data-placement="top"></i>&nbsp;&nbsp;
+	                            	<i class="glyphicons clock"
+	                            	   data-toggle="popover"
+	                            	   data-content="HHLEARN is available 24/7, except major holidays, for our PRO version customers." 
+	                            	   data-trigger="hover" data-title="Support" data-placement="top"></i>&nbsp;&nbsp;                            	
+	                            </li>
+	                        </ul>
+	                        <a class="btn btn-red" href="#.">Sign UP</a>
+	                    </div>
+	                    <!-- END TABLE -->
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+	    
+	    <!-- BEGIN DEMOS CONTAINER -->
+	    <section class="portfolio no-padding-bottom" id="demos">
+	    	<div class="container">
+	        	<!-- BEGIN HEADING -->
+	        	<h1 class="red text-center">Demos
+	        		<span>
+	        			"The Proof is in the pudding," "Put your money where your mouth &nbsp;is," "Put up or shut up."<br>
+	        			watch these videos and see &nbsp;for yourself.
+	        		</span>
+	        	</h1>
+	            <!-- END HEADING -->
+	        </div>
+			<div  id="filters">
+				<!-- BEGIN DEMO NAV -->
+			    <ul class="clearfix">
+			        <li><a href="#" data-filter="*" class="active"><h3>All</h3></a></li>	
+			        <li><a href="#" data-filter=".overview"><h3>Overview</h3></a></li>
+			        <li><a href="#" data-filter=".courses"><h3>Courses</h3></a></li>
+			        <li><a href="#" data-filter=".tests"><h3>Tests</h3></a></li>
+			        <li><a href="#" data-filter=".assignments"><h3>Assignments</h3></a></li>
+			        <li><a href="#" data-filter=".users"><h3>Users</h3></a></li>
+			        <li><a href="#" data-filter=".reports"><h3>Reports</h3></a></li>
+			    </ul>
+			    <!-- END DEMO NAV -->
+			</div>
+			
+			
+			<div id="portfolio-items-wrap" class="fadeInUp">
+				<!-- BEGIN DEMO -->
+				<div class="portfolio-item overview courses tests reports">
+				   <div class="portfolio">
+				      <div class="img-overlay"></div>
+				        <a href="{{STATIC_URL}}website/rockox/images/demos/demo1.jpg" class="portfolio-image fancybox">
+				          <i class="fa fa-search"></i>
+				        </a>
+				        <a href="http://google.com" target="_blank">
+				          <i class="fa fa-link"></i>
+				        </a>
+				        <img src="{{STATIC_URL}}website/rockox/images/demos/demo1.jpg" alt="">
+				   </div>
+				</div>
+				<!-- END DEMO -->
+				<!-- BEGIN DEMO -->
+				<div class="portfolio-item courses tests fadeInUp">
+				   <div class="portfolio">
+				      <div class="img-overlay"></div>
+				     	 <a href="{{STATIC_URL}}website/rockox/images/demos/demo2.jpg" class="portfolio-image fancybox">
+				          <i class="fa fa-search"></i>
+				          </a>
+				          <a href="http://google.com" target="_blank">
+				          <i class="fa fa-link"></i>
+				          </a>
+				          <img src="{{STATIC_URL}}website/rockox/images/demos/demo2.jpg" alt="">
+				   </div>
+				</div>
+				<!-- END DEMO -->
+				<!-- BEGIN DEMO -->
+				<div class="portfolio-item courses users assignments">
+				   <div class="portfolio">
+				      <div class="img-overlay"></div>
+				      <a href="{{STATIC_URL}}website/rockox/images/demos/demo3.jpg" class="portfolio-image fancybox">
+				          <i class="fa fa-search"></i>
+				          </a>
+				          <a href="http://google.com" target="_blank">
+				          <i class="fa fa-link"></i>
+				          </a>
+				          <img src="{{STATIC_URL}}website/rockox/images/demos/demo3.jpg" alt=""> 
+				   </div>
+				</div>
+				<!-- END DEMO -->
+				<!-- BEGIN DEMO -->
+				<div class="portfolio-item tests users reports fadeInUp">
+				   <div class="portfolio">
+				      <div class="img-overlay"></div>
+				         <a href="{{STATIC_URL}}website/rockox/images/demos/demo4.jpg" class="portfolio-image fancybox">
+				          <i class="fa fa-search"></i>
+				          </a>
+				          <a href="http://google.com" target="_blank">
+				          <i class="fa fa-link"></i>
+				          </a>
+				          <img src="{{STATIC_URL}}website/rockox/images/demos/demo4.jpg" alt="">
+				   </div>
+				</div>
+				<!-- END DEMO -->
+				<!-- BEGIN DEMO -->
+				<div class="portfolio-item tests assignments users reports">
+				   <div class="portfolio">
+				      <div class="img-overlay"></div><a href="{{STATIC_URL}}website/rockox/images/demos/demo5.jpg" class="portfolio-image fancybox">
+				          <i class="fa fa-search"></i> </a>
+				          <a href="http://google.com" target="_blank">
+				          <i class="fa fa-link"></i>
+				          </a>
+				          <img src="{{STATIC_URL}}website/rockox/images/demos/demo5.jpg" alt="">
+				   </div>
+				</div>
+				<!-- END DEMO -->
+				<!-- BEGIN DEMO -->
+				<div class="portfolio-item overview courses tests fadeInUp">
+				   <div class="portfolio">
+				      <div class="img-overlay"></div><a href="{{STATIC_URL}}website/rockox/images/demos/demo6.jpg" class="portfolio-image fancybox">
+				          <i class="fa fa-search"></i></a>
+				          <a href="http://google.com" target="_blank">
+				          <i class="fa fa-link"></i>
+				      	  </a>
+				          <img src="{{STATIC_URL}}website/rockox/images/demos/demo6.jpg" alt="">
+				   </div>
+				</div>
+				<!-- END DEMO -->
+				<!-- BEGIN DEMO -->
+				<div class="portfolio-item tests users fadeInUp">
+				   <div class="portfolio">
+				      <div class="img-overlay"></div><a href="{{STATIC_URL}}website/rockox/images/demos/demo7.jpg" class="portfolio-image fancybox">
+				          <i class="fa fa-search"></i></a>
+				          <a href="http://google.com" target="_blank">
+				          <i class="fa fa-link"></i>
+				      	  </a>
+				          <img src="{{STATIC_URL}}website/rockox/images/demos/demo7.jpg" alt="">
+				   </div>
+				</div>
+				<!-- END DEMO -->
+				<!-- BEGIN DEMO -->
+				<div class="portfolio-item courses tests overview reports">
+				   <div class="portfolio">
+				      <div class="img-overlay"></div><a href="{{STATIC_URL}}website/rockox/images/demos/demo8.jpg" class="portfolio-image fancybox">
+				          <i class="fa fa-search"></i></a>
+				          <a href="http://google.com" target="_blank">
+				          <i class="fa fa-link"></i>
+				        </a>
+				          <img src="{{STATIC_URL}}website/rockox/images/demos/demo8.jpg" alt="">
+				   </div>
+				</div>
+				<!-- END DEMO -->
+			</div>
+	    </section>
+	    <!-- END DEMOS CONTAINER -->
+	            
+	    <div class="modal fade menu-modal" role="dialog" aria-hidden="true" data-keyboard="true" data-backdrop="static" tabindex="-1">    
+	    <div class="modal-dialog">
+	    	<a href="#" class="fa fa-times cls-pop" data-dismiss="modal"></a>
+	    	<div class="modal-header">
+	    		<img src="/static//website/common/img/logo_305x100.png" alt="" class="logo-small" height="70px">
+			</div>
+			<div class="modal-content">			
+				<div class="menu-list">
+					<div class="item">
+						<a href="#home" data-dismiss="modal">					
+							<i class="glyphicons heart_empty icon" style="color:#D4145A;"></i>
+							<span class="title">Benefits</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="#features" data-dismiss="modal">						
+							<i class="glyphicons show_big_thumbnails icon" style="color:#0000FF;"></i>
+							<span class="title">Features</span>
+						</a>										
+					</div>				
+					<div class="item">
+						<a href="#demos" data-dismiss="modal">						
+							<i class="glyphicons film icon" style="color:#FF00FF;"></i>
+							<span class="title">Demos</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="#pricing" data-dismiss="modal">						
+							<i class="glyphicons usd icon" style="color:#59BA35;"></i>
+							<span class="title">Plans</span>
+						</a>										
+					</div>
+					<div class="item last">
+						<a href="/sandbox/signup/step1">						
+							<i class="glyphicons thumbs_up icon" style="color:#30D4D8;"></i>
+							<span class="title">Sign Up</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons imac icon" style="color:#FFCC00;"></i>
+							<span class="title">Courses</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons check icon" style="color:#009245;"></i>
+							<span class="title">Testing</span>
+						</a>									
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons qrcode icon" style="color:#C7B299;"></i>
+							<span class="title">Certificates</span>	
+						</a>											
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="fa fa-bar-chart-o icon" style="color:#70CEEF;"></i>
+							<span class="title">Reporting</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons quote icon" style="color:#D9E021;"></i>
+							<span class="title">Testimonals</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons ipad icon" style="color:#5BC5F2;"></i>
+							<span class="title">Responsive</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons stats icon" style="color:#FF7BAC;"></i>
+							<span class="title">Benchmark</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons calendar icon" style="color:#FF931E;"></i>
+							<span class="title">Events</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons newspaper icon" style="color:#FF2D55;"></i>
+							<span class="title">Newsletter</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons phone_alt icon" style="color:#E30613;"></i>
+							<span class="title">Contact</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons list-alt icon" style="color:#6C4796;"></i>
+							<span class="title">Terms</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons eye_open icon" style="color:#05BECC;"></i>
+							<span class="title">Privacy</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons parents icon" style="color:#ADDB21;"></i>
+							<span class="title">Conduct</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons lock icon" style="color:#D6B31D;"></i>
+							<span class="title">Security</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="#">						
+							<i class="glyphicons circle_question_mark icon" style="color:#0069B4;"></i>
+							<span class="title">FAQs</span>
+						</a>									
+					</div>
+				</div>
+				<div class="social-menu-list">
+					<a href="#"><i class="social social-facebook"></i></a>
+					<a href="#"><i class="social social-twitter"></i></a>
+					<a href="#"><i class="social social-linked-in"></i></a>
+					<a href="#"><i class="social social-youtube"></i></a>
+					<a href="#"><i class="social social-pinterest"></i></a>
+					<a href="#"><i class="social social-instagram"></i></a>
+				</div>		
+			</div>
+	    </div>
+	  </div>
+	    <!-- BEGIN FOOTER -->
+	    <div class="footer-wrapper"> 
+			<footer class="" style="overflow: hidden; padding-left: 0px;">			
+				<ul class="bottom-list row">
+					<li>
+						<a href="#features" class="item">						
+							<i class="glyphicons show_big_thumbnails icon"></i>
+							<span class="title">Features</span>
+							<p class="description">
+								HHLEARN is designed by industry professionals and we have built-in 
+								features that will provide immediate benefits to your organization.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#demos" class="item">
+							<i class="glyphicons film icon"></i>
+							<span class="title">Watch Demo</span>
+							<p class="description">
+								There's no better way to grasp how simple training employees can be
+								than watching videos that visually show you. See it for yourself!
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#courses" class="item">
+							<i class="glyphicons display icon"></i>
+							<span class="title">Courses</span>
+							<p class="description">
+								We utilize proven adult education teaching methods 
+								that include reading, visual aids, tts, and video.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#testing" class="item">
+							<i class="glyphicons check icon"></i>
+							<span class="title">Testing</span>
+							<p class="description">
+								Our testing and secure certificates of completion are so unique, they'are 
+								patent pending. Check out how we do it and how you will benefit
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#contacts" class="item">
+							<i class="glyphicons phone_alt icon"></i>
+							<span class="title">Contact Us</span>
+							<p class="description">
+								There are so many ways to find out about us and contact us. 
+								you can even connect through social media.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#pricing" class="item">
+							<i class="glyphicons usd icon"></i>
+							<span class="title">Pricing Plans</span>
+							<p class="description">
+								Find out how little it costs to become a member of the 
+								number 1 employee education system. Try it for FREE.
+							</p>
+						</a>
+					</li>				
+				</ul>
+			</footer>
+		</div>      
+	    <!-- END FOOTER -->
+	    
+	    <!-- BEGIN GO TO TOP --><a href="#." class="back-to-top" id="back-to-top"><i class="fa fa-angle-up"></i></a><!-- END GO TO TOP -->
+    
+    </div><!-- end #wrapper -->
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.min.js"></script>
+    <!-- parallax -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.stellar.js"></script>
+    <script src="{{STATIC_URL}}website/rockox/js/custom.js"></script>
+    <!-- jcarousel -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.jcarousel.min.js"></script>
+    <!-- way point -->
+    <script src="{{STATIC_URL}}website/rockox/js/waypoints.js"></script>
+    <!-- Add piecharts -->
+	<script src="{{STATIC_URL}}website/rockox/js/jquery.easypiechart.min.js"></script>
+    <!-- navigation classes change on scroll -->
+	<script src="{{STATIC_URL}}website/rockox/js/nimble.js"></script>
+    <script src="{{STATIC_URL}}website/rockox/js/scrollspy.js"></script>
+    <!-- fancybox -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <!-- appear -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.appear.js"></script>
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{STATIC_URL}}website/rockox/js/bootstrap.min.js"></script>
+    <!-- nimble effect -->
+    <script>
+		//slider
+	jQuery(function() {
+		//smooth scroll to href value
+		jQuery(".menu-list .item a").click(function(event){
+			 event.preventDefault();
+			 //calculate destination place
+			 var dest=0;
+			 if ($(this.hash).length == 0) {
+			 	window.location.href = this.href;
+			 	return;
+			 }
+			 if($(this.hash).offset().top > $(document).height()-$(window).height()){
+				  dest=$(document).height()-$(window).height();
+			 }else{
+				  dest=$(this.hash).offset().top;
+			 }
+			 //go to destination
+			 jQuery('html,body').animate({scrollTop:dest}, 1000,'swing');
+		 });
+		 //toggle map
+		 jQuery(".map-title h4 span").click(function(e) {
+		  	jQuery(".map iframe").slideToggle();  
+			jQuery(".map-title h4 span i").toggleClass("fa-angle-up fa-angle-down");
+		 });
+		 
+		jQuery(window).scroll(function(){
+			if(jQuery(window).scrollTop() > 200){
+				jQuery("#back-to-top").fadeIn(200);
+			} else{
+				jQuery("#back-to-top").fadeOut(200);
+			}
+		});
+		
+		jQuery('#back-to-top, .back-to-top').click(function() {
+			  jQuery('html, body').animate({ scrollTop:0 }, '800');
+			  return false;
+		});
+		jQuery('#mycarousel').jcarousel({
+			vertical: true
+		});
+		
+		$('[data-toggle="popover"]').popover();
+		$('[data-toggle="content-popover"]').popover({ 
+	        html : true, 
+	        content: function() {
+	          return $(this).find('.popover-content').html();
+	        }
+	    });
+		
+		jQuery(".fancybox").fancybox();
+		jQuery(".various").fancybox({
+			maxWidth	: 1100,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: '70%',
+			height		: '70%',
+			autoSize	: false,
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+	});	
+	</script>
+  </body>
+</html>

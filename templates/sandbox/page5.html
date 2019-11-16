@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	    <title>HHLEARN</title>
+		<link href="{{STATIC_URL}}dashboard/common/lib/fontawesome/v4.2.0/css/font-awesome.css" rel="stylesheet">		
+		
+		
+	    <!-- theme -->
+	    <link href="{{STATIC_URL}}website/rockox/css/rockox.css" rel="stylesheet">
+	    <link href="{{STATIC_URL}}website/rockox/css/rockox-main.css" rel="stylesheet">
+	    
+	    <!-- Bootstrap -->
+	    <link href="{{STATIC_URL}}website/rockox/css/bootstrap.css" rel="stylesheet">
+	    <!--<link href="{{STATIC_URL}}website/rockox/css/dark_theme.css" rel="stylesheet">-->
+	    
+	    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}website/turnjs4/css/jquery.ui.css"></link>
+		<link type="text/css" rel="stylesheet" href="{{STATIC_URL}}website/turnjs4/css/default.css"></link>
+	    
+	    <!-- Glyphicons-->
+	    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons-social.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/filetypes.css" />
+		
+  	</head>
+  	<body class="fixed-header" data-spy="scroll" data-target=".navbar">
+  	
+    	<div id="wrapper">
+	    <!-- BEGIN HEADER -->
+	    <header id="home">
+		    <nav class="navbar navbar-default" role="navigation">
+	          <div class="container">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <div class="navbar-header">
+	              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	              </button>
+	              <!-- BEGIN LOGO -->
+	              <a class="navbar-brand" href="#home"><img src="{{STATIC_URL}}website/common/img/logo_305x100.png" height="82px" alt=""></a>
+	              <!-- END LOGO -->
+	            </div>
+	        
+	            <!-- Collect the nav links, forms, and other content for toggling -->
+	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	            	<!-- BEGIN NAVIGATION -->
+	                  <ul class="nav navbar-nav">
+	                    <li class="active">
+	                    	<a href="#" class="item" target="_self" data-toggle="modal" data-target=".menu-modal" data-placement="right">
+								<i class="icon glyphicons justify"></i>
+								<span>Menu</span>
+							</a>
+						</li>
+	                    <li>
+	                    	<a href="/login/" class="item" target="_self">
+								<i class="icon glyphicons user"></i>
+								<span>Login</span>
+							</a>
+	                    </li>
+	                    <li>
+	                    	<a href="" class="item" target="_self">
+								<i class="icon glyphicons home"></i>
+								<span>Home</span>
+							</a>
+	                    </li>                    
+	                  </ul>
+	            	<!-- END NAVIGATION -->
+	            </div><!-- /.navbar-collapse -->
+	          </div><!-- /.container-fluid -->
+	    </nav>
+	    </header>
+   		<!-- END HEADER --> 
+   		
+   		<div class="splash">
+			<div class="container">
+				<div class="col-lg-12 col-md-12">
+				<div class="details col-lg-6 col-md-6">
+					<div class="turnjs">docs.hhlearn</div>
+					<h1>A bookself of easy reading</h1>
+					<p>
+						Click a document to open the book of information.  
+						Each organization must agree to the Terms & Conditions and 
+						each user must always abide by our Code of Conduct.
+					</p>
+					<p class="production">
+						All documents are @ HHLEARN
+					</p>					
+				</div>
+			
+				<div class="bookshelf col-lg-6 col-md-6">
+					<div class="shelf">
+						<div class="row-1">
+							<div class="loc">
+								<div> <a href="/sandbox/terms" class="sample thumb1" sample="steve-jobs"></a> </div>					
+								<div> <a href="/sandbox/other_book" class="sample thumb2" sample="docs"></a> </div>
+							</div>
+						</div>
+						<div class="row-2">
+							<div class="loc">					
+								<div> <a href="/sandbox/other_book" class="sample thumb3" sample="magazine"></a> </div>
+								<div> <a href="/sandbox/other_book" class="sample thumb4" sample="double-page"></a> </div>
+							</div>
+						</div>
+					</div>					
+				</div>
+			
+			<!-- Samples-->
+				<div class="samples">
+					<div class="bar">
+						<div class="share">
+							<i class="icon table-contents" title="Table of contents"></i>
+							<i class="icon zoom-in" title="Zoom in"></i>
+							<i class="icon share-facebook" title="Share on facebook"></i>
+							<i class="icon share-twitter" title="Share on Twitter"></i>
+							<i class="icon share-plus" title="Share on G+"></i>
+							<i class="icon share-pinterest" title="Share on Pinterest"></i>
+						</div>
+						<a class="icon quit"></a>
+					</div>
+					<div id="book-wrapper">
+						<div id="book-zoom"></div>
+					</div>
+					<div id="slider-bar" class="turnjs-slider">
+						<div id="slider"></div>
+					</div>
+			
+				</div>
+			
+			<!-- End samples -->
+			</div>
+			</div>
+			<div class="gradient"></div>
+		</div>
+
+	    <div class="modal fade menu-modal" role="dialog" aria-hidden="true" data-keyboard="true" data-backdrop="static" tabindex="-1">    
+		    <div class="modal-dialog">
+		    	<a href="#" class="fa fa-times cls-pop" data-dismiss="modal"></a>
+		    	<div class="modal-header">
+		    		<img src="/static//website/common/img/logo_305x100.png" alt="" class="logo-small" height="70px">
+				</div>
+				<div class="modal-content">			
+					<div class="menu-list">
+						<div class="item">
+							<a href="#home" data-dismiss="modal">					
+								<i class="glyphicons heart_empty icon" style="color:#D4145A;"></i>
+								<span class="title">Benefits</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#features" data-dismiss="modal">						
+								<i class="glyphicons show_big_thumbnails icon" style="color:#0000FF;"></i>
+								<span class="title">Features</span>
+							</a>										
+						</div>				
+						<div class="item">
+							<a href="#demos" data-dismiss="modal">						
+								<i class="glyphicons film icon" style="color:#FF00FF;"></i>
+								<span class="title">Demos</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#pricing" data-dismiss="modal">						
+								<i class="glyphicons usd icon" style="color:#59BA35;"></i>
+								<span class="title">Plans</span>
+							</a>										
+						</div>
+						<div class="item last">
+							<a href="/sandbox/signup/step1">						
+								<i class="glyphicons thumbs_up icon" style="color:#30D4D8;"></i>
+								<span class="title">Sign Up</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#courses" data-dismiss="modal">						
+								<i class="glyphicons imac icon" style="color:#FFCC00;"></i>
+								<span class="title">Courses</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#testing" data-dismiss="modal">						
+								<i class="glyphicons check icon" style="color:#009245;"></i>
+								<span class="title">Testing</span>
+							</a>									
+						</div>
+						<div class="item">
+							<a href="#certificates" data-dismiss="modal">						
+								<i class="glyphicons qrcode icon" style="color:#C7B299;"></i>
+								<span class="title">Certificates</span>	
+							</a>											
+						</div>
+						<div class="item" data-dismiss="modal">
+							<a href="#reports">						
+								<i class="fa fa-bar-chart-o icon" style="color:#70CEEF;"></i>
+								<span class="title">Reporting</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#testimonals" data-dismiss="modal">						
+								<i class="glyphicons quote icon" style="color:#D9E021;"></i>
+								<span class="title">Testimonals</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons ipad icon" style="color:#5BC5F2;"></i>
+								<span class="title">Responsive</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons stats icon" style="color:#FF7BAC;"></i>
+								<span class="title">Benchmark</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons calendar icon" style="color:#FF931E;"></i>
+								<span class="title">Events</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons newspaper icon" style="color:#FF2D55;"></i>
+								<span class="title">Newsletter</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons phone_alt icon" style="color:#E30613;"></i>
+								<span class="title">Contact</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons list-alt icon" style="color:#6C4796;"></i>
+								<span class="title">Terms</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons eye_open icon" style="color:#05BECC;"></i>
+								<span class="title">Privacy</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons parents icon" style="color:#ADDB21;"></i>
+								<span class="title">Conduct</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons lock icon" style="color:#D6B31D;"></i>
+								<span class="title">Security</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons circle_question_mark icon" style="color:#0069B4;"></i>
+								<span class="title">FAQs</span>
+							</a>									
+						</div>
+					</div>
+					<div class="social-menu-list">
+						<a href="#"><i class="social social-facebook"></i></a>
+						<a href="#"><i class="social social-twitter"></i></a>
+						<a href="#"><i class="social social-linked-in"></i></a>
+						<a href="#"><i class="social social-youtube"></i></a>
+						<a href="#"><i class="social social-pinterest"></i></a>
+						<a href="#"><i class="social social-instagram"></i></a>
+					</div>		
+				</div>
+		    </div>
+		</div>
+	    <!-- BEGIN FOOTER -->
+	    <div class="footer-wrapper"> 
+			<footer class="" style="overflow: hidden; padding-left: 0px;">			
+				<ul class="bottom-list row">
+					<li>
+						<a href="#features" class="item">						
+							<i class="glyphicons show_big_thumbnails icon"></i>
+							<span class="title">Features</span>
+							<p class="description">
+								HHLEARN is designed by industry professionals and we have built-in 
+								features that will provide immediate benefits to your organization.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#demos" class="item">
+							<i class="glyphicons film icon"></i>
+							<span class="title">Watch Demo</span>
+							<p class="description">
+								There's no better way to grasp how simple training employees can be
+								than watching videos that visually show you. See it for yourself!
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#courses" class="item">
+							<i class="glyphicons display icon"></i>
+							<span class="title">Courses</span>
+							<p class="description">
+								We utilize proven adult education teaching methods 
+								that include reading, visual aids, tts, and video.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#testing" class="item">
+							<i class="glyphicons check icon"></i>
+							<span class="title">Testing</span>
+							<p class="description">
+								Our testing and secure certificates of completion are so unique, they'are 
+								patent pending. Check out how we do it and how you will benefit
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#contacts" class="item">
+							<i class="glyphicons phone_alt icon"></i>
+							<span class="title">Contact Us</span>
+							<p class="description">
+								There are so many ways to find out about us and contact us. 
+								you can even connect through social media.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#pricing" class="item">
+							<i class="glyphicons usd icon"></i>
+							<span class="title">Pricing Plans</span>
+							<p class="description">
+								Find out how little it costs to become a member of the 
+								number 1 employee education system. Try it for FREE.
+							</p>
+						</a>
+					</li>				
+				</ul>
+			</footer>
+		</div>      
+	    <!-- END FOOTER -->
+	    
+	    <!-- BEGIN GO TO TOP --><a href="#." class="back-to-top" id="back-to-top"><i class="fa fa-angle-up"></i></a><!-- END GO TO TOP -->
+    
+    </div><!-- end #wrapper -->
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.min.js"></script>
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+	    	
+     <!-- jQuery KenBurn Slider  -->	
+	
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.themepunch.plugins.min.js"></script>			
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.themepunch.revolution.min.js"></script>			
+					
+	<!-- parallax -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.stellar.js"></script>
+    <script src="{{STATIC_URL}}website/rockox/js/custom.js"></script>
+    
+     <!-- jcarousel -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.jcarousel.min.js"></script>
+      <!-- way point -->
+    <script src="{{STATIC_URL}}website/rockox/js/waypoints.js"></script>
+    
+    	<!-- Add piecharts -->
+	<script src="{{STATIC_URL}}website/rockox/js/jquery.easypiechart.min.js"></script>
+    <!-- navigation classes change on scroll -->
+	<script src="{{STATIC_URL}}website/rockox/js/nimble.js"></script>
+    
+    <script src="{{STATIC_URL}}website/rockox/js/scrollspy.js"></script>
+    <!-- fancybox -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <!-- appear -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.appear.js"></script>
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{STATIC_URL}}website/rockox/js/bootstrap.min.js"></script>
+    <!-- nimble effect -->
+    
+    <script src="{{STATIC_URL}}website/rockox/js/counters.js"></script>
+    <!-- nimble effect -->
+    <script>
+		//slider
+	jQuery(function() {
+		//parallaax
+		jQuery.stellar({
+			horizontalScrolling: false,
+			verticalOffset: 0
+		});
+		//smooth scroll to href value
+		jQuery(".menu-list .item a").click(function(event){
+			 event.preventDefault();
+			 //calculate destination place
+			 var dest=0;
+			 if ($(this.hash).length == 0) {
+			 	window.location.href = this.href;
+			 	return;
+			 }
+			 if($(this.hash).offset().top > $(document).height()-$(window).height()){
+				  dest=$(document).height()-$(window).height();
+			 }else{
+				  dest=$(this.hash).offset().top;
+			 }
+			 //go to destination
+			 jQuery('html,body').animate({scrollTop:dest}, 1000,'swing');
+		 });		 
+	});	
+	</script>
+	
+	<!-- revolution code -->
+    
+    <script type="text/javascript">
+		var tpj=jQuery;
+		tpj.noConflict();
+		
+		tpj(document).ready(function() {
+		
+			if (tpj.fn.cssOriginal!=undefined)
+				tpj.fn.css = tpj.fn.cssOriginal;
+
+			tpj('.fullwidthbanner').revolution({	
+				delay:9000,												
+				startwidth:1600,
+				startheight:606,
+				
+				onHoverStop:"on",						// Stop Banner Timet at Hover on Slide on/off
+				
+				thumbWidth:100,							// Thumb With and Height and Amount (only if navigation Tyope set to thumb !)
+				thumbHeight:50,
+				thumbAmount:4,
+				
+				hideThumbs:0,
+				navigationType:"both",					//bullet, thumb, none, both	 (No Shadow in Fullwidth Version !)
+				navigationArrows:"verticalcentered",		//nexttobullets, verticalcentered, none
+				navigationStyle:"round",				//round,square,navbar
+				
+				touchenabled:"on",						// Enable Swipe Function : on/off
+				
+				navOffsetHorizontal:0,
+				navOffsetVertical:20,
+				
+				fullWidth:"on",
+				
+				shadow:0								//0 = no Shadow, 1,2,3 = 3 Different Art of Shadows -  (No Shadow in Fullwidth Version !)											
+			});	
+		});
+	</script>
+  </body>
+</html>

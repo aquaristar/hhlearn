@@ -1,0 +1,333 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Location Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block content %}
+<div class="page page-admin-setup" id="step_location" ng-app="step_location">
+	<div class="row">
+		 <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Administrator</a></li>
+                <li><a href="">Setup</a></li>
+                <li class="active"><a href="">Step2</a></li>
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-cogs"></span>&nbsp;&nbsp;Step&nbsp;&nbsp;2.1</strong>    				
+                </div>
+                <div class="panel-body row">
+					<div class="col-lg-12" style="padding: 0px; margin-top: -15px; ">
+						<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/2.2.jpg">					
+						<div class="setup-progress">
+							<div class="progress">
+								<div class="progress-bar progress1" style="width: 20%;">Organizational Setup
+									(100%)
+								</div>
+								<div class="progress-bar progress2" style="width: 20%;">
+									Location Setup (10%)
+								</div>
+								<div class="progress-bar progress3" style="width: 20%;">
+									Department Setup (0%)
+								</div>
+								<div class="progress-bar progress4" style="width: 20%;">
+									Region Setup (0%)
+								</div>
+								<div class="progress-bar progress5" style="width: 20%;">Job
+									Titles Setup (0%)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="post" action="{{ request.path }}" id="step_location" ng-controller="LocationForm as settings">
+						{% csrf_token %}
+						<div class="setup-help text-right">
+							<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i> Watch Me</a>
+						</div>
+						
+						<div class="col-lg-12">	
+						
+							<div class="row">
+								<!-- Modal -->
+								<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title" id="myModalLabel">HHLEARN -
+													Setup Help Video</h4>
+											</div>
+											<div class="modal-body">
+												<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													Close
+												</button>
+					
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+							</div>
+							<!-- /.modal -->
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						
+									{% if organization.total_number_of_locations  > 1 %}
+										<p>
+											You entered previously that you wanted to load a total
+											of {{ organization.total_number_of_locations }} locations. We have
+											opened
+											up data fields for all of your locations. Please make sure the first location is
+											correct
+											and fill in the remaining location information. The names of these locations
+											should be
+											just the name of the location and without any LLCs, Incs, etc. Click on the Save
+											& Next
+											button when you are finished.
+										</p>
+									{% endif %}
+						
+									{% if organization.total_number_of_locations  == 1 %}
+										<p>
+											You entered previously that you were only going to load one location, please
+											verify that
+											this information is correct. The name of this location should be just the name
+											of the
+											location and without any LLCs, Incs, etc. Click on the Save & Next button.
+										</p>
+									{% endif %}
+								</div>
+							</div>
+				
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						
+						
+									<p>
+						
+									<div  id="is_primary_error" class="alert alert-error"  style="display: none">
+						
+						
+										<p>You must answer “Yes” to one of the “Is this the main Location?”</p>
+									</div>
+									</p>
+						
+									<p>
+						
+									<div  id="is_command_location_error" class="alert alert-error"  style="display: none">
+						
+						
+										<p>You must answer “Yes" to one of the “Would this be the command location?”</p>
+									</div>
+									</p>
+						
+								</div>
+							</div>
+						
+							{{ formset.management_form }}
+							{% for form in formset %}
+								{% with index=forloop.counter %}
+						
+								{{ form.id }}
+								
+								<div class="row">
+									<div class="col-sm-4 col-md-4 col-lg-4">
+										<div class="form-group  {% if form.short_name.errors %}has-error{% endif %}">
+											<label for="short_name">{{ form.short_name.label }}</label>
+											<span class="label label-important">{{ form.short_name.errors|first }}</span>
+											<div class="form-controls">												
+												{{ form.short_name }}
+												<span class="icon glyphicon glyphicon-star"></span>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+						
+						
+								<div class="row">
+									<div class="col-sm-4 col-md-4 col-lg-4">
+										<div class="form-group  {% if form.street_address_1.errors %}has-error{% endif %}">
+											<label for="street_address_1">{{ form.street_address_1.label }}</label>
+											<span class="label label-important">{{ form.street_address_1.errors|first }}</span>
+											<div class="form-controls">
+												{{ form.street_address_1 }}
+												<span class="icon glyphicon glyphicon-star"></span>
+											</div>
+										</div>
+									</div>						
+								</div>
+						
+								<div class="row">
+									<div class="col-sm-4 col-md-4 col-lg-4">
+										<div class="form-group  {% if form.street_address_2.errors %}has-error{% endif %}">
+											<label for="street_address_2">{{ form.street_address_2.label }}</label>
+											<span class="label label-important">{{ form.street_address_2.errors|first }}</span>
+											<div class="form-controls">
+												{{ form.street_address_2 }}											
+											</div>
+										</div>
+									</div>						
+								</div>
+						
+						
+								<div class="row">									
+									<div class="col-sm-4 col-md-4 col-lg-4">
+										<div class="form-group {% if form.city.errors %}has-error{% endif %}">
+											<label for="city">City</label>
+											<span class="label label-important">{{ form.city.errors|first }}</span>
+											<div class="form-controls">
+												{{ form.city }}
+												<span class="icon glyphicon glyphicon-star"></span>
+											</div>									
+										</div>
+									</div>
+									
+									<div class="col-sm-4 col-md-4 col-lg-4">
+										<div class="form-group {% if form.state.errors %}has-error{% endif %}">
+											<label for="state">State</label>
+											<span class="label label-important">{{ form.state.errors|first }}</span>											
+											<div class="form-controls">
+												<span class="ui-select">
+													<select name="form-{{ forloop.counter0 }}-state" class="select-block " id="selectpicker">
+														<option value="">Select State</option>
+														{% for state in form.fields.state.queryset %}
+															<option {% if state.value  == form.state.value %}selected="selected"{% endif %} value="{{ state.name }}">{{ state.name }}</option>
+														{% endfor for %}										
+													</select>
+												</span>										
+											</div>
+										</div>
+									</div>
+									
+									<div class="col-sm-4 col-md-4 col-lg-4">
+										<div class="form-group {% if form.zip_code.errors %}has-error{% endif %}">
+											<label for="zip_code">Zip Code</label>
+											<span class="label label-important">{{ form.zip_code.errors|first }}</span>
+											<div class="form-controls">
+												<input type="text" name="form-{{ forloop.counter0 }}-{{ form.zip_code.name }}" class="form-control" id="zip_code" placeholder="Zip Code" value="{{ form.data.zip_code }}">
+												<span class="icon glyphicon glyphicon-star"></span>												
+											</div>
+										</div>
+									</div>
+								</div>
+						
+						
+								<div class="row">
+									<div class="col-sm-4 col-md-4 col-lg-4">
+										<div class="form-group  {% if form.phone.errors %}has-error{% endif %}">
+											<label for="phone">Direct Phone Number</label>
+											<span class="label label-important">{{ form.phone.errors|first }}</span>
+											<div class="form-controls">
+												{{ form.phone }}
+												<span class="icon glyphicon glyphicon-star"></span>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+						
+						
+						
+								<div class="row">
+									<div class="col-sm-4 col-md-4 col-lg-4">
+										<div class="form-group  {% if form.fax.errors %}has-error{% endif %}">
+											<label for="fax">Fax Number</label>
+											<span class="label label-important">{{ form.fax.errors|first }}</span>
+											<div class="form-controls">
+												{{ form.fax }}
+												<span class="icon glyphicon glyphicon-star"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+						
+						
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.is_primary.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="is_primary">{{ form.is_primary.label }}</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-2 col-md-2 col-lg-2">
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.is_primary.name}}" {% if form.is_primary.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>																								
+												</div>
+											</div>
+										</div>
+									</div>						
+								</div>
+								
+						
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.is_command_location.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="is_command_location">{{ form.is_command_location.label }}</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.is_command_location.errors|first }}</span>													
+													<label class="switch switch-iphone">
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.is_command_location.name}}" {% if form.is_command_location.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+						
+								<hr/>
+								{% endwith %}
+							{% endfor %}
+						
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<p class="text-center">
+										<a href="{{ back_button_url }}" class="btn btn-blue btn-wide setup-back-button hidden-print">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">Save
+											& Next
+										</button>
+									</p>								
+								</div>
+							</div>							
+						</div>
+					</form>
+				</div>
+			</div>			
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/location/js/location.js"></script>
+
+{% endblock %}

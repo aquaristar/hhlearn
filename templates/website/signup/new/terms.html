@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" class="signup-page">
+<head>
+	<title>HHLEARN</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+	<!-- CSS start here -->
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons.css" />
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons-social.css" />
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/dashboard/common/css/style.css" />
+	<!--<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/dashboard/common/css/style.css" />-->
+	<!-- CSS end here -->
+	<!-- Google fonts start here -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+	<!-- Google fonts end here -->
+</head>
+<body class="signup-body">
+	<div class="header-wrapper">		
+		<div class="container">
+		<div class="col-lg-6 col-md-6 text-center">			
+			<a href="/" target="_self">
+				<!-- <span class="logo-icon glyphicon glyphicon-fire"></span> -->
+				<img src="/static/website/common/img/logo_305x100.png" alt="" class="logo-small" height="82px">
+			</a>
+		</div>
+		<div class="header-menu col-lg-6 col-md-6">			
+			<div class="col-lg-4 col-md-4 text-center">
+				<a href="#" class="item" target="_self" data-toggle="modal" data-target=".menu-modal" data-placement="right">
+					<i class="icon glyphicons justify"></i>
+					<span>Menu</span>
+				</a>
+			</div>
+			<div class="col-lg-4 col-md-4 text-center">
+				<a href="/login/" class="item" target="_self">
+					<i class="icon glyphicons user"></i>
+					<span>Login</span>
+				</a>
+			</div>
+			<div class="col-lg-4 col-md-4 text-center">
+				<a href="/" class="item" target="_self">
+					<i class="icon glyphicons home"></i>
+					<span>Home</span>
+				</a>
+			</div>			
+		</div>
+		</div>
+	</div>
+	
+<!-- Contact Icon end here -->
+	<!-- Main container start here -->
+	<div class="main-container signup">		
+		<section class="container main-wrapper">
+			<div class="row signup-wrapper">	
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div data-ui-wizard-form="" role="application" class="wizard clearfix" id="steps-uid-0">
+						<div class="steps clearfix">
+							<ul role="tablist">
+								<li role="tab" class="first done" aria-disabled="false" aria-selected="false">
+									<a id="steps-uid-0-t-0" href="{% url 'signup' %}" aria-controls="steps-uid-0-p-0" class="signup-tab1">
+										<span class="current-info audible">current step: </span>
+										<span class="number">1.</span> Your Info
+									</a>
+								</li>
+								<li role="tab" class="current" aria-disabled="false" aria-selected="true">
+									<a id="steps-uid-0-t-1" href="{% url 'signup_terms' %}" aria-controls="steps-uid-0-p-1" class="signup-tab2">
+										<span class="number">2.</span> Terms of Use
+									</a>
+								</li>
+								<li role="tab" class="" aria-disabled="false" aria-selected="false">
+									<a id="steps-uid-0-t-2" href="{% url 'signup_payment' %}" aria-controls="steps-uid-0-p-2" class="signup-tab3 disabled">
+										<span class="number">3.</span> Plan & Pay
+									</a>
+								</li>
+								<li role="tab" class="last" aria-disabled="false" aria-selected="false">
+									<a id="steps-uid-0-t-3" href="{% url 'signup_thank_you' %}" aria-controls="steps-uid-0-p-3" class="signup-tab4 disabled">
+										<span class="number">4.</span> Last Step
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="content clearfix">
+			                <h1 id="steps-uid-0-h-0" tabindex="-1" class="title current">1. Your Info</h1>
+			                <div id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body current" aria-hidden="false" style="display: none;">
+			                </div>
+		                	<h1 id="steps-uid-0-h-1" tabindex="-1" class="title">2. Terms of Use</h1>
+		                	<div id="steps-uid-0-p-1" role="tabpanel" aria-labelledby="steps-uid-0-h-1" class="body" aria-hidden="true" style="display: block;">
+		                		<p><strong>Terms and Conditions of Use</strong></p>
+		                		<div style="overflow-y: scroll;height:400px; background: white; padding: 10px; border: solid: 1px black;">
+		                			<b><p>Terms and Conditions</p></b>
+									<b><p>Dynamic Agenda, Inc.&mdash;HHLEARN.com</p></b>
+									<b><p>WEB SITE TERMS AND CONDITIONS OF USE</p></b>
+									<p>Effective as of: January 1, 2015<br>
+									Date of Last Revision: N/A</p>
+									<p>&nbsp;</p>
+									<b><p>Welcome</p></b>
+									<p>Thank you for choosing to visit our web site. HHLEARN.com is a subsidiary of Dynamic Agenda, Inc. ("Dynamic"). Dynamic is the parent company of HHLEARN.com as well as various other educational institutions (collectively "Dynamic Institutions"). These web site Terms and Conditions ("Terms of Use") apply to your access to, and use of, the Dynamic's web sites located at www.dynamicagenda.com as well as any other Dynamic-controlled sites, regardless of domain name or IP address (collectively "Site" or "Sites") and features and applications accessible through, or in connection with, the Sites (collectively the "Services"). Certain Services may be subject to additional terms and conditions (collectively "Additional Terms") as may be set forth in these Terms of Use, on the Sites or in connection with your use of such Services, and your use of such Services constitutes your agreement to all applicable Additional Terms and such Additional Terms are hereby incorporated by reference into these Terms of Use. Further, these Terms of Use are in addition to the terms or conditions of any other agreement you may have with Dynamic, or its subsidiaries or affiliates, for products, services or otherwise, including, without limitation, terms, conditions and policies relating to the courses and educational programs provided by Dynamic.</p>
+									<b><p>PLEASE READ THESE TERMS OF USE CAREFULLY AS THEY CONTAIN IMPORTANT INFORMATION REGARDING YOUR LEGAL RIGHTS, REMEDIES AND OBLIGATIONS. BY ACCESSING OR USING ANY OF THE SITES OR THE SERVICES, YOU ARE ENTERING INTO A LEGAL CONTRACT WITH THE DYNAMIC AND HHLEARN.COM, THE TERMS OF WHICH GOVERN YOUR USE OF THE SITES. ACCORDINGLY, BY YOUR ACCESS OR USE YOU AGREE TO BE BOUND BY THE TERMS AND CONDITIONS DESCRIBED HEREIN AND ALL ADDITIONAL TERMS INCORPORATED BY REFERENCE. IF YOU DO NOT AGREE TO ALL OF THESE TERMS, DO NOT USE THE SITES OR THE SERVICES.</p></b>
+									<b><p>Modifications to Terms of Use</p></b>
+									<p>Dynamic reserves the right to change or modify any of the terms and conditions contained in the Terms of Use or any Additional Terms of the Sites, at any time and in its sole discretion. If Dynamic changes or modifies these Terms of Use, Dynamic will post the changes to these Terms of Use on the Sites and will indicate at the top of this page the date these Terms of Use were last revised. Any changes or modifications will be effective immediately upon posting of the revisions to the Sites, and you waive any right you may have to receive specific notice of such changes or modifications. Your continued use of any of the Sites or the Services following the posting of changes or modifications will constitute and confirm your agreement to and acceptance of such changes or modifications. It is your responsibility to regularly check this Site to determine if there have been changes to these Terms of Use and to review such changes. If you do not agree to the amended terms, you must stop using the Sites and the Services.</p>
+									<b><p>Privacy Policy</p></b>
+									<p>Please refer to the privacy policy on the applicable Site for information on how Dynamic collects, uses and discloses the information collected on that Site.</p>
+									<p>If you are an employee of the Dynamic Agenda, Inc. or another Dynamic Institution, you should also refer to your applicable Dynamic, or Dynamic Employee Handbook.</p>
+									<b><p>Employees</p></b>
+									<p>If you are an employee of Dynamic, HHLEARN.com, or another Dynamic Institution, you have certain responsibilities with respect to your conduct as set forth in the applicable Dynamic Employee Handbook. Your conduct on the Sites is subject to and must fully conform with: a.) the terms set out in the applicable Dynamic Employee Handbook; b.) any Additional Terms set out on the Site(s) and c.) any other employment agreements or acknowledgements that may be applicable to you. Violation of any Dynamic policies and procedures, employment agreements or acknowledgments or Additional Terms may result in appropriate sanctions, as determined in Dynamic's sole discretion, up to and including termination of your employment, in addition to any other consequence, penalty or liability that may result from such behavior. In the event of any conflict between these Terms of Use (including any Additional Terms) and any policy in the applicable Dynamic Employee Handbook, or other term of employment, the order of precedence to resolve such conflicts shall be as follows: a.) the terms of any specific employment agreement or acknowledgment; b.) the applicable Dynamic Employee Handbook policies; and c.) these Terms of Use. Notwithstanding the previous sentence, Dynamic and HHLEARN.com reserve the right to resolve any such conflicts in their sole discretion.</p>
+									<b><p>Copyright and Limited License from Dynamic</p></b>
+									<p>Unless otherwise indicated in the Sites, the Sites, the Services and all content and other materials on the Sites including, without limitation, the HHLEARN's logo, and all designs, text, graphics, pictures, information, data, software, routines, documentation, technology, sound files, other files, and the selection and arrangement thereof (collectively, the "Site Materials") are the proprietary property of Dynamic, HHLEARN.com or their licensors or users and are protected by U.S. and international copyright and other laws. You are granted a limited license, without the right to sublicense, to access and use the Sites, the Site Materials and the Services, and to print limited hard copy portions of the Site Materials, for your educational, non-commercial and personal use only. Such license is subject to these Terms of Use, the applicable Additional Terms, if any, and any other applicable terms and conditions, and without limiting any of the foregoing, you expressly agree not to:</p>
+									<ol type="a">
+									<li>resell, lease, transfer, lend, timeshare, syndicate or commercially use the Sites, Site Materials or the Services;
+									<li>decompile, reverse engineer, disassemble or otherwise attempt to derive any source code from the Sites, the Site Materials or the Services;
+									<li>distribute, publicly perform or publicly display the Sites, the Site Materials or the Services;
+									<li>modify, adapt, translate, or create any derivative works of the Sites, the Site Materials, the Services or any portion thereof;
+									<li>use any data mining, crawlers, spiders, robots or similar data gathering or extraction methods;
+									<li>download, index or in any non-transitory manner store or cache any portion of the Sites, the Site Materials, the Services or any information contained therein, except as expressly permitted on the Sites;
+									<li>remove, deface, obscure, or alter any copyright, trademark or other proprietary rights notices affixed to or provided in connection with the Sites, the Site Materials or any Services;
+									<li>create or attempt to create a substitute or similar service or product through the use of or access to the Sites, the Site Materials, the Services or any proprietary information related thereto; or
+									<li>use the Sites, the Site Materials or the Services other than for its intended purpose.
+									</ol>
+									<p>Any use or attempted use of the Sites, the Site Materials or the Services other than as specifically authorized herein, without the express prior written permission of Dynamic, or its licensors, is strictly prohibited and will, among other things, terminate the license granted herein. Such unauthorized use or attempted use may also violate applicable laws, including without limitation, copyright and trademark laws and applicable communications regulations and statutes. Except as explicitly stated herein, nothing in these Terms of Use or any applicable Additional Terms shall be construed as conferring any license to any intellectual property rights, whether by estoppel, implication or otherwise. This license is revocable at any time, in Dynamic's sole discretion.</p>
+									<b><p>Repeat Infringer Policy</p></b>
+									<p>In accordance with the Digital Millennium Copyright Act (DMCA) and other applicable law, Dynamic will terminate, in appropriate circumstances and at Dynamic's sole discretion, users, subscribers or account holders who are deemed to be repeat infringers. Dynamic may also, at its sole discretion, limit access to the Sites and/or terminate the accounts of any users who infringe any intellectual property rights of others, whether or not there is any repeat infringement. All employees of the Dynamic, HHLEARN.com or another Dynamic Institution, will also be subject to the policies and procedures set forth in the applicable Dynamic Employee Handbook, which policies and procedures are in addition to these Terms of Use.</p>
+									<b><p>Copyright Complaints</p></b>
+									<p>If you believe that any material on any of the Sites infringes upon any copyright which you own or control, you or your designee, acting as a "Complaining Party", may send a notification of such claimed infringement to our Designated Agent as set forth below:</p>
+									<p>Dynamic Agenda, Inc.<br>
+									Attn: Compliance Officer<br>
+									316 California Avenue<br>
+									Reno, Nevada 89509</p>
+									<p>Telephone Number: (844) 801-8100<br>
+									Facsimile Number: (855) 661-6109</p>
+									<p>E-Mail Address: compliance@hhlearn.com</p>
+									<p>To be effective, a notification of claimed infringement must be a written communication provided to the Designated Agent and include substantially the following:</p>
+									<ol type="a">
+									<li>A physical or electronic signature of a person authorized to act on behalf of the owner of the exclusive right that is allegedly infringed.
+									<li>Identification of the copyrighted work claimed to have been infringed, or, if multiple copyrighted works at a single Site are covered by a single notification, a representative list of such works at that Site.
+									<li>Identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material.
+									<li>Information reasonably sufficient to permit our or our designee's contact with the Complaining Party, such as a current, valid address, telephone number, and, if available, an electronic mail address at which the Complaining Party may be contacted.
+									<li>A statement that the Complaining Party has a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law.
+									<li>A statement that the information in the notification is accurate, and under penalty of perjury, that the Complaining Party is authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.
+									</ol>
+									<p>Upon receipt of such notification, Dynamic or the Designated Agent will remove or disable access to such material and give notice of a claim of copyright infringement to the user or subscriber who authored the claimed infringing content by means of any one or more of the following methods at Dynamic's sole option: a general notice on the Sites, electronic mail to the content provider's email address in our records, or by written communication sent by first-class mail to such user's postal address in our records.</p>
+									<b><p>Counter Notification</p></b>
+									<p>A provider of content subject to a claim of infringement may make a counter notification. To file a counter notification with us, please provide the Designated Agent a written communication containing the following:</p>
+									<ol type="a">
+									<li>A physical or electronic signature.
+									<li>Identification of the material that has been removed or to which access has been disabled and the location at which the material appeared before it was removed or access to it was disabled.
+									<li>A statement under penalty of perjury that you have a good faith belief that the material was removed or disabled as a result of mistake or misidentification of the material to be removed or disabled.
+									<li>Your name, address, and telephone number, and a statement that you consent to the jurisdiction of Federal District Court for the judicial district in which your postal address is located, and that you will accept service of process from the Complaining Party who submitted the infringement notification or his, her or its principal or agent.
+									</ol>
+									<p>Upon receipt of such counter notification, Dynamic will promptly provide the Complaining Party that provided the notice of claimed infringement with a copy of the counter notification, and inform the Complaining Party or entity that Dynamic will replace the removed material or cease disabling access to it in 10 business days. Dynamic will replace the removed material and cease disabling access to it between 10 and 14, business days following receipt of the counter notice, unless our Designated Agent first receives notice from or on behalf of the copyright owner that such person or entity has filed an action seeking a court order to restrain the subscriber from engaging in infringing activity relating to the material on our Site(s).</p>
+									<b><p>Trademarks</p></b>
+									<p>All logos and any other product or service name or slogan contained in the Sites are trademarks of Dynamic, or their suppliers or licensors, and may not be copied, imitated or used, in whole or in part, without the express prior written permission of Dynamic or the applicable trademark holder. You may not use any meta tags or any other "hidden text" utilizing "Dynamic Agenda, Inc.," "HHLEARN," or any other name, trademark or product or service name of Dynamic without our express prior written permission. In addition, the look and feel of the Sites, including all page headers, custom graphics, button icons and scripts, is the service mark, trademark and/or trade dress of Dynamic and may not be copied, imitated or used, in whole or in part, without our express prior written permission. All other trademarks, service marks, logos, and product names published on the Sites are the property of their respective owners. Reference to any products, services, processes or other information, by trade name, trademark, manufacturer, supplier or otherwise does not constitute or imply endorsement, sponsorship or recommendation thereof by Dynamic.</p>
+									<b><p>Hyperlinks</p></b>
+									<p>Dynamic makes no claim or representation regarding, and accepts no responsibility for, the quality, content, nature or reliability of third-party web sites accessible by hyperlink from the Sites, or web sites linking to the Sites. Such sites are not under the control of Dynamic and Dynamic is not responsible for the contents of any linked site or any link contained in a linked site, or any review, changes or updates to such sites. Dynamic provides these links to you only as a convenience, and the inclusion of any link does not imply affiliation, endorsement or adoption by Dynamic of any site or any information contained therein. When you leave the Sites, these Terms of Use will no longer govern your Internet browser session. Your use of any site to which you navigate from the Sites will be subject to that site's terms of use, if any, and its privacy and data gathering policies. It shall be your sole responsibility to review the applicable terms and policies, including privacy and data gathering practices, of any site to which you navigate from the Sites.</p>
+									<p>You are granted a limited, non-exclusive right to create a text hyperlink to publicly available Sites for noncommercial purposes, provided such link does not portray Dynamic or any of its products and services in a false, misleading, derogatory or otherwise defamatory manner or light, and provided further that the linking site does not contain any adult or illegal material or any material that is, in Dynamic's sole opinion, offensive, harassing or otherwise objectionable. This limited right may be revoked at any time. You may not use Dynamic's logo or other proprietary graphic of Dynamic to link to the Sites without the express prior written permission of Dynamic. Further, you may not use, frame or utilize framing techniques to enclose any Dynamic trademark, logo or other proprietary information, including the images found at the Sites, the content of any text or the layout/design of any page or form contained on a page on the Sites without Dynamic's express prior written permission. Except as expressly stated above, you are not conveyed any right or license by implication, usage, custom, estoppel or otherwise in or under any patent, trademark, copyright or proprietary right of Dynamic or any third party.</p>
+									<b><p>Third Party Content and Applications</p></b>
+									<p>In addition to official pages on the Sites containing the content of Dynamic in support of Dynamic's mission or related administrative business, our Sites may include third party content on the Sites and may provide links to web pages and content of third parties (collectively the "Third Party Content") as a service to those interested in this information, including content and views of various individuals such as employees, industry experts, industry association executives/administrators, former Dynamic members, or the general public. The views expressed in such Third Party Content should not be construed as representing the views of Dynamic. In addition, the Sites may include certain applications, features, programs and services provided by third parties (the "Third Party Applications"). Dynamic does not monitor Third Party Content or Third Party Applications and can make no guarantee as to the accuracy or completeness of such Third Party Content or Third Party Applications. Dynamic is not responsible or liable in any manner for any Third Party Content or Third Party Applications, or for any loss, liability, harm or damages of any sort incurred as the result of your use thereof or access thereto, and makes no representations or warranties in connection with any Third Party Content or Third Party Applications, which at all times and in each instance is provided "as is." Third Party Applications may be subject to additional terms and conditions or agreements between you and the provider of such Third Party Applications as may be provided to you in connection therewith, and you agree to fully comply with all such additional terms, conditions and agreements. Users use such Third Party Content and Third Party Applications at their own risk.</p>
+									<b><p>Third Party Products, Services, Advertisements and Promotions</p></b>
+									<p>Dynamic may provide information about or links to third party products or services on the Sites or may run third party advertisements or promotions on the Sites. Your business dealings or correspondence with, or participation in promotions of, such third parties, and any terms, conditions, warranties or representations associated with such dealings or promotions, are solely between you and such third party. Dynamic is not responsible or liable for any loss or damage of any sort incurred as the result of any such dealings or promotions or as the result of the presence of such non-University advertisers or third party information on the Sites.</p>
+									<b><p>Google, Inc. Applications</p></b>
+									<p>Dynamic may provide access through the Site to certain Third Party Applications ("Google Apps") owned and operated by Google, Inc. ("Google"). By using the Google Apps, you agree to be bound by and comply with the Google Apps Acceptable Use Policy, accessible at http://www.google.com/apps/intl/en/terms/use_policy.html, as may be modified from time to time by Google (the "Google Admin Policies"). In the event of a violation or a suspected violation of any of the Google Admin Policies, Dynamic may, among other things, suspend or disable access to your account. You further acknowledge that you agree to be bound by terms relating to each component of the Google Apps that you use, which may include but are not limited to the following terms, as applicable, (which may be modified from time to time) and which are more fully set forth at the URLs listed below or such URLs as Google may provide:</p>
+									<ul>
+									<li>Google Terms of Service at http://www.google.com/intl/en/policies/terms/;
+									<li>Additional Program Policies or Guidelines for acceptable usage at http://www.google.com/apps/intl/en/terms/user_terms.html; and
+									<li>Privacy policies relating to the Google Apps which may include but are not limited to the Google Apps Privacy Policy available http://www.google.com/intl/en/policies/privacy/; and
+									<li>the Google Privacy Policy available at http://www.google.com/policies/privacy/.
+									</ul>
+									<p>Any questions or complaints regarding the Google Apps may be directed to Dynamic, or you may also use the services provided by Google through its Help Center, which is accessible at https://support.google.com. If you do not agree to Google's terms and conditions relating to the Google Apps, then stop using the Google Apps. By using the Google Apps, you acknowledge and agree to be bound by all of Google's terms and conditions relating thereto, in addition to these Terms of Use, any applicable Additional Terms and any other applicable terms and conditions.</p>
+									<b><p>User Content and Conduct</p></b>
+									<p>The Sites or the Services may include public or restricted access discussion forums, or other interactive areas or services ("Interactive Areas"), including chat rooms or message boards, online hosting or storage services, mobile applications, tablet applications, or other areas or services in which you or other users create, post or store any content, messages, materials, data, information, text, music, sound, photos, video, graphics, code or other items or materials on the Sites ("User Content"). Interactive Areas are provided "as is". You are solely responsible for your use of such Interactive Areas and use them at your own risk.</p>
+									<p>If you post User Content, you agree that your User Content will be accessible and viewed by others. You agree not to post, upload to, transmit, distribute, store, create or otherwise publish through the Sites any of the following:</p>
+									<ol type="a">
+									<li>User Content that is unlawful, libelous, defamatory, obscene, pornographic, indecent, lewd, suggestive, harassing, threatening, invasive of privacy or publicity rights, abusive, inflammatory, fraudulent or otherwise objectionable;
+									<li>User Content that would constitute, encourage or provide instructions for a criminal offense, violate the rights of any party, or that would otherwise create liability or violate any local, state, national or international law;
+									<li>User Content that may infringe any patent, trademark, trade secret, copyright or other intellectual or proprietary right of any party;
+									<li>User Content that impersonates any person or entity or otherwise misrepresents your affiliation with a person or entity;
+									<li>Any unauthorized commercial use such as, but not limited to, engaging in unsolicited promotions, political campaigning, advertising, or solicitations, hyperlinking off of the Sites, or collecting names and emails addresses for the purpose of sending unsolicited emails;
+									<li>Private information of any third party, including, without limitation, addresses, phone numbers, email addresses, Social Security numbers and credit card numbers;
+									<li>Viruses, corrupted data or other harmful, disruptive or destructive files; and
+									<li>User Content that, in the sole judgment of Dynamic, is objectionable or which restricts or inhibits any other person from using or enjoying the Interactive Areas or the Sites, or which may expose Dynamic or its users to any harm or liability of any type.
+									</ol>
+									<p>This list of prohibitions provides examples and is not complete or exclusive.</p>
+									<p>By posting any User Content, you represent and warrant that you have the lawful right to distribute and reproduce such User Content.</p>
+									<p>In addition, if you are a student at Dynamic you have certain responsibilities with respect to your conduct as set forth in the "Code of Conduct", Dynamic policies regarding member use of computing resources and other applicable policies contained in HHLEARN which may be accessed via HHLEARN.com. Your conduct on the Sites is subject to and must fully conform with these policies. Violation of the HHLEARN policies may result in appropriate sanctions, as determined in Dynamic's sole discretion, in addition to any other consequence, penalty or liability that may result from such behavior. In the event of any conflict between these Terms of Use and HHLEARN policies, the HHLEARN policies shall take precedence. Notwithstanding the previous sentence, Dynamic reserves the right to resolve any such conflicts in its sole discretion.</p>
+									<p>You further agree not to access or attempt to access any Site area(s) which you are not authorized to access or to provide or facilitate access to any nonpublic Site area(s) by any unauthorized user.</p>
+									<p>Any use of the Site area(s), the Sites, the Site Materials or the Services in violation of these Terms of Use, including the foregoing, may result in, among other things, termination or suspension of your rights to use the Sites, the Site Materials or the Services.</p>
+									<p>Dynamic takes no responsibility and assumes no liability for any User Content posted, stored or uploaded by you or any third party, or for any loss or damage thereto or resulting therefrom, nor is Dynamic liable for any mistakes, defamation, slander, libel, omissions, falsehoods, obscenity, pornography or profanity you may encounter. As a provider of interactive services, Dynamic is not liable for any statements, representations or User Content provided by its users in any public forum, personal home page or other Interactive Area. Accordingly, Dynamic has no obligation to screen, edit, or monitor User Content or the Interactive Areas. However, Dynamic reserves the right, and has absolute discretion, to refuse, block, move, or remove any User Content posted or stored on the Sites at any time with or without cause and for any reason or no reason, with or without notice. You are solely responsible for creating backup copies of and replacing any User Content you post or store on the Sites or through the Services at your sole cost and expense. In order to cooperate with legitimate governmental requests, subpoenas or court orders, to protect Dynamic's systems and customers, or to ensure the integrity and operation of Dynamic's business and systems, Dynamic may access and disclose any information it considers necessary or appropriate, including, without limitation, user profile information (i.e. name, e-mail address, etc.), IP addressing and traffic information, usage history, and posted User Content. Dynamic's right to disclose any such information as set forth herein shall supersede and control any conflicting terms of Dynamic's Privacy Policy.</p>
+									<p>Except as explicitly indicated in these Terms of Use, or unless otherwise indicated on the Sites or in connection with your use of the Services, if you post User Content to any of the Sites or in connection with the Services, you retain all rights in and to such User Content. You grant Dynamic, its affiliates, and third party service providers a nonexclusive, royalty-free, perpetual, irrevocable and fully sublicensable right to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, perform and display such User Content throughout the world in any media. You grant Dynamic and its affiliates and sublicensees the right to use the name that you submit in connection with such User Content, at their sole discretion. You specifically acknowledge and agree that Dynamic has the right to sell, license and/or display any advertising, promotional and distribution rights in connection with your User Content and Dynamic will be entitled to retain any and all revenue generated from any sales or licenses of such advertising, promotional or distribution rights. No royalties will be paid to you or any third party for your User Content. Nothing in these Terms of Use obligates or may be deemed to obligate Dynamic to sell, license or offer to sell or license any advertising, promotion or distribution rights. You represent and warrant that:</p>
+									<ol type="a">
+									<li>you own and control all of the rights to the User Content that you post or you otherwise have the right to post such User Content to the Sites and license such User Content to Dynamic and its affiliates as herein provided;
+									<li>the User Content is accurate and not misleading; and
+									<li>use and posting of the User Content you supply does not violate these Terms of Use and will not violate any rights of or cause injury to any person or entity.
+									</ol>
+									<b><p>Representations; Registration Data; Account Security</p></b>
+									<p>In consideration of your use of any of the Sites, the Site Materials and the Services, you represent you are of legal age (and if for an organization, have the Authority) to form a binding contract. In consideration of your use of any of the Sites, the Site Materials and Services, you agree to:</p>
+									<ol type="a">
+									<li>provide accurate, current and complete information about you as may be prompted by any registration forms on the Sites ("Registration Data");
+									<li>maintain and be solely responsible for the security of your password and identification;
+									<li>maintain and promptly update the Registration Data, and any other information you provide to Dynamic, to keep it accurate, current and complete; and
+									<li>accept all risks of unauthorized access to the Registration Data and any other information you provide to Dynamic.
+									</ol>
+									<b><p>Submissions Relating to Site(s) or Services</p></b>
+									<p>You acknowledge and agree that any materials, including but not limited to questions, comments, suggestions, ideas, plans, notes, drawings, original or creative materials, images or other information regarding the Sites, the Site Materials the Services or Dynamic provided by you by participating in surveys hosted by Dynamic, or any third party vendors, on the Sites or other sites, in the form of email, or any other submissions to Dynamic, or any postings on the Sites, are non-confidential and shall be the sole property of Dynamic, and that upon submission of such materials to Dynamic you thereby assign without additional consideration all right, title or interest you may hold in such materials to Dynamic. Dynamic shall own exclusive rights, including all intellectual property rights, and shall be entitled to the unrestricted use and dissemination of these materials for any purpose, commercial or otherwise, without acknowledgment or compensation to you.</p>
+									<b><p>Payments</p></b>
+									<p>You agree to pay the monthly fee for the subscribed users on the Site. The monthly payment is required at the beginning of each month (or thirty-day period). Forms of payment HHLEARN accepts are most major credit cards, electronic debit of bank account, or via check. There will be an additional three (3%) surcharge for the use of credit cards; there is no extra surcharge for the use of electronic debiting of a bank account or checks. Subscribers may pay multiple months in advance.</p> 
+									<p>There is no grace period for non-payment. If a monthly charge does not clear, the subscriber's account will immediately become inaccessible. Any charges incurred by HHLEARN processing insufficient funds will be the sole responsibility of the subscriber to remunerate back to HHLEARN.</p>
+									<b><p>Number of Users</p></b>
+									<p>HHLEARN is a subscription service that utilizes a monthly fee for a designated range of users. If the subscriber attempts to load more than their paid user allotment, the difference between the next higher rate and the current rate will be charged before the subscriber will be allowed to load additional users. There will be notifications that must be agreed to before additional charges and users will be allowed on the Site. Only users of the Site that have administrator privileges will be allowed to authorize additional users/charges. If a subscriber falls under their allotment of users, e.g., the next lower level, there will be no proration for the current period and the lower fee will automatically start on the next monthly period.</p>
+									<p>HHLEARN does not allow the manipulation of active users, i.e., turning users on and off, to keep the subscriber's organization under their user allotment. When a user is turned off (deactivated), they are deactivated. Deactivated users can be reactivated, but a fee equal to the user's prorated monthly fee will be charged for each monthly period of deactivation. An example would be having 10 users on the system and a monthly fee of $30. If a deactivated user is reactivated, their prorated monthly charge of $3 (30 ÷ 10) would be charged for each month of deactivation. In this example, the user was deactivated for 3 months; a fee of $9 would be charged (in addition to the normal monthly subscription fee) to reactivate the user.</p>
+									<b><p>Free or Trial Periods</p></b>
+									<p>If a subscriber has been granted a free or trial period, the Site will have limitations (e.g., sample completion certificates, limited support, etc.). The sample-watermarked certificates will only appear during this free or trial period. Once the subscriber has converted to a paying account, the watermarked certificates will be cleared. The type and quantity of limitations may change over time and HHLEARN has no obligation to inform the subscriber of these limitations.</p>
+									<b><p>Indemnification</p></b>
+									<p>You agree to defend, indemnify and hold harmless HHLEARN and Dynamic, their affiliated entities, independent contractors, service providers and consultants, and their respective directors, employees and agents, from and against any claims, damages, costs, liabilities and expenses (including, but not limited to, reasonable attorneys' fees) arising out of or related to your use of the Sites, the Site Materials, the Services and any User Content you post, store or otherwise transmit on or through the Sites, the Services, including without limitation, any actual or threatened suit, demand or claim made against HHLEARN or Dynamic and/or their affiliated entities, independent contractors, licensors, service providers, employees, directors or consultants, arising out of or relating to the User Content, your conduct, your violation of these Terms of Use, the Google Admin Policies or the Privacy Policy, as each may be amended from time to time, or your violation of any law(s), regulation(s), or the right(s) of any third party.</p>
+									<b><p>Disclaimer</p></b>
+									<p>EXCEPT AS EXPRESSLY PROVIDED TO THE CONTRARY IN A WRITING BY DYNAMIC, THE SITES, THE SITE MATERIALS CONTAINED THEREIN, THE SERVICES, GOOGLE APPS, AND ALL CONTENT MADE AVAILABLE ON, CONTAINED IN, OR ACCESSED THROUGH THE SITES ARE PROVIDED ON AN "AS IS" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. HHLEARN AND DYNAMIC DISCLAIM ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT AS TO THE INFORMATION, CONTENT AND MATERIALS IN THE SITES. HHLEARN AND DYNAMIC DO NOT REPRESENT OR WARRANT THAT THE CONTENT AND MATERIALS ON THE SITES OR THE SERVICES ARE ACCURATE, COMPLETE, RELIABLE, CURRENT OR ERROR-FREE. HHLEARN AND DYNAMIC DO NOT REPRESENT OR WARRANT THAT THE SITES OR THEIR HOST SERVERS ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. NEITHER HHLEARN NOR DYNAMIC IS RESPONSIBLE FOR TYPOGRAPHICAL ERRORS OR OMISSIONS RELATING TO PRICING, TEXT OR IMAGERY. WHILE HHLEARN AND DYNAMIC ATTEMPT TO MAKE YOUR ACCESS AND USE OF THE SITES AND THE SERVICES SAFE, HHLEARN AND DYNAMIC CANNOT AND DO NOT REPRESENT OR WARRANT THAT THE SITES OR THE SERVICES ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS; THEREFORE, YOU SHOULD USE INDUSTRY-RECOGNIZED SOFTWARE TO DETECT AND DISINFECT VIRUSES FROM ANY DOWNLOAD. HHLEARN and Dynamic each reserve the right to change or delete any and all Site Materials or User Content contained in the Sites and any Services offered through the Sites at any time without notice. Reference to any products, services, processes or other information, by trade name, trademark, manufacturer, supplier or otherwise does not constitute or imply endorsement, sponsorship or recommendation thereof, or any affiliation therewith, by either Apollo or Dynamic.</p>
+									<b><p>Limitation of Liability</p></b>
+									<p>IN NO EVENT SHALL HHLEARN, DYNAMIC, THEIR DIRECTORS, AFFILIATES, MEMBERS, EMPLOYEES OR AGENTS BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES, OR ANY OTHER DAMAGES OF ANY KIND, INCLUDING BUT NOT LIMITED TO, LOSS OF USE, LOSS OF PROFITS OR LOSS OF DATA, WHETHER IN AN ACTION IN CONTRACT, TORT (INCLUDING BUT NOT LIMITED TO NEGLIGENCE), EQUITY OR OTHERWISE, ARISING OUT OF OR IN ANY WAY CONNECTED WITH THE USE OF OR INABILITY TO USE THE SITES, THE SITE MATERIALS, THE SERVICES, THE GOOGLE APPS, THE INTERACTIVE AREAS, OR THE USER CONTENT, INCLUDING WITHOUT LIMITATION ANY DAMAGES CAUSED BY OR RESULTING FROM RELIANCE BY USER ON ANY INFORMATION OBTAINED FROM HHLEARN OR DYNAMIC, OR THAT RESULT FROM MISTAKES, OMISSIONS, INTERRUPTIONS, DELETION OF FILES OR EMAIL, ERRORS, DEFECTS, VIRUSES, DELAYS IN OPERATION OR TRANSMISSION OR ANY FAILURE OF PERFORMANCE, WHETHER OR NOT RESULTING FROM ACTS OF GOD, COMMUNICATIONS FAILURE, THEFT, DESTRUCTION OR UNAUTHORIZED ACCESS TO DYNAMIC'S RECORDS, PROGRAMS OR SERVICES. IN NO EVENT SHALL THE AGGREGATE LIABILITY OF HHLEARN OR DYNAMIC, WHETHER IN CONTRACT, WARRANTY, TORT (INCLUDING NEGLIGENCE, WHETHER ACTIVE, PASSIVE OR IMPUTED), PRODUCT LIABILITY, STRICT LIABILITY OR OTHER THEORY, ARISING OUT OF OR RELATING TO THE USE OF OR INABILITY TO USE THE SITES, THE SITE MATERIALS, THE SERVICES, THE INTERACTIVE AREAS OR THE USER CONTENT EXCEED ANY COMPENSATION YOU PAY, IF ANY, TO DYNAMIC FOR ACCESS TO OR USE OF THE SITES. IF YOU ARE AN EMPLOYEE OF AN ORGANIZATION, YOU ACKNOWLEDGE THAT THEIR SUBSCRIPTION FEE SHALL BE CONSIDERED COMPENSATION PAID FOR ACCESS TO OR USE OF THOSE SITES ACCESSIBLE TO MEMBERS AS PART OF THEIR PROGRAM OR COURSE OF STUDY.</p>
+									<b><p>Applicable Law and Venue</p></b>
+									<p>These Terms of Use and your use of the Sites, the Site Materials and the Services (except as otherwise may be provided with respect to Third Party Applications) shall be governed by and construed in accordance with the laws of the State of Nevada applicable to agreements made and to be entirely performed within the State of Nevada, without resort to its conflict of law provisions. You agree that any action at law or in equity arising out of or relating to these Terms of Use (except as may be provided with respect to third party copyright complaints) shall be filed only in the state and federal courts located in Reno, Nevada and you hereby irrevocably and unconditionally consent and submit to the exclusive jurisdiction of such courts over any suit, action or proceeding arising out of these Terms of Use.</p>
+									<b><p>Termination</p></b>
+									<p>Notwithstanding anything to the contrary in these Terms of Use, Dynamic reserves the right, without notice and in its sole discretion, to terminate your license to use the Sites, the Site Materials, the Services or any portion thereof, and to block or prevent your future access to and use of any of the Sites, the Site Materials or the Services.</p>
+									<b><p>Severability</p></b>
+									<p>If any provision of these Terms of Use shall be deemed unlawful, void or for any reason unenforceable by a court of competent jurisdiction, then that provision shall be modified by such court to the minimum extent necessary to make such provision enforceable and, if such modification is not possible, such provision shall be deemed severable from these Terms of Use and shall not affect the validity and enforceability of any remaining provisions.</p>
+									<b><p>Questions & Contact Information</p></b>
+									<p>Questions or comments about the Sites may be directed to Dynamic at info@hhlearn.com.</p>		                			
+		                		</div>
+		                		<div class="row" style="margin-top:20px;">
+		                			<div class="col-lg-6 col-sm-6 col-md-6">
+		                				<div class="form-group ">	
+				                			<div class="form-controls">			                													
+												<div class="col-lg-8 col-sm-8 col-md-8">
+													<label>
+														Email Terms & Conditions 
+													</label>
+												</div>
+												
+												<div class="col-lg-4 col-sm-4 col-md-4">																										
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="email_terms" checked="true" value="1">
+														<i></i>
+													</label>					
+												</div>
+											</div>
+										</div>
+		                			</div>
+		                			<div class="col-lg-6 col-sm-6 col-md-6">
+		                				<div class="form-group ">	
+				                			<div class="form-controls text-right">
+				                				<div class="col-lg-8 col-sm-8 col-md-8">
+													<label>
+														I Agree to Terms & Conditions 
+													</label>
+												</div>
+				                				<div class="col-lg-4 col-sm-4 col-md-4">																										
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="agree_terms" checked="true" value="1">
+														<i></i>
+													</label>					
+												</div>
+											</div>
+										</div>
+		                			</div>
+		                		</div>
+		                	</div>		
+		                	<h1 id="steps-uid-0-h-2" tabindex="-1" class="title">3. Plan&Pay</h1>
+		                	<div id="steps-uid-0-p-2" role="tabpanel" aria-labelledby="steps-uid-0-h-2" class="body" aria-hidden="true" style="display: none;">
+		                		Third Content
+		                	</div>		                  
+		                	<h1 id="steps-uid-0-h-3" tabindex="-1" class="title">4. Last Step</h1>
+		                	<div id="steps-uid-0-p-3" role="tabpanel" aria-labelledby="steps-uid-0-h-3" class="body" aria-hidden="true" style="display: none;">
+		                		Firth Content
+		                	</div>
+            			</div>
+	            		<div class="actions clearfix">
+	            			<ul role="menu" aria-label="Pagination">
+	            				<li aria-disabled="true"><a href="{% url 'signup' %}" role="menuitem">Previous</a></li>
+	            				<li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
+	            					<a href="{% url 'signup_payment' %}" role="menuitem">Next</a>
+	            				</li>
+	            				<li aria-hidden="true" style="display: none;">
+	            					<a href="#finish" role="menuitem">Finish</a>
+	            				</li>
+	            			</ul>
+	            		</div>
+            		</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	
+	<div class="modal fade menu-modal" role="dialog" aria-hidden="true" data-keyboard="true" data-backdrop="static" tabindex="-1">    
+	    <div class="modal-dialog">
+	    	<a href="#" class="fa fa-times cls-pop" data-dismiss="modal"></a>
+	    	<div class="modal-header">
+	    		<img src="/static//website/common/img/logo_305x100.png" alt="" class="logo-small" height="70px">
+			</div>
+			<div class="modal-content">			
+				<div class="menu-list">
+					<div class="item">
+						<a href="{% url 'features_benefits' %}" data-dismiss="modal">					
+							<i class="glyphicons heart_empty icon" style="color:#D4145A;"></i>
+							<span class="title">Benefits</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="{% url 'features_benefits' %}#features" data-dismiss="modal">						
+							<i class="glyphicons show_big_thumbnails icon" style="color:#0000FF;"></i>
+							<span class="title">Features</span>
+						</a>										
+					</div>				
+					<div class="item">
+						<a href="{% url 'features_benefits' %}#demos" data-dismiss="modal">						
+							<i class="glyphicons film icon" style="color:#FF00FF;"></i>
+							<span class="title">Demos</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="{% url 'features_benefits' %}#pricing" data-dismiss="modal">						
+							<i class="glyphicons usd icon" style="color:#59BA35;"></i>
+							<span class="title">Plans</span>
+						</a>										
+					</div>
+					<div class="item last">
+						<a href="{% url 'signup' %}">						
+							<i class="glyphicons thumbs_up icon" style="color:#30D4D8;"></i>
+							<span class="title">Sign Up</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="{% url 'features_courses' %}" data-dismiss="modal">						
+							<i class="glyphicons imac icon" style="color:#FFCC00;"></i>
+							<span class="title">Courses</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="{% url 'features_courses' %}#testing" data-dismiss="modal">						
+							<i class="glyphicons check icon" style="color:#009245;"></i>
+							<span class="title">Testing</span>
+						</a>									
+					</div>
+					<div class="item">
+						<a href="{% url 'features_courses' %}#certificates" data-dismiss="modal">						
+							<i class="glyphicons qrcode icon" style="color:#C7B299;"></i>
+							<span class="title">Certificates</span>	
+						</a>											
+					</div>
+					<div class="item" data-dismiss="modal">
+						<a href="{% url 'features_courses' %}#reports" data-dismiss="modal">						
+							<i class="fa fa-bar-chart-o icon" style="color:#70CEEF;"></i>
+							<span class="title">Reporting</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="{% url 'features_courses' %}#testimonals" data-dismiss="modal">						
+							<i class="glyphicons quote icon" style="color:#D9E021;"></i>
+							<span class="title">Testimonals</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="{% url 'features_responsive' %}" data-dismiss="modal">						
+							<i class="glyphicons ipad icon" style="color:#5BC5F2;"></i>
+							<span class="title">Responsive</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="{% url 'features_responsive' %}#benchmarking" data-dismiss="modal">						
+							<i class="glyphicons stats icon" style="color:#FF7BAC;"></i>
+							<span class="title">Benchmark</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="{% url 'features_responsive' %}#events" data-dismiss="modal">						
+							<i class="glyphicons calendar icon" style="color:#FF931E;"></i>
+							<span class="title">Events</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="{% url 'features_responsive' %}#newsletter" data-dismiss="modal">						
+							<i class="glyphicons newspaper icon" style="color:#FF2D55;"></i>
+							<span class="title">Newsletter</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="{% url 'features_responsive' %}#contact-us" data-dismiss="modal">						
+							<i class="glyphicons phone_alt icon" style="color:#E30613;"></i>
+							<span class="title">Contact</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="{% url 'features_terms' %}" data-dismiss="modal">						
+							<i class="glyphicons list-alt icon" style="color:#6C4796;"></i>
+							<span class="title">Terms</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="{% url 'features_terms' %}" data-dismiss="modal">						
+							<i class="glyphicons eye_open icon" style="color:#05BECC;"></i>
+							<span class="title">Privacy</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="{% url 'features_terms' %}" data-dismiss="modal">						
+							<i class="glyphicons parents icon" style="color:#ADDB21;"></i>
+							<span class="title">Conduct</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="{% url 'features_terms' %}" data-dismiss="modal">						
+							<i class="glyphicons lock icon" style="color:#D6B31D;"></i>
+							<span class="title">Security</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="{% url 'faq' %}" data-dismiss="modal">						
+							<i class="glyphicons circle_question_mark icon" style="color:#0069B4;"></i>
+							<span class="title">FAQs</span>
+						</a>									
+					</div>
+				</div>
+				<div class="social-menu-list">
+					<a href="http://www.facebook.com/HHLEARN"><i class="social social-facebook"></i></a>
+					<a href="http://www.twitter.com/HHLEARN"><i class="social social-twitter"></i></a>
+					<a href="https://www.linkedin.com/company/hhlearn"><i class="social social-linked-in"></i></a>
+					<a href="http://www.youtube.com/channel/UCazOKONHKoBCc-UlmjU8OKQ"><i class="social social-youtube"></i></a>
+					<a href="http://www.pinterest.com/HHLEARN"><i class="social social-pinterest"></i></a>
+					<a href="http://www.instagram.com/HHLEARN"><i class="social social-instagram"></i></a>
+				</div>		
+			</div>
+	    </div>
+	</div>
+		
+	<div class="footer-wrapper"> 
+		<footer class="" style="overflow: hidden; padding-left: 0px;">			
+			<ul class="bottom-list row">
+				<li>
+					<a href="{% url 'features_benefits' %}#features" class="item">						
+						<i class="glyphicons show_big_thumbnails icon"></i>
+						<span class="title">Features</span>
+						<p class="description">
+							HHLEARN is designed by industry professionals, and we have built-in 
+							features that will provide immediate benefits to your organization.
+						</p>
+						<div class="left-bar"></div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'features_benefits' %}#demos" class="item">
+						<i class="glyphicons film icon"></i>
+						<span class="title">Watch Demo</span>
+						<p class="description">
+							There's no better way to grasp how simple training employees can be
+							than watching videos that visually show you. See it for yourself!
+						</p>
+						<div class="left-bar"></div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'features_courses' %}" class="item">
+						<i class="glyphicons display icon"></i>
+						<span class="title">Courses</span>
+						<p class="description">
+							We utilize proven adult education teaching methods 
+							that include reading, visual aids, tts, and video.
+						</p>
+						<div class="left-bar"></div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'features_courses' %}#testing" class="item">
+						<i class="glyphicons check icon"></i>
+						<span class="title">Testing</span>
+						<p class="description">
+							Our testing and secure certificates of completion are so unique, they're 
+							patent pending. Check out how we do it and how you will benefit
+						</p>
+						<div class="left-bar"></div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'features_responsive' %}#contact-us" class="item">
+						<i class="glyphicons phone_alt icon"></i>
+						<span class="title">Contact Us</span>
+						<p class="description">
+							There are so many ways to find out about us and contact us. 
+							You can even connect through social media.
+						</p>
+						<div class="left-bar"></div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'features_benefits' %}#pricing" class="item">
+						<i class="glyphicons usd icon"></i>
+						<span class="title">Pricing Plans</span>
+						<p class="description">
+							Find out how little it costs to become a member of the 
+							number 1 employee education system. Try it for FREE.
+						</p>
+					</a>
+				</li>				
+			</ul>
+		</footer>
+	</div>
+	
+	<!-- Main container start here -->
+	<!-- Javascript framework and plugins start here -->
+	<script type="text/javascript" src="{{STATIC_URL}}/website/countdown/js/jquery.js"></script> 
+	<script type="text/javascript" src="{{STATIC_URL}}/website/countdown/js/bootstrap.min.js"></script> 
+	<script src="{{STATIC_URL}}/website/countdown/js/jquery.validate.min.js"></script>
+	<script>
+	//slider
+	jQuery(function() {
+		//smooth scroll to href value
+		jQuery(".menu-list .item a").click(function(event){
+			 event.preventDefault();
+			 //calculate destination place
+			 var dest=0;
+			 if ($(this.hash).length == 0) {
+			 	window.location.href = this.href;
+			 	return;
+			 }
+			 if($(this.hash).offset().top > $(document).height()-$(window).height()){
+				  dest=$(document).height()-$(window).height();
+			 }else{
+				  dest=$(this.hash).offset().top;
+			 }
+			 //go to destination
+			 jQuery('html,body').animate({scrollTop:dest}, 1000,'swing');
+		 });
+	});
+	</script>	
+<!-- Javascript framework and plugins end here -->
+</body>
+</html>

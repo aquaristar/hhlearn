@@ -1,0 +1,231 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block meta_title %}Dashboard{% endblock %}
+{% block meta_description %}Dashboard{% endblock %}
+{% block meta_keywords %}Dashboard{% endblock %}
+
+
+{% block content %}
+    <div class="page page-dashboard" ng-controller="profileCtrl">
+
+        <div class="row">
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+	                <a href="{% url 'assignments' %}">
+	                <span class="box-icon bg-btn8">
+	                   <i class="fa fa-list"></i>
+	                
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.assignment}}</p>
+
+                        <p class="text-muted"><span data-i18n="Assignments">Assignments</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="{% url 'history' %}">
+	                <span class="box-icon bg-btn2">
+	                    <i class="fa fa-list-alt"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.history }}</p>
+
+                        <p class="text-muted"><span data-i18n="History">History</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="{% url 'metrics' %}">
+	                <span class="box-icon bg-btn5">
+	                    <i class="fa fa-signal"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.metrics }}</p>
+
+                        <p class="text-muted"><span data-i18n="Metrics">Metrics</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="{% url 'documents' %}">
+	                <span class="box-icon bg-btn7">
+	                    <i class="fa fa-copy"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.document }}</p>
+
+                        <p class="text-muted"><span data-i18n="Documents">Documents</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">            	
+                <div class="panel mini-box">
+                <a href="{% url 'accreditation' %}">
+                <span class="box-icon bg-btn1">
+                    <i class="glyphicons certificate"></i>
+                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.accreditation }}</p>
+
+                        <p class="text-muted"><span data-i18n="Accreditation">Accreditation</span></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="{% url 'dashboard_tasks' %}">
+	                <span class="box-icon bg-btn9">
+	                    <i class="fa fa-list-ol"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.task }}</p>
+                        <p class="text-muted"><span data-i18n="Tasks">Tasks</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="{% url 'alerts_home' %}">              
+	                <span class="box-icon bg-btn4">
+	                    <i class="fa fa-bell-o"></i>
+	                </span>
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.alert }}</p>
+                        <p class="text-muted"><span data-i18n="Alerts">Alerts</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="{% url 'messages' %}">
+	                <span class="box-icon bg-btn3">
+	                    <i class="fa fa-comment"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.message }}</p>
+                        <p class="text-muted"><span data-i18n="Messages">Messages</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            
+            <!--<div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn6">
+	                    <i class="fa fa-envelope-o"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.mail }}</p>
+
+                        <p class="text-muted"><span data-i18n="Mails">Mails</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>-->
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+	                <a href="{% url 'milestones' %}">
+	                <span class="box-icon bg-btn11">
+	                   <i class="fa fa-flag"></i>
+	                </span>
+	                
+
+                    <div class="box-info">
+                        <p class="size-h2">4</p>
+
+                        <p class="text-muted"><span data-i18n="Milestones">Milestones</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">            	
+                <div class="panel mini-box">
+                	<a href="/dashboard/profile">
+	                <span class="box-icon bg-btn6">
+	                    <i class="fa fa-user"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">MY</p>
+                        <p class="text-muted"><span>Profile</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <!--<li><a href="{% url 'assignments' %}"> <span data-i18n="Assignments"></span> </a></li>
+                <li><a href="{% url 'history' %}"> <span data-i18n="History"></span> </a></li>
+                <li><a href="{% url 'messages' %}"> </i><span data-i18n="Messages"></span> </a></li>
+                <li><a href="{% url 'metrics' %}"> <span data-i18n="Metrics"></span> </a></li>
+                <li><a href="{% url 'documents' %}"> <span data-i18n="Documents"></span> </a></li>
+                <li><a href="{% url 'accreditation' %}"> <span data-i18n="Accreditation"></span> </a></li>
+        <!--<div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="fa fa-cog"></i> Management</strong></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <a href="" class="btn btn-info btn-metro">
+                            <i class="fa fa-user"></i>
+                            <span>Users</span>
+                        </a>
+
+                        <a href="" class="btn btn-success btn-metro">
+                            <i class="fa fa-flag-o"></i>
+                            <span>Labels</span>
+                        </a>
+
+                        <a href="" class="btn btn-warning btn-metro">
+                            <i class="fa fa-tags"></i>
+                            <span>NFC Tags</span>
+                        </a>
+
+                        <a href="" class="btn btn-danger btn-metro">
+                            <i class="fa fa-users"></i>
+                            <span>Groups</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+
+    </div>
+
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

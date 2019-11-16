@@ -1,0 +1,305 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Dashboard - Assignments{% endblock %}
+{% block meta_title %}Dashboard - Assignments{% endblock %}
+{% block meta_description %}Dashboard - Assignments{% endblock %}
+{% block meta_keywords %}Dashboard - Assignments{% endblock %}
+{% block page_class %}page_dashboard_assignments{% endblock %}
+
+
+{% block content %}
+
+<div class="page page-groups" ng-controller="assignmentsCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Dashboard</a></li>
+                <li class="active"><a href="">Assignments</a></li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default table-dynamic">
+
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Safety
+                    Assignments</strong>
+                </div>				
+				<div class="panel-body">
+				<div class="table-responsive">
+                <table class="table table-bordered table-striped table-responsive table-condensed">
+                    <thead>
+	                    <tr>
+	                        <th>
+	                            <div class="th">
+	                                ID
+	                                <span class="glyphicon glyphicon-chevron-up"
+	                                        ng-click="safetyAssignmentSort = '-course.number'; reverse=false"></span>
+	                                <span class="glyphicon glyphicon-chevron-down"
+	                                      ng-click="safetyAssignmentSort = 'course.number'; reverse=false"></span>
+	                            </div>
+	                        </th>
+	                        <th>
+	                            <div class="th">
+	                                Course Title
+		                            <span class="glyphicon glyphicon-chevron-up"
+		                                  ng-click="safetyAssignmentSort = '-course.name'; reverse=false"></span>
+		                            <span class="glyphicon glyphicon-chevron-down"
+		                                  ng-click="safetyAssignmentSort = 'course.name'; reverse=false"></span>
+	                            </div>
+	                        </th>
+	                        <th>
+	                            <div class="th">Info</div>
+	                        </th>
+	                        <th>
+	                            <div class="th">
+	                                Hours
+	                                <span class="glyphicon glyphicon-chevron-up"
+	                                           ng-click="safetyAssignmentSort = '-course.hours'; reverse=false"></span>
+	                                <span class="glyphicon glyphicon-chevron-down"
+	                                      ng-click="safetyAssignmentSort = 'course.hours'; reverse=false"></span>
+	                            </div>
+	                        </th>
+	                        <th>
+	                            <div class="th">CE</div>
+	                        </th>
+	                        <th>
+	                            <div class="th">
+	                                Date Due
+	                                <span class="glyphicon glyphicon-chevron-up"
+	                                      ng-click="safetyAssignmentSort = '-due_date'; reverse=false"></span>
+	                                <span class="glyphicon glyphicon-chevron-down"
+	                                      ng-click="safetyAssignmentSort = 'due_date'; reverse=false"></span>
+	                            </div>
+	                        </th>
+	                        <th></th>
+	                    </tr>
+                    </thead>
+                    <tbody>
+	                    <tr ng-cloak
+	                        ng-repeat="safety_assignment in filteredSafteyAssignments | filter:safetyAssignmentSearchKeyword  | orderBy:safetyAssignmentSort">
+	                        <td>{[safety_assignment.course.number]}</td>
+	                        <td>{[safety_assignment.course.name]}</td>
+	                        <td class="text-center">
+	
+	                            <i popover="{[safety_assignment.course.description]}" popover-trigger="mouseenter"
+	                               popover-title="{[safety_assignment.course.number]}" class="fa fa-info-circle icon-info-big"></i>
+	
+	                        </td>
+	                        <td class="text-center">{[safety_assignment.course.hours]}</td>
+	                        <td class="text-center">
+	                            <i ng-show="safety_assignment.course.continuing_education" class="fa fa-check ce-icon"></i>
+	                        </td>
+	                        <td class="text-center">
+	                            {[safety_assignment.due_date]}
+	                            <span ng-show="safety_assignment.is_overdue" class="label label-danger">Overdue</span>
+	                        </td>
+	                        <td class="text-center">
+	                        	<div ng-show="safety_assignment.prerequisite"
+	                        		tooltip-html-unsafe="You Must Complete Course {[safety_assignment.prerequisite.number]}, <b><i>{[safety_assignment.prerequisite.name]}</i></b> Before Taking This Course." 
+	                        		>
+		                            <a ng-show="!safety_assignment.is_started" ng-click="startAssignment(safety_assignment)"
+		                            	ng-disabled="safety_assignment.prerequisite"
+		                               type="button" class="btn btn-success btn-direction btn-right">
+		                                Start
+		                            </a>
+		                            <a ng-show="safety_assignment.is_started" ng-click="startAssignment(safety_assignment)"
+		                            	ng-disabled="safety_assignment.prerequisite"
+		                               type="button" class="btn btn-info btn-direction btn-right">
+		                                Resume
+		                            </a>
+		                    	</div>
+		                    	<div ng-show="!safety_assignment.prerequisite">
+		                            <a ng-show="!safety_assignment.is_started" ng-click="startAssignment(safety_assignment)"
+		                            	ng-disabled="safety_assignment.prerequisite"
+		                               type="button" class="btn btn-success btn-direction btn-right">
+		                                Start
+		                            </a>
+		                            <a ng-show="safety_assignment.is_started" ng-click="startAssignment(safety_assignment)"
+		                            	ng-disabled="safety_assignment.prerequisite"
+		                               type="button" class="btn btn-info btn-direction btn-right">
+		                                Resume
+		                            </a>
+		                    	</div>
+	                        </td>
+	                    </tr>
+                    </tbody>
+                </table>
+
+
+                <footer class="table-footer pln">
+                    <div class="row">
+                        <div class="col-md-6 page-num-info">
+
+                        </div>
+                        <div class="col-md-6 text-right">                            
+                            <pagination class="pagination-sm"
+                                page="safetyAssignmentPageNumber"
+                                total-items="filteredSafteyAssignments.length"
+                                max-size="10"
+                                on-select-page="selectSafetyAssignmentPage(safetyAssignmentPageNumber)"
+                                items-per-page="perPage"
+                                rotate="false"
+                                boundary-links="true"></pagination>
+                        </div>
+                    </div>
+                </footer>
+				</div>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default table-dynamic">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Assignments</strong>
+                </div>
+                <div class="table-filters">
+                    <div class="row">
+                        <div class="col-sm-4 col-lg-2 col-md-2 col-xs-6">
+                            <form>                                                                
+		                        <input id = "assignment_search"
+		                        	   type="text"
+		                               placeholder="search"
+		                               class="form-control"
+		                               data-ng-model="assignmentSearchKeyword"
+		                               data-ng-keyup="searchAssignment()">						                    
+                            </form>
+                        </div>
+                        <div class="col-sm-3 col-xs-6 filter-result-info">
+                    <span>
+                        Showing {[ filteredAssignments.length ]}/{[ assignments.length ]} entries
+                    </span>
+                        </div>
+                    </div>
+                </div>
+				<div class="panel-body">
+				<div class="table-responsive">
+                <table class="table table-bordered table-striped table-responsive table-condensed">
+                    <thead>
+	                    <tr>
+	                        <th>
+	                            <div class="th">
+	                                ID
+	                                <span class="glyphicon glyphicon-chevron-up"
+	                                        ng-click="assignmentSort = '-course.number'; reverse=false; onOrderChange('-course.number', false)"></span>
+	                                <span class="glyphicon glyphicon-chevron-down"
+	                                      ng-click="assignmentSort = 'course.number'; reverse=false; onOrderChange('course.number', false)"></span>
+	                            </div>
+	                        </th>
+	                        <th>
+	                            <div class="th">
+	                                Course Title
+	                                <span class="glyphicon glyphicon-chevron-up"
+	                                      ng-click="assignmentSort = '-course.name'; reverse=false; onOrderChange('-course.name', false)"></span>
+	                                <span class="glyphicon glyphicon-chevron-down"
+	                                      ng-click="assignmentSort = 'course.name'; reverse=false; onOrderChange('course.name', false)"></span>
+	                            </div>
+	                        </th>
+	                        <th>
+	                            <div class="th">Info</div>
+	                        </th>
+	                        <th>
+	                            <div class="th">
+	                                Hours
+	                                <span class="glyphicon glyphicon-chevron-up"
+	                                      ng-click="assignmentSort = '-course.hours'; reverse=false; onOrderChange('-course.hours', false)"></span>
+	                                <span class="glyphicon glyphicon-chevron-down"
+	                                      ng-click="assignmentSort = 'course.hours'; reverse=false; onOrderChange('course.hours', false)"></span>
+	                            </div>
+	                        </th>
+	                        <th>
+	                            <div class="th">CE</div>
+	                        </th>
+	                        <th>
+	                            <div class="th">
+	                                Date Due
+	                                <span class="glyphicon glyphicon-chevron-up"
+	                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+	                                <span class="glyphicon glyphicon-chevron-down"
+	                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>
+	                            </div>
+	                        </th>
+	                        <th></th>
+	                    </tr>
+                    </thead>
+                    <tbody>
+	                    <tr ng-cloak
+	                        ng-repeat="assignment in currentFilteredAssignments | orderBy:assignmentSort">
+	                        <td>{[assignment.course.number]}</td>
+	                        <td>{[assignment.course.name]}</td>
+	                        <td class="text-center">
+	                            <i popover="{[assignment.course.description]}" popover-trigger="mouseenter"
+	                               popover-title="{[assignment.course.number]}" class="fa fa-info-circle icon-info-big"></i>
+	                        </td>
+	                        <td class="text-center">{[assignment.course.hours]}</td>
+	                        <td class="text-center">
+	                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon"></i>
+	                        </td>
+	                        <td class="text-center">
+	                            {[assignment.due_date]}
+	                            <span ng-show="assignment.is_overdue" class="label label-danger">Overdue</span>
+	                        </td>
+	                        <td class="text-center">
+	                        	<div ng-show="assignment.prerequisite" 
+	                        		tooltip-html-unsafe="You Must Complete Course {[assignment.prerequisite.number]}, <b><i>{[assignment.prerequisite.name]}</b></i> Before Taking This Course."
+	                        		>
+		                            <a ng-show="!assignment.is_started" ng-click="startAssignment(assignment)"
+		                            	ng-disabled="assignment.prerequisite" 
+		                               type="button" class="btn btn-success btn-direction btn-right">	                                
+		                                Start
+		                            </a>
+		                            <a ng-show="assignment.is_started" ng-click="startAssignment(assignment)"
+		                            	ng-disabled="assignment.prerequisite"
+		                               type="button" class="btn btn-info btn-direction btn-right">	                                
+		                                Resume
+		                            </a>
+	                            </div>
+	                            <div ng-show="!assignment.prerequisite">
+		                            <a ng-show="!assignment.is_started" ng-click="startAssignment(assignment)"
+		                            	ng-disabled="assignment.prerequisite" 
+		                               type="button" class="btn btn-success btn-direction btn-right">		                                
+		                                Start
+		                            </a>
+		                            <a ng-show="assignment.is_started" ng-click="startAssignment(assignment)"
+		                            	ng-disabled="assignment.prerequisite"
+		                               type="button" class="btn btn-info btn-direction btn-right">		                                
+		                                Resume
+		                            </a>
+	                            </div>
+	                        </td>
+	                    </tr>
+                    </tbody>
+                </table>
+                <footer class="table-footer pln">
+                    <div class="row">
+                        <div class="col-md-6 page-num-info">							
+                        </div>                        
+						<div class="col-md-6 text-right pagination-container">
+		                    <pagination class="pagination-sm"
+		                                page="currentAssignmentPage"
+		                                total-items="filteredAssignments.length"
+		                                max-size="4"
+		                                on-select-page="selectAssignmentPage(page)"
+		                                items-per-page="perPage"
+		                                rotate="false"
+		                                current-page="currentAssignmentPage"
+		                                boundary-links="true"></pagination>
+		                </div>
+                    </div>
+                </footer>
+			</div>
+			</div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

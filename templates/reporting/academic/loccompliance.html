@@ -1,0 +1,258 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Reporting{% endblock %}
+{% block meta_title %}Reporting{% endblock %}
+{% block meta_description %}Reporting{% endblock %}
+{% block meta_keywords %}Reporting{% endblock %}
+
+
+{% block content %}
+<div class="page page-resources" >
+	<div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'reporting_home' %}">Reporting</a></li>
+                <li><a href="{%  url 'reporting_academic' %}">Academic</a></li>
+                <li class="active"><a href="">Curriculum Compliance</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="panel panel-default" style="margin-bottom: 0px;">
+	    <div class="panel-heading">
+	        <div class="row">
+	
+	            <div class="col-xs-6 col-lg-6 text-left">
+	                <strong><i class="glyphicons adjust"></i> &nbsp;&nbsp;Location Curriculum Compliance Detail</strong>
+	            </div>
+	            
+	            <div class="col-xs-6 col-lg-6 text-right">
+	                <a href="#" style="color:#767676">
+	                	<strong><i class="fa fa-print"></i> &nbsp;&nbsp;Print Report</strong>
+	                </a>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="panel-body">
+	    	<div class="col-lg-12 text-center">
+	    		<h3><strong>Location Curriculum Compliance Detail:&nbsp;</strong> as of {{ currentDate | date:'F d, Y' }}</h3>
+	    	</div>
+	    </div>
+	</div>
+	
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	        <div class="row">	
+	            <div class="col-lg-6 text-left">
+	                <strong><i class="fa fa-building-o"></i>&nbsp;&nbsp;Best Medical Supply,Inc</strong>
+	            </div>	            
+	        </div>
+	    </div>
+	    <div class="panel-body">
+	    	<section data-ng-controller="chartCtrl">
+	    	<div class="row">
+	    	<div class="col-lg-12 text-center">	    		
+                <!--<div morris-chart
+                     data-data="comboData"
+                     data-type="bar"
+                     data-xkey="year"
+                     data-ykeys='["a", "b", "c"]'
+                     data-labels='["Value A", "Value B", "Value C"]'
+                     data-bar-colors='["#31C0BE","#8170CA","#66B5D7"]'
+                     ></div>-->
+                 <!--<div data-sparkline
+                              data-data="largeChart2.data"
+                              data-options="largeChart2.options"
+                              ></div>-->
+				<div class="col-sm-6 col-xs-12 col-lg-6">
+					<div class="reporting-pie-container">	                
+					    <div easypiechart options="easypiechart3.options" percent="easypiechart3.percent" class="easypiechart">
+					        <span class="pie-percent" ng-bind="easypiechart3.percent"></span>					        
+					    </div>
+					    <div class="ticks">
+					    	<div class="item">
+					    		<span class="item-box completed"></span>
+					    		<span class="item-label">Completed</span>
+					    	</div>
+					    	<div class="item">
+					    		<span class="item-box incompleted"></span>
+					    		<span class="item-label">Incomplete</span>
+					    	</div>
+					    </div>
+				    </div>				    
+				</div>
+				
+				<div class="col-sm-6 col-xs-12 col-lg-6">
+					<div class="reporting-pie-container">
+					    <div easypiechart options="easypiechart4.options" percent="easypiechart4.percent" class="easypiechart">
+					        <span class="pie-percent" ng-bind="easypiechart4.percent"></span>							
+					    </div>
+					    <div class="ticks">
+						    	<div class="item">
+						    		<span class="item-box ontime"></span>
+						    		<span class="item-label">On Time</span>
+						    	</div>
+						    	<div class="item">
+						    		<span class="item-box incompleted"></span>
+						    		<span class="item-label">Late</span>
+						    	</div>
+						    </div>
+				    </div>
+				    
+				</div>
+	                
+	    	</div>
+	    	</div>
+	    	</section>
+	    	<section data-ng-controller="reportingBarChartCtrl">	 
+	    	<div class="row" style="margin-top:20px; padding-top:20px; border-top:solid 1px #ccc;">
+	    		<div class="col-lg-12">	    		
+	    		<div class="table-report-compliance table-responsive">
+		    	<table class="table table-bordered table-report-compliance">
+		            <thead>
+		                <tr>
+		                    <th><div class="th">
+		                        Rank	                        
+		                    </div></th>
+		                    <th><div class="th">
+		                        Pie			                        
+		                    </div></th>
+		                    <th><div class="th">
+		                        %
+		                    </div></th>
+		                    <th><div class="th">
+		                        Location Name						                        
+		                    </div></th>		                    
+		                    <th><div class="th">
+		                        Courses Assigned						                        
+		                    </div></th>
+		                    <th><div class="th">
+		                        Courses Completed
+		                    </div></th>
+		                    <th><div class="th">
+		                        %On Time
+		                    </div></th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <tr class="first-line">
+		                	<td><i class="glyphicons building"></i></td>		                	
+		                	<td><div data-flot-chart
+		                         data-data="pieChart.data1"
+		                         data-options="pieChart.options"
+		                         style="width: 100%; height: 17px;"
+		                         ></div></td>
+		                	<td>54</td>
+		                	<td style="text-align: left;">Best Medical Supply, Inc</td>		                	
+		                	<td>2633</td>
+		                	<td>1425</td>
+		                	<td>88</td>
+		                </tr>
+		                <tr>
+		                	<td>5</td>		                	
+		                	<td>
+		                		<div data-flot-chart
+		                         data-data="pieChart.data2"
+		                         data-options="pieChart.options"
+		                         style="width: 100%; height: 17px;"
+		                         ></div>
+		                    </td>
+		                	<td>48</td>
+		                	<td style="text-align: left;">Best Medical Supply</td>		                	
+		                	<td>350</td>
+		                	<td>168</td>
+		                	<td>88</td>
+		                </tr>
+		                <tr>
+		                	<td>3</td>		                	
+		                	<td>
+		                		<div data-flot-chart
+		                         data-data="pieChart.data3"
+		                         data-options="pieChart.options"
+		                         style="width: 100%; height: 17px;"
+		                         ></div>
+		                    </td>
+		                	<td>66</td>
+		                	<td style="text-align: left;">Best Medical Supply Hospice</td>		                	
+		                	<td>198</td>
+		                	<td>131</td>
+		                	<td>92</td>
+		                </tr>
+		                <tr>
+		                	<td>2</td>		                	
+		                	<td>
+		                		<div data-flot-chart
+		                         data-data="pieChart.data4"
+		                         data-options="pieChart.options"
+		                         style="width: 100%; height: 17px;"
+		                         ></div>
+		                    </td>
+		                	<td>77</td>
+		                	<td style="text-align: left;">Best Medical Homecare</td>		                	
+		                	<td>175</td>
+		                	<td>135</td>
+		                	<td>98</td>
+		                </tr>
+		                <tr>
+		                	<td>4</td>		                	
+		                	<td>
+		                		<div data-flot-chart
+		                         data-data="pieChart.data5"
+		                         data-options="pieChart.options"
+		                         style="width: 100%; height: 17px;"
+		                         ></div>
+		                    </td>
+		                	<td>62</td>
+		                	<td style="text-align: left;">Best Medical Supply Hospice</td>		                	
+		                	<td>1040</td>
+		                	<td>645</td>
+		                	<td>100</td>
+		                </tr>
+		                <tr>
+		                	<td>1</td>		                	
+		                	<td>
+		                		<div data-flot-chart
+		                         data-data="pieChart.data6"
+		                         data-options="pieChart.options"
+		                         style="width: 100%; height: 17px;"
+		                         ></div>
+		                    </td>
+		                	<td>86</td>
+		                	<td style="text-align: left;">Best Medical Pharmacy</td>		                	
+		                	<td>231</td>
+		                	<td>199</td>
+		                	<td>65</td>
+		                </tr>
+		                <tr>
+		                	<td>6</td>		                	
+		                	<td>
+		                		<div data-flot-chart
+		                         data-data="pieChart.data7"
+		                         data-options="pieChart.options"
+		                         style="width: 100%; height: 17px;"
+		                         ></div>
+		                    </td>
+		                	<td>23</td>
+		                	<td style="text-align: left;">Best HOme Care</td>		                	
+		                	<td>639</td>
+		                	<td>147</td>
+		                	<td>82</td>
+		                </tr>
+		            </tbody>
+		        </table>
+		        </div> 
+		        </div>  
+	        </div>
+	        </section>
+	    </div>
+	</div>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

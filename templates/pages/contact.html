@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block content %}
+<div class="page page-contact">
+	<div style="width:305px;margin: 20px auto;">
+		<img src="{{STATIC_URL}}website/common/img/logo_305x100.png" alt="">
+	</div>
+	<div style="max-width: 900px;margin: 20px auto;">		
+		<div class="panel panel-default ui-ribbon-container">		
+	        <div class="ui-ribbon-wrapper">
+	            <div class="ui-ribbon">
+	                BETA +
+	            </div>
+	        </div>
+	        <div class="panel-heading"><i class="fa fa-exclamation-circle"></i> Notice</div>
+	        <div class="panel-body">
+	            <p>For those of you who are participating in the Beta+ testing, please use the custom login that was provided when your organization was accepted. For organizations that would like the opportunity to participate, please send your email to us by using the form below. We will contact you.</p>
+	            <div class="col-lg-12">
+	            	<form class="ng-pristine ng-valid" role="form" action="/contactus/" method="post">
+	            		{% csrf_token %}
+	            		<div class="col-sm-9">                
+							<input type="email" class="form-control col-sm-9" id="exampleInputEmail2" name="email_address" placeholder="Enter email">
+						</div>
+						<div class="col-sm-3">		                
+		                	<button type="submit" class="btn btn-warning form-control col-sm-3">Send</button>
+		                </div>
+		            </form>
+	            </div>
+	        </div>		        
+	    </div>	    
+    </div>
+    <!--<div class="contact-info-container clearfix">
+        <ul class="contact-info">
+            <li><i class="fa fa-map-marker"></i><span>1234 Durfee Ave, Newark NJ</span></li>
+            <li><i class="fa fa-phone"></i><span>123 4567</span></li>
+            <li><i class="fa fa-envelope-o"></i><span><a href="mailto:contact@mail.com">contact@mail.com</a></span></li>
+        </ul>
+    </div>-->
+    
+
+    <div class="social-item-container">
+        <div class="row">
+            <div class="col-md-3 col-xsm-6 social-item text-center"><a href="https://www.youtube.com/channel/UCazOKONHKoBCc-UlmjU8OKQ" class="btn btn-youtube btn-metro" target="_blank"><i class="fa fa-youtube"></i></a></div>
+            <div class="col-md-3 col-xsm-6 social-item text-center"><a href="https://www.linkedin.com/company/3637848?trk=prof-exp-company-name" class="btn btn-linkedin btn-metro" target="_blank"><i class="fa fa-linkedin"></i></a></div>
+            <div class="col-md-3 col-xsm-6 social-item text-center"><a href="https://www.facebook.com/HHLEARN" class="btn btn-facebook btn-metro" target="_blank"><i class="fa fa-facebook"></i></a></div>
+            <div class="col-md-3 col-xsm-6 social-item text-center"><a href="https://twitter.com/HHLEARN" class="btn btn-twitter btn-metro" target="_blank"><i class="fa fa-twitter"></i></a></div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

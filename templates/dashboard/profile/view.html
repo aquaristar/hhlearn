@@ -1,0 +1,256 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Dashboard - Profile{% endblock %}
+{% block meta_title %}Dashboard - Profile{% endblock %}
+{% block meta_description %}Dashboard - Profile{% endblock %}
+{% block meta_keywords %}Dashboard - Profile{% endblock %}
+{% block page_class %}page_dashboard_profile{% endblock %}
+
+
+{% block content %}
+
+	<div class="page page-profile" ng-controller="profileCtrl">
+        <div class="row">
+	        <div class="col-lg-12">
+	            <ol class="breadcrumb-alt">
+	                <li><a href="{% url 'dashboard_home' %}">Dashboard</a></li>
+	                <li class="active"><a href="#">My Profile</a></li>
+	            </ol>
+	        </div>
+	    </div>
+
+		<div class="row">
+			<div class="col-md-6">
+
+				<div class="panel panel-profile">
+					<div class="panel-heading text-center bg-info" style="height:300px;">
+						<img alt="" width="170px" src="{[ profile.photo_file ]}?get=0001" class="">
+
+						<h3>{[profile.user.first_name]} {[profile.user.last_name]}</h3>
+
+						<p>{[profile.job_title.name]}</p>
+					</div>
+
+				</div>
+				
+				<div class="panel panel-default table-dynamic">
+	    			<div class="panel-heading">
+	    				<strong><span class="glyphicons fishes"></span> &nbsp;&nbsp;Social Links</strong>    				
+	                </div>
+	                <div class="panel-body row social-links">
+	                	<div class="col-sm-3">
+		                	<a href="javascript:;" class="btn-icon btn-social btn-facebook"><i class="fa fa-facebook size-h1"></i></a>
+		                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="facebookOn" class="ng-valid ng-dirty"><i></i></label>
+	                	</div>
+	                	
+	                	<div class="col-sm-3">
+		                	<a href="javascript:;" class="btn-icon btn-social btn-twitter"><i class="fa fa-twitter size-h1"></i></a>
+		                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="twitterOn" class="ng-valid ng-dirty"><i></i></label>
+	                	</div>     
+	                	
+	                	<div class="col-sm-3">
+		                	<a href="javascript:;" class="btn-icon btn-social btn-pinterest"><i class="fa fa-pinterest size-h1"></i></a>
+		                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="pinterestOn" class="ng-valid ng-dirty"><i></i></label>
+	                	</div>     
+	                	
+	                	<div class="col-sm-3">
+		                	<a href="javascript:;" class="btn-icon btn-social btn-instagram"><i class="fa fa-instagram size-h1"></i></a>
+		                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="instagramOn" class="ng-valid ng-dirty"><i></i></label>
+	                	</div>                 
+	                </div>
+	            </div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="panel profile-mini-box">
+	                        <span class="box-icon bg-btn8">
+	                            <i class="glyphicons nameplate"></i>
+	                        </span>
+
+							<div class="box-info">
+								<p class="size-h2">RN</p>
+								<p class="text-muted">Registered <br>Nurse</p>
+							</div>
+							
+							<div class="box-detail">
+								<p><span class="i-head">Expires:</span> <span class="i-content">07/31/2015</span></p>
+								<p><span class="i-head">CEs Needed:</span> <span class="i-content">30</span></p>
+								<p><span class="i-head">CEs Completed:</span> <span class="i-content">15</span></p>								
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="panel profile-mini-box">
+	                        <span class="box-icon bg-btn13">
+	                           <i class="glyphicons notes"></i>
+	                        </span>
+
+							<div class="box-info">
+								<p class="size-h2">PHN</p>
+								<p class="text-muted">Public Health Nurse</p>
+							</div>
+							
+							<div class="box-detail">							
+								<p><span class="i-head">Expires:</span> <span class="i-content">07/31/2015</span></p>
+								<p><span class="i-head">CEs Needed:</span> <span class="i-content">N/A</span></p>
+								<p><span class="i-head">CEs Completed:</span> <span class="i-content">N/A</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-6">
+
+
+				<div class="panel panel-default">
+					<div class="panel-heading"><strong><span class="glyphicons parents"></span>&nbsp;&nbsp;  Profile Info</strong></div>
+					<div class="panel-body panel-info-body">
+						<div class="media">
+							<div class="media-body">
+								<ul class="list-unstyled list-info">
+									<li>
+										<span class="icon glyphicons user"></span>
+										<label>User name</label>										
+										{[ profile.user.username ]}
+									</li>
+									<li>
+										<span class="icon glyphicons keys"></span>
+										<label>Status</label>
+										<span ng-show="profile.user.is_superuser==1">Administrator</span>
+										<span ng-show="profile.user.is_superuser==0">Normal User</span>
+									</li>
+									<li>
+										<span class="icon glyphicon glyphicon-envelope"></span>
+										<label>Email</label>
+										{[profile.user.email || 'empty'  ]}
+									</li>
+									<!--<li>
+										<label>First Name</label>
+										<a href="#" onaftersave="saveProfile()" editable-text="profile.user.first_name">{[profile.user.first_name || 'empty']} </a>
+									</li>
+									<li>
+										<label>Last Name</label>
+										<a href="#" onaftersave="saveProfile()" editable-text="profile.user.last_name">{[ profile.user.last_name || 'empty' ]} </a>
+									</li>-->
+									<li>
+										<span class="icon glyphicons home"></span>
+										<label>Address</label>
+										{[ profile.location.street_address_1 || 'empty' ]}
+									</li>
+									<!--<li>
+										<label>City</label>
+										<a href="#" onaftersave="saveProfile()" editable-text="profile.location.city">{[ profile.location.city || 'empty' ]}</a>
+									</li>
+									<li>
+										<label>State</label>
+										<a href="#" onaftersave="saveProfile()" editable-text="profile.location.state.name">{[ profile.location.state.name || 'empty' ]}</a>
+									</li>
+									<li>
+										<label>Postal Code</label>
+										<a href="#" onaftersave="saveProfile()" editable-text="profile.location.zip_code">{[ profile.location.zip_code || 'empty' ]}</a>
+									</li>-->
+									<li>
+										<span class="icon glyphicons earphone"></span>
+										<label>Phone</label>
+										{[ profile.location.phone || 'empty' ]}
+									</li>
+									<li>
+										<span class="icon glyphicons translate"></span>
+										<label>Language</label>
+										{[ profile.util_language_iso_codes.language || 'empty' ]}
+									</li>
+									<li>
+										<span class="icon glyphicons globe"></span>
+										<label>Timezone</label>
+										<!--<font ng-show="profile.util_timezones.DST=='Y'">{[ profile.util_timezones.DT_Abbreviation || 'empty' ]}</font>
+										<font ng-show="profile.util_timezones.DST!='Y'">{[ profile.util_timezones.ST_Abbreviation || 'empty' ]}</font>-->
+										<font ng-show="isDst()">{[ profile.util_timezones.TimeZones || 'empty' ]}</font>
+										<font ng-show="!isDst()">{[ profile.util_timezones.TimeZones || 'empty' ]}
+										
+									</li>
+									
+									<li>
+										<span class="icon glyphicons font"></span>
+										<label>Font size</label>
+										{[ profile.fontsize.font_size ]}
+									</li>
+									
+									<li>
+										<span class="icon fa fa-newspaper-o"></span>
+										<label>Newsletter</label>
+										<span ng-show="profile.subscribe_to_newsletter==1">Subscribed</span>
+										<span ng-show="profile.subscribe_to_newsletter==0">Unsubscribed</span>
+									</li>								
+
+								</ul>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">					
+					<div class="col-sm-6">
+						<div class="panel profile-mini-box">
+	                        <span class="box-icon bg-btn8">
+	                           <i class="glyphicons nameplate"></i>
+	                        </span>
+
+							<div class="box-info">
+								<p class="size-h2">RCP</p>
+								<p class="text-muted">Respiratory Care Practitioner</p>
+							</div>
+							
+							<div class="box-detail">							
+								<p><span class="i-head">Expires:</span> <span class="i-content">07/31/2015</span></p>
+								<p><span class="i-head">CEs Needed:</span> <span class="i-content">30</span></p>
+								<p><span class="i-head">CEs Completed:</span> <span class="i-content">15</span></p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-sm-6">
+						<div class="panel profile-mini-box">
+	                        <span class="box-icon bg-btn13">
+	                            <i class="glyphicons notes"></i>
+	                        </span>
+
+							<div class="box-info">
+								<p class="size-h2">RRT</p>
+								<p class="text-muted">Registered <br> Respiratory Therapist</p>
+							</div>
+							
+							<div class="box-detail">
+								<p><span class="i-head">Expires:</span> <span class="i-content">LifeTime</span></p>
+								<p><span class="i-head">CEs Needed:</span> <span class="i-content">N/A</span></p>
+								<p><span class="i-head">CEs Completed:</span> <span class="i-content">N/A</span></p>								
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<!--<div class="col-md-6">
+				 <div class="panel panel-default">
+			        <div class="panel-heading"><strong><span class="glyphicons charts"></span>&nbsp;&nbsp; <span data-i18n="  TRENDING DATA"></span></strong></div>
+			        <div class="panel-body" data-ng-controller="flotChartCtrl">
+			            <div data-flot-chart
+			                 data-data="line1.data"
+			                 data-options="line1.options"
+			                 style="width: 100%; height: 300px;"
+			                 ></div>
+			        </div>
+			    </div> 
+			</div>-->
+		</div>
+
+	</div>
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

@@ -1,0 +1,212 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Support{% endblock %}
+{% block meta_title %}Support{% endblock %}
+{% block meta_description %}Support{% endblock %}
+{% block meta_keywords %}Support{% endblock %}
+
+
+{% block content %}
+    <div class="page page-resources" ng-controller="profileCtrl">
+
+        <div class="row">
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+	                <a href="#">
+	                <span class="box-icon bg-btn4">
+	                   <i class="glyphicons phone_alt"></i>
+	                </span>
+	                
+
+                    <div class="box-info">
+                        <p class="size-h2">1</p>
+
+                        <p class="text-muted"><span data-i18n="Contact Us">Contact Us</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn2">
+	                    <i class="fa fa-question-circle"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">124</p>
+
+                        <p class="text-muted"><span data-i18n="FAQs">FAQs</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn3">
+	                    <i class="glyphicons comments"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">Available</p>
+
+                        <p class="text-muted"><span data-i18n="Live Chat">Live Chat</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn5">
+	                    <i class="glyphicons tree_deciduous"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">34</p>
+
+                        <p class="text-muted"><span data-i18n="Community">Community</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">              
+	                <span class="box-icon bg-btn8">
+	                    <i class="glyphicons imac"></i>
+	                </span>
+                    <div class="box-info">
+                        <p class="size-h2">46</p>
+
+                        <p class="text-muted"><span data-i18n="Tutorials">Tutorials</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn6">
+	                    <i class="fa fa-paperclip"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">143</p>
+
+                        <p class="text-muted"><span data-i18n="Industry Links">Industry Links</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn9">
+	                    <i class="glyphicons calendar"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">28</p>
+
+                        <p class="text-muted"><span data-i18n="Industry Events">Industry Events</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">            	
+                <div class="panel mini-box">
+                <a href="#">
+                <span class="box-icon bg-btn1">
+                    <i class="glyphicons certificate"></i>
+                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.accreditation}}</p>
+
+                        <p class="text-muted"><span data-i18n="Accreditation">Accreditation</span></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn10">
+	                    <i class="glyphicons settings"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">8</p>
+
+                        <p class="text-muted"><span data-i18n="Tools">Tools</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">            	
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn8">
+	                    <i class="fa fa-newspaper-o"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">2</p>
+
+                        <p class="text-muted"><span data-i18n="Newsletter">Newsletter</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+			<div class="col-lg-4 col-xsm-6">            	
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn7">
+	                    <i class="glyphicons fishes"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">6</p>
+
+                        <p class="text-muted"><span data-i18n="Social Media">Social Media</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-xsm-6">            	
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn2">
+	                    <i class="glyphicons search"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.cur_date | date:'M d' }}</p>
+
+                        <p class="text-muted"><span data-i18n="Search Site">Search Site</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

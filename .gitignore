@@ -1,0 +1,14 @@
+.idea/*
+.idea
+*.iml
+*.pyc
+www_hhlearn_com.iml
+repo.sh
+.project
+.pydevproject
+.settings/*
+static/resources/files/*
+static/resources/temp/*
+static/temp/*
+static/dashboard/courses/images/pages/*
+www_hhlearn_com/settings.py

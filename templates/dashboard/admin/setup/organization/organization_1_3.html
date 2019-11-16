@@ -1,0 +1,354 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Organizational Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="dashboard_admin_setup" id="organization"  ng-app="organization">
+	<form method="post" action="{{ request.path }}" id="organization" ng-controller="OrganizationForm as settings">
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="heading">
+				<h4>Organizational Setup</h4>
+
+				<p>
+					<a href="{% url 'dashboard_admin_setup' %}">Home</a>
+					<i class="fa fa-angle-double-right"></i>
+					Organizational Setup
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/01.0.jpg">
+
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup_header_info_bar pam">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+						Organization Setup
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+						Step 1.3
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-progress">
+				<div class="progress">
+					<div class="progress-bar" style="width: 20%;">Organizational Setup
+						(30%)
+					</div>
+					<div class="progress-bar progress-bar-warning" style="width: 20%;">
+						Location Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-danger" style="width: 20%;">
+						Department Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-success" style="width: 20%;">
+						Region Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-info" style="width: 20%;">Job
+						Titles Setup (0%)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-help text-right">
+				<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i>
+					Watch Me</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-info-text text-left">
+				<p>
+					The federal government has programs that impact each healthcare
+					organization. Please provide your answers as they pertain to your
+					<strong>entire</strong> organization. Further customization will be allowed in
+					later pages.
+				</p>
+
+				<p>
+					The federal government now allows some of the required documents that
+					are to be posted at each organization to be provided to employees
+					via electronic access. This means that instead of posting a document
+					on a wall, HHLEARN will provide access to the documents directly from
+					the employee's HHLEARN Dashboard.
+				</p>
+
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+						<label for="is_electronic_postings_enabled">Do you want to use this
+							federal
+							electronic postings feature in your organization?*</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<select name="is_electronic_postings_enabled" class="select-block " id="selectpicker"   ng-init="settings.is_electronic_postings_enabled={{ form.data.is_electronic_postings_enabled }}" ng-model="settings.is_electronic_postings_enabled">
+
+							<optgroup label="is_electronic_postings_enabled">
+								{% for is_electronic_postings_enabled in form.fields.is_electronic_postings_enabled.queryset %}
+									<option {% if is_electronic_postings_enabled.value  == form.data.is_electronic_postings_enabled|add:0 %}selected="selected"{% endif %} value="{{ is_electronic_postings_enabled.value }}">{{ is_electronic_postings_enabled.name|capfirst }}</option>
+								{% endfor for %}
+							</optgroup>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row"   ng-show="settings.is_electronic_postings_enabled==1">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+						<label for="is_electronic_postings_consistent">Do you want the use of
+							these
+							electronic postings to be consistently applied to every aspect
+							of your organization, e.g, region, location, and
+							department?*</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<select name="is_electronic_postings_consistent" class="select-block " id="selectpicker">
+
+							<optgroup label="is_electronic_postings_consistent">
+								{% for is_electronic_postings_consistent in form.fields.is_electronic_postings_consistent.queryset %}
+									<option {% if is_electronic_postings_consistent.value  == form.data.is_electronic_postings_consistent|add:0 %}selected="selected"{% endif %} value="{{ is_electronic_postings_consistent.value }}">{{ is_electronic_postings_consistent.name|capfirst }}</option>
+								{% endfor for %}
+							</optgroup>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	{% if employee_sanction_monitoring == True %}
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-info-text text-left">
+				<p>
+					For Professional version subscribers, the next federal program that HHLEARN can
+					assist your organization with is
+					checking the List of Excluded Individuals and Entities (LEIE) database. This is
+					a list of individuals and
+					organizations that have been excluded from working for any company that bills
+					Medicare. We check this list every
+					night for the individuals that were added to the system that day and once every
+					quarter. We then provide you
+					with a report that can be used to prove your compliance with this regulation.
+				</p>
+
+				<p>
+					If you opt to utilize this feature, it requires that you provide a valid social
+					security number for each
+					employee placed on the system. Social security numbers, which we encrypt with
+					<a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank"> 128 AES</a> (advanced encryption
+					standard), are the only way to validate that a person with a specific name is
+					not on the list.
+				</p>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+						<label for="is_use_ssn_for_user">Would you like to use
+							this
+							feature and provide a social security number for each user
+							placed on HHLEARN?*</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<select name="is_use_ssn_for_user" class="select-block " id="selectpicker">
+
+							<optgroup label="is_use_ssn_for_user">
+								{% for is_use_ssn_for_user in form.fields.is_use_ssn_for_user.queryset %}
+									<option {% if is_use_ssn_for_user.value  == form.data.is_use_ssn_for_user|add:0 %}selected="selected"{% endif %} value="{{ is_use_ssn_for_user.value }}">{{ is_use_ssn_for_user.name|capfirst }}</option>
+								{% endfor for %}
+							</optgroup>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	{% endif %}
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<p>
+				Some federal laws/regulations are dependent on the number of employees in your entire
+				organization, whether a small business or a multi-national company. We need to know
+				approximately the number of employees in your <strong>entire</strong> organization.
+			</p>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="form-group  {% if form.total_number_of_employees.errors %}has-error{% endif %}">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+						<label for="total_number_of_employees">Total number of organization-wide
+							employees.*</label>
+						<span class="label label-important">{{ form.total_number_of_employees.errors|first }}</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<input type="text" name="total_number_of_employees" class="form-control" id="total_number_of_employees" placeholder="" value="{{ form.data.total_number_of_employees }}">
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<p>
+				When loading users into the system, would you like the option to store a
+				company-specific employee number? (If you select "yes" then it will be required for all
+				users.)
+
+			</p>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+						<label for="is_employee_specific_id">Use employee-specific
+							ID?*</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<select name="is_employee_specific_id" class="select-block " id="selectpicker">
+
+							<optgroup label="is_employee_specific_id">
+								{% for is_employee_specific_id in form.fields.is_employee_specific_id.queryset %}
+									<option {% if is_employee_specific_id.value  == form.data.is_employee_specific_id|add:0 %}selected="selected"{% endif %} value="{{ is_employee_specific_id.value }}">{{ is_employee_specific_id.name|capfirst }}</option>
+								{% endfor for %}
+							</optgroup>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="form-group  {% if form.total_number_of_locations.errors %}has-error{% endif %}">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+						<label for="total_number_of_locations">Including the one location we
+							have already loaded for you, how many total locations will you
+							be adding?*</label>
+						<span class="label label-important">{{ form.total_number_of_locations.errors|first }}</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<input type="text" name="total_number_of_locations" class="form-control" id="total_number_of_locations" placeholder="" value="{{ form.data.total_number_of_locations }}">
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+			<p class="text-left">
+				<a href="{% url 'dashboard_admin_setup_organization_1_2' %}" class="btn btn-info btn-wide setup-back-button hidden-print">Back</a>
+			</p>
+
+		</div>
+
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+			<p class="text-right">
+				<button type="submit" class="btn btn-info btn-wide setup-next-button hidden-print">Save
+					& Next
+				</button>
+
+			</p>
+
+		</div>
+
+	</div>
+
+	</form>
+	</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/organization/js/organization.js"></script>
+{% endblock %}

@@ -1,0 +1,564 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Dashboard - History{% endblock %}
+{% block meta_title %}Dashboard - History{% endblock %}
+{% block meta_description %}Dashboard - History{% endblock %}
+{% block meta_keywords %}Dashboard - History{% endblock %}
+{% block page_class %}page_dashboard_history{% endblock %}
+
+{% block content %}
+<div class="page page-history" ng-controller="historyController">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Dashboard</a></li>
+                <li class="active"><a href="">History</a></li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="row" id="">   	
+    	<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="glyphicon glyphicon-th"></span> Test History</strong>
+    				
+                </div>                 
+			    <!--<table class="table-condensed table-bordered mbl sortable standard-table"></table>-->
+			    <div class="table-filters">
+                    <div class="row">
+                        <div class="col-sm-4 col-lg-2 col-md-2 col-xs-6">
+                            <form>
+                                <input type="text"
+                                       placeholder="search"
+                                       class="form-control"
+                                       data-ng-model="testHistorySearchKeywords"
+                                       data-ng-keyup="searchTestHistory()">
+                            </form>
+                        </div>
+                        <div class="col-sm-3 col-xs-6 filter-result-info">
+		                    <span>
+		                        Showing {[filteredTestHistory.length]}/{[testHistory.length]} entries
+		                    </span>
+                        </div>
+                    </div>
+                </div>
+			    <div class="panel-body">
+			    	<div class="table-responsive">
+					    <table class="table table-bordered table-striped table-responsive table-condensed">
+					        <thead>
+					        <tr>
+					            <th>
+					            	<div class="th">ID
+					            		<span class="glyphicon glyphicon-chevron-up"
+		                                        ng-click="testHistorySort = '-number'; reverse=false"></span>
+		                                <span class="glyphicon glyphicon-chevron-down"
+		                                      ng-click="testHistorySort = 'number'; reverse=false"></span>
+					            	</div>
+					            </th>
+					            <th>
+					            	<div class="th">Course Title
+					            		<span class="glyphicon glyphicon-chevron-up"
+		                                        ng-click="testHistorySort = '-name'; reverse=false"></span>
+		                                <span class="glyphicon glyphicon-chevron-down"
+		                                      ng-click="testHistorySort = 'name'; reverse=false"></span>
+					            	</div>
+					            </th>
+					            <th><div class="th">Hours</div></th>
+					            <th><div class="th">CE</div></th>
+					            <th>
+					            	<div class="th">Completed 
+					            		<span class="glyphicon glyphicon-chevron-up"
+		                                        ng-click="testHistorySort = '-completed'; reverse=false"></span>
+		                                <span class="glyphicon glyphicon-chevron-down"
+		                                      ng-click="testHistorySort = 'completed'; reverse=false"></span>
+					            	</div>
+					            </th>
+					            <th><div class="th">Certificates</div></th>
+					        </tr>
+					        </thead>
+					        <tbody>
+					        <tr ng-cloak data-ng-repeat="test_history in currentFilteredTestHistories | orderBy:testHistorySort">
+					            <td class="col-lg-1  text-center">{[ test_history.number ]}</td>
+					            <td class="col-lg-6">									
+						           	<ul data-collapse-nav-menu is-open="false" class="course-test-history">
+								        <li>
+								        	<a id="{[ test_history.number ]}" href="#" class="history-title" data-bind="click: toggle">{[ test_history.name ]}</a>
+								        	<ul>
+								        		<li ng-cloak
+				                        			ng-repeat="test_attempt in test_history.test_attempts" class="pbs">
+				                        			<span ng-show="test_attempt.test_type !=3">Attempt: {[ test_attempt.grade_date_time | date : "M/d/yyyy h:mm a" ]} 
+				                        				{[ getTzCode(test_attempt.grade_date_time) ]} Score: {[ Math.round(test_attempt.test_grade) ]}% Pass:</span>
+				                        			<span ng-show="test_attempt.test_type ==3">Attempt: {[ test_attempt.grade_date_time | date : "M/d/yyyy h:mm a" ]} 
+				                        				{[ getTzCode(test_attempt.grade_date_time) ]} Score: N/A Pass:</span> 
+							                    	<span ng-show="test_attempt.passed == 1 && test_attempt.completed_by_due_date == 1" style="color:#52AE32;">Yes</span>
+							                    	<span ng-show="test_attempt.passed == 1 && test_attempt.completed_by_due_date == 0" style="color:#E30613;">Yes</span>							                    	
+							                    	<span ng-show="test_attempt.passed == 0" >No</span>&nbsp;&nbsp;
+							                        <!--<i ng-show="test_attempt.test_type != 3" class="fa fa-info-circle blue test-attempt-detail-icon" data-toggle="modal"
+							                           href="#test_history_info_modal" ng-click="setCurrentTestAttempt(test_attempt)"></i>-->
+							                        <i ng-show="test_attempt.test_type != 3" class="fa fa-info-circle blue test-attempt-detail-icon" 
+							                           ng-click="setCurrentTestAttempt(test_attempt)"></i>
+							                        <i ng-show="test_attempt.test_type == 3" 
+								                        popover="This course required acknowledgement of content comprehension only." 
+								                        popover-trigger="mouseenter"  popover-title="{[test_history.number]}"
+								                        class="fa fa-info-circle green	 test-attempt-detail-icon" style="color:#52AE32;"></i>
+							                        <!--<i class="fa fa-info-circle blue test-attempt-detail-icon" 
+							                           ng-click="setCurrentTestAttempt(test_attempt)"></i>-->
+							                    </li>
+							            	</ul>
+							           </li>
+								    </ul>
+					           </td>
+					
+					            <td class="text-center col-lg-1">
+					                {[ test_history.hours ]}
+					            </td>
+					
+					            <td class="col-lg-1 text-center"><i ng-show="test_history.taking_for_ce_credit == 1" class="fa fa-check ce-icon"></i></td>
+					            <td class="col-lg-1 text-center">{[ test_history.completed | date : "M/d/yyyy" ]}</span></td>
+					            <td class="certificate_td text-center col-lg-2">
+									<a ng-show="test_history.completed != undefined" href="/certificate/pdf/{[ test_history.cert_encrypted_id ]}" target="_blank">
+					                	<img class="certificate_logo" src=
+					                        "{{ STATIC_URL }}dashboard/common/images/certificates/blue.png">
+					                </a>					                
+					                <a ng-show="test_history.requires_additional_documentation == 1" href="/certificate/pdf_report/{[ test_history.cert_encrypted_id ]}" target="_blank">
+					                	<img class="certificate_logo" src=
+					                        "{{ STATIC_URL }}dashboard/history/images/document.png">
+					                </a>
+					                <a ng-show="test_history.taking_for_ce_credit == 1" href="/certificate/pdf/{[ test_history.cert_encrypted_id ]}" target="_blank">
+					                	<img class="certificate_logo" src=
+					                        "{{ STATIC_URL }}dashboard/common/images/certificates/red_continuing_education.png">
+					                </a>
+					
+					            </td>
+					        </tr>				
+					        </tbody>
+					    </table>
+					    <footer class="table-footer">
+		                    <div class="row">
+		                        <div class="col-md-6 page-num-info">
+		                        </div>
+		                        <div class="col-md-6 text-right pagination-container">
+		                            <pagination class="pagination-sm"
+		                                page="currentTestHistoryPage"
+		                                total-items="filteredTestHistory.length"
+		                                max-size="4"
+		                                on-select-page="selectTestHistoryPage(page)"
+		                                items-per-page="perPage"
+		                                rotate="false"
+		                                boundary-links="true"></pagination>
+		                        </div>
+		                    </div>
+		                </footer>
+		            </div>			    
+			    </div>
+			</div>
+		</div>
+
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="glyphicon glyphicon-th"></span> Inservice History</strong>
+                </div>
+                <div class="table-filters">
+                    <div class="row">
+                        <div class="col-sm-4 col-lg-2 col-md-2 col-xs-6">
+                            <form>
+                                <input type="text"
+                                       placeholder="search"
+                                       class="form-control"
+                                       data-ng-model="inserviceHistorySearchKeywords"
+                                       data-ng-keyup="searchInserviceHistory()">
+                            </form>
+                        </div>
+                        <div class="col-sm-3 col-xs-6 filter-result-info">
+                    <span>
+                        Showing {[filteredInserviceHistory.length]}/{[inserviceHistory.length]} entries
+                    </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                	<div class="table-responsive">
+					    <!--<table class="table table-bordered mbl sortable standard-table">-->
+					    <table class="table table-bordered table-striped table-responsive table-condensed">
+					        <thead>
+					        <tr>
+					            <th>
+					            	<div class="th">Title
+					            		<span class="glyphicon glyphicon-chevron-up"
+		                                        ng-click="inserviceHistorySort = '-inservices.inservice_title'; reverse=false"></span>
+		                                <span class="glyphicon glyphicon-chevron-down"
+		                                      ng-click="inserviceHistorySort = 'inservices.inservice_title'; reverse=false"></span>
+					            	</div>
+					            </th>
+					            <th>
+					            	<div class="th">Presenter
+					            		<span class="glyphicon glyphicon-chevron-up"
+		                                        ng-click="inserviceHistorySort = '-course.number'; reverse=false"></span>
+		                                <span class="glyphicon glyphicon-chevron-down"
+		                                      ng-click="inserviceHistorySort = 'course.number'; reverse=false"></span>
+					            	</div>
+					            </th>
+						        <th>
+						        	<div class="th">Hours
+						        		<span class="glyphicon glyphicon-chevron-up"
+		                                        ng-click="inserviceHistorySort = '-inservice_duration'; reverse=false"></span>
+		                                <span class="glyphicon glyphicon-chevron-down"
+		                                      ng-click="inserviceHistorySort = 'inservice_duration'; reverse=false"></span>
+						        	</div>
+						        </th>
+					            <th>
+					            	<div class="th">CE
+					            		<span class="glyphicon glyphicon-chevron-up"
+		                                        ng-click="inserviceHistorySort = '-inservices.continuing_education_provided'; reverse=false"></span>
+		                                <span class="glyphicon glyphicon-chevron-down"
+		                                      ng-click="inserviceHistorySort = 'inservices.continuing_education_provided'; reverse=false"></span>
+					            	</div>
+					            </th>
+					            <th>
+					            	<div class="th">Date
+					            		<span class="glyphicon glyphicon-chevron-up"
+		                                        ng-click="inserviceHistorySort = '-stop_date_time'; reverse=false"></span>
+		                                <span class="glyphicon glyphicon-chevron-down"
+		                                      ng-click="inserviceHistorySort = 'stop_date_time'; reverse=false"></span>
+					            	</div>
+					            </th>
+					            <th><div class="th">Certificates</div></th>
+					        </tr>
+					        </thead>
+					        <tbody>
+					        <tr ng-cloak data-ng-repeat="inservice_history in currentFilteredInserviceHistories | orderBy:inserviceHistorySort">
+					            <td class="col-lg-5">{[inservice_history.inservices.inservice_title]}</td>
+					            <td class="col-lg-2 text-center">
+					                {[inservice_history.completed_trainer[0].inservice_trainers.first_name]}&nbsp;
+					                {[inservice_history.completed_trainer[0].inservice_trainers.last_name]}
+					            </td>
+						        <td class="col-lg-1  text-center">
+							        {[ inservice_history.inservice_duration ]}
+						        </td>
+					            <td class="text-center col-lg-1">
+						            <i class="fa fa-check ce-icon" ng-show="inservice_history.inservices.continuing_education_provided==1"></i>
+					            </td>
+					
+					            <td class="col-lg-1  text-center">{[ inservice_history.stop_date_time | date : "M/d/yyyy" ]}</td>
+					            <td class="certificate_td text-center col-lg-2">
+									<a href="#">
+					                	<img class="certificate_logo" src=
+					                        "{{ STATIC_URL }}dashboard/common/images/certificates/green_inservice.png">
+					               	</a>
+					                <a href="#" ng-show="inservice_history.inservices.continuing_education_provided==1">
+					                	<img class="certificate_logo" src=
+					                        "{{ STATIC_URL }}dashboard/common/images/certificates/red_continuing_education.png">
+					                </a>
+					
+					            </td>
+					        </tr>
+					        </tbody>
+					    </table>
+					</div>
+			    </div>
+			</div>
+			
+		</div>
+
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="glyphicon glyphicon-th"></span> External Course History</strong>
+                </div>
+			    <!--<table class="table table-bordered mbl sortable standard-table">-->
+			    <div class="table-filters">
+                    <div class="row">
+                        <div class="col-sm-4 col-lg-2 col-md-2 col-xs-6">
+                            <form>
+                                <input type="text"
+                                       placeholder="search"
+                                       class="form-control"
+                                       data-ng-model="ecourseHistorySearchKeywords"
+                                       data-ng-keyup="searchEcourseHistory()">
+                            </form>
+                        </div>
+                        <div class="col-sm-3 col-xs-6 filter-result-info">
+                    <span>
+                        Showing {[filteredEcourseHistory.length]}/{[ecourseHistory.length]} entries
+                    </span>
+                        </div>
+                    </div>
+                </div>
+			    <div class="panel-body">
+			    <div class="table-responsive">
+			    <table class="table table-bordered table-striped">
+			        <thead>
+			        <tr>
+			            <th>
+			            	<div class="th">ID
+			            		<span class="glyphicon glyphicon-chevron-up"
+                                        ng-click="ecourseHistorySort = '-external_courses.external_courses_id'; reverse=false"></span>
+                                <span class="glyphicon glyphicon-chevron-down"
+                                      ng-click="ecourseHistorySort = 'external_courses.external_courses_id'; reverse=false"></span>
+			            	</div>
+			            </th>
+			            <th>
+			            	<div class="th">Course Title
+			            		<span class="glyphicon glyphicon-chevron-up"
+                                        ng-click="ecourseHistorySort = '-external_courses.external_courses_title'; reverse=false"></span>
+                                <span class="glyphicon glyphicon-chevron-down"
+                                      ng-click="ecourseHistorySort = 'external_courses.external_courses_title'; reverse=false"></span>
+			            	</div>
+			            </th>
+			            <th><div class="th">Hours</div></th>
+			            <th>
+			            	<div class="th">CE
+			            		<span class="glyphicon glyphicon-chevron-up"
+                                        ng-click="ecourseHistorySort = '-external_courses.continuing_education_provided'; reverse=false"></span>
+                                <span class="glyphicon glyphicon-chevron-down"
+                                      ng-click="ecourseHistorySort = 'external_courses.continuing_education_provided'; reverse=false"></span>
+			            	</div>
+			            </th>
+			            <th>
+			            	<div class="th">Completed
+			            		<span class="glyphicon glyphicon-chevron-up"
+                                        ng-click="ecourseHistorySort = '-completion_date'; reverse=false"></span>
+                                <span class="glyphicon glyphicon-chevron-down"
+                                      ng-click="ecourseHistorySort = 'completion_date'; reverse=false"></span>
+			            	</div>
+			            </th>
+			            <th><div class="th">Certificates</div></th>
+			        </tr>
+			        </thead>
+			        <tbody>
+			        <tr ng-cloak data-ng-repeat="external_course in currentFilteredEcourseHistories | orderBy:ecourseHistorySort">
+			            <td class="col-lg-1  text-center">{[ external_course.external_courses.external_courses_id ]}</td>
+			            <td class="col-lg-6">
+			                {[ external_course.external_courses.external_courses_title ]}
+			            </td>
+			
+			            <td class="text-center col-lg-1">
+			                {[ external_course.hours]}
+			            </td>
+			
+			            <td class="col-lg-1 text-center ">
+			            	<i class="fa fa-check ce-icon" ng-show="external_course.external_courses.continuing_education_provided==1"></i>			            	
+			            </td>
+			            <td class="col-lg-1 text-center ">{[ external_course.completion_date | date : "M/d/yyyy" ]}</td>
+			            <td class="certificate_td text-center col-lg-2">
+							<a href="#">
+			                <img class="certificate_logo" src=
+			                        "{{ STATIC_URL }}dashboard/common/images/certificates/green_external.png">
+			                </a>
+			                <a href="#" ng-show="external_course.external_courses.continuing_education_provided==1">
+			                <img class="certificate_logo" src=
+			                        "{{ STATIC_URL }}dashboard/common/images/certificates/red_continuing_education.png">
+			                </a>
+			            </td>
+			        </tr>
+			        </tbody>
+			    </table>
+			    </div>
+			    </div>
+			</div>
+		</div>
+		<!-- Modal -->
+    <div class="modal fade"  id="test_history_info_modal" tabindex="-1" role="dialog" aria-labelledby="test_history_info_modal"
+		aria-hidden="true">         
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img class="test_history_logo_image"
+                                 src="{{ STATIC_URL }}dashboard/common/images/logo/logo_305x100.png"
+                                 alt="Logo">
+                        </div>
+
+                        <div class="col-lg-8 text-right test_history_info_time">
+                            <a class="text-right" href="#" data-dismiss="modal" >    X</a>
+                            <h6>Test Review: {[ currentTestAttempt.grade_date_time | date : "M/d/yyyy h:mm a" ]} {[ getTzCode(currentTestAttempt.grade_date_time) ]}</h6>
+                            <h6>Test Due Date: {[ currentTestAttempt.due_date ]}</h6>                            
+                        </div>                        
+                    </div>
+                </div>
+                <div class="modal-body ptm">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h6 class="text-center mtn">{[ currentTestAttempt.course_name ]}</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Test Statistics</th>
+                                        <th>Total: {[ currentTestAttempt.total_questions_count ]}</th>
+                                        <th>Percentage (Total=100%)</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                    <tr class="success">
+                                        <td><i class="fa fa-thumbs-up"></i> Correct</td>
+                                        <td>{[ currentTestAttempt.correct_questions_count ]}</td>
+                                        <td>{[ Math.round(currentTestAttempt.test_grade) ]}%</td>
+                                    </tr>
+
+
+                                    <tr class="danger">
+                                        <td><i class="fa fa-thumbs-down"></i> Wrong</td>
+                                        <td>{[ currentTestAttempt.total_questions_count - currentTestAttempt.correct_questions_count ]}</td>
+                                        <td>{[ 100-currentTestAttempt.test_grade ]}%</td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                    	<i ng-show="currentTestAttempt.passed==1" class="fa fa-star"></i>
+                                    	<i ng-show="currentTestAttempt.passed==0" class="fa fa-star-half-o"></i>
+                                    	Questions
+                                    </h3>                                    
+                                </div>
+                                <div class="panel-body">
+                                    <div ng-cloak
+                        				 ng-repeat="question in currentTestAttempt.questions" class="question">
+                                        <p class="mbs"><strong ng-bind-html="to_trusted(question.question.text)"></strong>
+                                        </p>
+                                        <ol class="">
+                                            <li ng-cloak
+                        				    ng-repeat="answer in question.question.answers">{[ answer.coreanswers.text ]} 
+                                            	<span ng-show="answer.id == question.question_answer.id" class="label label-info">selected</span>
+                                            	<span ng-show="answer.coreanswers.is_correct == 1" class="label label-success">correct</span>
+                                            </li>										
+                                        </ol>
+                                        <div ng-show="question.question_answer.coreanswers.is_correct == 0" class="alert alert-info pam">
+                                            <h6 class="mtn mbn"><i class="fa fa-lightbulb"></i> Explanation: </h6>
+                                            <p ng-bind-html="to_trusted(question.question_answer.coreanswers.why_this_choice)"></p>
+                                        </div>
+                                       <hr>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="col-lg-12 text-center"><p>© 2010-{% now "Y" %} Dynamic Agenda, Inc. All rights reserveds. </p> </div>-->                        
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
+                </div>
+            </div>            
+        </div>        
+    </div>
+	
+
+	</div>	
+
+</div>
+	
+
+{% endblock %}
+
+{% block extra_scripts %}
+    <!--<script src="{{ STATIC_URL }}dashboard/history/js/history.js"></script>-->
+<script type="text/ng-template" id="my.html">
+	<div class="modal-header">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-4">
+                <img class="test_history_logo_image"
+                     src="{{ STATIC_URL }}dashboard/common/images/logo/logo_305x100.png"
+                     alt="Logo">
+            </div>
+
+            <div class="col-lg-8 col-md-8 col-xs-8 text-right test_history_info_time">
+                <a class="text-right" href="#" ng-click="cancel()" >    X</a>
+                <h6>Test Review: {[ currentTestAttempt.grade_date_time | date : "M/d/yyyy h:mm a" ]} {[ getTzCode(currentTestAttempt.grade_date_time) ]}</h6>
+                <h6>Test Due Date: {[ currentTestAttempt.due_date ]}</h6>                            
+            </div>                        
+        </div>
+    </div>
+    <div class="modal-body ptm">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h6 class="text-center mtn">{[ currentTestAttempt.course_name ]}</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Test Statistics</th>
+                            <th>Total: {[ currentTestAttempt.total_questions_count ]}</th>
+                            <th>Percentage (Total=100%)</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                        <tr class="success">
+                            <td><i class="fa fa-thumbs-up"></i> Correct</td>
+                            <td>{[ currentTestAttempt.correct_questions_count ]}</td>
+                            <td>{[ Math.round(currentTestAttempt.test_grade) ]}%</td>
+                        </tr>
+
+                        <tr class="danger">
+                            <td><i class="fa fa-thumbs-down"></i> Wrong</td>
+                            <td>{[ currentTestAttempt.total_questions_count - currentTestAttempt.correct_questions_count ]}</td>
+                            <td>{[ 100-currentTestAttempt.test_grade ]}%</td>
+                        </tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                        	<i ng-show="currentTestAttempt.passed==1" class="fa fa-star"></i>
+                        	<i ng-show="currentTestAttempt.passed==0" class="fa fa-star-half-o"></i>
+                        	Questions
+                        </h3>                                    
+                    </div>
+                    <div class="panel-body">
+                        <div ng-cloak
+            				 ng-repeat="question in currentTestAttempt.questions" class="question">
+                            <p class="mbs"><strong ng-html-compile="question.question.text"></strong>
+                            </p>
+                            <ol class="">
+                                <li ng-cloak
+            				    ng-repeat="answer in question.question.answers">{[ answer.coreanswers.text ]} 
+                                	<span ng-show="answer.id == question.question_answer.id" class="label label-info">selected</span>
+                                	<span ng-show="answer.coreanswers.is_correct == 1" class="label label-success">correct</span>
+                                </li>										
+                            </ol>
+                            <div ng-show="question.question_answer.coreanswers.is_correct == 0" class="alert alert-info pam">
+                                <h5 class="mtn mbn"><b><i class="fa fa-lightbulb"></i> Explanation: </b></h6>
+                                <p ng-html-compile="question.question_answer.coreanswers.why_this_choice"></p>
+                            </div>
+                           <hr>
+                        </div>                                    
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-lg-12 text-center"><p>© 2010-{% now "Y" %} Dynamic Agenda, Inc. All rights reserveds. </p> </div>-->                        
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
+    </div>
+</script>
+
+{% endblock %}

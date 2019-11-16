@@ -1,0 +1,524 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Admin-Tests{% endblock %}
+{% block meta_title %}Admin-Tests{% endblock %}
+{% block meta_description %}Admin-Tests{% endblock %}
+{% block meta_keywords %}Admin-Tests{% endblock %}
+
+
+{% block content %}
+<div class="page page-admin-tests" ng-controller="testViewController" >
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{%  url 'admin_home' %}">Admin</a></li>
+                <li class="active"><a href="">Tests</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="row" id="app_documents">		
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-check-square"></span> Tests</strong>    				
+                </div>
+                <div class="panel-body row">                	
+                    <div class="ui-tab">
+                        <tabset class="ui-tab">                        	
+                            <tab>
+                            	<tab-heading>
+                            		Active
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id = "atest_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="activeTestSearchKeywords"
+						                               data-ng-keyup="searchActiveTests()">
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[ filteredActiveTests.length ]}/{[ activeTests.length ]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Action						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Course ID
+												<span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="activeTestSort = '-course.number'; reverse=false; onOrderChange('-course.number', false)"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="activeTestSort = 'course.number'; reverse=false; onOrderChange('course.number', false)"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Course Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="activeTestSort = '-course.name'; reverse=false; onOrderChange('-course.name', false)"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="activeTestSort = 'course.name'; reverse=false; onOrderChange('course.name', false)"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Test Type
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="activeTestSort = '-course.type.name'; reverse=false; onOrderChange('-course.type.name', false)"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="activeTestSort = 'course.type.name'; reverse=false; onOrderChange('course.type.name', false)"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Questions
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="activeTestSort = '-course.number_test_questions'; reverse=false; onOrderChange('-course.number_test_questions', false)"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="activeTestSort = 'course.number_test_questions'; reverse=false; onOrderChange('course.number_test_questions', false)"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Test Pool
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="activeTestSort = '-pool'; reverse=false; onOrderChange('-pool', false)"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="activeTestSort = 'pool'; reverse=false; onOrderChange('pool', false)"></span>
+						                    </div></th>					                    					                    
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr ng-cloak ng-repeat="test in currentFilteredActiveTests | orderBy:activeTestSort track by $index">
+											<td class="col-lg-1 text-center">
+												<a href="#test_deactivate_modal" ng-click="openDeactivateModal(test);"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="{% url 'admin_tests_edit' %}{[ test.id ]}"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-2">
+												{[ test.course.number ]}
+											</td>
+											<td class="col-lg-4">
+												{[ test.course.name ]}
+											</td>											
+											<td class="col-lg-3 text-center">
+												{[ test.type.name]}
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ test.course.number_test_questions ]}
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ test.pool ]}
+											</td>
+										</tr>																						
+						            </tbody>
+						        
+						        </table>
+						        </div>
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <!--<span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                </span>-->
+						            	</div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentActiveTestPage"
+						                                total-items="filteredActiveTests.length"
+						                                max-size="4"
+						                                on-select-page="selectActiveTestPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>						            
+						        </footer>						        
+					            <div class="col-lg-12" style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+					            	<a href="{% url 'admin_tests_add' %}" class="btn btn-blue">
+					            		Add Test
+					            	</a>
+					            </div>					            
+                            </tab>
+                            
+							<tab>
+                            	<tab-heading>
+                            		Inactive
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id = "iatest_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="inactiveTestSearchKeywords"
+						                               data-ng-keyup="searchInactiveTests()">
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[ filteredInactiveTests.length ]}/{[ inactiveTests.length ]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Action						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Course ID
+												<span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="activeTestSort = '-course.number'; reverse=false; onOrderChange('-course.number', false)"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="activeTestSort = 'course.number'; reverse=false; onOrderChange('course.number', false)"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Course Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="activeTestSort = '-course.name'; reverse=false; onOrderChange('-course.name', false)"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="activeTestSort = 'course.name'; reverse=false; onOrderChange('course.name', false)"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Test Type
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="activeTestSort = '-course.type.name'; reverse=false; onOrderChange('-course.type.name', false)"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="activeTestSort = 'course.type.name'; reverse=false; onOrderChange('course.type.name', false)"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Questions
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="activeTestSort = '-course.number_test_questions'; reverse=false; onOrderChange('-course.number_test_questions', false)"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="activeTestSort = 'course.number_test_questions'; reverse=false; onOrderChange('course.number_test_questions', false)"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Test Pool
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="activeTestSort = '-pool'; reverse=false; onOrderChange('-pool', false)"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="activeTestSort = 'pool'; reverse=false; onOrderChange('pool', false)"></span>
+						                    </div></th>					                    					                    
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr ng-cloak ng-repeat="test in currentFilteredInactiveTests | orderBy:inactiveTestSort track by $index">
+											<td class="col-lg-1 text-center">
+												<a href="#test_activate_modal" ng-click="openActivateModal(test);"><i class="fa fa-eye size-h4"></i></a>&nbsp;
+												<a href="{% url 'admin_tests_edit' %}{[ test.id ]}"><i class="glyphicons edit size-h4"></i></a>												
+											</td>
+											<td class="col-lg-2">
+												{[ test.course.number ]}
+											</td>
+											<td class="col-lg-4">
+												{[ trancateString(test.course.name, 45) ]}
+											</td>											
+											<td class="col-lg-3 text-center">
+												{[ test.type.name]}
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ test.course.number_test_questions ]}
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ test.pool ]}
+											</td>																						
+										</tr>									
+						            </tbody>						        
+						        </table>
+						        </div>
+						            
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <!--<span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						               		</span>-->
+						            	</div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentInactiveTestPage"
+						                                total-items="filteredInactiveTests.length"
+						                                max-size="4"
+						                                on-select-page="selectInactiveTestPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>						            
+						        </footer>						        
+					            <div class="col-lg-12" style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+					            	<a href="{% url 'admin_tests_add' %}" class="btn btn-blue">
+					            		Add Test
+					            	</a>
+					            </div>					            
+                            </tab>
+                            
+                        </tabset>
+                    </div>
+           		</div>
+           	</div>           
+        </div>
+	</div>
+	
+	<!-- Test Activate Modal -->
+	<div class="modal fade" id="test_activate_modal" tabindex="-1" role="dialog" aria-labelledby="test_activate_modal"
+	     aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">					
+					<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+									<strong>Reactivate Test</strong>
+								</h4> 
+								<span class="title"></span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>		
+				</div>
+				<div class="modal-body list-info">
+					<div class="row">						
+                        <div class="col-lg-12">
+                        	<div class="callout callout-danger">
+                        		<p>
+                        			You have Clicked on the Test Reactivation icon. If you want to make this test
+                        			 active, turn the slider icon on and click the "Reactivate Test" button. Please 
+                        			 note that for audit purposes the system will record which user reactivates a test.
+                        		</p>
+                        	</div>
+                        	<div class="col-sm-12 col-md-12 col-lg-12">
+								<div class="form-group " style="margin:0px;">
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+											<label for="is_entire_organization_accredited">
+												Reactivate Test
+											</label>
+											<span class="label label-important"></span>
+										</div>
+									</div>
+		
+									<div class="row">
+										<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+											<label class="switch switch-iphone">
+			                					<input type="checkbox" name="reactivate_test" ng-model="is_reactivate"><i></i>
+			                				</label>												
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+					</div>
+				</div>
+				<div class="modal-footer" style="margin-top: 0px;">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="activateTest(true)">Reactivate Test</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<!-- Test Deactivate Modal -->
+	<div class="modal fade" id="test_deactivate_modal" tabindex="-1" role="dialog" aria-labelledby="test_deactivate_modal"
+	     aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">					
+					<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+									<strong>Deactivate Test</strong>
+								</h4> 
+								<span class="title"></span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>		
+				</div>
+				<div class="modal-body list-info">
+					<div class="row">
+						<div class="col-lg-12">
+                        	<div class="callout callout-danger">
+                        		<p>
+                        			You have Clicked on the Test Deactivation icon. If you want to make this test
+                        			 inactive, turn the slider icon on and click the "Deactivate Test" button. Please 
+                        			 note that for audit purposes the system will record which user deactivates a test.
+                        		</p>
+                        	</div>
+                        	<div class="col-sm-12 col-md-12 col-lg-12">
+								<div class="form-group " style="margin:0px;">
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+											<label for="is_entire_organization_accredited">
+												Deactivate Test
+											</label>
+											<span class="label label-important"></span>
+										</div>
+									</div>
+		
+									<div class="row">
+										<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+											<label class="switch switch-iphone">
+			                					<input type="checkbox" name="reactivate_test" ng-model="is_deactivate"><i></i>
+			                				</label>												
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+					</div>
+				</div>
+				<div class="modal-footer" style="margin-top: 0px;">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="activateTest(false)">Deactivate Test</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</div>
+                
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+    <script type="text/ng-template" id="testActivateModal.html">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-section">
+                        <h4>
+                            <img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+                            <strong>Reactivate Test</strong>
+                        </h4>
+                        <span class="title"></span>
+                    </div>
+                    <a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" ng-click="cancel()">X</a>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body list-info">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="callout callout-danger">
+                        <p>
+                            You have Clicked on the Test Reactivation icon. If you want to make this test
+                             active, turn the slider icon on and click the "Reactivate Test" button. Please
+                             note that for audit purposes the system will record which user reactivates a test.
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group " style="margin:0px;">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <label for="is_entire_organization_accredited">
+                                        Reactivate Test
+                                    </label>
+                                    <span class="label label-important"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <label class="switch switch-iphone">
+                                        <input type="checkbox" name="reactivate_question" ng-model="data.is_reactivate"><i></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="margin-top: 0px;">
+            <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+            <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="ok()">Reactivate Test</button>
+        </div>
+    </script>
+
+	<script type="text/ng-template" id="testDeactivateModal.html">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-section">
+                        <h4>
+                            <img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+                            <strong>Deactivate Test</strong>
+                        </h4>
+                        <span class="title"></span>
+                    </div>
+                    <a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" ng-click="cancel()">X</a>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body list-info">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="callout callout-danger">
+                        <p>
+                            You have Clicked on the Test Deactivation icon. If you want to make this test
+                             inactive, turn the slider icon on and click the "Deactivate Test" button. Please
+                             note that for audit purposes the system will record which user deactivates a test.
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group " style="margin:0px;">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <label for="is_entire_organization_accredited">
+                                        Deactivate Test
+                                    </label>
+                                    <span class="label label-important"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <label class="switch switch-iphone">
+                                        <input type="checkbox" name="deactivate_question" ng-model="data.is_deactivate"><i></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="margin-top: 0px;">
+            <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+            <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="ok()">Deactivate Test</button>
+        </div>
+    </script>
+
+{% endblock %}

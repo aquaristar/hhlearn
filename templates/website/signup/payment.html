@@ -1,0 +1,350 @@
+{% extends "website/_page.html" %}
+{% block title %}HHLEARN - Home{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+	<div class="container" id="app_payment">
+	<div class="row">
+		<h1 class="span12">Signup</h1>
+
+		<div class="span12">
+			<ul class="breadcrumb">
+				<li><a href="{% url 'signup' %}">Signup</a> <span class="divider">/</span></li>
+				<li><a href="{% url 'signup' %}">Contact Info</a> <span class="divider">/</span></li>
+				<li><a href="{% url 'signup_terms' %}">Terms</a> <span class="divider">/</span></li>
+
+				<li class="active">Payment</li>
+			</ul>
+		</div>
+
+	</div>
+
+
+	<div class="row">
+	<div class="span12 plan-box">
+
+	<ul id="planTab" class="nav nav-tabs">
+
+		<li class="">
+			<a href="{% url 'signup' %}">
+				Contact Info
+			</a>
+		</li>
+
+		<li class="">
+			<a href="{% url 'signup_terms' %}">
+				Terms
+			</a>
+		</li>
+
+		<li class="active">
+			<a href="{% url 'signup_payment' %}">
+				Payment Info
+			</a>
+		</li>
+
+		<li class="">
+			<a href="{% url 'signup_thank_you' %}">
+				Complete
+			</a>
+		</li>
+
+
+	</ul>
+	<div id="" class="tab-content">
+
+
+	<div class="tab-pane active" id="payment">
+
+	<h3 class="mtl text-center">Payment Information</h3>
+
+	<p class="text-center"><span class="required">* </span> Required Fields</p>
+
+	<form method="post" id="contactform">
+
+	{% csrf_token %}
+
+
+	<div class="row">
+		<div class="span3">
+			<div class="row">
+				<div class="span4">
+					<label>Membership Type
+						<span class="required">* </span>
+						<br/>
+						<span class="label label-important">{{ form.membership_plan.errors|first }}</span>
+					</label>
+
+					<select style="height: 35px; width: 185px;" class="span2" name="membership_plan" id="membership_plan"  data-bind="event: { change: membership_plan_change }">
+						<option value="">Membership Type</option>
+
+						{% comment %}
+							since "membership_plan.id " is an integer and "form.data.state" is string so we need to convert "form.data.membership_plan" to
+							string by adding 0 to it by doing "form.data.membership_plan|add:0" ;)
+						{% endcomment %}
+
+						{% for membership_plan in form.fields.membership_plan.queryset %}
+							<option {% if membership_plan.id  == form.data.membership_plan|add:0 %}selected="selected"{% endif %} data-monthly-price="{{ membership_plan.monthly_price }}" value="{{ membership_plan.id }}">{{ membership_plan.name }}</option>
+						{% endfor for %}
+					</select>
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+	</div>
+	<div class="row">
+		<div class="span3">
+			<label>Number of Users <span class="required">* </span>
+				<br/>
+				<span class="label label-important">{{ form.user_pack.errors|first }}</span>
+			</label>
+
+
+			<select style="height: 35px;" class="span2" name="user_pack" id="user_pack" data-bind="value: selected_number_of_user,  event: { change: number_of_user_change }">
+				<option value="">Number of Users</option>
+
+				{% comment %}
+					since "user_pack.id " is an integer and "form.data.user_pack" is string so we need to convert "form.data.user_pack" to
+					string by adding 0 to it by doing "form.data.user_pack|add:0" ;)
+				{% endcomment %}
+
+				{% for user_pack in form.fields.user_pack.queryset %}
+					<option {% if user_pack.id  == form.data.user_pack|add:0 %}selected="selected"{% endif %} data-monthly-price="{{ user_pack.monthly_price }}" value="{{ user_pack.id }}">{{ user_pack.name }}</option>
+				{% endfor for %}
+			</select>
+
+		</div>
+		<div class="span2" data-bind="visible: !!$root.show_number_of_user_cost()">
+			<label>Monthly Cost </label>
+			<input disabled rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+			       data-original-title="Enter your phone number" type="text" id="phone_contact"
+			       class="span1 ie7-margin" data-bind="value:$root.selected_number_of_user_cost()">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span12">
+			<div class="border mtm mbm">
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="span3">
+			<div class="row">
+				<div class="span2">
+					<label>Payment Method
+						<span class="required">* </span>
+						<br/>
+						<span class="label label-important">{{ form.payment_method.errors|first }}</span>
+
+					</label>
+
+
+					<select style="height: 35px;" class="span2" name="payment_method" id="payment_method" data-bind="value: selected_payment_type,  event: { change: payment_type_change }">
+						<option value="">Payment Method</option>
+
+						{% comment %}
+							since "payment_method.id " is an integer and "form.data.payment_method" is string so we need to convert "form.data.payment_method" to
+							string by adding 0 to it by doing "form.data.payment_method|add:0" ;)
+						{% endcomment %}
+
+						{% for payment_method in form.fields.payment_method.queryset %}
+							<option {% if payment_method.id  == form.data.payment_method|add:0 %}selected="selected"{% endif %} data-image="{{ payment_method.short_code }}.png" value="{{ payment_method.id }}">{{ payment_method.name }}</option>
+						{% endfor for %}
+					</select>
+
+
+				</div>
+				<div class="span1" data-bind="visible:!!$root.show_payment_icon()" style="display: none;">
+					<label> &nbsp;</label>
+					<img data-bind="attr: {src:'{{ STATIC_URL }}website/common/img/payment/'+$root.payment_method_image()}">
+				</div>
+			</div>
+
+
+		</div>
+
+
+	</div>
+
+       <div id="payment_type_credit_card" data-bind="visible: !!$root.show_credit_card_form()" stylex="display: none;">
+
+		<div class="row">
+
+
+			<div class="span3">
+
+				<div class="control-group {% if form.credit_card_person_name.errors %}error{% endif %}">
+					<label>Name on Card<span class="required">* </span>
+					</label>
+					<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+					       data-original-title="{{ form.credit_card_person_name.errors|first }}" type="text" id="credit_card_person_name"
+					       class="span3 ie7-margin" name="credit_card_person_name" value="{{ form.data.credit_card_person_name }}">
+				</div>
+			</div>
+
+			<div class="span3">
+
+				<div class="control-group {% if form.credit_card_number.errors %}error{% endif %}">
+					<label>Credit Card Number<span class="required">* </span>
+					</label>
+					<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+					       data-original-title="{{ form.credit_card_number.errors|first }}" type="text" id="credit_card_number"
+					       class="span3 ie7-margin" name="credit_card_number" value="{{ form.data.credit_card_number }}">
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+			<div class="span3">
+				<div class="row">
+					<div class="span2">
+						<label>Expiration
+							<span class="required">* </span>
+							<!-- <br/>
+							<span class="label label-important">{{ form.card_expiry_month.errors|first }} {{ form.year.errors|first }}</span> -->
+
+
+						</label>
+
+						<select name="card_expiry_month" id="card_expiry_month" size="1" style="height: 35px;" class="span2">
+							<option value="">Month</option>
+
+							{% comment %}
+								since "month.id " is an integer and "form.data.month" is string so we need to convert "form.data.month" to
+								string by adding 0 to it by doing "form.data.month|add:0" ;)
+							{% endcomment %}
+
+							{% for card_expiry_month in form.fields.card_expiry_month.queryset %}
+								<option {% if card_expiry_month.id  == form.data.card_expiry_month|add:0 %}selected="selected"{% endif %} value="{{ card_expiry_month.id }}">{{ card_expiry_month.name }}</option>
+							{% endfor for %}
+						</select>
+
+
+					</div>
+					<div class="span1">
+						<label> &nbsp;</label>
+						<select name="card_expiry_year" id="card_expiry_year" size="1" style="height: 35px;" class="span2">
+							<option value="">Year</option>
+
+							{% comment %}
+								since "year.id " is an integer and "form.data.year" is string so we need to convert "form.data.year" to
+								string by adding 0 to it by doing "form.data.year|add:0" ;)
+							{% endcomment %}
+
+							{% for card_expiry_year in form.fields.card_expiry_year.queryset %}
+								<option {% if card_expiry_year.id  == form.data.card_expiry_year|add:0 %}selected="selected"{% endif %} value="{{ card_expiry_year.id }}">{{ card_expiry_year.year }}</option>
+							{% endfor for %}
+						</select>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+       </div>
+
+	<div class="row">
+		<div class="span3">
+			<div class="control-group {% if form.billing_address_1.errors %}error{% endif %}">
+				<label>Billing Address 1 <span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.billing_address_1.errors|first }}" type="text" id="billing_address_1"
+				       class="span3 ie7-margin" name="billing_address_1" value="{{ form.data.billing_address_1 }}">
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+
+		<div class="span3">
+			<div class="control-group {% if form.billing_address_2.errors %}error{% endif %}">
+				<label>Billing Address 2 </label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.billing_address_2.errors|first }}" type="text" id="billing_address_2"
+				       class="span3 ie7-margin" name="billing_address_2" value="{{ form.data.billing_address_2 }}">
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="span3">
+			<div class="control-group {% if form.city.errors %}error{% endif %}">
+				<label>City <span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.city.errors|first }}" type="text" id="city"
+				       class="span3 ie7-margin" name="city" value="{{ form.data.city }}">
+			</div>
+		</div>
+		<div class="span2">
+			<label>State<span class="required">* </span> <span class="label label-important">{{ form.state.errors|first }}</span>
+	</label>
+
+			<select style="height: 35px; width: 185px;" class="span2" name="state" id="state"  data-bind="event: { change: state_change }">
+
+				<option value = "">Select State</option>
+
+				{% comment %}
+					since "state.id " is an integer and "form.data.state" is string so we need to convert "form.data.state" to
+					string by adding 0 to it by doing "form.data.state|add:0" ;)
+				{% endcomment %}
+
+				{% for state in form.fields.state.queryset %}
+					<option {% if state.id  == form.data.state|add:0 %}selected="selected"{% endif %} value = "{{ state.id }}">{{state.name}}</option>
+				{% endfor for %}
+
+			</select>
+		</div>
+		<div class="span1">
+			<div class="control-group {% if form.zip_code.errors %}error{% endif %}">
+				<label>Zip Code <span class="required">* </span></label>
+				<input rel="tooltip" data-toggle="tooltip" data-placement="top" title=""
+				       data-original-title="{{ form.zip_code.errors|first }}" type="text" id="zip_code"
+				       class="span1 ie7-margin" name="zip_code" value="{{ form.data.zip_code }}">
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+
+		<div class="button-align offset3 span3">
+			<input type="submit" id="submit-contact" value="Next" class=" button_medium">
+		</div>
+	</div>
+	<hr>
+	</form>
+
+	</div>
+
+
+	</div>
+	</div>
+	</div>
+	</div>
+
+{% endblock %}
+
+
+
+{% block extra_scripts %}
+
+	<script src="{{ STATIC_URL }}website/signup/js/payment.js"></script>
+
+{% endblock %}

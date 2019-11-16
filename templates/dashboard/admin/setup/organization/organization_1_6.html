@@ -1,0 +1,316 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Organizational Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+
+
+	<div class="dashboard_admin_setup" id="organization" ng-app="organization">
+	<form method="post" action="{{ request.path }}" id="organization" ng-controller="OrganizationForm as settings">
+	{% csrf_token %}
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="heading">
+				<h4>Organizational Setup</h4>
+
+				<p>
+					<a href="{% url 'dashboard_admin_setup' %}">Home</a>
+					<i class="fa fa-angle-double-right"></i>
+					Organizational Setup
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/01.0.jpg">
+
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup_header_info_bar pam">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+						Organization Setup
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+						Step 1.6
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-progress">
+				<div class="progress">
+					<div class="progress-bar" style="width: 20%;">Organizational Setup
+						(100%)
+					</div>
+					<div class="progress-bar progress-bar-warning" style="width: 20%;">
+						Location Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-danger" style="width: 20%;">
+						Department Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-success" style="width: 20%;">
+						Region Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-info" style="width: 20%;">Job
+						Titles Setup (0%)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-help text-right">
+				<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i>
+					Watch Me</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-info-text text-left">
+				<p>
+					HHLEARN requires the names and titles of specific contacts or persons in order
+					to customize courses to comply with federal laws and regulations. Over the next
+					several pages we will collect what your organization calls the positions, and
+					all contact information for the persons responsible for these positions or job
+					titles.
+				</p>
+
+				<p>
+					The positions that are entered below are for your primary person in the
+					organization. You can have more than one person be responsible for a specific
+					designated official role; you will have the ability to further refine these
+					positions on upcoming pages or in the Admin area.
+				</p>
+
+				<p>
+					Enter your primary persons and contact information below.
+				</p>
+
+
+			</div>
+		</div>
+	</div>
+
+	{{ formset.management_form }}
+	{% for form in formset %}
+		<div class="row">
+
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+							<label for="federal_electronic_postings">{{ form.question.value }}</label>
+							{{ form.question }}
+						</div>
+					</div>
+
+
+					<div class="" id="official_box_0">
+
+
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+								<div class="form-group">
+									<label for="id_officials-0-default_job_title">{{ form.default_job_title.label }}</label>
+									{{ form.default_job_title }}
+								</div>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+								<div class="form-group  {% if form.organization_job_title.errors %}has-error{% endif %}">
+									<label for="id_officials-0-organization_job_title">
+										{{ form.organization_job_title.label }}</label>
+									<span class="label label-important">{{ form.organization_job_title.errors|first }}</span>
+									{{ form.organization_job_title }}
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+								<div class="form-group {% if form.first_name.errors %}has-error{% endif %}  {% if form.last_name.errors %}has-error{% endif %}">
+
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+											<label for="id_officials-0-first_name">First
+												and Last Name of
+												Contact*</label>
+
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+											<span class="label label-important">{{ form.first_name.errors|first }}</span>
+											{{ form.first_name }}
+
+										</div>
+										<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+											<span class="label label-important">{{ form.last_name.errors|first }}</span>
+											{{ form.last_name }}
+
+										</div>
+
+									</div>
+
+
+								</div>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+								<div class="form-group  {% if form.actual_job_title.errors %}has-error{% endif %}">
+									<label for="id_officials-0-actual_job_title">{{ form.actual_job_title.label }}</label>
+									<span class="label label-important">{{ form.actual_job_title.errors|first }}</span>
+									{{ form.actual_job_title }}
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+								<div class="form-group {% if form.email.errors %}has-error{% endif %}  ">
+									<label for="id_officials-0-email">{{ form.email.label }}</label>
+									<span class="label label-important">{{ form.email.errors|first }}</span>
+									{{ form.email }}
+								</div>
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								<div class="form-group {% if form.phone.errors %}has-error{% endif %} ">
+									<label for="id_officials-0-phone">{{ form.phone.label }}</label>
+									<span class="label label-important">{{ form.phone.errors|first }}</span>
+									{{ form.phone }}
+								</div>
+							</div>
+
+						</div>
+
+
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+								<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+											<label for="is_organization_wide">
+												{{ form.is_organization_wide.label }}
+											</label>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+											{{ form.is_organization_wide }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						{{ form.short_code }}
+
+						{% if formset.can_delete %}
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+												<label for="hippa_notice_posted">
+													Delete this
+													official
+												</label>
+											</div>
+											<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+
+
+												{{ form.DELETE }}
+
+
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+
+							</div>
+						{% endif %}
+					</div>
+
+
+					<!--<div class="row">
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+							<p>
+								<a href="#" class="add_official_box" id="0"><i class="fa fa-plus-circle"></i>
+									Add another person to a designated official</a>
+							</p>
+						</div>
+					</div>      -->
+
+
+				</div>
+			</div>
+
+		</div>
+		<hr/>
+	{% endfor %}
+
+
+
+
+
+
+	<div class="row">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+			<p class="text-left">
+				<a href="{{ back_button_url }}" class="btn btn-info btn-wide setup-back-button hidden-print">Back</a>
+			</p>
+
+		</div>
+
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+			<p class="text-right">
+				<button type="submit" class="btn btn-info btn-wide setup-next-button hidden-print">
+					Save
+					& Next
+				</button>
+
+			</p>
+
+		</div>
+
+
+	</div>
+
+
+
+	</form>
+	</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/organization/js/organization.js"></script>
+{% endblock %}

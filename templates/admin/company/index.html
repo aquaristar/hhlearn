@@ -1,0 +1,666 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="admin_company">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="heading">
+					<h4>Edit/Add Company</h4>
+					<p> <a href="{% url 'admin' %}">Home</a> <i class="fa fa-angle-double-right"></i> <a href="{% url 'admin_company' %}">Edit Company</a></p>
+				</div>
+
+			</div>
+		</div>
+
+
+	       <div class="row">
+		       <div class="col-lg-12">
+			       <table class="table-condensed  table-bordered mbl sortable standard-table">
+				       <thead>
+				       <tr>
+					       <th>Action</th>
+					       <th>Company</th>
+					       <th>Locations</th>
+					       <th>Depts</th>
+					       <th>Regions</th>
+
+				       </tr>
+				       </thead>
+				       <tbody>
+				       <tr>
+					       <td  class="text-center col-lg-1"><i class="fa fa-pencil"></i></td>
+					       <td class="col-lg-7">HHLEARN</td>
+
+					       <td class="text-center  col-lg-1">
+						      3
+
+					       </td>
+
+					       <td class="text-center  col-lg-1">5</td>
+					       <td class="text-center  col-lg-1">
+						      2
+					       </td>
+
+				       </tr>
+
+				       <tr>
+					       <td  class="text-center col-lg-1"><i class="fa fa-pencil"></i></td>
+					       <td class="col-lg-7">greater Bay Healthcare</td>
+
+					       <td class="text-center  col-lg-1">
+						       2
+
+					       </td>
+
+					       <td class="text-center  col-lg-1">7</td>
+					       <td class="text-center  col-lg-1">
+						       0
+					       </td>
+
+				       </tr>
+
+				       </tbody>
+			       </table>
+		       </div>
+	       </div>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="heading">
+					<h5>Edit Company</h5>
+				</div>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="tabbable">
+					<ul class="nav nav-tabs nav-append-content">
+						<li class="active"><a href="{% url 'admin_company' %}">Company</a></li>
+						<li class=""><a href="">Locations</a></li>
+						<li class=""><a href="">Regions</a></li>
+						<li class=""><a href="">Modules</a></li>
+						<li class=""><a href="">Services</a></li>
+						<li class=""><a href="">Accreditation</a></li>
+						<li class=""><a href="">Job Titles</a></li>
+						<li class=""><a href="">Grades</a></li>
+						<li class=""><a href="">Designated Officials</a></li>
+						<li class=""><a href="">Policies</a></li>
+
+					</ul> <!-- /tabs -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="Assignments">
+							<form role="form">
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="company_name">Company Name*</label>
+											<input type="text" name="company_name" class="form-control" id="company_name" placeholder="Company Name">
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="address_1">Address 1*</label>
+											<input type="text" name="address_1" class="form-control" id="address_1" placeholder="Address 1">
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="address_2">Address 2</label>
+											<input type="text" name="address_2" class="form-control" id="address_2" placeholder="Address 2">
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="city">City*</label>
+											<input type="text" name="city" class="form-control" id="city" placeholder="City">
+										</div>
+									</div>
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="state">State*</label>
+
+											<select name="state" class="select-block mbl">
+
+												<optgroup label="State">
+													<option value="2">Option 1</option>
+													<option selected value="3">Option 2</option>
+
+												</optgroup>
+											</select>
+										</div>
+									</div>
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="zip">Zip*</label>
+											<input type="text" name="zip" class="form-control" id="zip" placeholder="Zip">
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="country">Select Country*</label>
+
+											<select name="country" class="select-block mbl">
+
+												<optgroup label="Country">
+													<option value="2">Option 1</option>
+													<option selected value="3">Option 2</option>
+
+												</optgroup>
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="country">Company Type*</label>
+
+											<select name="company_type" class="select-block mbl">
+
+												<optgroup label="Company Type">
+													<option value="2">Option 1</option>
+													<option selected value="3">Option 2</option>
+
+												</optgroup>
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="phone">Phone*</label>
+											<input type="text" name="phone" class="form-control" id="phone" placeholder="(xxx) xxx-xxxx">
+										</div>
+									</div>
+
+
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="fax">Fax*</label>
+											<input type="text" name="fax" class="form-control" id="fax" placeholder="Fax">
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="point_of_contact">Point of Contact*</label>
+											<input type="text" name="point_of_contact" class="form-control" id="point_of_contact" placeholder="Point of Contact">
+										</div>
+									</div>
+
+
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="point_of_contact_title">Point of Contact Title*</label>
+											<input type="text" name="fax" class="form-control" id="point_of_contact_title" placeholder="Point of Contact Title">
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="point_of_contact_phone">Point of Contact Phone*</label>
+											<input type="text" name="point_of_contact_phone" class="form-control" id="point_of_contact_phone" placeholder="(xxx) xxx-xxxx">
+										</div>
+									</div>
+
+
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="point_of_contact_email">Point of Contact Email*</label>
+											<input type="text" name="point_of_contact_email" class="form-control" id="point_of_contact_email" placeholder="Point of Contact Email">
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="lead_id">Lead ID</label>
+
+											<select name="lead_id" class="select-block mbl">
+
+												<optgroup label="Lead ID">
+													<option value="2">Option 1</option>
+													<option selected value="3">Option 2</option>
+
+												</optgroup>
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="date_added">Date Added*</label>
+
+											<div class="input-group">
+												<span class="input-group-btn">
+													<button type="button" class="btn">
+													<span class="fui-calendar">
+
+													</span>
+												</button></span>
+
+												<input type="text" name="date_added" class="form-control" value="14 March, 2013" id="date_added">
+
+											</div>
+
+										</div>
+									</div>
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="date_activated">Date Activated</label>
+
+											<div class="input-group">
+												<span class="input-group-btn">
+													<button type="button" class="btn">
+													<span class="fui-calendar">
+
+													</span>
+													</button></span>
+
+												<input type="text" name="date_activated" class="form-control" value="08 March, 2013" id="date_activated">
+
+											</div>
+
+										</div>
+									</div>
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="next_recurring_date">Next Recurring Date</label>
+
+
+											<div class="input-group">
+												<span class="input-group-btn">
+													<button type="button" class="btn">
+													<span class="fui-calendar">
+
+													</span>
+													</button></span>
+
+												<input type="text" name="next_recurring_date" class="form-control" value="02 March, 2013" id="next_recurring_date">
+
+											</div>
+
+
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="module_consistent">Modules Consistent*</label>
+
+											<select name="module_consistent" class="select-block mbl">
+
+												<optgroup label="Modules Consistent">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="services_consistent">Services Consistent*</label>
+
+											<select name="services_consistent" class="select-block mbl">
+
+												<optgroup label="Services Consistent">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="grade_consistent">Grade Consistent*</label>
+
+											<select name="grade_consistent" class="select-block mbl">
+
+												<optgroup label="Grade Consistent">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="job_titles_consistent">Job Titles Consistent*</label>
+
+											<select name="job_titles_consistent" class="select-block mbl">
+
+												<optgroup label="Job Titles">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="company_accredited">Company Accredited*</label>
+
+											<select name="company_accredited" class="select-block mbl">
+
+												<optgroup label="Company Accredited">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="entire_company_accredited">Entire Company Accredited*</label>
+
+											<select name="entire_company_accredited" class="select-block mbl">
+
+												<optgroup label="Entire Company Accredited">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="accreditation_consistent">Accreditation Consistent*</label>
+
+											<select name="accreditation_consistent" class="select-block mbl">
+
+												<optgroup label="Accreditation Consistent">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="accreditation_aganecy">Accreditation Agency*</label>
+
+											<select name="accreditation_aganecy" class="select-block mbl">
+
+												<optgroup label="Accreditation Agency">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="use_monthly_safety_courses">Use Monthly Safety Courses</label>
+
+											<select name="use_monthly_safety_courses" class="select-block mbl">
+
+												<optgroup label="Use Monthly Safety Courses">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="use_electronic_postings">Use Electronic Postings*</label>
+
+											<select name="use_electronic_postings" class="select-block mbl">
+
+												<optgroup label="Use Electronic Posting">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="electronic_postings_consistent">Electronic Postings Consistent*</label>
+
+											<select name="electronic_postings_consistent" class="select-block mbl">
+
+												<optgroup label="Electronic Postings Consistent">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="store_ssn">Store SSN*</label>
+
+											<select name="store_ssn" class="select-block mbl">
+
+												<optgroup label="Store SSN">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="use_custom_employee_id">Use Custom Employee ID*</label>
+
+											<select name="use_custom_employee_id" class="select-block mbl">
+
+												<optgroup label="Use Custom Employee ID">
+													<option value="0">No</option>
+													<option value="1">Yes</option>
+
+												</optgroup>
+											</select>
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="companywide_no_of_employees">Companywide # of Employees*</label>
+
+											<input type="text" name="companywide_no_of_employees" class="form-control" id="companywide_no_of_employees" placeholder="Companywide # of Employees">
+
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="row">
+
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label class="checkbox" for="is_active">
+												<input type="checkbox" value="" id="is_active" data-toggle="checkbox">
+												Is Active
+											</label>
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+
+
+							</form>
+
+
+						</div>
+
+					</div> <!-- /tab-content -->
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/company/js/company.js"></script>
+{% endblock %}

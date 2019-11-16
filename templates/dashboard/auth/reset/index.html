@@ -1,0 +1,60 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Dashboard -  Reset Password{% endblock %}
+{% block meta_title %}Dashboard -  Reset Password{% endblock %}
+{% block meta_description %}Dashboard -  Reset Password{% endblock %}
+{% block meta_keywords %}Dashboard -  Reset Password{% endblock %}
+{% block page_class %}page_reset body-special{% endblock %}
+
+{% block content %}
+
+	<div class="page-signin" ng-controller="resetCtlr">
+
+		<div class="signin-header">
+			<div class="container text-center">
+				<section class="logo">
+					<a href="{% url 'home' %}">Reset</a>
+				</section>
+			</div>
+		</div>
+
+		<div class="signin-body">
+			<div class="container">
+				<div class="form-container">
+
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<div class="input-group input-group-lg">
+					                                <span class="input-group-addon">
+					                                    <i class="fa fa-user"></i>
+					                                </span>
+									<input type="text" ng-model="username" name="username" class="form-control " placeholder="Username" autofocus>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+							</div>
+							<div class="form-group">
+								<a href="#/" class="btn btn-primary btn-lg btn-block" ng-click="resetPassword()">Reset Password</a>
+							</div>
+						</fieldset>
+					</form>
+
+					<section>
+						<p class="text-center"><a href="{% url 'dashboard_login' %}">Nevermind, I want to login</a></p>
+						<p class="text-center text-muted text-small">Don't have an account yet? <a href="{% url 'dashboard_signup' %}">Sign up</a></p>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

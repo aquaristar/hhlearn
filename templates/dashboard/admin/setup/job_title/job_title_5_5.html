@@ -1,0 +1,172 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Job Titles Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="dashboard_admin_setup" id="job_titles">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="heading">
+					<h4>Job Titles Setup</h4>
+
+					<p>
+						<a href="{% url 'dashboard_admin_setup' %}">Home</a>
+						<i class="fa fa-angle-double-right"></i>
+						Welcome
+					</p>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/5.5.jpg">
+
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="setup_header_info_bar pam">
+					<div class="row">
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+							Job Titles Setup
+						</div>
+
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+							Step 5.5
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="setup-progress">
+					<div class="progress">
+						<div class="progress-bar" style="width: 20%;">Organizational Setup
+							(100%)
+						</div>
+						<div class="progress-bar progress-bar-warning" style="width: 20%;">
+							Location Setup (100%)
+						</div>
+						<div class="progress-bar progress-bar-danger" style="width: 20%;">
+							Department Setup (100%)
+						</div>
+						<div class="progress-bar progress-bar-success" style="width: 20%;">
+							Region Setup (100%)
+						</div>
+						<div class="progress-bar progress-bar-info" style="width: 20%;">Job
+							Titles Setup (100%)
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="setup-help text-right">
+					<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i>
+						Watch Me</a>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">HHLEARN -
+									Setup Help Video</h4>
+							</div>
+							<div class="modal-body">
+								<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Close
+								</button>
+
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+			</div>
+
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="setup-info-text text-left">
+					<p>
+						Congratulations!
+					</p>
+
+					<p>
+						You have completed all of the basic steps to load your organization into
+						HHLEARN.
+					</p>
+
+					<p>
+						By clicking the "Activate Account" button you will turn on the system
+						for your organization and can then start adding your employee/users into
+						the system.
+					</p>
+
+					<p>
+						From your HHLEARN team, we applaude you for increasing value in your
+						employee's and colleague's education. If you ever have any questions you
+						can reach us through the "Support" menu above.
+					</p>
+					<p>
+						Thank you,
+					</p>
+					<p>
+						Your HHLEARN Team.
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="setup-info-text text-left">
+
+					<div class="row">
+
+
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+							<p class="text-center">
+								<a href="{% url 'admin_setup_complete' %}" class="btn btn-info btn-wide setup-next-button hidden-print">Activate Account1</a>
+							</p>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/job_title/js/job_title.js"></script>
+
+{% endblock %}

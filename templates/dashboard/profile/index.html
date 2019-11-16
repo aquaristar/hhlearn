@@ -1,0 +1,147 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block meta_title %}Dashboard{% endblock %}
+{% block meta_description %}Dashboard{% endblock %}
+{% block meta_keywords %}Dashboard{% endblock %}
+
+
+{% block content %}
+    <div class="page page-dashboard" ng-controller="profileCtrl">
+    	<div class="row">
+	        <div class="col-lg-12">
+	            <ol class="breadcrumb-alt">
+	                <li><a href="{% url 'dashboard_home' %}">Dashboard</a></li>
+	                <li class="active"><a href="#">My Profile</a></li>	                
+	            </ol>
+	        </div>	
+	    </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+	                <a href="{% url 'profile_view' %}">
+	                <span class="box-icon bg-btn12">
+	                   <i class="glyphicons user"></i>	                
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">GO</p>
+                        <p class="text-muted"><span data-i18n="My Profile">My Profile</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn6">
+	                    <i class="glyphicons user"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">EDIT</p>
+                        <p class="text-muted"><span data-i18n="Profile Info">Profile Info</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn13">
+	                    <i class="glyphicons briefcase"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">2</p>
+                        <p class="text-muted"><span data-i18n="Professional Licenses">Professional Licenses</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn5">
+	                    <i class="fa fa-medkit"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">2</p>
+                        <p class="text-muted"><span data-i18n="License Credentials">License Credentials</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">            	
+                <div class="panel mini-box">
+                <a href="#">
+                <span class="box-icon bg-btn4">
+                    <i class="glyphicons hospital"></i>
+                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">0</p>
+                        <p class="text-muted"><span data-i18n="Allied Health Credentials">Allied Health Credentials</span></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn1">
+	                    <i class="glyphicons resize_small"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">12</p>
+                        <p class="text-muted"><span data-i18n="External CEs">External CEs</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">              
+	                <span class="box-icon bg-btn11">
+	                    <i class="glyphicons group"></i>
+	                </span>
+                    <div class="box-info">
+						<p class="size-h2">2</p>
+                        <p class="text-muted"><span data-i18n="Memberships">Memberships</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn7">
+	                    <i class="glyphicons fishes"></i>
+	                </span>
+
+                    <div class="box-info">
+						<p class="size-h2">4</p>
+                        <p class="text-muted"><span data-i18n="Social Media">Social Media</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

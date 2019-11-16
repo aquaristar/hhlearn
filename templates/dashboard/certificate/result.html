@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}HHLEARN - Certificate{% endblock %}
+{% block meta_title %}Certificate{% endblock %}
+{% block meta_description %}Certificate{% endblock %}
+{% block meta_keywords %}Certificate{% endblock %}
+
+{% block content %}
+
+{% if test_attempt %}
+	{% if additional %}
+		<div class="page-cert-verification success">
+		    <div class="col-lg-12">
+		        <div class="text-center">
+		            <div class="cert-img">
+		                 <img src="{{STATIC_URL}}dashboard/common/images/certificates/verification_success.png" width="200"/>
+		            </div>
+		            <p class="size-h4"><b>HHLEARN® Double QR™ Secure Additional Documentation </b></p>
+		            <p class="size-h4"><b>ID: {{verification_code}}</b></p>
+		            <p class="size-h4"><b>{{ test_attempt.user.first_name}}&nbsp;{{ test_attempt.user.last_name }}</b></p>
+		            <p class="size-h4"><b>"{{ test_attempt.test.course.name }}"</b></p>
+		            <p class="size-h4"><b>{{ end_date }}</b></p>
+		        </div>
+		        <div class="footer text-center">
+			        The ID displayed on this page should match the alphanumeric ID displayed above the Double QR codes on the printed Additional Documentation Form.
+			    </div>
+		    </div>    
+		</div>
+	{% else %}
+		<div class="page-cert-verification success">
+		    <div class="col-lg-12">
+		        <div class="text-center">
+		            <div class="cert-img">
+		                 <img src="{{STATIC_URL}}dashboard/common/images/certificates/verification_success.png" width="200"/>
+		            </div>
+		            <p class="size-h4"><b>HHLEARN® Double QR™ Secure Certificate</b></p>
+		            <p class="size-h4"><b>ID: {{test_attempt.cert_id}}</b></p>
+		            <p class="size-h4"><b>{{ test_attempt.user.first_name}}&nbsp;{{ test_attempt.user.last_name }}</b></p>
+		            <p class="size-h4"><b>"{{ test_attempt.test.course.name }}"</b></p>
+		            <p class="size-h4"><b>{{ end_date }}</b></p>
+		        </div>
+		        <div class="footer text-center">
+			        The ID displayed on this page should match the alphanumeric ID displayed under the Double QR codes on the printed certificate.
+			    </div>
+		    </div>    
+		</div>
+	{% endif %}
+{% else %}
+<div class="page-cert-verification rejected">
+    <div class="col-lg-12">
+        <div class="text-center">
+            <div class="cert-img">
+                 <img src="{{STATIC_URL}}dashboard/common/images/certificates/verification_rejected.png" width="200"/>
+            </div>
+            <p class="size-h4"><b>The Submitted Certificate ID is not valid.</b></p>
+            <p class="size-h4"><b>This means that either the ID was submitted in error or the certificate is not authentic.</b></p>                        
+        </div>
+         <div class="footer text-center">
+	        If the QR code displayed on the printed certificate matched our records, an authentic verification page would have displayed.
+			<a href="mailto:info@hhlearn.com?subject=QR Code Verification Error&body=The following QR Code {{ test_attempt_code }} Was submitted with an error."
+			 style="color: blue;">Click here</a> to submit an email if you believe this is in error.
+	    </div>
+    </div>   
+</div>
+{% endif %}
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

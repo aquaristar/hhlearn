@@ -1,0 +1,3221 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Admin{% endblock %}
+{% block meta_title %}Admin{% endblock %}
+{% block meta_description %}Admin{% endblock %}
+{% block meta_keywords %}Admin{% endblock %}
+
+
+{% block content %}
+<div class="page page-admin-users" ng-controller="UserAddEditController">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{% url 'admin_home' %}">Admin</a></li>
+                <li><a href="{% url 'admin_users' %}">Users</a></li>
+                <li class="active"><a href="">Add</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="row" id="app_documents">		
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-users"></span> Users</strong>    				
+                </div>
+                <div class="panel-body row">
+                	<div class="ui-tab">
+                        <tabset class="ui-tab">                        	
+                            <tab>
+                            	<tab-heading>
+                            		<i class="glyphicons parents"></i> Info
+                            	</tab-heading>              	
+								<form action="/" class="form-horizontal col-lg-12" name="userForm" enctype="multipart/form-data">
+									<div class="row">
+										<div class="col-md-6 col-sm-6 col-lg-6">
+											<div class="form-group">
+												<div class="col-sm-12 col-md-12 col-lg-12">
+													<label>
+														User Name
+													</label>													
+												</div>
+												<div class="col-xs-10 col-lg-10 col-sm-10 col-md-10">			                    
+								                    <div class="col-xs-9 col-sm-9 col-lg-9" style="padding-left: 0px;">
+								                    	<div class="form-controls" ng-class="{ 'has-error': userForm.username.$invalid }">
+								                        	<input type="text" class="form-control" name="username" 
+								                        			placeholder="User Name" ng-model="profile.user.username" required>
+								                        	<span class="icon glyphicon glyphicon-star"></span>
+								                       </div>
+								                    </div>				                    			                    
+								                    <button class="btn btn-blue col-xs-3 col-sm-3 col-lg-3">
+								                    	<span>Check</span>
+								                    </button>				                    				                    
+							                    </div>
+							                    <i class="fa fa-info-circle icon-info-big col-xs-2" style="line-height:30px; padding-left:0px;"></i>			                    			                    
+							                </div>
+							            </div>			            		            
+						            
+							            <div class="col-md-6 col-sm-6 col-lg-6">
+							                <div class="form-group">
+							                	<div class="col-sm-12 col-md-12 col-lg-12">
+													<label>
+														Email Address
+													</label>													
+												</div>
+							                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+							                		<div class="form-controls" ng-class="{ 'has-error': userForm.email.$invalid }">			                		
+								                        <input type="email" class="form-control" name="email"
+								                        	 placeholder="Email Address" ng-model="profile.user.email"
+								                        	 ng-required="true" >
+								                        	 <!--ng-pattern="\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b"-->
+								                        <span class="icon glyphicon glyphicon-star"></span>
+								                    </div>
+							                    </div>
+							                </div>
+							            </div>
+						            </div>
+						            
+						            <div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">  
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													First Name
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+						                		<div class="form-controls" ng-class="{ 'has-error': userForm.first_name.$invalid }">			                		
+							                        <input type="text" class="form-control" name="first_name"
+							                        	placeholder="First Name" ng-model="profile.user.first_name" ng-required="true">
+							                        <span class="icon glyphicon glyphicon-star"></span>
+							                    </div>
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            <div class="col-md-6 col-sm-6 col-lg-6">  
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Last Name
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+						                		<div class="form-controls" ng-class="{ 'has-error': userForm.last_name.$invalid }">			                		
+							                        <input type="text" class="form-control" name ="last_name" 
+							                        		placeholder="Last Name" ng-model="profile.user.last_name" ng-required="true">
+							                        <span class="icon glyphicon glyphicon-star"></span>
+							                    </div>
+						                    </div>
+						                </div>
+						            </div>
+						            </div>
+						            
+						            <div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">  
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Password
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+						                		<div class="form-controls" ng-class="{ 'has-error': userForm.password.$invalid }">			                		
+							                        <input type="password" class="form-control" name="password"
+							                        		placeholder="Password" ng-model="profile.user.password" ng-required="true">
+							                        <span class="icon glyphicon glyphicon-star"></span>
+							                   	</div>
+						                    </div>
+						                    <i class="fa fa-info-circle icon-info-big col-xs-2" style="line-height:30px; padding-left:0px;"></i>
+						                </div>
+						            </div>
+						            
+						            <div class="col-md-6 col-sm-6 col-lg-6">
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Confirm Password
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+						                		<div class="form-controls" ng-class="{ 'has-error': userForm.confirm_password.$invalid }">			                		
+							                        <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password"
+							                        	ng-model="profile.user.confirm_password" ng-compare="password" ng-required="true">
+							                        <span class="icon glyphicon glyphicon-star"></span>
+							                   	</div>
+						                    </div>			                    
+						                </div>
+						            </div>
+						            </div>
+						            
+						            <div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Job Title
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+							                	<div class="form-controls" ng-class="{ 'has-error': userForm.job_title.$invalid }">
+													<span class="ui-select">
+														<select id="job_title" name="job_title" class="form-control" style="display:inline-block;"
+															ng-model="profile.job_title" ng-change="onTypeChange()"
+															ng-required="true">
+															<option value="">Select Job Title</option>			
+        													<option ng-selected="profile.job_title==job_title.id" 
+        															ng-repeat="job_title in job_titles" value="{[job_title.id]}">
+        														{[job_title.name]}
+        													</option>
+														</select>
+													</span>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            </div>
+						            
+						            <div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Location
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+							                	<div class="form-controls" ng-class="{ 'has-error': userForm.location.$invalid }">
+													<span class="ui-select">														
+														<select id="location" class="form-control" style="display:inline-block;"
+															name="location" ng-model="profile.location" 
+															ng-change="onTypeChange()" ng-required="true">
+															<option value="">Select Location</option>
+        													<option ng-selected="profile.location==location.id" 
+        															ng-repeat="location in locations" value="{[location.id]}">
+        														{[location.short_name]}
+        													</option>
+														</select>
+													</span>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            </div>
+						            
+						            <div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Department
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+							                	<div class="form-controls">
+													<span class="ui-select">														
+														<select id="department" class="form-control" style="display:inline-block;"
+															name="department" ng-model="profile.department" ng-change="onTypeChange()">
+															<option value="">Select Department</option>			
+        													<option ng-selected="profile.department==department.id" 
+        															ng-repeat="department in departments" value="{[department.id]}">
+        														{[department.short_name]}
+        													</option>
+														</select>
+													</span>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            </div>
+						            
+						            <div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Region
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+							                	<div class="form-controls">
+													<span class="ui-select">
+														<select id="region" class="form-control" style="display:inline-block;"
+															 name="region" ng-model="profile.region" ng-change="onTypeChange()">
+															<option value="">Select Region</option>			
+        													<option ng-selected="profile.region==region.id" 
+        															ng-repeat="region in regions" value="{[region.id]}">
+        														{[region.short_name]}
+        													</option>
+														</select>
+													</span>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            </div>
+						            
+						            <div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Privilege Level
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+							                	<div class="form-controls" ng-class="{ 'has-error': userForm.user_type.$invalid }">
+													<span class="ui-select">
+														<select id="user_type" name="user_type" class="form-control" style="display:inline-block;"
+															ng-model="profile.user.type" 
+															ng-required="true">
+															<option value="">Select Privilege</option>	
+        													<option ng-selected="profile.user.type==user_type.id"
+        														ng-repeat="user_type in user_types" value="{[user_type.id]}">
+        														{[user_type.name]}
+        													</option>
+														</select>
+													</span>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            </div>
+						            
+						            <div class="row">
+					                	<div class="col-sm-12 col-md-12 col-lg-12">
+											<div class="form-group " style="margin:0px;">
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12">
+														<label for="is_entire_organization_accredited">
+															Assign Subordinates?
+														</label>
+														<span class="label label-important"></span>
+													</div>
+												</div>
+					
+												<div class="row">
+													<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+														<label class="switch switch-iphone">
+						                					<input type="checkbox" name="assign_subordinates"><i></i>
+						                				</label>												
+													</div>
+												</div>
+											</div>
+										</div>
+						            </div>
+						            
+						            <div class="row">
+							            <div class="col-md-6 col-sm-6 col-lg-6">			                
+							                <div class="form-group">
+							                	<div class="col-sm-12 col-md-12 col-lg-12">
+													<label>
+														Home Phone Number
+													</label>													
+												</div>
+							                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+							                		<div class="form-controls" ng-class="{ 'has-error': userForm.phone_work.$invalid }">			                		
+							                        	<input id="phone_work" type="text" class="form-control" name="phone_work"
+							                        	placeholder="Home Phone Number" ng-model="profile.phone_work"
+							                        	ng-required="true" >
+							                        </div>			                        
+							                    </div>
+							                </div>
+							            </div>
+							            <div class="col-md-6 col-sm-6 col-lg-6">			                
+							                <div class="form-group">
+							                	<div class="col-sm-12 col-md-12 col-lg-12">
+													<label>
+														Alternate/Emergency Phone Number
+													</label>													
+												</div>
+							                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+							                		<div class="form-controls" ng-class="{ 'has-error': userForm.phone_alternate.$invalid }">			                		
+							                        	<input id="phone_alternate" type="text" class="form-control" name="phone_alternate"
+							                        	placeholder="Alternate/Emergency Phone Number" ng-model="profile.phone_alternate" 
+							                        	ng-required="true" >
+							                        </div>			                        
+							                    </div>
+							                </div>
+							            </div>
+						            </div>
+						            
+						            <div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													On-call Phone Number
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+						                		<div class="form-controls" ng-class="{ 'has-error': userForm.phone_oncall.$invalid }">			                		
+						                        	<input id="phone_oncall" type="text" class="form-control" name="phone_oncall"
+						                        	placeholder="On-Call Phone Number" ng-model="profile.phone_oncall"
+						                        	ng-required="true" >
+						                        </div>			                        
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            <div class="col-md-6 col-sm-6 col-lg-6">
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Employee ID
+												</label>													
+											</div>
+						                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+						                		<div class="form-controls" ng-class="{ 'has-error': userForm.emp_id.$invalid }">			                		
+						                        	<input id="employee_id" type="text" class="form-control" placeholder="Employee ID" ng-model="profile.organization_id_number">
+						                        	<span class="icon glyphicon glyphicon-star"></span>
+						                        </div>			                        
+						                    </div>
+						                </div>
+						            </div>
+						            </div>
+						            
+						            <div class="row">
+							            <div class="col-md-6 col-sm-6 col-lg-6">
+							                <div class="form-group">
+							                	<div class="col-sm-12 col-md-12 col-lg-12">
+													<label>
+														Social Security Number
+													</label>													
+												</div>
+							                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+							                		<div class="form-controls" ng-class="{ 'has-error': userForm.ssn.$invalid }">			                		
+							                        	<input id="social_security_number" type="text" name="ssn"
+							                        		class="form-control" placeholder="Social Security Number" 
+							                        		ng-model="profile.user_social_security_number"
+							                        		ng-required="true">
+							                        	<span class="icon glyphicon glyphicon-star"></span>
+							                        </div>			                        
+							                    </div>
+							                    <div class="col-xs-2" style="line-height:30px; padding: 0 5px;">
+							                    	<i class="fa fa-info-circle icon-info-big"></i>
+							                    	&nbsp;
+							                    	<i class="glyphicons lock size-h4" style="color:#D6B31D;"></i>
+							                    </div>
+							                </div>                
+						                </div>
+					                </div>
+					                
+					                <div class="row">
+						            	<div class="col-lg-5">
+							            	<div class="photo-container">				            		
+							            		<div class="photo" id="drop_zone">				            			
+								            		<img width="150px" height="150px" id="profile_photo" src="{[profile.photo_file]}">							            		
+								            		<span>Drag and drop profile picture here</span>								            		
+							            		</div>
+							            	
+								            	<div class="buttons">
+								            		<a href="#" class="btn btn-blue btn-wide setup-next-button hidden-print" onclick="$('#id_photo_file').click();">
+														Choose File
+													</a>										
+													<a data-toggle="modal" href="#sample_avatars_modal" class="btn btn-blue btn-wide setup-next-button">
+									            		Sample Files
+									            	</a>
+													<div style="display: none;">
+														<input type="file" id="id_photo_file" name="photo_file"/>
+													</div>
+								            	</div>
+								            </div>
+						            	</div>
+						            </div>	
+				                					                
+					                <div class="row">
+					                	<div class="col-lg-10 col-sm-10">					               	
+						                	<div ng-repeat="module in profile.modules" class="col-md-6 col-sm-6 col-lg-6">
+						                		<div class="form-group">	
+						                			<div class="form-controls">			                													
+														<div class="col-lg-8 col-md-8 col-sm-8">
+															<label>
+																{[ module.coremodules.name ]}
+															</label>
+														</div>
+														
+														<div class="col-sm-4 col-md-4 col-lg-4">																										
+															<label class="switch switch-iphone">													
+																<input type="checkbox" ng-model="module.active_inactive">
+																<i></i>
+															</label>					
+														</div>
+													</div>
+												</div>
+						                	</div>
+						                </div>
+					                </div>
+					                
+					                <hr>
+					                
+					                <div class="row">
+						                <div class="col-lg-12">
+						                	<p class="text-center">
+						                		<a href="#" class="btn btn-danger btn-wide">
+													Cancel
+												</a>
+												&nbsp;									
+												<a href="#" class="btn btn-blue btn-wide" ng-click="saveUser()" ng-disabled="userForm.$invalid">
+													Add User
+												</a>
+											</p>
+						                </div>
+					                </div>
+					                
+					                <!-- sample image field-->
+		                			<input type="hidden" name="sample_avatar" id="sample_avatar" value="">
+								</form>
+								<!-- modal -->
+								<div class="modal fade"  id="sample_avatars_modal" tabindex="-1" role="dialog" aria-labelledby="sample_avatars_modal"
+									aria-hidden="true">         
+							        <div class="modal-dialog">
+							            <div class="modal-content">
+							                <div class="modal-header">
+							                   	<div class="row">
+													<div class="col-lg-12">						
+														<div class="title-section">
+															<!--<h4>
+																<img src="/static/dashboard/common/images/favicon.png" width="32px">									
+															</h4>--> 
+															<span class="title">Select Sample Avatar</span>
+														</div>
+														<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+													</div>
+												</div>
+							                </div>
+							                <div class="modal-body ptm">
+							                   	<div class="row">
+							                   		<div class="col-lg-12">                   			
+							                   			<a ng-repeat="url in sample_photos" href="#" ng-click="setSampleImage(this, url)" style="display:block; float:left; margin:10px;">
+							                   				<img src="/static/dashboard/common/images/avatars/{[ url ]}" width="58px" height="58px"/>
+							                   			</a>                   			
+							                   		</div>
+							                   	</div>
+							                </div>
+							                <button id="btn_sample_avatars_modal_hide" type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()" style="display:none;">Cancel</button>
+							                <!--<div class="modal-footer">
+							                	<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+							                    <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="cancel()">Add</button>
+							                </div>-->
+							            </div>            
+							        </div>        
+							    </div>
+							</tab>
+							<tab>
+                            	<tab-heading>
+                            		<i class="fa fa-th-list"></i> Assignments
+                            	</tab-heading>
+								<div class="col-lg-12">
+                            		<div class="callout callout-danger">						                
+						                <p>Any changes made to the assignments, e.g., change due dates, delete or adding courses, will be recorded for audit proposes.</p>
+						            </div>
+                            	</div>
+								<div class="col-lg-12">
+									<div class="table-responsive">
+					                <table class="table table-bordered table-striped table-responsive table-condensed">
+					                    <thead>					
+					                    <tr>					
+					                        <th>
+					                            <div class="th">
+					                                ID
+					                                              <span class="glyphicon glyphicon-chevron-up"
+					                                                    ng-click="assignmentSort = '-course.number'; reverse=false"></span>
+					                                            <span class="glyphicon glyphicon-chevron-down"
+					                                                  ng-click="assignmentSort = 'course.number'; reverse=false"></span>
+					                            </div>				
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                Course Title
+					                                            <span class="glyphicon glyphicon-chevron-up"
+					                                                  ng-click="assignmentSort = '-course.name'; reverse=false"></span>
+					                                            <span class="glyphicon glyphicon-chevron-down"
+					                                                  ng-click="assignmentSort = 'course.name'; reverse=false"></span>
+					                            </div>	
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                Info
+					                            </div>
+					                        </th>
+					                        
+					                        <th>
+					                            <div class="th">
+					                                Hours
+					                                <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-course.hours'; reverse=false"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'course.hours'; reverse=false"></span>
+					                            </div>
+					                        </th>
+					                        <th>				
+					                            <div class="th">
+					                                CE				
+					                            </div>				
+					                        </th>
+					                        <th>
+					                            <div class="th">
+					                                Date Due
+					                                <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>
+					                            </div>
+					
+					                        </th>
+					                        <th>
+					                        	<div class="th">
+					                        		Delete Course				                        	
+					                        	</div>
+					                        </th>
+					                    </tr>				
+					                    </thead>
+					                    
+										<tbody>						
+						                    <tr>
+						                        <td class="ng-binding">OC0620.1</td>
+						                        <td class="ng-binding">Workplace Substance Abuse</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the requirements as stipulated in the Omnibus Transportation Employee Testing Act of 1991. " popover-trigger="mouseenter" popover-title="OC0620.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center ng-binding">1.20</td>
+						                        <td class="text-center">
+						                            <i class="fa fa-check ce-icon"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-11-04
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="hospice_services_facility_based">
+														<input type="checkbox" id="hospice_services_facility_based" name="hospice_services_facility_based" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    
+						                    <tr>
+						                        <td class="ng-binding">AS0005</td>
+						                        <td class="ng-binding">Death, Grief and the Dying Patient</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the unique needs of dying patients and the tasks employees of home healthcare organizations can do to help in their care and understand what the patient, family members, and caregivers may be going through. " popover-trigger="mouseenter" popover-title="AS0005" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center ng-binding">0.70</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						                            2014-11-03			
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="hospice_services_facility_based">
+														<input type="checkbox" id="hospice_services_facility_based" name="hospice_services_facility_based" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">OC0230</td>
+						                        <td class="ng-binding">Hazardous Communication</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course is designed to help Best Medical Supply and its employees to understand the requirements of OSHA's Hazardous Communication Standard (29 CFR 1910.1200)." popover-trigger="mouseenter" popover-title="OC0230" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center ng-binding">1.40</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-11-02
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="hospice_services_facility_based">
+														<input type="checkbox" id="hospice_services_facility_based" name="hospice_services_facility_based" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">AS0001</td>
+						                        <td class="ng-binding">Home Healthcare Team Overview</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course will provide an overview of services provided by the most common organizations that participate in providing care to a homebound patient." popover-trigger="mouseenter" popover-title="AS0001" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center ng-binding">0.90</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-11-02
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="hospice_services_facility_based">
+														<input type="checkbox" id="hospice_services_facility_based" name="hospice_services_facility_based" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">MA0500</td>
+						                        <td class="ng-binding">Understanding Antimicrobial Resistance</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course provides the clinical professional with a better understanding of antimicrobial-resistant organisms." popover-trigger="mouseenter" popover-title="MA0500" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center ng-binding">1.00</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-11-01
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="hospice_services_facility_based">
+														<input type="checkbox" id="hospice_services_facility_based" name="hospice_services_facility_based" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">CL-99</td>
+						                        <td class="ng-binding">Home Health Aide Competency Exam</td>
+						                        <td class="text-center">
+						
+						                            <i popover="The competency test for Home Health Aides." popover-trigger="mouseenter" popover-title="CL-99" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center ng-binding">1.00</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-10-31
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="hospice_services_facility_based">
+														<input type="checkbox" id="hospice_services_facility_based" name="hospice_services_facility_based" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">OC0510.1</td>
+						                        <td class="ng-binding">2014 Respiratory Protection &amp; PPE</td>
+						                        <td class="text-center">
+						
+						                            <i popover="The 2014 version of this annual course designed to meet OSHA standards 29 CFR 1910.134." popover-trigger="mouseenter" popover-title="OC0510.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center ng-binding">1.80</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-10-30
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="hospice_services_facility_based">
+														<input type="checkbox" id="hospice_services_facility_based" name="hospice_services_facility_based" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">OC0050</td>
+						                        <td class="ng-binding">2014 Medical and Exposure Records</td>
+						                        <td class="text-center">
+						
+						                            <i popover="The 2014 version of this annual course that covers employee and employer rights and responsibilities pertaining to employee medical records and hazardous exposure records." popover-trigger="mouseenter" popover-title="OC0050" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center ng-binding">0.70</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            2014-10-23						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="hospice_services_facility_based">
+														<input type="checkbox" id="hospice_services_facility_based" name="hospice_services_facility_based" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">DS-B02</td>
+						                        <td class="ng-binding">Herpes Zoster</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course provides the clinical professional with a better understanding of herpes zoster (shingles), its treatment options, and the latest research to find safer, more effective ways to diagnose and treat it." popover-trigger="mouseenter" popover-title="DS-B02" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center ng-binding">0.50</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            2014-10-22						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="hospice_services_facility_based">
+														<input type="checkbox" id="hospice_services_facility_based" name="hospice_services_facility_based" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">OC0100</td>
+						                        <td class="ng-binding">2014 Bloodborne Pathogens</td>
+						                        <td class="text-center">
+						
+						                            <i popover="The 2014 version of this annual course designed to meet OSHA Bloodborne Pathogen statndard 29 CFR 1910.1030. Meeting this standard also includes passing OC0140." popover-trigger="mouseenter" popover-title="OC0100" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center ng-binding">1.00</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-10-21
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="hospice_services_facility_based">
+														<input type="checkbox" id="hospice_services_facility_based" name="hospice_services_facility_based" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                </tbody>
+					                </table>
+									</div>
+					
+					                <footer class="table-footer pln">
+				                    <div class="row">
+				                        <div class="col-md-6 page-num-info">
+											<span>
+						                        Show 
+						                        <select data-ng-model="numPerPage" data-ng-options="num for num in numPerPageOpt" data-ng-change="onNumPerPageChange()" class="ng-pristine ng-valid"><option value="?" selected="selected"></option></select> 
+						                        entries per page
+						                 	</span>
+				                        </div>                        
+										<div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentAssignmentPage"
+						                                total-items="filteredAssignments.length"
+						                                max-size="4"
+						                                on-select-page="selectAssignmentPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                current-page="currentAssignmentPage"
+						                                boundary-links="true"></pagination>
+						                </div>
+				                    </div>
+				                </footer>
+				                <div style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+					            	<a href="/admin/users/add/" class="btn btn-info">
+					            		Save & Update
+					            	</a>
+					            	&nbsp;
+					            	<a data-toggle="modal" href="#add_assignment_modal" class="btn btn-blue">
+					            		Add Assignment
+					            	</a>
+					            </div>
+                        		</div>
+                        	</tab>
+                        	<tab>
+                            	<tab-heading>
+                            		<i class="glyphicons nameplate"></i> Licenses
+                            	</tab-heading>
+                            	<div class="col-lg-12">
+                            		<div class="callout callout-danger">						                
+						                <p>Any changes made to the Professional Licenses, e.g., Changing dates, deleting or adding licenses, will be recorded for audit proposes.</p>
+						            </div>
+                            	</div>
+                            	<div class="col-lg-12">
+                            		<div class="table-responsive">                            		
+					                <table class="table table-bordered table-striped table-responsive table-condensed">
+					                    <thead>
+					
+					                    <tr>					
+					                        <th>
+					                            <div class="th">
+					                                ID
+		                                             <span class="glyphicon glyphicon-chevron-up"
+		                                                    ng-click="assignmentSort = '-course.number'; reverse=false"></span>
+		                                            <span class="glyphicon glyphicon-chevron-down"
+		                                                  ng-click="assignmentSort = 'course.number'; reverse=false"></span>
+					                            </div>				
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                License Description
+		                                            <span class="glyphicon glyphicon-chevron-up"
+		                                                  ng-click="assignmentSort = '-course.name'; reverse=false"></span>
+		                                            <span class="glyphicon glyphicon-chevron-down"
+		                                                  ng-click="assignmentSort = 'course.name'; reverse=false"></span>
+					                            </div>	
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                Info
+					                            </div>
+					                        </th>
+					                        
+					                        <th>
+					                            <div class="th">
+					                                Status					                                
+					                            </div>
+					                        </th>
+					                        <th>				
+					                            <div class="th">
+					                                Active Date
+					                                 <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>
+					                            </div>				
+					                        </th>
+					                        <th>
+					                            <div class="th">
+					                                Expiration Date
+					                                 <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>					                               
+					                            </div>
+					
+					                        </th>
+					                        <th>
+					                        	<div class="th">
+					                        		Delete License				                        	
+					                        	</div>
+					                        </th>
+					                    </tr>				
+					                    </thead>
+					                    
+										<tbody>						
+						                    <tr>
+						                        <td class="ng-binding">477770</td>
+						                        <td class="ng-binding">Registered Nurse</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the requirements as stipulated in the Omnibus Transportation Employee Testing Act of 1991. " popover-trigger="mouseenter" popover-title="OC0620.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>						                        
+						                        <td class="text-center">
+						                            Active
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            2014-11-04
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            2014-11-04
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="lic1">
+														<input type="checkbox" id="lic1" name="lic1" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">34365</td>
+						                        <td class="ng-binding">Respiratory Care Practitioner</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the requirements as stipulated in the Omnibus Transportation Employee Testing Act of 1991. " popover-trigger="mouseenter" popover-title="OC0620.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>						                        
+						                        <td class="text-center">
+						                            Inactive
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            2014-11-04
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            2014-11-04
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="lic2">
+														<input type="checkbox" id="lic2" name="lic2" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                </tbody>
+						            </table>
+						            </div>
+						            <footer class="table-footer pln">
+					                    <div class="row">
+					                        <div class="col-md-6 page-num-info">
+												<span>
+							                        Show 
+							                        <select data-ng-model="numPerPage" data-ng-options="num for num in numPerPageOpt" data-ng-change="onNumPerPageChange()" class="ng-pristine ng-valid"><option value="?" selected="selected"></option></select> 
+							                        entries per page
+							                 	</span>
+					                        </div>                        
+											<div class="col-md-6 text-right pagination-container">
+							                    <pagination class="pagination-sm"
+							                                page="currentAssignmentPage"
+							                                total-items="filteredAssignments.length"
+							                                max-size="4"
+							                                on-select-page="selectAssignmentPage(page)"
+							                                items-per-page="perPage"
+							                                rotate="false"
+							                                current-page="currentAssignmentPage"
+							                                boundary-links="true"></pagination>
+							                </div>
+					                    </div>
+					                </footer>
+					                <div style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+						            	<a href="/admin/users/add/" class="btn btn-info">
+						            		Save & Update
+						            	</a>
+						            	&nbsp;
+						            	<a data-toggle="modal" href="#add_license_modal" class="btn btn-blue">
+						            		Add License
+						            	</a>
+						            </div>
+						        </div>
+                        	</tab>
+                        	<tab>
+                            	<tab-heading>
+                            		<i class="fa fa-bookmark"></i> License Credentials
+                            	</tab-heading>
+                            	<div class="col-lg-12">
+                            		<div class="callout callout-danger">						                
+						                <p>Any changes made to the License Credentials, e.g., Changing dates, deleting or adding credentials, will be recorded for audit proposes.</p>
+						                <p><b>Credentials can only be added if the applicable matching License is Loaded</b></p>
+						            </div>
+                            	</div>
+                            	<div class="col-lg-12">
+                            		<div class="table-responsive">                            		
+					                <table class="table table-bordered table-striped table-responsive table-condensed">
+					                    <thead>
+					
+					                    <tr>					
+					                        <th>
+					                            <div class="th">
+					                                ID
+		                                             <span class="glyphicon glyphicon-chevron-up"
+		                                                    ng-click="assignmentSort = '-course.number'; reverse=false"></span>
+		                                            <span class="glyphicon glyphicon-chevron-down"
+		                                                  ng-click="assignmentSort = 'course.number'; reverse=false"></span>
+					                            </div>				
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                License Description
+		                                            <span class="glyphicon glyphicon-chevron-up"
+		                                                  ng-click="assignmentSort = '-course.name'; reverse=false"></span>
+		                                            <span class="glyphicon glyphicon-chevron-down"
+		                                                  ng-click="assignmentSort = 'course.name'; reverse=false"></span>
+					                            </div>	
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                Info
+					                            </div>
+					                        </th>
+					                        
+					                        <th>
+					                            <div class="th">
+					                                Status					                                
+					                            </div>
+					                        </th>
+					                        <th>				
+					                            <div class="th">
+					                                Active Date
+					                                 <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>
+					                            </div>				
+					                        </th>
+					                        <th>
+					                            <div class="th">
+					                                Expiration Date
+					                                 <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>					                               
+					                            </div>
+					
+					                        </th>
+					                        <th>
+					                        	<div class="th">
+					                        		Delete Credential				                        	
+					                        	</div>
+					                        </th>
+					                    </tr>				
+					                    </thead>
+					                    
+										<tbody>						
+						                    <tr>
+						                        <td class="ng-binding">38715</td>
+						                        <td class="ng-binding">Public Health Nurse</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the requirements as stipulated in the Omnibus Transportation Employee Testing Act of 1991. " popover-trigger="mouseenter" popover-title="OC0620.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>						                        
+						                        <td class="text-center">
+						                            Active
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            08-01-2013
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            07-31-2015
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="cred1">
+														<input type="checkbox" id="cred1" name="cred1" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">45876</td>
+						                        <td class="ng-binding">Registered Respiratory Therapist</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the requirements as stipulated in the Omnibus Transportation Employee Testing Act of 1991. " popover-trigger="mouseenter" popover-title="OC0620.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>						                        
+						                        <td class="text-center">
+						                            Inactive
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            05-21-2013
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            01-27-2015
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="cred2">
+														<input type="checkbox" id="cred2" name="cred2" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                </tbody>
+						            </table>
+						            </div>
+						            <footer class="table-footer pln">
+					                    <div class="row">
+					                        <div class="col-md-6 page-num-info">
+												<span>
+							                        Show 
+							                        <select data-ng-model="numPerPage" data-ng-options="num for num in numPerPageOpt" data-ng-change="onNumPerPageChange()" class="ng-pristine ng-valid"><option value="?" selected="selected"></option></select> 
+							                        entries per page
+							                 	</span>
+					                        </div>                        
+											<div class="col-md-6 text-right pagination-container">
+							                    <pagination class="pagination-sm"
+							                                page="currentAssignmentPage"
+							                                total-items="filteredAssignments.length"
+							                                max-size="4"
+							                                on-select-page="selectAssignmentPage(page)"
+							                                items-per-page="perPage"
+							                                rotate="false"
+							                                current-page="currentAssignmentPage"
+							                                boundary-links="true"></pagination>
+							                </div>
+					                    </div>
+					                </footer>
+					                <div style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+						            	<a href="/admin/users/add/" class="btn btn-info">
+						            		Save & Update
+						            	</a>
+						            	&nbsp;
+						            	<a data-toggle="modal" href="#add_credential_modal" class="btn btn-blue">
+						            		Add Credential
+						            	</a>
+						            </div>
+						        </div>                        	
+                        	</tab>
+                        	<tab>
+                            	<tab-heading>
+                            		<i class="fa fa-bookmark-o"></i> Allied Credentials
+                            	</tab-heading>
+								<div class="col-lg-12">
+                            		<div class="callout callout-danger">						                
+						                <p>Any changes made to the Allied Health Credentials, e.g., Changing dates, deleting or adding credentials, will be recorded for audit proposes.</p>
+						            </div>
+                            	</div>
+                            	<div class="col-lg-12">
+                            		<div class="table-responsive">                            		
+					                <table class="table table-bordered table-striped table-responsive table-condensed">
+					                    <thead>
+					
+					                    <tr>					
+					                        <th>
+					                            <div class="th">
+					                                ID
+		                                             <span class="glyphicon glyphicon-chevron-up"
+		                                                    ng-click="assignmentSort = '-course.number'; reverse=false"></span>
+		                                            <span class="glyphicon glyphicon-chevron-down"
+		                                                  ng-click="assignmentSort = 'course.number'; reverse=false"></span>
+					                            </div>				
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                Credential Description
+		                                            <span class="glyphicon glyphicon-chevron-up"
+		                                                  ng-click="assignmentSort = '-course.name'; reverse=false"></span>
+		                                            <span class="glyphicon glyphicon-chevron-down"
+		                                                  ng-click="assignmentSort = 'course.name'; reverse=false"></span>
+					                            </div>	
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                Info
+					                            </div>
+					                        </th>
+					                        
+					                        <th>
+					                            <div class="th">
+					                                Status					                                
+					                            </div>
+					                        </th>
+					                        <th>				
+					                            <div class="th">
+					                                Active Date
+					                                 <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>
+					                            </div>				
+					                        </th>
+					                        <th>
+					                            <div class="th">
+					                                Expiration Date
+					                                 <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>					                               
+					                            </div>
+					
+					                        </th>
+					                        <th>
+					                        	<div class="th">
+					                        		Delete Credential				                        	
+					                        	</div>
+					                        </th>
+					                    </tr>				
+					                    </thead>
+					                    
+										<tbody>						
+						                    <tr>
+						                        <td class="ng-binding">38715</td>
+						                        <td class="ng-binding">Assistive Technology Practitioner</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the requirements as stipulated in the Omnibus Transportation Employee Testing Act of 1991. " popover-trigger="mouseenter" popover-title="OC0620.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>						                        
+						                        <td class="text-center">
+						                            Active
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            08-01-2013
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            07-31-2015
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="acred1">
+														<input type="checkbox" id="acred1" name="acred1" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">45876</td>
+						                        <td class="ng-binding">Certified Fitter</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the requirements as stipulated in the Omnibus Transportation Employee Testing Act of 1991. " popover-trigger="mouseenter" popover-title="OC0620.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>						                        
+						                        <td class="text-center">
+						                            Inactive
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            05-21-2013
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            01-27-2015
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="acred2">
+														<input type="checkbox" id="acred2" name="acred2" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                </tbody>
+						            </table>
+						            </div>
+						            <footer class="table-footer pln">
+					                    <div class="row">
+					                        <div class="col-md-6 page-num-info">
+												<span>
+							                        Show 
+							                        <select data-ng-model="numPerPage" data-ng-options="num for num in numPerPageOpt" data-ng-change="onNumPerPageChange()" class="ng-pristine ng-valid"><option value="?" selected="selected"></option></select> 
+							                        entries per page
+							                 	</span>
+					                        </div>                        
+											<div class="col-md-6 text-right pagination-container">
+							                    <pagination class="pagination-sm"
+							                                page="currentAssignmentPage"
+							                                total-items="filteredAssignments.length"
+							                                max-size="4"
+							                                on-select-page="selectAssignmentPage(page)"
+							                                items-per-page="perPage"
+							                                rotate="false"
+							                                current-page="currentAssignmentPage"
+							                                boundary-links="true"></pagination>
+							                </div>
+					                    </div>
+					                </footer>
+					                <div style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+						            	<a href="/admin/users/add/" class="btn btn-info">
+						            		Save & Update
+						            	</a>
+						            	&nbsp;
+						            	<a data-toggle="modal" href="#add_allied_credential_modal" class="btn btn-blue">
+						            		Add Credential
+						            	</a>
+						            </div>
+						        </div>
+                            </tab>
+                            <tab>
+                            	<tab-heading>
+                            		<i class="fa fa-list-alt"></i> Memberships
+                            	</tab-heading>
+                            	<div class="col-lg-12">
+                            		<div class="callout callout-danger">						                
+						                <p>Any changes made to the Memberships, e.g., Changing dates, deleting or adding memberships, will be recorded for audit proposes.</p>
+						            </div>
+                            	</div>
+                            	<div class="col-lg-12">
+                            		<div class="table-responsive">                            		
+					                <table class="table table-bordered table-striped table-responsive table-condensed">
+					                    <thead>
+					
+					                    <tr>					
+					                        <th>
+					                            <div class="th">
+					                                ID
+		                                             <span class="glyphicon glyphicon-chevron-up"
+		                                                    ng-click="assignmentSort = '-course.number'; reverse=false"></span>
+		                                            <span class="glyphicon glyphicon-chevron-down"
+		                                                  ng-click="assignmentSort = 'course.number'; reverse=false"></span>
+					                            </div>				
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                Membership Organization
+		                                            <span class="glyphicon glyphicon-chevron-up"
+		                                                  ng-click="assignmentSort = '-course.name'; reverse=false"></span>
+		                                            <span class="glyphicon glyphicon-chevron-down"
+		                                                  ng-click="assignmentSort = 'course.name'; reverse=false"></span>
+					                            </div>	
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                Info
+					                            </div>
+					                        </th>
+					                        
+					                        <th>
+					                            <div class="th">
+					                                Status					                                
+					                            </div>
+					                        </th>
+					                        <th>				
+					                            <div class="th">
+					                                Active Date
+					                                 <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>
+					                            </div>				
+					                        </th>
+					                        <th>
+					                            <div class="th">
+					                                Expiration Date
+					                                 <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>					                               
+					                            </div>
+					
+					                        </th>
+					                        <th>
+					                        	<div class="th">
+					                        		Delete Membership				                        	
+					                        	</div>
+					                        </th>
+					                    </tr>				
+					                    </thead>
+					                    
+										<tbody>						
+						                    <tr>
+						                        <td class="ng-binding">38715</td>
+						                        <td class="ng-binding">Assistive Technology Practitioner</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the requirements as stipulated in the Omnibus Transportation Employee Testing Act of 1991. " popover-trigger="mouseenter" popover-title="OC0620.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>						                        
+						                        <td class="text-center">
+						                            Active
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            08-01-2013
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            07-31-2015
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="acred1">
+														<input type="checkbox" id="acred1" name="acred1" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">45876</td>
+						                        <td class="ng-binding">Certified Fitter</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the requirements as stipulated in the Omnibus Transportation Employee Testing Act of 1991. " popover-trigger="mouseenter" popover-title="OC0620.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>						                        
+						                        <td class="text-center">
+						                            Inactive
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            05-21-2013
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            01-27-2015
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="acred2">
+														<input type="checkbox" id="acred2" name="acred2" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                </tbody>
+						            </table>
+						            </div>
+						            <footer class="table-footer pln">
+					                    <div class="row">
+					                        <div class="col-md-6 page-num-info">
+												<span>
+							                        Show 
+							                        <select data-ng-model="numPerPage" data-ng-options="num for num in numPerPageOpt" data-ng-change="onNumPerPageChange()" class="ng-pristine ng-valid"><option value="?" selected="selected"></option></select> 
+							                        entries per page
+							                 	</span>
+					                        </div>                        
+											<div class="col-md-6 text-right pagination-container">
+							                    <pagination class="pagination-sm"
+							                                page="currentAssignmentPage"
+							                                total-items="filteredAssignments.length"
+							                                max-size="4"
+							                                on-select-page="selectAssignmentPage(page)"
+							                                items-per-page="perPage"
+							                                rotate="false"
+							                                current-page="currentAssignmentPage"
+							                                boundary-links="true"></pagination>
+							                </div>
+					                    </div>
+					                </footer>
+					                <div style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+						            	<a href="/admin/users/add/" class="btn btn-info">
+						            		Save & Update
+						            	</a>
+						            	&nbsp;
+						            	<a data-toggle="modal" href="#add_membership_modal" class="btn btn-blue">
+						            		Add Membership
+						            	</a>
+						            </div>
+						        </div>                            
+                            </tab>
+                            
+                        	<tab>
+                            	<tab-heading>
+                            		<i class="glyphicons file_export"></i> External Courses
+                            	</tab-heading>
+                            	<div class="col-lg-12">
+                            		<div class="callout callout-danger">						                
+						                <p>Any changes made to the External Courses, e.g., change due dates, delete or adding courses, will be recorded for audit proposes.</p>
+						            </div>
+                            	</div>
+								<div class="col-lg-12">
+									<div class="table-responsive">
+					                <table class="table table-bordered table-striped table-responsive table-condensed">
+					                    <thead>					
+					                    <tr>					
+					                        <th>
+					                            <div class="th">
+					                                ID
+		                                            <span class="glyphicon glyphicon-chevron-up"
+		                                                    ng-click="assignmentSort = '-course.number'; reverse=false"></span>
+		                                            <span class="glyphicon glyphicon-chevron-down"
+		                                                  ng-click="assignmentSort = 'course.number'; reverse=false"></span>
+					                            </div>				
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                Course Title
+					                                            <span class="glyphicon glyphicon-chevron-up"
+					                                                  ng-click="assignmentSort = '-course.name'; reverse=false"></span>
+					                                            <span class="glyphicon glyphicon-chevron-down"
+					                                                  ng-click="assignmentSort = 'course.name'; reverse=false"></span>
+					                            </div>	
+					                        </th>
+					
+					                        <th>
+					                            <div class="th">
+					                                Info
+					                            </div>
+					                        </th>
+					                        
+					                        <th>
+					                            <div class="th">
+					                                File Uploads					                                
+					                            </div>
+					                        </th>
+					                        
+					                        <th>
+					                            <div class="th">
+					                                Hours
+					                                <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-course.hours'; reverse=false"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'course.hours'; reverse=false"></span>
+					                            </div>
+					                        </th>
+					                        
+					                        <th>				
+					                            <div class="th">
+					                                CE				
+					                            </div>				
+					                        </th>
+					                        <th>
+					                            <div class="th">
+					                                Completed Date
+					                                <span class="glyphicon glyphicon-chevron-up"
+					                                      ng-click="assignmentSort = '-due_date'; reverse=false; onOrderChange('-due_date', false)"></span>
+					                                <span class="glyphicon glyphicon-chevron-down"
+					                                      ng-click="assignmentSort = 'due_date'; reverse=false; onOrderChange('due_date', false)"></span>
+					                            </div>
+					
+					                        </th>
+					                        <th>
+					                        	<div class="th">
+					                        		Delete Course				                        	
+					                        	</div>
+					                        </th>
+					                    </tr>				
+					                    </thead>
+					                    
+										<tbody>						
+						                    <tr>
+						                        <td class="ng-binding">OC0620.1</td>
+						                        <td class="ng-binding">Workplace Substance Abuse</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the requirements as stipulated in the Omnibus Transportation Employee Testing Act of 1991. " popover-trigger="mouseenter" popover-title="OC0620.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center">
+						                        	<i class="glyphicons disk_export" style="color:#00abdf;"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">1.20</td>
+						                        <td class="text-center">
+						                            <i class="fa fa-check ce-icon"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-11-04
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="ext_course1">
+														<input type="checkbox" id="ext_course1" name="ext_course1" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    
+						                    <tr>
+						                        <td class="ng-binding">AS0005</td>
+						                        <td class="ng-binding">Death, Grief and the Dying Patient</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course covers the unique needs of dying patients and the tasks employees of home healthcare organizations can do to help in their care and understand what the patient, family members, and caregivers may be going through. " popover-trigger="mouseenter" popover-title="AS0005" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center">
+						                        	<i class="glyphicons disk_export" style="color:#00abdf;"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">0.70</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						                            2014-11-03			
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="ext_course2">
+														<input type="checkbox" id="ext_course2" name="ext_course2" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">OC0230</td>
+						                        <td class="ng-binding">Hazardous Communication</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course is designed to help Best Medical Supply and its employees to understand the requirements of OSHA's Hazardous Communication Standard (29 CFR 1910.1200)." popover-trigger="mouseenter" popover-title="OC0230" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center">
+						                        	<i class="glyphicons disk_export" style="color:#00abdf;"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">1.40</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-11-02
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="ext_course3">
+														<input type="checkbox" id="ext_course3" name="ext_course3" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">AS0001</td>
+						                        <td class="ng-binding">Home Healthcare Team Overview</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course will provide an overview of services provided by the most common organizations that participate in providing care to a homebound patient." popover-trigger="mouseenter" popover-title="AS0001" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center">
+						                        	<i class="glyphicons disk_export" style="color:#00abdf;"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">0.90</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-11-02
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="ext_course4">
+														<input type="checkbox" id="ext_course4" name="ext_course4" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">MA0500</td>
+						                        <td class="ng-binding">Understanding Antimicrobial Resistance</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course provides the clinical professional with a better understanding of antimicrobial-resistant organisms." popover-trigger="mouseenter" popover-title="MA0500" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center">
+						                        	<i class="glyphicons disk_export" style="color:#00abdf;"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">1.00</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-11-01
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="ext_course5">
+														<input type="checkbox" id="ext_course5" name="ext_course5" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">CL-99</td>
+						                        <td class="ng-binding">Home Health Aide Competency Exam</td>
+						                        <td class="text-center">
+						
+						                            <i popover="The competency test for Home Health Aides." popover-trigger="mouseenter" popover-title="CL-99" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center">
+						                        	<i class="glyphicons disk_export" style="color:#00abdf;"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">1.00</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-10-31
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="ext_course6">
+														<input type="checkbox" id="ext_course6" name="ext_course6" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">OC0510.1</td>
+						                        <td class="ng-binding">2014 Respiratory Protection &amp; PPE</td>
+						                        <td class="text-center">
+						
+						                            <i popover="The 2014 version of this annual course designed to meet OSHA standards 29 CFR 1910.134." popover-trigger="mouseenter" popover-title="OC0510.1" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center">
+						                        	<i class="glyphicons disk_export" style="color:#00abdf;"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">1.80</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-10-30
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger ng-hide">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="ext_course7">
+														<input type="checkbox" id="ext_course7" name="ext_course7" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">OC0050</td>
+						                        <td class="ng-binding">2014 Medical and Exposure Records</td>
+						                        <td class="text-center">
+						
+						                            <i popover="The 2014 version of this annual course that covers employee and employer rights and responsibilities pertaining to employee medical records and hazardous exposure records." popover-trigger="mouseenter" popover-title="OC0050" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center">
+						                        	<i class="glyphicons disk_export" style="color:#00abdf;"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">0.70</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            2014-10-23						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="ext_course8">
+														<input type="checkbox" id="ext_course8" name="ext_course8" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">DS-B02</td>
+						                        <td class="ng-binding">Herpes Zoster</td>
+						                        <td class="text-center">
+						
+						                            <i popover="This course provides the clinical professional with a better understanding of herpes zoster (shingles), its treatment options, and the latest research to find safer, more effective ways to diagnose and treat it." popover-trigger="mouseenter" popover-title="DS-B02" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center">
+						                        	<i class="glyphicons disk_export" style="color:#00abdf;"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">0.50</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon ng-hide"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">						
+						                            2014-10-22						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="ext_course9">
+														<input type="checkbox" id="ext_course9" name="ext_course9" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                    <tr>
+						                        <td class="ng-binding">OC0100</td>
+						                        <td class="ng-binding">2014 Bloodborne Pathogens</td>
+						                        <td class="text-center">
+						
+						                            <i popover="The 2014 version of this annual course designed to meet OSHA Bloodborne Pathogen statndard 29 CFR 1910.1030. Meeting this standard also includes passing OC0140." popover-trigger="mouseenter" popover-title="OC0100" class="fa fa-info-circle icon-info-big ng-scope"></i>
+						
+						                        </td>
+						                        <td class="text-center">
+						                        	<i class="glyphicons disk_export" style="color:#00abdf;"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">1.00</td>
+						                        <td class="text-center">
+						                            <i ng-show="assignment.course.continuing_education" class="fa fa-check ce-icon"></i>
+						                        </td>
+						                        <td class="text-center ng-binding">
+						
+						                            2014-10-21
+						
+						                            <span ng-show="assignment.is_overdue" class="label label-danger">Overdue</span>
+						
+						                        </td>
+						                        <td class="text-center">
+						                            <label class="ui-checkbox" for="ext_course10">
+														<input type="checkbox" id="ext_course10" name="ext_course10" data-toggle="checkbox">
+														<span></span>														
+													</label>
+						                        </td>
+						                    </tr>
+						                </tbody>
+					                </table>
+									</div>
+					
+					                <footer class="table-footer pln">
+				                    <div class="row">
+				                        <div class="col-md-6 page-num-info">
+											<span>
+						                        Show 
+						                        <select data-ng-model="numPerPage" data-ng-options="num for num in numPerPageOpt" data-ng-change="onNumPerPageChange()" class="ng-pristine ng-valid"><option value="?" selected="selected"></option></select> 
+						                        entries per page
+						                 	</span>
+				                        </div>                        
+										<div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentAssignmentPage"
+						                                total-items="filteredAssignments.length"
+						                                max-size="4"
+						                                on-select-page="selectAssignmentPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                current-page="currentAssignmentPage"
+						                                boundary-links="true"></pagination>
+						                </div>
+				                    </div>
+				                </footer>
+				                <div style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+					            	<a href="/admin/users/add/" class="btn btn-info">
+					            		Save & Update
+					            	</a>
+					            	&nbsp;
+					            	<a data-toggle="modal" href="#add_external_course_modal" class="btn btn-blue">
+					            		Add External Course
+					            	</a>
+					            </div>
+                        		</div>                        	
+                        	</tab>
+
+						</tabset>
+					</div>
+			    </div>
+           	</div>           
+        </div>
+	</div>
+	
+	<div class="modal fade"  id="add_assignment_modal" tabindex="-1" role="dialog" aria-labelledby="add_assignment_modal"
+		aria-hidden="true">         
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   	<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="/static/dashboard/common/images/favicon.png" width="32px">									
+								</h4> 
+								<span class="title">Add Assignment</span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>
+                </div>
+                <div class="modal-body ptm">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-8 col-md-8 col-sm-8">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Select Course to Assign</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="min_score_continuing_education" class="select-block " id="selectpicker">													
+													<option value="70" selected="selected">Select Course to Assign</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        	<div class="col-lg-4 col-md-4 col-sm-4">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Select Due Date</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="due_date"
+				                               is-open="opened"
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                	<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+                    <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="cancel()">Add</button>
+                </div>
+            </div>            
+        </div>        
+    </div>
+    
+    <div class="modal fade"  id="add_license_modal" tabindex="-1" role="dialog" aria-labelledby="add_license_modal"
+		aria-hidden="true">         
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   	<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="/static/dashboard/common/images/favicon.png" width="32px">									
+								</h4> 
+								<span class="title">Add Professional License</span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>
+                </div>
+                <div class="modal-body ptm">
+                	<div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">License Issuing State</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="issuing_state" class="select-block " id="selectpicker">													
+													<option value="70" selected="selected">Select Issuing State</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        	
+                        	<div class="col-lg-7 col-md-7 col-sm-7">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Professional License</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="license_type" class="select-block " id="selectpicker">													
+													<option value="70" selected="selected">Select License Type</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Orignial Issue Date</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="due_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>
+                        	
+                        	<div class="col-lg-7 col-md-7 col-sm-7">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">License Status</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="lic_status" class="select-block " id="selectpicker">													
+													<option value="70" selected="selected">Select License Status</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        	
+                        </div>
+                    </div>
+                	
+                	<div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-8 col-md-8 col-sm-8">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												License ID Number												
+											</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<input type="text" name="license_id" class="form-control" id="license_id" placeholder="License ID Number" value="">
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Active Period Start Date													
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="active_period_start_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Active Period Expiration Date												
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="active_period_expiration_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>                        
+                        
+                        </div>
+                   	</div>
+                    
+                </div>
+                
+                <div class="modal-footer">
+                	<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+                    <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="cancel()">Add</button>
+                </div>
+            </div>            
+        </div>        
+    </div>
+   
+    <div class="modal fade"  id="add_credential_modal" tabindex="-1" role="dialog" aria-labelledby="add_credential_modal"
+		aria-hidden="true">         
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   	<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="/static/dashboard/common/images/favicon.png" width="32px">									
+								</h4> 
+								<span class="title">Add Professional Credential</span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>
+                </div>
+                <div class="modal-body ptm">
+                	<div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Select License for Credential</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="license_for_credential" class="select-block ">													
+													<option value="70" selected="selected">Select Your License</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        	
+                        	<div class="col-lg-7 col-md-7 col-sm-7">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Professional Credential</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="credential" class="select-block " id="selectpicker">													
+													<option value="70" selected="selected">Select Credential</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Orignial Issue Date</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="due_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>
+                        	
+                        	<div class="col-lg-7 col-md-7 col-sm-7">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Credential Status</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="lic_status" class="select-block " id="selectpicker">													
+													<option value="70" selected="selected">Select Credential Status</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        	
+                        </div>
+                    </div>
+                	
+                	<div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-8 col-md-8 col-sm-8">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Credential ID Number
+												<i class="fa fa-info-circle blue"
+													popover-trigger="mouseenter" 
+													popover="if no credential ID, leave this field blank."
+													style="color: #00ABDF;font-size: 15px;"></i>
+											</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<input type="text" name="cred_id" class="form-control" id="cred_id" placeholder="Credential ID Number" value="">
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Active Period Start Date
+												<i class="fa fa-info-circle blue"
+													popover-trigger="mouseenter" 
+													popover="if credential has a renewable active period, enter starting date; if it is a lifetime credential, enter the original issue date." 
+													style="color: #00ABDF;font-size: 15px;"></i>	
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="active_period_start_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Active Period Expiration Date
+												<i class="fa fa-info-circle blue"
+													popover-trigger="mouseenter" 
+													popover="if no expiration date, leave this field blank."
+													style="color: #00ABDF;font-size: 15px;"></i>
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="active_period_expiration_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>                        
+                        
+                        </div>
+                   	</div>
+                    
+                </div>
+                
+                <div class="modal-footer">
+                	<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+                    <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="cancel()">Add</button>
+                </div>
+            </div>            
+        </div>        
+    </div>
+   
+    <div class="modal fade"  id="add_allied_credential_modal" tabindex="-1" role="dialog" aria-labelledby="add_allied_credential_modal"
+		aria-hidden="true">         
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   	<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="/static/dashboard/common/images/favicon.png" width="32px">									
+								</h4> 
+								<span class="title">Add Allied Health Credential</span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>
+                </div>
+                <div class="modal-body ptm">
+                	<div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-8 col-md-8 col-sm-8">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Allied Health Credential</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="credential" class="select-block " id="selectpicker">													
+													<option value="70" selected="selected">Select Credential</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Orignial Issue Date</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="due_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>
+                        	
+                        	<div class="col-lg-7 col-md-7 col-sm-7">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Credential Status</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="credential_status" class="select-block " id="selectpicker">													
+													<option value="70" selected="selected">Select Credential Status</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        	
+                        </div>
+                    </div>
+                	
+                	<div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-8 col-md-8 col-sm-8">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Credential ID Number
+												<i class="fa fa-info-circle blue" 
+												popover-trigger="mouseenter" 
+												popover="if no credential ID, leave this field blank." 
+												style="color: #00ABDF;font-size: 15px;"></i>
+											</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<input type="text" name="cred_id" class="form-control" id="cred_id" placeholder="Credential ID Number" value="">
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Active Period Start Date
+												<i class="fa fa-info-circle blue"
+													popover-trigger="mouseenter" 
+													popover="if credential has a renewable active period, enter starting date; if it is a lifetime credential, enter the original issue date." 
+													style="color: #00ABDF;font-size: 15px;"></i>	
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="active_period_start_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Active Period Expiration Date
+												<i class="fa fa-info-circle blue"
+													popover-trigger="mouseenter" 
+													popover="if no expiration date, leave this field blank."
+													style="color: #00ABDF;font-size: 15px;"></i>
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="active_period_expiration_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>                        
+                        
+                        </div>
+                   	</div>
+                    
+                </div>
+                
+                <div class="modal-footer">
+                	<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+                    <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="cancel()">Add</button>
+                </div>
+            </div>            
+        </div>        
+    </div>
+	
+	<div class="modal fade"  id="add_membership_modal" tabindex="-1" role="dialog" aria-labelledby="add_membership_modal"
+		aria-hidden="true">         
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   	<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="/static/dashboard/common/images/favicon.png" width="32px">									
+								</h4> 
+								<span class="title">Add Membership</span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>
+                </div>
+                <div class="modal-body ptm">
+                	<div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-8 col-md-8 col-sm-8">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Membership Organization</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="organization" class="select-block " id="selectpicker">													
+													<option value="70" selected="selected">Select Organization</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Orignial Membership Date</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="due_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>
+                        	
+                        	<div class="col-lg-7 col-md-7 col-sm-7">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">Membership Status</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<span class="ui-select">
+												<select name="membership_status" class="select-block " id="selectpicker">													
+													<option value="70" selected="selected">Select Membership Status</option>
+												</select>
+											</span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        	
+                        </div>
+                    </div>
+                	
+                	<div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-8 col-md-8 col-sm-8">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Membership ID Number
+												<i class="fa fa-info-circle blue"
+													popover-trigger="mouseenter" 
+													popover="if no membership ID, leave this field blank."
+													style="color: #00ABDF;font-size: 15px;"></i>												
+											</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<input type="text" name="membership_id" class="form-control" id="membership_id" placeholder="Membership ID Number" value="">
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Active Period Start Date
+												<i class="fa fa-info-circle blue"
+													popover-trigger="mouseenter" 
+													popover="if membership has a renewable active period, enter starting date; if it is a lifetime membership, enter the original membership date." 
+													style="color: #00ABDF;font-size: 15px;"></i>													
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="active_period_start_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>
+                        	<div class="col-lg-5 col-md-5 col-sm-5">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">
+												Active Period Expiration Date
+												<i class="fa fa-info-circle blue"
+													popover-trigger="mouseenter" 
+													popover="if no expiration date, leave this field blank."
+													style="color: #00ABDF;font-size: 15px;"></i>												
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">                        		
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+				                               class="form-control"
+				                               datepicker-popup="{[format]}"
+				                               ng-model="active_period_expiration_date"				                               
+				                               min="minDate"
+				                               max="'2015-06-22'"
+				                               datepicker-options="dateOptions" 
+				                               date-disabled="disabled(date, mode)"
+				                               ng-required="true" 
+				                               close-text="Close">
+					                    </div>
+					                	</div>
+					                </div>
+					            </div>				               
+                        	</div>                        
+                        
+                        </div>
+                   	</div>
+                    
+                </div>
+                
+                <div class="modal-footer">
+                	<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+                    <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="cancel()">Add</button>
+                </div>
+            </div>            
+        </div>        
+    </div>
+	
+	<div class="modal fade"  id="add_external_course_modal" tabindex="-1" role="dialog" aria-labelledby="add_external_course_modal"
+		aria-hidden="true">         
+        <div class="modal-dialog" style="width:700px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                   	<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="/static/dashboard/common/images/favicon.png" width="32px">									
+								</h4> 
+								<span class="title">Add External Course</span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>
+                </div>
+                <div class="modal-body ptm">
+                	<div class="row">                        
+                    	<div class="col-lg-4 col-md-4 col-sm-4">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">External Course ID</label>
+									</div>
+								</div>
+				
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-controls">
+										<input type="text" name="ext_course_id" class="form-control" id="ext_course_id" placeholder="Course ID" value="">
+										<span class="icon glyphicon glyphicon-star"></span>
+									</div>
+									</div>
+								</div>
+							</div>
+                    	</div>
+                    	
+                    	<div class="col-lg-8 col-md-8 col-sm-8">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">External Course Source</label>
+									</div>
+								</div>
+				
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-controls">
+										<span class="ui-select">
+											<select name="credential" class="select-block " id="selectpicker">													
+												<option value="70" selected="selected">Select Course Source</option>
+											</select>
+										</span>
+									</div>
+									</div>
+								</div>
+							</div>
+                    	</div>
+                    </div>
+
+                    <div class="row">                        
+                    	<div class="col-lg-4 col-md-4 col-sm-4">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">Course Hours(e.g., 0.5, 1.2)</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">                        		
+				                    	<div class="input-group ui-spinner" data-ui-spinner="">
+					                        <span class="input-group-btn">
+					                            <button type="button" class="btn btn-primary" data-spin="up">
+					                                <i class="fa fa-plus"></i>
+					                            </button>
+					                        </span>
+					                        <input type="text" name="ext_course_hours" class="spinner-input form-control" value="10" placeholder="Hours">
+					                        <span class="input-group-btn">
+					                            <button type="button" class="btn btn-default" data-spin="down">
+					                                <i class="fa fa-minus"></i>
+					                            </button>
+					                        </span>
+					                    </div>
+				                	</div>
+				                </div>
+				            </div>				               
+                    	</div>
+                    	
+                    	<div class="col-lg-8 col-md-8 col-sm-8">
+                        		<div class="form-group">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<label for="min_score_continuing_education">External Course Title</label>
+										</div>
+									</div>
+					
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-controls">
+											<input type="text" name="ext_course_title" class="form-control" id="ext_course_title" placeholder="Course Title" value="">
+											<span class="icon glyphicon glyphicon-star"></span>
+										</div>
+										</div>
+									</div>
+								</div>
+                        	</div>
+
+                    </div>
+                	<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+										<label for="is_employee_specific_id">Continuing Education Provided?</label>
+									</div>
+								</div>
+				
+								<div class="row">
+									<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+										<label class="switch switch-iphone">
+											<input type="checkbox" name="is_employee_specific_id" checked="true">
+											<i></i>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+				
+					</div>
+                	<div class="row">                        
+                    	<div class="col-lg-4 col-md-4 col-sm-4">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">CE Sponsor ID</label>
+									</div>
+								</div>
+				
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-controls">
+										<input type="text" name="ext_course_id" class="form-control" id="ce_sponsor_id" placeholder="CE Sponsor ID" value="">
+										<span class="icon glyphicon glyphicon-star"></span>
+									</div>
+									</div>
+								</div>
+							</div>
+                    	</div>
+                    	
+                    	<div class="col-lg-8 col-md-8 col-sm-8">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">CE Sponsoring Organization Name</label>
+									</div>
+								</div>
+				
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-controls">
+										<span class="ui-select">
+											<select name="credential" class="select-block " id="selectpicker">													
+												<option value="70" selected="selected">Select Organization Name</option>
+											</select>
+										</span>
+									</div>
+									</div>
+								</div>
+							</div>
+                    	</div>
+                    </div>
+
+                	<div class="row">                        
+                    	<div class="col-lg-12 col-md-12 col-sm-12">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">Sponsoring Organization Address</label>
+									</div>
+								</div>
+				
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-controls">
+										<input type="text" name="sponsoring_org_address1" class="form-control" id="sponsoring_org_address1" placeholder="Street Address" value="">
+										<span class="icon glyphicon glyphicon-star"></span>
+									</div>
+									</div>
+								</div>
+							</div>
+                    	</div>                    
+                    </div>
+                    
+                    <div class="row">                        
+                    	<div class="col-lg-12 col-md-12 col-sm-12">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-controls">
+										<input type="text" name="sponsoring_org_address2" class="form-control" id="sponsoring_org_address2" placeholder="Additional Address Info" value="">
+									</div>
+									</div>
+								</div>
+							</div>
+                    	</div>                    
+                    </div>
+                    
+                    <div class="row">
+                    	<div class="col-lg-4 col-md-4 col-sm-4">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">CE Sponsor City</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">                        		
+				                    <div class="form-controls">
+										<input type="text" name="ce_sponsor_city" class="form-control" id="ce_sponsor_city" placeholder="City" value="">
+										<span class="icon glyphicon glyphicon-star"></span>
+									</div>
+				                	</div>
+				                </div>
+				            </div>				               
+                    	</div>
+                    	
+                    	<div class="col-lg-4 col-md-4 col-sm-4">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">CE Sponsor State</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">                        		
+				                    <div class="form-controls">
+										<span class="ui-select">
+											<select name="ce_sponsor_state" class="select-block " id="selectpicker">													
+												<option value="70" selected="selected">Select State</option>
+											</select>
+										</span>
+									</div>
+				                	</div>
+				                </div>
+				            </div>				               
+                    	</div>
+                    	
+                    	<div class="col-lg-4 col-md-4 col-sm-4">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">CE Sponsor Zip Code</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">                        		
+				                    <div class="form-controls">
+										<input type="text" name="sponsor_zip" class="form-control" id="sponsor_zip" placeholder="Zip Code" value="">
+										<span class="icon glyphicon glyphicon-star"></span>
+									</div>
+				                	</div>
+				                </div>
+				            </div>				               
+                    	</div>
+  
+                   	</div>
+                    
+                    <div class="row">
+                    	
+                    	<div class="col-lg-4 col-md-4 col-sm-4">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">CE Units of Measure</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">                        		
+				                    <div class="form-controls">
+										<span class="ui-select">
+											<select name="ce_units_of_measure" class="select-block ">													
+												<option value="70" selected="selected">Select Units of Measure</option>
+											</select>
+										</span>
+									</div>
+				                	</div>
+				                </div>
+				            </div>				               
+                    	</div>
+                    	
+                    	<div class="col-lg-4 col-md-4 col-sm-4">
+                    		<div class="form-group">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="min_score_continuing_education">CE Approved Units(e.g., 0.5, 1.2)</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12">                        		
+				                    	<div class="input-group ui-spinner" data-ui-spinner="">
+					                        <span class="input-group-btn">
+					                            <button type="button" class="btn btn-primary" data-spin="up">
+					                                <i class="fa fa-plus"></i>
+					                            </button>
+					                        </span>
+					                        <input type="text" name="ce_approved_units" class="spinner-input form-control" value="10" placeholder="Hours">
+					                        <span class="input-group-btn">
+					                            <button type="button" class="btn btn-default" data-spin="down">
+					                                <i class="fa fa-minus"></i>
+					                            </button>
+					                        </span>
+					                    </div>
+				                	</div>
+				                </div>
+				            </div>			               
+                    	</div>  
+                   	</div>
+                    
+                </div>
+                
+                <div class="modal-footer">
+                	<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+                    <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="cancel()">Add External Course</button>
+                </div>
+            </div>            
+        </div>        
+    </div>
+</div>
+                
+{% endblock %}
+
+
+{% block extra_scripts %}
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<script class="jsbin" src="{{ STATIC_URL }}dashboard/common/lib/dropzone/dropzone.js"></script>
+<script>
+
+jQuery(function() {
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#profile_photo')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+            $('#drop_zone').children('span').hide();
+        }
+    }
+	function handleFileSelect(evt) {
+	    evt.stopPropagation();
+	    evt.preventDefault();
+	    var files = evt.dataTransfer.files; 
+	    document.getElementById('id_photo_file').files = files;
+		readURL(document.getElementById('id_photo_file'));
+	}
+	  
+	$('#id_photo_file').change(function() {
+	  	readURL(this);
+	});
+	
+	function handleDragOver(evt) {
+	    evt.stopPropagation();
+	    evt.preventDefault();
+	    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+	}
+	
+	  // Setup the dnd listeners.
+	var dropZone = document.getElementById('drop_zone');
+	dropZone.addEventListener('dragover', handleDragOver, false);
+	dropZone.addEventListener('drop', handleFileSelect, false);  
+	  
+	$("#phone_alternate, #phone_work, #phone_oncall").mask("(999) 999-9999");
+	$('#social_security_number').mask("999-99-9999");
+});
+</script>
+{% endblock %}

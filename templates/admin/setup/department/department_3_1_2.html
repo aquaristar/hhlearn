@@ -1,0 +1,304 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Department Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+<div class="page page-admin-setup" id="step_department" ng-app="step_department">
+	<div class="row">
+		 <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Administrator</a></li>
+                <li><a href="">Setup</a></li>
+                <li class="active"><a href="">Step3</a></li>
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-cogs"></span>&nbsp;&nbsp;Step&nbsp;&nbsp;3.1.2</strong>    				
+                </div>
+                <div class="panel-body row">
+					<div class="col-lg-12" style="padding: 0px; margin-top: -15px; ">
+						<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/3.1.4.jpg">					
+						<div class="setup-progress">
+							<div class="progress">
+								<div class="progress-bar progress1" style="width: 20%;">Organizational Setup
+									(100%)
+								</div>
+								<div class="progress-bar progress2" style="width: 20%;">
+									Location Setup (100%)
+								</div>
+								<div class="progress-bar progress3" style="width: 20%;">
+									Department Setup (30%)
+								</div>
+								<div class="progress-bar progress4" style="width: 20%;">
+									Region Setup (0%)
+								</div>
+								<div class="progress-bar progress5" style="width: 20%;">Job
+									Titles Setup (0%)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="post" action="{{ request.path }}">
+						{% csrf_token %}
+						<div class="setup-help text-right">
+							<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i> Watch Me</a>
+						</div>
+						
+						<div class="col-lg-12">	
+							<div class="row">	
+								<!-- Modal -->
+								<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title" id="myModalLabel">HHLEARN -
+													Setup Help Video</h4>
+											</div>
+											<div class="modal-body">
+												<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													Close
+												</button>
+					
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
+							</div>
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="setup-info-text text-left">
+										<p>
+											The following information is displaying because earlier you entered that
+											your organization-wide grading was not going to be consistent. This page
+											gives you the opportunity to set minimum passing grades for each
+											department. We will allow you to further define your organization (e.g.,
+											regions) in the upcoming pages.
+										</p>
+						
+										<p>
+						
+											When it comes to grading tests on HHLEARN, we allow you to decide what
+											the passing scores are. We have 4 different types of tests: General
+											Knowledge, Continuing Education, Employee Competency, and your own Custom
+											Courses.
+										</p>
+						
+										<p>
+											We have pre-populated the four choices with your location responses,
+											please select your department-specific minimum passing scores.*
+										</p>
+									</div>
+								</div>
+							</div>
+						
+						
+							{{ form.id }}
+						
+							<div class="row">
+								<div class="col-sm-4 col-md-4 col-lg-4">
+									<div class="form-group  {% if form.short_name.errors %}has-error{% endif %}">
+										<label for="short_name">
+											{{ form.short_name.label }}</label>
+										<span class="label label-important">{{ form.short_name.errors|first }}</span>
+										{{ form.short_name }}
+									</div>
+								</div>
+							</div>
+						
+							{{ formset.management_form }}
+							{% for form in formset %}
+								<hr/>
+						
+								{{ form.id }}
+						
+								<div class="row">
+									<div class="col-sm-4 col-md-4 col-lg-4">
+										<div class="form-group  {% if form.short_name.errors %}has-error{% endif %}">
+											<label for="short_name">
+												{{ form.short_name.label }}</label>
+											<span class="label label-important">{{ form.short_name.errors|first }}</span>
+											{{ form.short_name }}
+										</div>
+									</div>
+								</div>
+						
+						
+								<div class="row">
+									<div class="col-lg-2">
+										<div class="form-group {% if form.min_score_general_knowledge.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="min_score_general_knowledge">{{ form.min_score_general_knowledge.label }}</label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-10 col-md-10 col-lg-10">
+													<div>
+														<span class="label label-important">{{ form.min_score_general_knowledge.errors|first }}</span>
+													</div>
+						
+													<div class="form-controls">
+														<span class="ui-select">
+															<select name="form-{{ forloop.counter0 }}-{{ form.min_score_general_knowledge.name }}" class="select-block " id="selectpicker">
+																<option value="">Select Percentage</option>
+																{% for min_score_general_knowledge in form.fields.min_score_general_knowledge.queryset %}
+																	<option {% if min_score_general_knowledge.score  == form.min_score_general_knowledge.value %}selected="selected"{% endif %} value="{{ min_score_general_knowledge.score }}">{{ min_score_general_knowledge.score }}</option>
+																{% endfor for %}										
+															</select>
+														</span>										
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+									<div class="col-lg-2">
+										<div class="form-group {% if form.min_score_continuing_education.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="min_score_continuing_education">{{ form.min_score_continuing_education.label }}</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-10 col-md-10 col-lg-10">
+													<div>
+														<span class="label label-important">{{ form.min_score_continuing_education.errors|first }}</span>
+													</div>
+													<div class="form-controls">
+														<span class="ui-select">
+															<select name="form-{{ forloop.counter0 }}-{{ form.min_score_continuing_education.name }}" class="select-block " id="selectpicker">
+																<option value="">Select Percentage</option>
+																{% for min_score_continuing_education in form.fields.min_score_continuing_education.queryset %}
+																	<option {% if min_score_continuing_education.score  == form.min_score_continuing_education.value %}selected="selected"{% endif %} value="{{ min_score_continuing_education.score }}">{{ min_score_continuing_education.score }}</option>
+																{% endfor for %}										
+															</select>
+														</span>										
+													</div>													
+												</div>
+											</div>
+										</div>
+									</div>
+						
+									<div class="col-lg-2">
+										<div class="form-group {% if form.min_score_employee_competency.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="min_score_continuing_education">{{ form.min_score_employee_competency.label }}</label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-10 col-md-10 col-lg-10">
+													<div>
+														<span class="label label-important">{{ form.min_score_employee_competency.errors|first }}</span>
+													</div>
+
+													<div class="form-controls">
+														<span class="ui-select">
+															<select name="form-{{ forloop.counter0 }}-{{ form.min_score_employee_competency.name }}" class="select-block " id="selectpicker">
+																<option value="">Select Percentage</option>
+																{% for min_score_employee_competency in form.fields.min_score_employee_competency.queryset %}
+																	<option {% if min_score_employee_competency.score  == form.min_score_employee_competency.value %}selected="selected"{% endif %} value="{{ min_score_employee_competency.score }}">{{ min_score_employee_competency.score }}</option>
+																{% endfor for %}										
+															</select>
+														</span>										
+													</div>
+												</div>
+											</div>
+						
+										</div>
+									</div>
+						
+									<div class="col-lg-2">
+										<div class="form-group {% if form.min_score_custom_courses.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="min_score_continuing_education">{{ form.min_score_custom_courses.label }}</label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-10 col-md-10 col-lg-10">
+													<div>
+														<span class="label label-important">{{ form.min_score_custom_courses.errors|first }}</span>
+													</div>						
+
+													<div class="form-controls">
+														<span class="ui-select">
+															<select name="form-{{ forloop.counter0 }}-{{ form.min_score_custom_courses.name }}" class="select-block " id="selectpicker">
+																<option value="">Select Percentage</option>
+																{% for min_score_custom_courses in form.fields.min_score_custom_courses.queryset %}
+																	<option {% if min_score_custom_courses.score  == form.min_score_custom_courses.value %}selected="selected"{% endif %} value="{{ min_score_custom_courses.score }}">{{ min_score_custom_courses.score }}</option>
+																{% endfor for %}										
+															</select>
+														</span>										
+													</div>
+												</div>
+											</div>
+						
+										</div>
+									</div>
+								</div>
+						
+							{% endfor %}
+							
+							<hr>
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="setup-info-text text-left">
+										<div class="callout callout-green">
+											<p>
+												In some cases your grading choices will be superseded by more stringent
+												minimum passing scores. These situations include the anti-cheating
+												technology we have built-in and ensures that requirements of specific
+												continuing education organizations are met.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<p class="text-center">
+										<a href="{{ back_button_url }}" class="btn btn-blue btn-wide setup-back-button hidden-print">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">Save
+											& Next
+										</button>
+									</p>								
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/department/js/department.js"></script>
+
+{% endblock %}

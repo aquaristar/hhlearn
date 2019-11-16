@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HHLEARN</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+	<!-- CSS start here -->
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons.css" />
+	<!--<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/dashboard/common/css/style.css" />-->
+	<!-- CSS end here -->
+	<!-- Google fonts start here -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+	<!-- Google fonts end here -->
+</head>
+<body class="tictoc">
+	<div class="header-wrapper">		
+		<div class="container">
+		<div class="col-lg-6 col-md-6 text-center">			
+			<a href="/login/" target="_self">
+				<!-- <span class="logo-icon glyphicon glyphicon-fire"></span> -->
+				<img src="/static//website/common/img/logo_305x100.png" alt="" class="logo-small" height="82px">
+			</a>
+		</div>
+		<div class="header-menu col-lg-6 col-md-6">			
+			<div class="col-lg-4 col-md-4 text-center">
+				<a href="#" class="item" target="_self">
+					<i class="icon glyphicons justify"></i>
+					<span>Menu</span>
+				</a>
+			</div>
+			<div class="col-lg-4 col-md-4 text-center">
+				<a href="/login/" class="item" target="_self">
+					<i class="icon glyphicons user"></i>
+					<span>Sign In</span>
+				</a>
+			</div>
+			<div class="col-lg-4 col-md-4 text-center">
+				<a href="{{ BASE_URL }}" class="item" target="_self">
+					<i class="icon glyphicons home"></i>
+					<span>Home</span>
+				</a>
+			</div>			
+		</div>
+		</div>
+	</div>
+	<!-- Preloader start here -->
+	<div id="preloader">
+		<div id="status"><img src="{{STATIC_URL}}website/common/img/logo_305x100.png" alt="HHLEARN"></div>
+	</div>
+	<!-- Preloader end here -->
+<!-- About Icon start here -->
+	<div class="about-us"> 
+		<a href="#" class="fa fa-file-text-o tool-tip" data-toggle="modal" data-target=".bs-example-modal-lg" data-placement="right" title="About"></a>
+	</div>
+<!-- About Icon end here -->	
+<!-- Contact Icon start here -->
+	<div class="contact-us"> 
+		<a href="#" class="fa fa-envelope-o tool-tip" data-toggle="modal" data-target=".bs-example-modal-lg2"  data-placement="left" title="Contact"></a>
+	</div>
+<!-- Contact Icon end here -->
+	<!-- Main container start here -->
+	<div class="main-container">
+	<section class="container main-wrapper">
+		
+		<!-- Count Down start here -->
+		<section class="count-down-wrapper fade-down">
+			<ul class="row count-down">                       
+				<li class="col-md-3 col-sm-6">   
+					<input class="knob days" data-readonly=true data-min="0" data-max="365" data-width="260" data-height="260" data-thickness="0.07" data-fgcolor="#34aadc" data-bgColor="#e1e2e6" data-angleOffset="180">
+					<span id="days-title">days</span>
+				</li>    
+				<li class="col-md-3 col-sm-6"> 
+					<input class="knob hour" data-readonly=true data-min="0" data-max="24" data-width="260" data-height="260" data-thickness="0.07" data-fgcolor="#4cd964" data-bgColor="#e1e2e6" data-angleOffset="180">
+					<span id="hours-title">hours</span>
+				</li>    
+				<li class="col-md-3 col-sm-6"> 
+					<input class="knob minute" data-readonly=true data-min="0" data-max="60" data-width="260" data-height="260" data-thickness="0.07" data-fgcolor="#ff9500" data-bgColor="#e1e2e6" data-angleOffset="180">
+					<span id="mins-title">minutes</span>
+				</li>    
+				<li class="col-md-3 col-sm-6"> 
+					<input class="knob second" data-readonly=true data-min="0" data-max="60" data-width="260" data-height="260" data-thickness="0.07" data-fgcolor="#ff3b30" data-bgColor="#e1e2e6" data-angleOffset="180">
+					<span id="secs-title">seconds</span>
+				</li>                
+			</ul>              
+		</section>
+		<!-- Count Down end here -->
+		<!-- Newsletter start here -->
+		<section class="newsletter row fade-down">
+			<form class="contact-form col-md-6 fade-down validate" action="/contacts/" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<div><span class="email-ico"><img src="{{STATIC_URL}}/website/countdown/img/ico-mail.png" alt=""></span>
+						<input type="email" name="email" id="email" class="required email" placeholder="Enter your email here to stay tuned">
+						<!-- <input type="hidden" value="1" name="submit" /> -->
+						<button id="submit" type="submit" class="btn-submit">DO IT <i class="fa fa-angle-right"></i></button>
+					</div>
+				</div>
+				<div class="form-respond"></div>
+			</form>
+		</section>
+		<!-- Newsletter end here -->
+		<!-- Social icons start here -->
+		<ul class="connect-us row fade-down">
+			<li><a href="http://www.facebook.com/HHLEARN" class="fb tool-tip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+			<li><a href="http://www.twitter.com/HHLEARN" class="twitter tool-tip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+			<!--<li><a href="#" class="gplus tool-tip" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>-->
+			<li><a href="http://www.pinterest.com/HHLEARN" class="pinterest tool-tip" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
+			<li><a href="http://www.instagram.com/HHLEARN" class="instagram tool-tip" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+			<li><a href="https://www.linkedin.com/company/hhlearn" class="linkedin tool-tip" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+			<!--<li><a href="#" class="ytube tool-tip" title="You Tube"><i class="fa fa-youtube-play"></i></a></li>
+			<li><a href="#" class="dribbble tool-tip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>-->			
+		</ul>
+		<!-- Social icons end here -->		
+	</section>
+	</div>
+	<div class="footer-wrapper"> 
+		<footer class="fade-down">			
+			<ul class="bottom-list row">
+				<li>
+					<div class="item">						
+						<i class="glyphicons show_big_thumbnails icon"></i>
+						<span class="title">Features</span>
+						<p class="description">
+							HHLEARN is designed by industry professionals and we have built-in 
+							features that will provide immediate benefits to your organization.
+						</p>
+						<div class="left-bar"></div>
+					</div>
+				</li>
+				<li>
+					<div class="item">
+						<i class="glyphicons film icon"></i>
+						<span class="title">Watch Demo</span>
+						<p class="description">
+							There's no better way to grasp how simple training employees can be
+							than watching videos that visually show you. See it for yourself!
+						</p>
+						<div class="left-bar"></div>
+					</div>
+				</li>
+				<li>
+					<div class="item">
+						<i class="glyphicons display icon"></i>
+						<span class="title">Courses</span>
+						<p class="description">
+							We utilize proven adult education teaching methods 
+							that include reading, visual aids, tts, and video.
+						</p>
+						<div class="left-bar"></div>
+					</div>
+				</li>
+				<li>
+					<div class="item">
+						<i class="glyphicons check icon"></i>
+						<span class="title">Testing</span>
+						<p class="description">
+							Our testing and secure certificates of completion are so unique, they'are 
+							patent pending. Check out how we do it and how you will benefit
+						</p>
+						<div class="left-bar"></div>
+					</div>
+				</li>
+				<li>
+					<div class="item">
+						<i class="glyphicons phone_alt icon"></i>
+						<span class="title">Contact Us</span>
+						<p class="description">
+							There are so many ways to find out about us and contact us. 
+							you can even connect through social media.
+						</p>
+						<div class="left-bar"></div>
+					</div>
+				</li>
+				<li>
+					<div class="item">
+						<i class="glyphicons usd icon"></i>
+						<span class="title">Pricing Plans</span>
+						<p class="description">
+							Find out how little it costs to become a member of the 
+							number 1 employee education system. Try it for FREE.
+						</p>
+					</div>
+				</li>				
+			</ul>
+		</footer>
+	</div>
+<!-- About start here -->
+  <div class="modal fade bs-example-modal-lg" role="dialog" aria-hidden="true" data-keyboard="true" data-backdrop="static" tabindex="-1">
+    <a href="#" class="fa fa-times cls-pop" data-dismiss="modal"></a>
+    <div class="modal-dialog modal-lg clearfix">
+      <div class="modal-content pop-up">
+        <h3>Want to See?</h3>
+        <div class="clearfix">
+        <div>
+        	<p>
+	          HHLEARN is a new employee learning management system that was built for maximum flexibility and adaptability. HHLEARN can adapt to any size 
+				organization and can be customized at the organization level, location level, department level, region level, and even at the individual level.
+			</p>
+			<p>
+				HHLEARN is the only employee learning system that customizes courses on-the-fly for federal, state, city, county, and accreditation organization laws, 
+				regulations, and standards—and tests at the same levels. No other employee learning management system can do that!
+			</p>
+			<p>
+			We encourage you to watch the videos below to see for yourself that there is a better way to train employees.
+			</p>
+        </div>
+        <div class="aboutus-videos">
+        	<!--<div class="item" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+			   <img src="/static/resources/files/png/1101.png" style="cursor:pointer" width="250" height="150"/>
+			</div>-->			
+        	<div class="item">
+        		<object width="250" height="150"><param name="movie" value="//www.youtube.com/v/wqrO1G2lXLI?version=3&amp;hl=en_US&amp;showinfo=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="//www.youtube.com/v/wqrO1G2lXLI?version=3&amp;hl=en_US&amp;showinfo=0" type="application/x-shockwave-flash" width="250" height="150" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+        	</div>
+        	
+        	<div class="item">
+        		<object width="250" height="150"><param name="movie" value="//www.youtube.com/v/zM0egslKUqk?version=3&amp;hl=en_US&amp;showinfo=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="//www.youtube.com/v/zM0egslKUqk?version=3&amp;hl=en_US&amp;showinfo=0" type="application/x-shockwave-flash" width="250" height="150" allowscriptaccess="always" allowfullscreen="true"></embed></object>        		
+        	</div>
+        	<div class="item" style="margin-right:0px;">
+        		<object width="250" height="150"><param name="movie" value="//www.youtube.com/v/xDw8USi9ZH4?version=3&amp;hl=en_US&amp;showinfo=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="//www.youtube.com/v/xDw8USi9ZH4?version=3&amp;hl=en_US&amp;showinfo=0" type="application/x-shockwave-flash" width="250" height="150" allowscriptaccess="always" allowfullscreen="true"></embed></object>        		        		
+        	</div>
+        </div>
+      	</div>
+        
+      </div>
+    </div>
+  </div>
+<!-- About end here -->
+<!-- Contact start here -->
+  <div class="modal fade bs-example-modal-lg2" role="dialog" aria-hidden="true" data-keyboard="true" data-backdrop="static" tabindex="-1">
+    <a href="#" class="fa fa-times cls-pop" data-dismiss="modal"></a>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content pop-up pop-up-cnt">
+        <h3>Contact HHLEARN</h3>
+        <div class="clearfix cnt-wrap">
+          <div class="col-md-4 col-sm-4">
+            <i class="glyphicons phone_alt"></i>
+            <h4>Phone</h4>
+            <p>Toll Free: (844) 801-8100<br />Mobile: (209) 596-1592<br />Fax: (855) 661-6109</p>
+          </div>
+
+          <div class="col-md-4 col-sm-4">      
+            <i class="fa fa-envelope-o"></i>
+            <h4>Email</h4>
+            <p>info@hhlearn.com<br />pricing@hhlearn.com<br />lms_conversion@hhlearn.com</p>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <i class="fa fa-map-marker"></i>
+            <h4>Address</h4>
+            <p> 316 California Avenue, <br>
+               Reno, Nevada 89509 <br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Contact end here --> 
+		<!-- Main container start here -->
+		<!-- Javascript framework and plugins start here -->
+		<script type="text/javascript" src="{{STATIC_URL}}/website/countdown/js/jquery.js"></script> 
+		<script type="text/javascript" src="{{STATIC_URL}}/website/countdown/js/bootstrap.min.js"></script> 
+		<script src="{{STATIC_URL}}/website/countdown/js/jquery.validate.min.js"></script>
+		<script src="{{STATIC_URL}}/website/countdown/js/modernizr.js"></script> 
+		<script type="text/javascript" src="{{STATIC_URL}}/website/countdown/js/appear.js"></script> 
+		<script type="text/javascript">
+			$(window).load(function() {
+				$('#status').fadeOut();
+				$('#preloader').delay(350).fadeOut('slow');
+				$('body').delay(350).css({'overflow':'visible'});
+			})
+		</script> 
+		<script src="{{STATIC_URL}}/website/countdown/js/jquery.knob.js"></script>
+		<script src="{{STATIC_URL}}/website/countdown/js/jquery.ccountdown.js"></script>
+		<script src="{{STATIC_URL}}/website/countdown/js/init.js"></script>
+		<script src="{{STATIC_URL}}/website/countdown/js/general.js"></script>
+<!-- Javascript framework and plugins end here -->
+</body>
+</html>

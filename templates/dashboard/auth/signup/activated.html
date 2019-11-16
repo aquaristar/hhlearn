@@ -1,0 +1,41 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Dashboard -  Valid Verification Code{% endblock %}
+{% block meta_title %}Dashboard -  Valid Verification Code{% endblock %}
+{% block meta_description %}Dashboard -  Valid Verification Code{% endblock %}
+{% block meta_keywords %}Dashboard -  Valid Verification Code{% endblock %}
+{% block page_class %}page_signup_verification body-special{% endblock %}
+
+{% block content %}
+	<div class="page-err">
+		<div class="err-container">
+			<div class="text-center">
+				<div class="err-status">
+					<h1><i class="fa fa-thumbs-up"></i></h1>
+				</div>
+				<div class="err-message">
+					<h2>Account Activation Successful</h2>
+				</div>
+				<div class="err-body">
+					<a href="{% url 'home' %}" class="btn btn-lg btn-goback">
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="space"></span>
+						Go Back to Home Page
+					</a>
+					<a href="{% url 'dashboard_login' %}" class="btn btn-lg btn-goback">
+						<i class="fa fa-key"></i>
+						<span class="space"></span>
+						Go To Dashboard
+					</a>
+				</div>
+			</div>
+		</div>
+{#		<div class="footer text-center">#}
+{#			Copyright 2014 {{main.brand}}#}
+{#		</div>#}
+	</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

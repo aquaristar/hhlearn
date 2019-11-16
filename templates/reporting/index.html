@@ -1,0 +1,229 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Reporting{% endblock %}
+{% block meta_title %}Reporting{% endblock %}
+{% block meta_description %}Reporting{% endblock %}
+{% block meta_keywords %}Reporting{% endblock %}
+
+
+{% block content %}
+    <div class="page page-resources" ng-controller="profileCtrl">
+
+        <div class="row">
+            {% for category in report_categories %}
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+	                <a href="{{ category.report_url }}">
+	                <span class="box-icon" style="background:{{ category.hexcolor }}; color: white;">
+	                   {{ category.icon | safe }}
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ category.reports_count }}</p>
+
+                        <p class="text-muted"><span data-i18n="{{ category.report_category }}">{{ category.report_category }}</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!--<div class="row">
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+	                <a href="{% url 'reporting_academic' %}">
+	                <span class="box-icon bg-btn6">
+	                   <i class="fa fa-mortar-board"></i>
+	                </span>
+
+
+                    <div class="box-info">
+                        <p class="size-h2">15</p>
+
+                        <p class="text-muted"><span data-i18n="Academic">Academic</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn8">
+	                    <i class="fa fa-sitemap"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">{{ countData.human_resources }}</p>
+
+                        <p class="text-muted"><span data-i18n="Human Resources">Human Resources</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn5">
+	                    <i class="glyphicons stats"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">21</p>
+
+                        <p class="text-muted"><span data-i18n="Benchmarking">Benchmarking</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="{% url 'reporting_verified_messaging'%}">
+	                <span class="box-icon bg-btn3">
+	                    <i class="fa fa-paper-plane-o"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">7</p>
+
+                        <p class="text-muted"><span data-i18n="Verified Messaging">Verified Messaging</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+
+             <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+	                <a href="#">
+	                <span class="box-icon bg-btn11">
+	                   <i class="fa fa-flag"></i>
+	                </span>
+
+
+                    <div class="box-info">
+                        <p class="size-h2">35</p>
+
+                        <p class="text-muted"><span data-i18n="Milestones">Milestones</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn9">
+	                    <i class="fa fa-user-md"></i>
+	                </span>
+                    <div class="box-info">
+                        <p class="size-h2">8</p>
+
+                        <p class="text-muted"><span data-i18n="CE/Licensing">CE/Licensing</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn2">
+	                    <i class="fa fa-cubes"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">32</p>
+
+                        <p class="text-muted"><span data-i18n="Resources">Resources</span></p>
+                    </div>
+                   </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn4">
+	                    <i class="fa fa-gavel"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">13</p>
+
+                        <p class="text-muted"><span data-i18n="Regulations/Laws">Regulations/Laws</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                <a href="#">
+                <span class="box-icon bg-btn1">
+                    <i class="glyphicons certificate"></i>
+                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">7</p>
+
+                        <p class="text-muted"><span data-i18n="Accreditation">Accreditation</span></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                <a href="#">
+                <span class="box-icon bg-btn11">
+                    <i class="glyphicons keynote"></i>
+                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">5</p>
+
+                        <p class="text-muted"><span data-i18n="Inservices">Inservices</span></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                <a href="#">
+                <span class="box-icon bg-btn7">
+                    <i class="glyphicons random"></i>
+                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">886</p>
+                        <p class="text-muted"><span data-i18n="LMS Crosswalks">LMS Crosswalks</span></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-lg-4 col-xsm-6">
+                <div class="panel mini-box">
+                	<a href="#">
+	                <span class="box-icon bg-btn10">
+	                    <i class="fa fa-shield"></i>
+	                </span>
+
+                    <div class="box-info">
+                        <p class="size-h2">10</p>
+
+                        <p class="text-muted"><span data-i18n="Administration">Administration</span></p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>-->
+    </div>
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

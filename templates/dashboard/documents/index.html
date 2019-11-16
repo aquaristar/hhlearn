@@ -1,0 +1,746 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}Documents{% endblock %}
+{% block meta_description %}Documents{% endblock %}
+{% block meta_keywords %}Documents{% endblock %}
+
+
+{% block content %}	
+<div class="page page-documents" ng-controller="documentsController">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{%  url 'dashboard_home' %}">Dashboard</a></li>
+                <li class="active"><a href="">Documents</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="row" id="app_documents">		
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-copy"></span> Quick Documents</strong>    				
+                </div>
+                <div class="panel-body row">                	
+                    <div class="ui-tab">
+                        <tabset class="ui-tab">                        	
+                            <tab>
+                            	<tab-heading>
+                            		<i class="fa fa-thumb-tack"></i> Electronic Postings
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id = "ep_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="ePostingsSearchKeywords"
+						                               data-ng-keyup="searchEPostings()">
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[ filteredEPostings.length ]}/{[ ePostings.length ]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Official Description
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-electronically_posted_official_description'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'electronically_posted_official_description'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Language						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Size
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Info						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Revision
+						                        <!--<span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resource_revision_date_or_version'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resource_revision_date_or_version'; reverse=false"></span>-->
+						                    </div></th>
+						                    <th><div class="th">
+						                        Link						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Download						                        
+						                    </div></th>
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr ng-cloak data-ng-repeat="item in currentFilteredEPostings | orderBy:ePostingSort">
+											<td class="col-lg-5">{[ item.electronically_posted_official_description ]}</td>
+											<td class="col-lg-1 text-center">
+												<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/{[item.language.flag]}"/>
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ item.resourcesizes.size ]}
+											</td>											
+											<td class="col-lg-1 text-center">
+												<a href="#" class="icon-info-big">
+                                                    <!--<i data-toggle="modal" href="#document_info_modal" class="fa fa-info-circle" ng-click="setCurrentEPosting(item)"></i>-->
+                                                    <i href="#" class="fa fa-info-circle" ng-click="setCurrentEPosting(item)"></i>
+                                                </a>
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ item.resource_revision_date_or_version | date : "M/d/yyyy" ]}
+											</td>
+											<td class="col-lg-1 text-center">																									
+												<a href="{[ item.electronically_posted_url ]}" target="_blank"><i class="glyphicons new_window_alt icon-link"></i></a>											
+											</td>
+											<td class="col-lg-2 text-center">
+												<!--<a ng-cloak data-ng-repeat="format in post.formats" href="{{ STATIC_URL }}resources/files/{[ format.file_extension ]}/{[ post.id ]}.{[ format.file_extension ]}"  target="_blank" class="btn-documents-{[ format.file_extension ]}">-->
+												<a ng-cloak data-ng-repeat="format in item.formats" href="#" class="btn-documents-{[ format.file_extension ]}">													
+													<i class="filetype {[ format.icon.replace('filetype.','') ]}" ng-click="openDocument(item.id, format.file_extension)" ></i>
+												</a>											
+												<!--<a href="#" class="btn-documents-docx"><i class="filetype docx"></i></a>
+												<a href="#" class="btn-documents-page"><i class="filetype page"></i></a>
+												<a href="#" class="btn-documents-pdf"><i class="filetype pdf"></i></a>
+												<a href="#" class="btn-documents-rtf"><i class="filetype rtf"></i></a>-->												
+											</td>
+										</tr>										
+						            </tbody>
+						        </table>
+						        </div>
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                <!--    <span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 </span>-->
+						             </div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentEPostingPage"
+						                                total-items="filteredEPostings.length"
+						                                max-size="4"
+						                                on-select-page="selectEPostingPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>
+						        </footer>
+                            </tab>
+                            <tab>
+                            	<tab-heading>
+                            		<i class="fa fa-file-text"></i> Frequent
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id="frequent_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="frequentsSearchKeywords"
+						                               data-ng-keyup="searchFrequents()"
+						                               >
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[filteredFrequents.length]}/{[frequents.length]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+										<tr>
+											<th><div class="th">
+						                        Form Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="frequentSort = '-resource_name'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="frequentSort = 'resource_name'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Language						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Size
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="frequentSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="frequentSort = 'resourcesizes.size'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Info						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Revision						                       
+						                    </div></th>						                    
+						                    <th><div class="th">
+						                        Formats						                      
+						                    </div></th>
+										</tr>
+						            </thead>
+						            <tbody>						                
+										<tr ng-cloak data-ng-repeat="item in currentFilteredFrequents | orderBy:frequentSort">
+											<td class="col-lg-5">{[ item.resource_name ]}</td>
+											<td class="col-lg-1 text-center">
+												<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/{[item.language.flag]}"/>
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ item.resourcesizes.size ]}												
+											</td>										
+											<td class="col-lg-1 text-center">
+												<a href="#" class="icon-info-big">
+                                                    <!--<i data-toggle="modal" href="#document_info_modal" class="fa fa-info-circle" ng-click="setCurrentFrequent(item)" ></i>-->
+                                                    <i href="#" class="fa fa-info-circle" ng-click="setCurrentFrequent(item)" ></i>
+                                                </a>
+												<a href="#" class="icon-circle-puls-big"><i class="glyphicons circle_plus"></i></a>
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ item.resource_revision_date_or_version | date : "M/d/yyyy"]}
+											</td>
+											<td class="col-lg-2 text-center">
+												<!--<a ng-cloak data-ng-repeat="format in item.formats" href="{{ STATIC_URL }}resources/files/{[ format.file_extension ]}/{[ item.id ]}.{[ format.file_extension ]}"  target="_blank" class="btn-documents-{[ format.file_extension ]}" class="btn-documents-{[ format.file_extension ]}" style="color:{[ format.icon_load_color]}; :hover { color: {[format.icon_hover_color]};}">-->
+												<a ng-cloak data-ng-repeat="format in item.formats" href="#" class="btn-documents-{[ format.file_extension ]}">												
+													<i class="filetype {[ format.icon.replace('filetype.','') ]}" ng-click="openDocument(item.id, format.file_extension)" ></i>
+												</a>											
+											</td>
+										</tr>
+										
+						            </tbody>
+						        </table>
+						        </div>
+						
+						        <!--<footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 </span>
+						                </div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentFrequentPage"
+						                                total-items="filteredFrequents.length"
+						                                max-size="4"
+						                                on-select-page="selectFrequentPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>
+						        </footer>-->
+                            </tab>
+                            <tab ng-show="forms != 0">
+                            	<tab-heading>
+                            		<i class="fa fa-paste"></i> Custom Forms
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id="form_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="formsSearchKeywords"
+						                               data-ng-keyup="searchForms()"
+						                               >
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[filteredForms.length]}/{[forms.length]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Form Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="formSort = '-resource_name'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="formSort = 'resource_name'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Language						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Size
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="formSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="formSort = 'resourcesizes.size'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Info						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Revision						                       
+						                    </div></th>						                    
+						                    <th><div class="th">
+						                        Formats						                      
+						                    </div></th>
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr ng-cloak data-ng-repeat="item in currentFilteredForms | orderBy:formSort">
+											<td class="col-lg-5">{[ item.resource_name ]}</td>
+											<td class="col-lg-1 text-center">
+												<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/{[item.language.flag]}"/>
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ item.resourcesizes.size ]}
+											</td>										
+											<td class="col-lg-1 text-center">
+												<a href="#" class="icon-info-big">
+                                                    <!--<i data-toggle="modal" href="#document_info_modal" class="fa fa-info-circle" ng-click="setCurrentForm(item)" ></i>-->
+                                                    <i href="#" class="fa fa-info-circle" ng-click="setCurrentForm(item)" ></i>
+                                                </a>
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ item.resource_revision_date_or_version | date : "M/d/yyyy" ]}
+											</td>
+											<td class="col-lg-2 text-center">
+												<!--<a ng-cloak data-ng-repeat="format in item.formats" href="{{ STATIC_URL }}resources/files/{[ format.file_extension ]}/{[ item.id ]}.{[ format.file_extension ]}"  target="_blank" class="btn-documents-{[ format.file_extension ]}" class="btn-documents-{[ format.file_extension ]}" class="btn-documents-{[ format.file_extension ]}" style="color:{[ format.icon_load_color]}; :hover { color: {[format.icon_hover_color]};}">-->
+												<a ng-cloak data-ng-repeat="format in item.formats" href="#" class="btn-documents-{[ format.file_extension ]}">
+													<i class="filetype {[ format.icon.replace('filetype.','') ]}" ng-click="openDocument(item.id, format.file_extension)" ></i>
+												</a>											
+											</td>
+										</tr>							
+						            </tbody>
+						        </table>
+						        </div>
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                 <!--   <span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 </span>-->
+						                </div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentFormPage"
+						                                total-items="filteredForms.length"
+						                                max-size="4"
+						                                on-select-page="selectFormPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>
+						        </footer>
+                            </tab>
+                            <tab ng-show="publications != 0">
+                            	<tab-heading>
+                            		<i class="glyphicons address_book"></i> Custom Publications
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id="publication_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="publicationsSearchKeywords"
+						                               data-ng-keyup="searchPublications()"
+						                               >
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[filteredPublications.length]}/{[publications.length]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Publication Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="publicationSort = '-resource_name'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="publicationSort = 'resource_name'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Language						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Size
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="publicationSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="publicationSort = 'resourcesizes.size'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Info						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Revision						                       
+						                    </div></th>						                    
+						                    <th><div class="th">
+						                        Formats						                      
+						                    </div></th>
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr ng-cloak data-ng-repeat="item in currentFilteredPublications | orderBy:publicationSort">
+											<td class="col-lg-5">{[ item.resource_name ]}</td>
+											<td class="col-lg-1 text-center">
+												<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/{[item.language.flag]}"/>
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ item.resourcesizes.size ]}
+											</td>										
+											<td class="col-lg-1 text-center">
+												<a href="#" class="icon-info-big">
+                                                    <!--<i data-toggle="modal" href="#document_info_modal" class="fa fa-info-circle" ng-click="setCurrentPublication(item)"></i>-->
+                                                    <i href="#" class="fa fa-info-circle" ng-click="setCurrentPublication(item)"></i>
+                                                </a>
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ item.resource_revision_date_or_version | date : "M/d/yyyy" ]}
+											</td>
+											<td class="col-lg-2 text-center">
+												<!--<a ng-cloak data-ng-repeat="format in item.formats" href="{{ STATIC_URL }}resources/files/{[ format.file_extension ]}/{[ item.id ]}.{[ format.file_extension ]}"  target="_blank" class="btn-documents-{[ format.file_extension ]}" class="btn-documents-{[ format.file_extension ]}" class="btn-documents-{[ format.file_extension ]}" style="color:{[ format.icon_load_color]}; :hover { color: {[format.icon_hover_color]};}">-->
+												<a ng-cloak data-ng-repeat="format in item.formats" href="#" class="btn-documents-{[ format.file_extension ]}">
+													<i class="filetype {[ format.icon.replace('filetype.','') ]}" ng-click="openDocument(item.id, format.file_extension)" ></i>
+												</a>											
+											</td>
+										</tr>							
+						            </tbody>
+						        </table>
+								</div>
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                <!--    <span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 </span>-->
+						                </div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentPublicationPage"
+						                                total-items="filteredPublications.length"
+						                                max-size="4"
+						                                on-select-page="selectPublicationPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>
+						        </footer>
+                            </tab>
+                            <tab ng-show="videos != 0">
+                            	<tab-heading>
+                            		<i class="fa fa-file-video-o"></i> Custom Videos
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id="video_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="videosSearchKeywords"
+						                               data-ng-keyup="searchVideos()"
+						                               >
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[filteredVideos.length]}/{[videos.length]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Video Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="videoSort = '-resource_name'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="videoSort = 'resource_name'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Language						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Size
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="videoSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="videoSort = 'resourcesizes.size'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Info						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Revision						                       
+						                    </div></th>						                    
+						                    <th><div class="th">
+						                        Formats						                      
+						                    </div></th>
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr ng-cloak data-ng-repeat="item in currentFilteredVideos | orderBy:videoSort">
+											<td class="col-lg-5">{[ item.resource_name ]}</td>
+											<td class="col-lg-1 text-center">
+												<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/{[item.language.flag]}"/>
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ item.resourcesizes.size ]}
+											</td>										
+											<td class="col-lg-1 text-center">
+												<a href="#" class="icon-info-big">
+                                                    <!--<i data-toggle="modal" href="#document_info_modal" class="fa fa-info-circle" ng-click="setCurrentVideo(item)"></i>-->
+                                                    <i href="#" class="fa fa-info-circle" ng-click="setCurrentVideo(item)"></i>
+                                                </a>
+											</td>
+											<td class="col-lg-1 text-center">
+												{[ item.resource_revision_date_or_version | date : "M/d/yyyy" ]}
+											</td>
+											<td class="col-lg-2 text-center">
+												<!--<a ng-cloak data-ng-repeat="format in item.formats" href="{{ STATIC_URL }}resources/files/{[ format.file_extension ]}/{[ item.id ]}.{[ format.file_extension ]}"  target="_blank" class="btn-documents-{[ format.file_extension ]}" class="btn-documents-{[ format.file_extension ]}" class="btn-documents-{[ format.file_extension ]}" style="color:{[ format.icon_load_color]}; :hover { color: {[format.icon_hover_color]};}">-->
+												<a ng-cloak data-ng-repeat="format in item.formats" href="#" class="btn-documents-{[ format.file_extension ]}">
+													<i class="filetype {[ format.icon.replace('filetype.','') ]}" ng-click="openDocument(item.id, format.file_extension)" ></i>
+												</a>											
+											</td>
+										</tr>
+						            </tbody>
+						        </table>
+								</div>
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <!--<span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 </span>-->
+						                </div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentVideoPage"
+						                                total-items="filteredVideos.length"
+						                                max-size="4"
+						                                on-select-page="selectVideoPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>
+						        </footer>
+                            </tab>                            
+                        </tabset>
+                    </div>
+           		</div>
+           	</div>           
+        </div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="document_info_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	     aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">					
+					<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+									<strong>Title: </strong>
+								</h4> 
+								<span class="title">{[ currentResource.resource_name ]}</span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>		
+				</div>
+				<div class="modal-body list-info">
+					<div class="row">
+						<ul class="list-unstyled list-info">
+							<li class="ng-binding">							
+								<label>Summary: </label>										
+								<p>{[ currentResource.resource_short_description ]}</p>
+							</li>
+							<li ng-show="currentResource.resource_identifier!=undefined">
+								<label>Identifier: </label> 
+								<p>{[ currentResource.resource_identifier ]}</p>
+							</li>
+							<li>
+								<label>Revision: </label> 
+								<p>{[ currentResource.resource_revision_date_or_version | date : "M/d/yyyy" ]}</p>
+							</li>
+							<li>
+								<label>HH Updated: </label> 
+								<p>{[ currentResource.resource_last_update_date | date : "M/d/yyyy" ]}</p>
+							</li>
+							<li>
+								<label>Language: </label>
+								<p>{[ currentResource.language.language ]}</p>
+							</li>
+							<li>
+								<label>Color: </label> 
+								<p>{[ currentResource.resource_color ]}</p>
+							</li>
+							<li>
+								<label>Size: </label> 
+								<p>{[ currentResource.resourcesizes.size ]}</p>
+							</li>
+							<li ng-show="currentResource.is_video==0">
+								<label>Pages: </label>
+								<p>{[ currentResource.number_of_pages ]}</p>
+							</li>
+							<li ng-show="currentResource.is_video==1">
+								<label>Duration: </label>
+								<p>{[ currentResource.video_duration ]}</p>
+							</li>
+							<li>
+								<label>Format(s): </label>
+								<p><span ng-repeat="format in currentResource.formats">{[ format.file_extension.toUpperCase() ]}<span ng-show="$last==false">,</span>&nbsp;</span></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="modal-footer" style="margin-top: 0px;">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close
+					</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</div>
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="text/ng-template" id="my.html">
+	<div class="modal-header">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-section">
+                    <h4>
+                        <img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+                        <strong>Title: </strong>
+                    </h4>
+                    <span class="title">{[ currentResource.resource_name ]}</span>
+                </div>
+                <a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" ng-click="cancel()">X</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body list-info">
+        <div class="row">
+            <ul class="list-unstyled list-info">
+                <li class="ng-binding">
+                    <label>Summary: </label>
+                    <p>{[ currentResource.resource_short_description ]}</p>
+                </li>
+                <li ng-show="currentResource.resource_identifier!=undefined">
+                    <label>Identifier: </label>
+                    <p>{[ currentResource.resource_identifier ]}</p>
+                </li>
+                <li>
+                    <label>Revision: </label>
+                    <p>{[ currentResource.resource_revision_date_or_version | date : "M/d/yyyy" ]}</p>
+                </li>
+                <li>
+                    <label>HH Updated: </label>
+                    <p>{[ currentResource.resource_last_update_date | date : "M/d/yyyy" ]}</p>
+                </li>
+                <li>
+                    <label>Language: </label>
+                    <p>{[ currentResource.language.language ]}</p>
+                </li>
+                <li>
+                    <label>Color: </label>
+                    <p>{[ currentResource.resource_color ]}</p>
+                </li>
+                <li>
+                    <label>Size: </label>
+                    <p>{[ currentResource.resourcesizes.size ]}</p>
+                </li>
+                <li ng-show="currentResource.is_video==0">
+                    <label>Pages: </label>
+                    <p>{[ currentResource.number_of_pages ]}</p>
+                </li>
+                <li ng-show="currentResource.is_video==1">
+                    <label>Duration: </label>
+                    <p>{[ currentResource.video_duration ]}</p>
+                </li>
+                <li>
+                    <label>Format(s): </label>
+                    <p><span ng-repeat="format in currentResource.formats">{[ format.file_extension.toUpperCase() ]}<span ng-show="$last==false">,</span>&nbsp;</span></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer" style="margin-top: 0px;">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close
+        </button>
+    </div>
+</script>
+
+{% endblock %}

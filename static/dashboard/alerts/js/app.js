@@ -1,0 +1,1 @@
+angular.module('alerts',['ui.bootstrap']);

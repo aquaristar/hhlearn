@@ -1,0 +1,116 @@
+{% extends "website/_page.html" %}
+{% block title %}HHLEARN - Home{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		<div class="row">
+			<h1 class="span12">Newsletter Signup</h1>
+
+			<div class="span12">
+				<ul class="breadcrumb">
+					<li><a href="#">Home</a> <span class="divider">/</span></li>
+					<li class="active">Newsletter</li>
+				</ul>
+			</div>
+			<!-- =========================Start Col left section ============================= -->
+			<aside class="span4 ">
+
+				<div class="box-style-1 ribbon borders">
+					<span class="date"><i class="icon-calendar-empty"></i> 25 June 2013</span>
+					<h4><a href="#">Athletics program exceeding</a></h4>
+
+					<p>Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei.
+						Saepe tantas ocurreret duo ea, has facilisi vulputate an. </p>
+				</div>
+
+
+				<div class="box-style-1 borders">
+					<span class="date"><i class="icon-calendar-empty"></i> 25 June 2013</span>
+					<h4><a href="#">Native American documentary</a></h4>
+
+					<p>Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei.
+						Saepe tantas ocurreret duo ea, has facilisi vulputate an. </p>
+				</div>
+			</aside>
+
+			<!-- =========================Start Col right section ============================= -->
+			<section class="span8">
+				<div class="col-right">
+					<p class="">
+						Please provide us with your name so we can customize our content to
+						better meet your needs.
+					</p>
+					<hr>
+					<div id="message-contact"></div>
+					<form method="post" action="assets/contact.php" id="contactform">
+						<div class="row">
+							<div class="span3">
+								<label>First Name
+									<span class="required">* </span></label>
+								<input rel="tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Enter your frst name" type="text" class="span3 ie7-margin" id="name_contact">
+							</div>
+							<div class="span3">
+								<label>Last name
+									<span class="required">* </span></label>
+								<input rel="tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Enter your last  name" type="text" class="span3 ie7-margin" id="lastname_contact">
+							</div>
+						</div>
+						<div class="row">
+							<div class="span3">
+								<label>Email <span class="required">* </span></label>
+								<input placeholder="example@hhlearn.com" type="email" id="email_contact" class="span3 ie7-margin">
+							</div>
+
+						</div>
+						<div class="row">
+							<div class="span12">
+								<label class="checkbox">
+									<input type="checkbox"> I agree to receive
+									HHLEARN's newsletter.
+								</label>
+							</div>
+
+						</div>
+
+						<div class="row">
+							<div class="button-align span3">
+								<input type="submit" id="submit-contact" value="Submit" class="pull-left button_medium">
+							</div>
+						</div>
+
+					</form>
+
+					<hr>
+
+					<p class="">
+						When you signup for our mailing list, you will begin to receive our
+						newsletter that contains
+						inportant information that pertains to the home health care industry.
+						Our newsletter is a
+						professional resource and contains no advertisements. You may also
+						receive relevant information
+						about our events and products.
+					</p>
+
+					<hr>
+
+					<p class="">
+						<i>We never sell our email addresses to 3rd parties and you can
+							unsubscribe at any time.</i>
+					</p>
+				</div>
+
+			</section>
+
+		</div>
+		<!-- end row-->
+	</div> <!-- end container-->
+
+{% endblock %}

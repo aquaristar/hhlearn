@@ -1,0 +1,91 @@
+{% extends "website/core_shell.html" %}
+{% block title %}JonesBoard - Register{% endblock %}
+{% block meta_title %}JonesBoard - Register{% endblock %}
+{% block meta_description %}JonesBoard - Register{% endblock %}
+{% block meta_keywords %}JonesBoard - Register{% endblock %}
+
+{% block extra_css %}
+	<link href="{{ STATIC_URL }}website/register/css/style.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+	<div class="form_register" id="form_register">
+
+		{{ form.field_errors }}
+		<form class="form" method="post">
+
+			<div class="row">
+				<div class="form-group col-lg-6">
+					<label data-toggle="tooltip" title="{{ form.membership_type.errors|first }}" class="" for="membership_type">
+						<h6>Membership Type</h6></label>
+
+					<div class="membership_type">
+						<select name="membership_type" class="mbn">
+
+							<option value="0" {% if form.data.membership_type == "0" %}selected{% endif %}>
+								Membership Type
+							</option>
+							<option value="Vendor" {% if form.data.membership_type == "Vendor" %}selected{% endif %}>
+								Vendor
+							</option>
+							<option value="Home Owner" {% if form.data.membership_type == "Home Owner" %}selected{% endif %}>
+								Home Owner
+							</option>
+
+
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group col-lg-6 {% if form.user_name.errors %}has-error{% endif %}">
+					<label class="" for="user_name"><h6>Username</h6></label>
+					<input data-bind="event: { focus: userKeypress }" data-toggle="tooltip" title="{{ form.user_name.errors|first }}" value="{{ form.data.user_name }}" name="user_name" type="text"
+					       class="form-control flat input-hg " autocomplete="0" placeholder="Username">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="form-group col-lg-6 {% if form.first_name.errors %}has-error{% endif %}">
+					<label class="" for="first_name"><h6>First Name</h6></label>
+					<input data-bind="event: { focus: userKeypress }" data-toggle="tooltip" title="{{ form.first_name.errors|first }}" value="{{ form.data.first_name }}" name="first_name" type="text"
+					       class="form-control flat input-hg" autocomplete="0" placeholder="First Name">
+				</div>
+				<div class="form-group col-lg-6 {% if form.last_name.errors %}has-error{% endif %}">
+					<label class="" for="last_name"><h6>Last Name</h6></label>
+					<input data-bind="event: { focus: userKeypress }" data-toggle="tooltip" title="{{ form.last_name.errors|first }}" value="{{ form.data.last_name }}" name="last_name" type="text"
+					       class="form-control flat input-hg" id="last_name" autocomplete="0" placeholder="Last Name">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group col-lg-6 {% if form.email_address.errors %}has-error{% endif %}">
+					<label class="" for="email_address"><h6>E-mail</h6></label>
+					<input data-bind="event: { focus: userKeypress }" data-toggle="tooltip" title="{{ form.email_address.errors|first }}" value="{{ form.data.email_address }}" name="email_address" type="text"
+					       class="form-control flat input-hg" autocomplete="0" placeholder="E-mail">
+				</div>
+				<div class="form-group col-lg-6 {% if form.register_password.errors %}has-error{% endif %}">
+					<label class="" for="register_password"><h6>Password</h6></label>
+					<input data-bind="event: { focus: userKeypress }" data-toggle="tooltip" title="{{ form.register_password.errors|first }}" value="{{ form.data.register_password }}" name="register_password" type="password" class="form-control flat input-hg" id="register_password" autocomplete="0"
+					       placeholder="Password">
+				</div>
+			</div>
+
+
+			<div class="homepage_signup_buttons">
+				<div class="row">
+					<div class="col-lg-12">
+						<button type="submit" class="btn btn-info btn-hg btn-block">Register
+						</button>
+					</div>
+				</div>
+			</div>
+			{% csrf_token %}
+		</form>
+
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="{{ STATIC_URL }}website/register/js/register.js"></script>
+{% endblock %}

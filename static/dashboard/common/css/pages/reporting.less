@@ -1,0 +1,154 @@
+.super-mini-box {
+  padding: 10px;
+  min-height: 53px;
+  .box-icon {
+    display: block;
+    float: left;
+    margin: 0 15px 10px 0;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 18px;
+  }
+  .box-info p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 32px;
+  }
+}
+
+
+.table-report-compliance {
+  text-align: center;
+  @media (max-width: 984px) {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+  & > thead > tr > th {
+     position: relative;     
+     border-left: 1px solid #fff;
+     background: #0069B4;
+  }
+  & thead th > .th {    
+    color: white;
+    background: #0069B4;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  & > tbody > tr.first-line > td{
+    //color: black;
+    //font-weight: bold;
+    background-color: #f9f9f9;
+  }  
+}
+
+.reporting-pie-container{
+  width: 300px;
+  position: relative;
+  margin: 0 auto;
+  .easypiechart {
+    float: left;
+  }
+  .ticks {
+    position: absolute;
+    top: 70px;
+    left: 190px;
+    width: 120px;
+    .item{
+      text-align: left;
+      span.item-box{
+        display:inline-block;
+        width:20px;
+        height:20px;        
+        margin-right: 10px;
+      }      
+      span.item-label{
+        line-height: 20px;
+        vertical-align: top;
+      }
+      span.item-box.completed{
+        background: #00abdf;
+      }
+      span.item-box.incompleted{
+        background: #ededed;
+      }
+      span.item-box.ontime{
+        background: #f39200;
+      }
+    }
+    
+  }
+}
+
+.table-report-messagehistory {
+  text-align: center;
+  @media (max-width: 984px) {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+  & > thead > tr > th {
+     position: relative;     
+     border-left: 1px solid #fff;
+     background: #3B8221;
+  }
+  & thead th > .th {    
+    color: white;
+    background: #3B8221;
+    text-align: center;
+    text-transform: uppercase;
+    .popover{    
+      font-size: 14px;
+      font-weight: normal;
+      text-transform: none;
+    }
+  }  
+  
+  & > tbody > tr.first-line > td{
+    //color: black;
+    //font-weight: bold;
+    background-color: #f9f9f9;
+  }  
+}
+
+.table-report {
+  & thead th{
+    background: #f6f6f6;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  & thead th > .red {
+    color: white;
+    background: #E30613;
+  }
+  & thead th > .blue {
+    color: white;
+    background: #00ABDF;
+  }
+
+  & thead th > .back1 {
+    color: white;
+    background: #593A84;
+  }
+}
+
+.table-report-no-border {
+  & tbody > tr > td {
+    border: 0;
+    border-left: 1px solid #ddd;
+    padding: 0 10px 0 10px;
+    text-align: left;
+  }
+
+  & tbody > tr:first-child td {
+    padding-top: 10px;
+  }
+  & tbody > tr:last-child td {
+    padding-bottom: 10px;
+  }
+}

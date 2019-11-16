@@ -1,0 +1,252 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Department Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="dashboard_admin_setup" id="step_department">
+
+	<form method="post" action="{{ request.path }}">
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="heading">
+				<h4>Department Setup</h4>
+
+				<p>
+					<a href="{% url 'dashboard_admin_setup' %}">Home</a>
+					<i class="fa fa-angle-double-right"></i>
+					Welcome
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/3.1.4.jpg">
+
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup_header_info_bar pam">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+						Department Setup
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+						Step 3.1
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-progress">
+				<div class="progress">
+					<div class="progress-bar" style="width: 20%;">Organizational Setup
+						(100%)
+					</div>
+					<div class="progress-bar progress-bar-warning" style="width: 20%;">
+						Location Setup (100%)
+					</div>
+					<div class="progress-bar progress-bar-danger" style="width: 20%;">
+						Department Setup (10%)
+					</div>
+					<div class="progress-bar progress-bar-success" style="width: 20%;">
+						Region Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-info" style="width: 20%;">Job
+						Titles Setup (0%)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-help text-right">
+				<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i>
+					Watch Me</a>
+			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">HHLEARN -
+								Setup Help Video</h4>
+						</div>
+						<div class="modal-body">
+							<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Close
+							</button>
+
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+		</div>
+
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-info-text text-left">
+
+
+				{% if organization.total_number_of_locations > 1 %}
+					<p>
+						Below you will see a list of all of your locations. Please select which
+						locations you would like to add departments to. For the locations you
+						answer “Yes,” you will be asked to provide the number of departments you
+						would like to add. Please enter the number of departments for each and
+						click the “Save & Next” button to continue. You will not be allowed to
+						change the number of departments once they are entered in this setup
+						process. You will be able to modify, add, and delete departments in the
+						Admin area once the setup process has been completed.
+					</p>
+					<p>
+						We will allow you to further define your organization (e.g., regions) in
+						the upcoming pages.
+					</p>
+				{% endif %}
+
+				{% if organization.total_number_of_locations == 1 %}
+
+					<p>
+						Below you see the location you have entered into HHLEARN. Please enter
+						the number of departments you would like to load and click the “Save &
+						Next” button to continue. You will not be allowed to change the number
+						of departments once they are entered in this setup process. You will be
+						able to modify, add, and delete departments in the Admin area once the
+						setup process has been completed.
+					</p>
+					<p>
+						We will allow you to further define your organization (e.g.,
+						regions) in
+						the upcoming pages.
+					</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	{{ formset.management_form }}
+	{% for form in formset %}
+
+		{{ form.id }}
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<div class="form-group  {% if form.short_name.errors %}has-error{% endif %}">
+					<label for="short_name">
+						{{ form.short_name.label }}</label>
+					<span class="label label-important">{{ form.short_name.errors|first }}</span>
+					{{ form.short_name }}
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="form-group   {% if form.departments_enabled.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<label for="use_electronic_posting">{{ form.departments_enabled.label }}</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+							<span class="label label-important">{{ form.departments_enabled.errors|first }}</span>
+							{{ form.departments_enabled }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="form-group   {% if form.total_departments.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<label for="use_electronic_posting">{{ form.total_departments.label }}</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+							<span class="label label-important">{{ form.total_departments.errors|first }}</span>
+							{{ form.total_departments }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+		<hr/>
+	{% endfor %}
+
+	<div class="row mtl">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-info-text text-left">
+
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+						<p class="text-left">
+							<a href="{% url 'dashboard_admin_setup_department_3' %}" class="btn btn-info btn-wide setup-back-button hidden-print">Back</a>
+						</p>
+
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+						<p class="text-right">
+							<button type="submit" class="btn btn-info btn-wide setup-next-button hidden-print">
+								Save
+								& Next
+							</button>
+
+						</p>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	</form>
+
+	</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/department/js/department.js"></script>
+
+{% endblock %}

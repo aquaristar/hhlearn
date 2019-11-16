@@ -1,0 +1,367 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Organizational Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+<div class="page page-admin-setup">
+	<div class="row">
+		 <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Administrator</a></li>
+                <li><a href="">Setup</a></li>
+                <li class="active"><a href="">Step1</a></li>
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-cogs"></span>&nbsp;&nbsp;Step&nbsp;&nbsp;1.3</strong>    				
+                </div>
+                <div class="panel-body row">
+					<div class="col-lg-12" style="padding: 0px; margin-top: -15px; ">
+						<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/01.jpg">					
+						<div class="setup-progress">
+							<div class="progress">
+								<div class="progress-bar progress1" style="width: 20%;">Organizational Setup
+									(30%)
+								</div>
+								<div class="progress-bar progress2" style="width: 20%;">
+									Location Setup (0%)
+								</div>
+								<div class="progress-bar progress3" style="width: 20%;">
+									Department Setup (0%)
+								</div>
+								<div class="progress-bar progress4" style="width: 20%;">
+									Region Setup (0%)
+								</div>
+								<div class="progress-bar progress5" style="width: 20%;">Job
+									Titles Setup (0%)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="post" action="{{ request.path }}" id="organization" ng-controller="OrganizationForm as settings">
+						{% csrf_token %}			
+						<div class="setup-help text-right">
+							<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i> Watch Me</a>
+						</div>
+						
+						<div class ="col-lg-12">
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+									<div class="setup-info-text text-left">
+										<p>
+											The federal government has programs that impact each healthcare
+											organization. Please provide your answers as they pertain to your
+											<strong>entire</strong> organization. Further customization will be allowed in
+											later pages.
+										</p>
+						
+										<p>
+											The federal government now allows some of the required documents that
+											are to be posted at each organization to be provided to employees
+											via electronic access. This means that instead of posting a document
+											on a wall, HHLEARN will provide access to the documents directly from
+											the employee's HHLEARN Dashboard.
+										</p>
+						
+						
+									</div>
+								</div>
+							</div>
+						
+						
+							<div class="row">
+						
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-12 col-md-12 col-lg-12">
+												<label for="is_electronic_postings_enabled">Do you want to use this
+													federal
+													electronic postings feature in your organization?</label>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+												<label class="switch switch-iphone">
+													<input type="checkbox" 
+														name="is_electronic_postings_enabled" {% if form.data.is_electronic_postings_enabled|add:0 == 1 %}checked="true"{% endif %} 
+														ng-init="settings.is_electronic_postings_enabled={{ form.data.is_electronic_postings_enabled }}" 
+														ng-model="settings.is_electronic_postings_enabled">
+													<i></i>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+						
+							<div class="row"   ng-show="settings.is_electronic_postings_enabled==1">
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-12 col-md-12 col-lg-12">
+												<label for="is_electronic_postings_consistent">Do you want the use of
+													these
+													electronic postings to be consistently applied to every aspect
+													of your organization, e.g, region, location, and
+													department?</label>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+												<label class="switch switch-iphone">
+													<input type="checkbox" 
+														name="is_electronic_postings_consistent" {% if form.data.is_electronic_postings_consistent|add:0 == 1 %}checked="true"{% endif %}>
+													<i></i>
+												</label>									
+											</div>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+						
+							{% if employee_sanction_monitoring == True %}
+						
+							<div class="row">
+								<div class="col-sm-12 col-md-12 col-md-1 col-lg-12">
+									<div class="setup-info-text text-left">
+										<p>
+											For Professional version subscribers, the next federal program that HHLEARN can assist your organization with is checking the List of Excluded Individuals and 
+ Entities (LEIE) database. This is a list of individuals and organizations that have been excluded from working for any company that bills Medicare. We check this list 
+ every night for the individuals that were added to the system that day and once every quarter. We then provide you with a report that can be used to prove your 
+ compliance with this regulation (You can even run this report at any time if you have the Professional version.).
+
+										</p>
+						
+										<p>
+											If you opt to utilize this feature, it requires that you provide a valid social security 
+											number for each employee placed on the system. Social security numbers, which we encrypt with
+											<a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank"> 256 AES</a> (advanced encryption standard) and hash and salt 
+											<i popover='The best way to protect sensitive data is to employ salted hashing. Hash algorithms are one-way functions. They turn any amount of data into a fixed-length "fingerprint" that cannot be reversed. They also have the property that if the input changes by even a tiny bit, the resulting hash is completely different. To add another layer of security, we randomize the hashes by appending or prepending a random string, called a salt, to the data before hashing.' popover-trigger="mouseenter" popover-title="Hash and Salted" class="fa fa-info-circle ng-scope" style="color: #46a5cf;"></i>
+											 them, are the only way to validate that a person with a specific name is not on the list. 
+(Any other site that is providing this service without valid social security numbers is providing your organization with incorrect and misleading information.)
+										</p>
+						
+									</div>
+								</div>
+							</div>
+						
+						
+						
+							<div class="row">
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-12 col-md-12 col-lg-12">
+												<label for="is_use_ssn_for_user">Would you like to use
+													this
+													feature and provide a social security number for each user
+													placed on HHLEARN?</label>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+												<label class="switch switch-iphone">
+													<input type="checkbox" 
+														name="is_use_ssn_for_user" {% if form.data.is_use_ssn_for_user|add:0 == 1 %}checked="true"{% endif %}>
+													<i></i>
+												</label>												
+											</div>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+						
+							{% endif %}
+						
+							<div class="row">
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<p>
+										Some federal laws/regulations are dependent on the number of employees in your <strong>entire</strong>
+										organization, whether a small business or a multi-national company. We need to know
+										approximately the number of employees in your <strong>entire</strong> organization.
+									</p>
+								</div>
+							</div>
+						
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+									<div class="form-group  {% if form.total_number_of_employees.errors %}has-error{% endif %}">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+												<label for="total_number_of_employees">Total number of organization-wide
+													employees.*</label>
+												<span class="label label-important">{{ form.total_number_of_employees.errors|first }}</span>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+												<div class="input-group ui-spinner" data-ui-spinner="">
+							                        <span class="input-group-btn">
+							                            <button type="button" class="btn btn-primary" data-spin="up">
+							                                <i class="fa fa-plus"></i>
+							                            </button>
+							                        </span>
+							                        <input type="text" name="total_number_of_employees" class="spinner-input form-control" value="{{ form.data.total_number_of_employees }}">
+							                        <span class="input-group-btn">
+							                            <button type="button" class="btn btn-default" data-spin="down">
+							                                <i class="fa fa-minus"></i>
+							                            </button>
+							                        </span>
+							                    </div>												
+											</div>											
+										</div>
+									</div>
+								</div>
+						
+							</div>
+						
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<p>
+										When loading users into the system, would you like the option to store a
+										company-specific employee number? (If you select "yes" then it will be required for all
+										users.)						
+									</p>
+								</div>
+							</div>
+						
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+												<label for="is_employee_specific_id">Use employee-specific
+													ID?</label>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+												<label class="switch switch-iphone">
+													<input type="checkbox" 
+														name="is_employee_specific_id" {% if form.data.is_employee_specific_id|add:0 == 1 %}checked="true"{% endif %}>
+													<i></i>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+							
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<p>
+										Every user on the system has a My Profile page that has a place for an image of themeselves.
+										WE can allow the users to upload picutres for their profiles, or restrict that feature so only administrators and managers have that priviledge. 					
+									</p>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+												<label for="is_employee_specific_id">Can employees load My Profile pictures?</label>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+												<label class="switch switch-iphone">
+													<input type="checkbox" 
+														name="employee_load_profile_picture" >
+													<i></i>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+						
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+									<div class="form-group  {% if form.total_number_of_locations.errors %}has-error{% endif %}">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+												<label for="total_number_of_locations">Including the one location we
+													have already loaded for you, how many total locations will you
+													be adding?*</label>
+												<span class="label label-important">{{ form.total_number_of_locations.errors|first }}</span>
+											</div>
+										</div>
+						
+										<div class="row">											
+											<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+												<div class="input-group ui-spinner" data-ui-spinner="">
+							                        <span class="input-group-btn">
+							                            <button type="button" class="btn btn-primary" data-spin="up">
+							                                <i class="fa fa-plus"></i>
+							                            </button>
+							                        </span>
+							                        <input type="text" name="total_number_of_locations" class="spinner-input form-control" value="{{ form.data.total_number_of_locations }}">
+							                        <span class="input-group-btn">
+							                            <button type="button" class="btn btn-default" data-spin="down">
+							                                <i class="fa fa-minus"></i>
+							                            </button>
+							                        </span>
+							                    </div>												
+											</div>											
+										</div>
+										
+									</div>
+								</div>
+						
+							</div>
+							
+							<hr>
+							
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<p class="text-center">
+										<a href="{% url 'admin_setup_organization_1_2' %}" class="btn btn-blue btn-wide setup-back-button hidden-print">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">Save
+											& Next
+										</button>
+									</p>								
+								</div>
+							</div>
+							
+						</div>					
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/organization/js/organization.js"></script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "website/_page.html" %}
+{% block title %}HHLEARN - Home{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+	<div id="login">
+		<h1>HHLEARN Login</h1>
+
+		<form action="/auth/" method="post">
+			{% csrf_token %}
+			<span style="color:red">{{ message }}</span>
+			<table>
+				<tr>
+					<th><label class="required" for="signin_username">Username</label></th>
+					<td><input type="text" name="username" id="signin_username"/></td>
+				</tr>
+				<tr>
+					<th><label class="required" for="signin_password">Password</label></th>
+					<td><input type="password" name="password" id="signin_password"/></td>
+				</tr>
+			</table>
+			<input type="submit" name="login" value="Login"/>
+		</form>
+	</div>
+{% endblock %}

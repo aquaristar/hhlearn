@@ -1,0 +1,332 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Reporting- Regulation/Law By Resource{% endblock %}
+{% block meta_title %}Reporting- Regulation/Law By Resource{% endblock %}
+{% block meta_description %}Reporting- Regulation/Law By Resource{% endblock %}
+{% block meta_keywords %}Reporting- Regulation/Law By Resource{% endblock %}
+
+
+{% block content %}
+<div class="page page-resources" ng-controller="profileCtrl">
+	<div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{% url 'reporting_home' %}">Reporting</a></li>
+                <li><a href="{% url 'reporting_regs_and_laws' %}">Regulations/Laws</a></li>
+                <li class="active"><a href="">Regulation/Law By Resource</a></li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default table-dynamic">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-8 col-lg-8 text-left">
+                            <strong><span class="fa fa-cubes"></span>&nbsp;&nbsp;Regulation/Law By Resource</strong>
+                        </div>
+                        <div class="col-xs-4 col-lg-4 text-right">
+                            <strong>Print Report &nbsp;&nbsp;<span class="fa fa-print"></span></strong>
+                        </div>
+                    </div>
+                </div>
+				<div class="panel-body">
+                    {% if agencies %}
+                    <div class="row" style="margin-bottom:40px;">
+                        <div class="col-lg-12 text-center">
+                            <h3><strong> Regulation/Law By Resource</strong></h3>
+                            <form name="frmReport" action="{% url 'reporting_regs_and_laws_resource' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-6 col-md-6 col-lg-6 form-group">
+                                    <div class="form-controls">
+                                        <span class="ui-select">
+                                            <select name="org" class="select-block " id="orgs_selectpicker" onchange="selectOrg()">
+                                                <option value="" selected="selected">Select Organization</option>
+                                                {% for agency in agencies %}
+                                                    <option value="{{ agency.id }}">{{ agency.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-6 col-md-6 col-lg-6 form-group">
+                                    <div class="form-controls">
+                                        <span class="ui-select" id="regs_select">
+                                            <select name="reg" class="select-block ">
+                                                <option value="" selected="selected">Select Regulation/Law</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn bg-btn2 btn-lg">Report</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    {% else %}
+
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h3><strong> Regulation/Law By Resource:</strong>&nbsp;as of {{ cur_date | date:"F d, Y"}}</h3>
+                            <p>The following HHLEARN resources are provided to assist with, meet, or exceed the regulation/law below.</p>
+                        </div>
+                    </div>
+                    <div class="callout callout-blue">
+                        <h4>{{ regulation.reg_code }}</h4>
+                        <p>{{ regulation.reg_title }}</p>
+                    </div>
+
+                    {% if courses %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-striped table-report">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">
+                                                <div class="th blue" style="text-align:left;">
+                                                    <span class="fa fa-list"></span>
+                                                    &nbsp;&nbsp;Courses
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="th">Course ID</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Course Title</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Hours</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Updated Date</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for course in courses %}
+                                        <tr>
+                                            <td class="col-xs-2 col-lg-2">
+                                                {{ course.number }}
+                                            </td>
+                                            <td class="col-xs-6 col-lg-6 text-left">
+                                                {{ course.name }}
+                                            </td>
+                                            <td class="col-xs-2 col-lg-2">
+                                                {{ course.hours }}
+                                            </td>
+                                            <td class="col-xs-2 col-lg-2">
+                                                {{ course.date_last_updated | date:"m/d/Y" }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="callout callout-yellow">
+                            <h4>NOTE:</h4>
+                            <p>There are currently no <b>courses</b> associated with this regulatory/law.</p>
+                        </div>
+                    {% endif %}
+
+                    {% if forms %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-striped table-report">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">
+                                                <div class="th blue" style="text-align:left;">
+                                                    <span class="fa fa-file-text"></span>
+                                                     &nbsp;&nbsp;Forms
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="th">Form Title</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Revision</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Updated Date</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for form in forms %}
+                                        <tr>
+                                            <td class="col-xs-8 col-lg-8 text-left">
+                                                {{ form.resource_name }}
+                                            </td>
+                                            <td class="col-xs-2 col-lg-2">
+                                                {{ form.resource_revision_date_or_version | date:"m/d/Y" }}
+                                            </td>
+                                            <td class="col-xs-2 col-lg-2">
+                                                {{ form.resource_last_update_date | date:"m/d/Y" }}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="callout callout-yellow">
+                            <h4>NOTE:</h4>
+                            <p>There are currently no <b>forms</b> associated with this regulatory/law.</p>
+                        </div>
+                    {% endif %}
+
+                    {% if publications %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-striped table-report">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">
+                                                <div class="th blue" style="text-align:left;">
+                                                    <span class="glyphicons book"></span>
+                                                     &nbsp;&nbsp;Publications
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="th">Publication Title</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Revision</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Updated Date</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for publication in publications %}
+                                        <tr>
+                                            <td class="col-xs-8 col-lg-8 text-left">
+                                                {{ publication.resource_name }}
+                                            </td>
+                                            <td class="col-xs-2 col-lg-2">
+                                                {{ publication.resource_revision_date_or_version | date:"m/d/Y" }}
+                                            </td>
+                                            <td class="col-xs-2 col-lg-2">
+                                                {{ publication.resource_last_update_date | date:"m/d/Y" }}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="callout callout-yellow">
+                            <h4>NOTE:</h4>
+                            <p>There are currently no <b>publications</b> associated with this regulatory/law.</p>
+                        </div>
+                    {% endif %}
+
+
+                    {% if videos %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-striped table-report">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">
+                                                <div class="th blue" style="text-align:left;">
+                                                    <span class="glyphicons film"></span>
+                                                     &nbsp;&nbsp;Videos
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="th">Video Title</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Duration</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Updated Date</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for video in videos %}
+                                        <tr>
+                                            <td class="col-xs-8 col-lg-8 text-left">
+                                                {{ video.resource_name }}
+                                            </td>
+                                            <td class="col-xs-2 col-lg-2">
+                                                {{ video.video_duration | date:"H:i:s" }}
+                                            </td>
+                                            <td class="col-xs-2 col-lg-2">
+                                                {{ video.resource_last_update_date | date:"m/d/Y" }}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="callout callout-yellow">
+                            <h4>NOTE:</h4>
+                            <p>There are currently no <b>videos</b> associated with this regulatory/law.</p>
+                        </div>
+                    {% endif %}
+
+                    <div class="row" style="margin-top:30px; font-size: 12px;">
+                        <p class="text-center">{{ copyright_code | safe }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+    {% if agencies %}
+    <script type="text/javascript">
+        var regs = {};
+        var html = '';
+        {% for agency in agencies %}
+            html = '<select name="reg" class="select-block" id="selectpicker">';
+            html += '<option value="" selected="selected">Select Regulation/Law</option>';
+            {% for regulation in agency.sorted_regulations %}
+            html += '<option value="{{ regulation.reg_code }}">{{ regulation.reg_code }}</option>';
+            {% endfor %}
+            html += '</select>';
+            regs[{{ agency.id }}] = html;
+        {% endfor %}
+
+        function selectOrg() {
+            var org = $('#orgs_selectpicker').val();
+            var html = regs[org];
+            console.log(html);
+            $('#regs_select').html(html);
+        }
+
+    </script>
+    {% endif %}
+{% endblock %}

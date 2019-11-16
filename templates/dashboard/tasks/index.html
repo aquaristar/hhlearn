@@ -1,0 +1,209 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+<div class="page page-tasks" ng-controller="tasksController">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{% url 'dashboard_home' %}">Dashboard</a></li>
+                <li class=""><a href="{% url 'dashboard_tasks' %}">Tasks</a></li>                
+            </ol>
+        </div>
+    </div>
+    
+        <div class="row">
+        <div class="col-md-12">
+            <section class="task-container">
+				<div class="row" style="margin-bottom: 10px;">
+                    <div class="col-sm-4 col-lg-4 col-md-6 col-xs-6">
+                        <form>
+                            <input type="text"
+                                   placeholder="search"
+                                   class="form-control"
+                                   data-ng-model="taskSearchKeywords"
+                                   data-ng-keyup="searchTask()">
+                        </form>
+                    </div>
+                    <div class="col-sm-3 col-xs-6 filter-result-info">
+	                    <span>
+	                        Showing {[ filteredTasks.length ]}/{[ tasks.length ]} entries
+	                    </span>
+                    </div>
+                </div>
+                
+                <form data-ng-submit="add()" class="add-task">
+                	<div class="col-lg-8 col-md-8 col-sm-8" style="padding-left: 0px; margin-bottom:10px;">
+                    <input type="text"
+                           placeholder="What needs to be done?"
+                           class="form-control"
+                           data-ng-model="newTask"
+                           autofocus>                    
+                    <a type="submit" class="submit-button" data-ng-click="add()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="padding-left: 0px; margin-bottom:10px;">
+	                    <div class="input-group ui-datepicker">
+	                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                        <input type="text" 
+	                               class="form-control"
+	                               datepicker-popup="{[format]}"
+	                               ng-model="due_date"
+	                               is-open="opened"
+	                               min="minDate"
+	                               datepicker-options="dateOptions" 
+	                               date-disabled="disabled(date, mode)"
+	                               ng-required="true" 
+	                               close-text="Close">
+	                    </div>                    
+                    </div>
+                </form>
+
+                <section>
+                    <ul class="filters list-inline nav nav-tabs">
+                        <li data-ng-class="{active: statusFilter == ''}">
+                            <a href="" 
+                               data-toggle="tab"
+                               data-ng-click="filter('all')"
+                               >All</a>
+                        </li>
+                        <li data-ng-class="{active: statusFilter.completed == false }">
+                            <a href=""
+                               data-toggle="tab"
+                               data-ng-click="filter('active')"
+                               >Active</a>
+                        </li>
+                        <li data-ng-class="{active: statusFilter.completed == true }">
+                            <a href=""
+                               data-toggle="tab"
+                               data-ng-click="filter('completed')"
+                               >Completed</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section  data-ng-cloak>
+                	<span class=""></span>
+                    <ul class="task-list list-unstyled">
+                        <li data-ng-repeat="task in currentFilteredTasks | filter:statusFilter track by $index" 
+                            data-ng-class="{completed: task.completed, editing: task == editedTask}" >
+                            <span class="view" data-ng-class="{overdue: task.overdue}">
+                                <input type="checkbox"
+                                       class="toggle-task"
+                                       data-ng-model="task.completed"
+                                       data-ng-change="completed(task)">
+                                <label data-ng-dblclick="edit(task)">
+                                	<span class="col-sm-7 col-lg-7 col-md-7 col-xs-12">{[task.tasks_description]}</span>
+                                	<span class="col-sm-2 col-lg-2 col-md-2 col-xs-12">{[task.assigned_user_name]}</span>
+                                	<span class="col-sm-2 col-lg-2 col-md-2 col-xs-12">{[task.date_due | date : "M/d/yyyy"]}</span>
+                                </label>
+                                
+                                <span class="glyphicon glyphicon-pencil"
+                                	  data-ng-hide="task.assigned_by_user!=user && task.assigned_by_user != undefined"
+                                      data-ng-click="edit(task)"></span>
+                                <span class="glyphicon glyphicon-remove"
+                                      data-ng-click="remove(task, $index)"
+                                      data-ng-hide="task.assigned_by_user!=user && task.assigned_by_user != undefined"
+                                      ></span>
+                            </span>
+                            <div class="edit-container">
+	                            <form data-ng-submit="doneEditing(task, $index)">
+	                            	<div class="col-lg-8 desc-wrapper">
+		                                <input type="text"
+		                                       class="edit form-control"
+		                                       data-ng-trim="false"
+		                                       data-ng-model="task.tasks_description"
+		                                       data-task-focus="task == editedTask"		                                       
+		                                       >
+	                                </div>
+	                                <div class="col-lg-4 col-md-4 col-sm-4 date-wrapper">
+					                    <div class="input-group ui-datepicker">
+					                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                        <input type="text" 
+					                               class="form-control edit"
+					                               datepicker-popup="{[format]}"
+					                               data-ng-model="task.date_due"
+					                               data-ng-disabled="task.assigned_by_user!=user && task.assigned_by_user != undefined"					                               
+					                               is-open="opened"
+					                               min="minDate"
+					                               max="'2015-06-22'"
+					                               datepicker-options="dateOptions" 
+					                               date-disabled="disabled(date, mode)"
+					                               ng-required="true" 
+					                               close-text="Close">					                        
+					                    </div>
+					                    <button class="btn btn-info btn-done" ng-click="doneEditing(task, $index)">Ok</button>              
+				                    </div>			                    		                    
+	                            </form>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <footer class="task-footer">
+                    <ul class="list-inline clearfix">
+                        <li class="first-item">
+                            <input type="checkbox"
+                                   id="toggle-all"
+                                   data-ng-model="allChecked"
+                                   data-ng-change="markAll(allChecked)">
+                            <label for="toggle-all">Mark all as done</label>
+                        </li>
+                        <li class="text-center">
+                            <span>
+                                <strong>{[remainingCount]}</strong>
+                                <span class="text-muted"
+                                      data-ng-pluralize count="remainingCount"
+                                      when="{one: 'item left', other: 'items left'}"></span>
+                            </span>                            
+                        </li>
+                        <li class="text-right">
+                            <span class="clear-completed"
+                                  data-ng-click="clearCompleted()"
+                                  data-ng-show="remainingCount < tasks.length">Clear completed ({[tasks.length - remainingCount]})</span>                            
+                        </li>
+                    </ul>
+                    
+                    <div class="row">
+                        <div class="col-md-6 page-num-info">
+                        </div>
+                        <div class="col-md-6 text-right pagination-container">
+                            <pagination class="pagination-sm"
+                                page="currentTaskPage"
+                                total-items="filteredTasks.length"
+                                max-size="4"
+                                on-select-page="selectTaskPage(page)"
+                                items-per-page="perPage"
+                                rotate="false"
+                                boundary-links="true"></pagination>
+                        </div>
+                    </div>
+                </footer>
+                
+            </section>
+        </div>
+    </div>
+
+    <div class="callout callout-blue">
+		<h4>Task Tips:</h4>
+	    <ul>
+			<li>Type your task in the box, select a due date if applicable, then press enter to add the new task.</li>
+			<li>Double click the task (or click the edit <i class="glyphicon glyphicon-pencil"></i> icon to edit, then click anywhere else when done editing.</li>
+			<li>Click the <i class="glyphicon glyphicon-remove"></i> to delete a task.</li>
+		</ul>
+	</div>
+
+</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

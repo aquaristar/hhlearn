@@ -1,0 +1,175 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Organizational Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+<div class="page page-admin-setup">
+	<div class="row">
+		 <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Administrator</a></li>
+                <li><a href="">Setup</a></li>
+                <li class="active"><a href="">Step1</a></li>
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-cogs"></span>&nbsp;&nbsp;Step&nbsp;&nbsp;1.4</strong>    				
+                </div>
+                <div class="panel-body row">
+					<div class="col-lg-12" style="padding: 0px; margin-top: -15px; ">
+						<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/01.jpg">					
+						<div class="setup-progress">
+							<div class="progress">
+								<div class="progress-bar progress1" style="width: 20%;">Organizational Setup
+									(40%)
+								</div>
+								<div class="progress-bar progress2" style="width: 20%;">
+									Location Setup (0%)
+								</div>
+								<div class="progress-bar progress3" style="width: 20%;">
+									Department Setup (0%)
+								</div>
+								<div class="progress-bar progress4" style="width: 20%;">
+									Region Setup (0%)
+								</div>
+								<div class="progress-bar progress5" style="width: 20%;">Job
+									Titles Setup (0%)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="post" action="{{ request.path }}" id="organization">
+						{% csrf_token %}			
+						<div class="setup-help text-right">
+							<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i> Watch Me</a>
+						</div>
+						
+						<div class="col-lg-12">	
+
+							<div class="row">
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="setup-info-text text-left">
+										<p>
+											HHLEARN associates each course placed on the system with
+											specific home
+											healthcare-related services. We use this information to further
+											tailor the
+											courses that each user on the system is assigned and/or has
+											access to.
+										</p>
+				
+										<p>
+											Please click on the services your <strong>entire</strong>
+											location provides.
+										</p>
+										<p>
+				
+											If you have other locations that do
+											not perform
+											the same set of services, you will be given the opportunity to
+											further refine
+											their service selections on upcoming pages.
+										</p>
+				
+				
+									</div>
+								</div>
+							</div>
+				
+				
+							<div class="row">
+				
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-12 col-md-12 col-lg-12">
+												<label for="selected_services">Select Services : </label>
+											</div>
+										</div>
+				
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				
+												{% load my_custom_tags %}
+				
+												{% for field in form %}
+													{% if field|is_checkbox %}
+													<div class="row col-xs-12">
+														<label class="ui-checkbox" for="{{ field.name }}">
+															<input type="checkbox" id="{{ field.name }}" name="{{ field.name }}" data-toggle="checkbox" {% if field.data == True %}checked{% endif %}>
+															<span>{{ field.label }}</span>														
+														</label>
+													</div>
+													
+													{% endif %}
+												{% endfor %}																
+				
+											</div>
+										</div>
+									</div>
+				
+								</div>
+				
+							</div>
+				
+							<div class="row">
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-12 col-md-12 col-lg-12">
+												<label for="services_consistent_all_locations">Are these services
+													consistent
+													across all locations?</label>
+											</div>
+										</div>
+				
+										<div class="row">
+											<div class="col-sm-2 col-md-2 col-lg-2">
+												<label class="switch switch-iphone">
+													<input type="checkbox" 
+														name="services_consistent_all_locations" {% if form.data.services_consistent_all_locations|add:0 == 1 %}checked="true"{% endif %}>
+													<i></i>
+												</label>												
+											</div>
+										</div>
+									</div>
+								</div>
+				
+							</div>
+							
+							<hr>
+							
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<p class="text-center">
+										<a href="{% url 'admin_setup_organization_1_3' %}" class="btn btn-blue btn-wide setup-back-button hidden-print">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">Save
+											& Next
+										</button>
+									</p>								
+								</div>
+							</div>			
+						
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/organization/js/organization.js"></script>
+{% endblock %}

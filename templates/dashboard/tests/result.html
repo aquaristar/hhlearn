@@ -1,0 +1,138 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block content %}
+
+
+<div class="page page-profile" ng-controller="testResultController">
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{% url 'dashboard_home' %}">Dashboard</a></li>
+                <li class=""><a href="{% url 'assignments' %}">Assignments</a></li>               
+                <li class="active"><a>TestResult</a></li>
+            </ol>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-lg-12">
+    	<div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+			        <div class="col-xs-4   col-lg-4 text-left">
+			            <strong><i class="fa fa-check-square-o"></i> {[ courseData.name ]}</strong>
+			        </div>	
+			        <div class="col-xs-4   col-lg-4 text-center">
+			        </div>			        			        
+			        <div class="col-xs-4   col-lg-4 text-right">
+			            <strong ng-show="testResultData.testPassed == 1"> Test Completion </strong>
+			            <strong ng-show="testResultData.testPassed == 0"> Test Results </strong>
+			        </div>
+			    </div>
+			</div>
+            <div class="panel-body">
+            	<div class="col-lg-12" ng-show="courseData.number">
+                    <img width="100%" src="{{ STATIC_URL }}dashboard/courses/images/banners/{[ courseData.number ]}.jpg"
+                         alt="{[ courseData.number ]}" title="{[ courseData.name ]}" name="{[ courseData.name ]}">
+
+                </div>
+                          	
+                <div class="col-lg-12" ng-show="testResultData.testPassed == 1">
+                	<br>
+                	<p ng-show="testResultData.testType != 3">You successfully completed the course {[courseData.number]}, <b><i>{[courseData.name]}</i></b> with an overall 
+                		score of {[testResultData.testScore]}%, or {[testResultData.passedQuestionsCount]} out of {[testResultData.totalQuestionsCount]} 
+                		correct.</p>
+                	<p ng-show="testResultData.testType == 3">You successfully completed the course {[courseData.number]}, <b><i>{[courseData.name]}</i></b>
+                		 by acknowledging you understood its content.</p>
+
+					<div ng-show="courseData.requires_additional_documentation == 1">
+						<p class="">Congratulations on your achievement! We at HHLEARN applaud you for advancing your knowledge with this course. 
+							You now can print your certificate and required additional documentation by clicking on the certificate and document 
+							icons below. All of your certificates and required additional documentation are available to view and reprint in the 
+							History area of your dashboard.</p>
+						<div class="test-result-certs-wrapper col-lg-12">
+							<p class="col-lg-12 text-center">
+								<a href="/certificate/pdf/{[ testResultData.certificationUrl ]}" target="_blank">
+									<img width="100" src="/static/dashboard/tests/images/blue_certificate_edge_small_100.png"/>									
+								</a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="/certificate/pdf_report/{[ testResultData.certificationUrl ]}" target="_blank">
+									<img src="/static/dashboard/tests/images/document74.png"/>
+								</a>
+							</p>
+						</div>
+					</div>
+					<div ng-show="courseData.requires_additional_documentation == 0">                	
+						<p class="">Congratulations on your achievement! We at HHLEARN applaud you for advancing your knowledge with this course. 
+							You now can print your certificate by clicking on the certificate below. All of your certificates are available to view and reprint 
+							in the History area of your dashboard.</p>
+						<div class="test-result-certs-wrapper col-lg-12">
+							<p class="col-lg-12 text-center">
+								<a href="/certificate/pdf/{[ testResultData.certificationUrl ]}" target="_blank">
+									<img width="100" src="/static/dashboard/tests/images/blue_certificate_edge_small_100.png"/>
+								</a>
+							</p>
+						</div>
+					</div>
+					<div class="col-lg-12 text-center">
+						<div class="col-lg-12 text-center">
+							<p align=”center”>We have shared your success with the following social media sites. Your linked social media sites 
+								can me managed in your My Profile area.</p>													
+						</div>	
+						<ul class="test-result-btn-share-group col-lg-12 text-center">
+							<li><div class="btn-icon btn-social btn-facebook"><i class="fa fa-facebook size-h1"></i></div></li>						 
+							<li><div class="btn-icon btn-social btn-twitter"><i class="fa fa-twitter size-h1"></i></div></li>							
+							<li><div class="btn-icon btn-social btn-pinterest"><i class="fa fa-pinterest size-h1"></i></div></li>
+							<li><div class="btn-icon btn-social btn-instagram"><i class="fa fa-instagram size-h1"></i></div></li>
+						</ul>							
+															
+					</div>                    	                        
+                </div>
+                <div class="col-lg-12" ng-show="testResultData.testPassed == 0">                	
+                	<br>
+					<p ng-show="testResultData.testScore < testResultData.minScore">You did not successfully complete the course {[courseData.number]}, <b><i>{[courseData.name]}</i></b>. 
+						You scored {[testResultData.testScore]} percent, or {[testResultData.passedQuestionsCount]} out of 
+						{[testResultData.totalQuestionsCount]} correct.</p>
+					<p ng-show="testResultData.testScore >= testResultData.minScore">
+						You did not successfully complete the course {[courseData.number]}, <b><i>{[courseData.name]}</i></b>. 
+						You scored {[testResultData.testScore]} percent, {[testResultData.passedQuestionsCount]} out of 
+						{[testResultData.totalQuestionsCount]} correct. Even though you did meet or exceed the passing percentage, 
+						some questions are <b><i>required</i></b> to be answered correctly. Once you correctly answer the mandatory question(s), 
+						you will pass this examination.</p>
+
+					<p>We have emailed your manager to let them know that you may need some additional training in this area.</p>
+					<p>Please review the course again and pay attention to the areas listed below. We know you can do it. Remember, you cannot take the course again for 24 hours (not just tomorrow—actually at least 24 hours).</p>
+					<div class="callout callout-red">
+                		<h4>Course Study Topics</h4>
+                		<ul>
+							<li ng-repeat="topic in testResultData.wrong_questions_topic">{[ topic ]}</li>
+						</ul>
+                	</div>
+					
+					<!--<div class="col-lg-12 text-center">
+						<button type="button" class="btn btn-info">My History</button>
+					</div>
+					<div class="col-lg-12 text-center">
+						<p class="text-center">Please take this opportunity to link your Facebook and Twitter accounts with HHLEARN so we can share your success with your social network.</p>
+						<p class="text-center"> 
+							<button type="button" class="btn btn-info">Link Accounts</button>
+						</p>							
+					</div>-->
+				</div>
+					
+                </div>                
+            </div>
+        </div>
+       	</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

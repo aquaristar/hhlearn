@@ -1,0 +1,68 @@
+{% extends "website/_page.html" %}
+{% block title %}HHLEARN - Home{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+	{% load current_tags %}
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<img src="{{ STATIC_URL }}website/common/pages/faq/large.jpg">
+
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="span12">
+				<h3>Frequently Asked Questions</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span12 faq-box">
+
+				<ul id="faqTab" class="nav nav-tabs">
+					{% for category in categories %}
+						<li class="{% if forloop.first %}active{% endif %}">
+							<a href="#{{ category.id }}" data-toggle="tab">
+								{{ category.title }}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+				<div id="faqTabmyTabContent" class="tab-content">
+
+					{% for category in categories %}
+						{% get_faq_content category.id as faqs %}
+						<div class="tab-pane fade in {% if forloop.first %}active{% endif %}"
+						     id="{{ category.id }}">
+							{% for faq in faqs %}
+								<div class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle {% if not forloop.first %}collapsed{% endif %}" data-toggle="collapse" data-parent="#faqs" href="#{{ forloop.counter }}-{{ category.title }}">
+											{% autoescape off %}
+												{{ faq.question }}{% endautoescape %}
+
+										</a>
+									</div>
+									<div id="{{ forloop.counter }}-{{ category.title }}"
+									     class="accordion-body collapse {% if forloop.first %}in{% endif %}">
+										<div class="accordion-inner">
+											<p>{% autoescape off %}
+												{{ faq.answer }}{% endautoescape %}</p>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

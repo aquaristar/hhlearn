@@ -1,0 +1,379 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Job Titles Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block content %}
+<div class="page page-admin-setup" id="step_job_titles" ng-app="step_job_titles">
+	<div class="row">
+		 <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Administrator</a></li>
+                <li><a href="">Setup</a></li>
+                <li class="active"><a href="">Step5</a></li>
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-cogs"></span>&nbsp;&nbsp;Step&nbsp;&nbsp;5.3.1</strong>    				
+                </div>
+                <div class="panel-body row">
+					<div class="col-lg-12" style="padding: 0px; margin-top: -15px; ">
+						<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/5.3.jpg">					
+						<div class="setup-progress">
+							<div class="progress">
+								<div class="progress-bar progress1" style="width: 20%;">Organizational Setup
+									(100%)
+								</div>
+								<div class="progress-bar progress2" style="width: 20%;">
+									Location Setup (100%)
+								</div>
+								<div class="progress-bar progress3" style="width: 20%;">
+									Department Setup (100%)
+								</div>
+								<div class="progress-bar progress4" style="width: 20%;">
+									Region Setup (100%)
+								</div>
+								<div class="progress-bar progress5" style="width: 20%;">Job
+									Titles Setup (30%)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="post" action="{{ request.path }}">
+						{% csrf_token %}
+						<div class="setup-help text-right">
+							<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i> Watch Me</a>
+						</div>
+						
+						<div class="col-lg-12">	
+							<div class="row">	
+								<!-- Modal -->
+								<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title" id="myModalLabel">HHLEARN -
+													Setup Help Video</h4>
+											</div>
+											<div class="modal-body">
+												<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													Close
+												</button>
+					
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
+							</div>
+
+				
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="setup-info-text text-left">
+										<p>
+											You have chosen to add {{organization.total_custom_job_titles}}
+											{% if organization.total_custom_job_titles  > 1 %}
+				
+												job descriptions
+				
+											{% endif %}
+				
+											{% if organization.total_custom_job_titles  == 1 %}
+												job description
+											{% endif %}
+				
+				
+											specific to your organization. Please enter the job titles below paying special attention to their
+											capitalization, e.g., enter Billing Specialist instead of billing specialist.
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<label for="custom_job_titles_enabled">Enter Your Job Titles*</label>
+								</div>
+							</div>
+							{{ formset.management_form }}
+							{% for form in formset %}
+				
+								{{ form.id }}
+				
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.name.errors %}has-error{% endif %}">
+				
+											<div class="row">
+												<div class="col-sm-4 col-md-4 col-lg-4">
+													<span class="label label-important">{{ form.name.errors|first }}</span>
+													<div class="form-controls">
+														{{ form.name }}
+														<span class="icon glyphicon glyphicon-star"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+				
+								</div>
+				
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.flsa_status.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="flsa_status">{{ form.flsa_status.label }}</label>
+												</div>
+											</div>
+				
+											<div class="row">
+												<div class="col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.flsa_status.errors|first }}</span>
+													<div class="form-controls">
+														<span class="ui-select">
+															<select name="form-{{ forloop.counter0 }}-{{ form.flsa_status.name }}" class="select-block " id="selectpicker">																
+																{% for flsa_status in form.fields.flsa_status.queryset %}
+																	<option {% if flsa_status.id  == form.accreditation_agency.value %}selected="selected"{% endif %} value="{{ flsa_status.id }}">{{ flsa_status.name }}</option>
+																{% endfor for %}										
+															</select>
+														</span>										
+													</div>													
+												</div>
+											</div>
+										</div>
+									</div>
+				
+								</div>
+				
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.requires_license.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="flsa_status">{{ form.requires_license.label }}</label>
+												</div>
+											</div>
+				
+											<div class="row">
+												<div class="col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.requires_license.errors|first }}</span>
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.requires_license.name}}" {% if form.requires_license.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>													
+												</div>
+											</div>
+										</div>
+									</div>
+				
+								</div>
+				
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.cpr.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="flsa_status">{{ form.cpr.label }}</label>
+												</div>
+											</div>
+				
+											<div class="row">
+												<div class="col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.cpr.errors|first }}</span>
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.cpr.name}}" {% if form.cpr.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>													
+												</div>
+											</div>
+										</div>
+									</div>
+				
+								</div>
+				
+				
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.on_call.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="flsa_status">{{ form.on_call.label }}</label>
+												</div>
+											</div>
+				
+											<div class="row">
+												<div class="col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.on_call.errors|first }}</span>
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.on_call.name}}" {% if form.on_call.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>													
+												</div>
+											</div>
+										</div>
+									</div>
+				
+								</div>
+				
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.patient_file_access.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="flsa_status">{{ form.patient_file_access.label }}</label>
+												</div>
+											</div>
+				
+											<div class="row">
+												<div class="col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.patient_file_access.errors|first }}</span>
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.patient_file_access.name}}" {% if form.patient_file_access.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>													
+												</div>
+											</div>
+										</div>
+									</div>
+				
+								</div>
+				
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.all_occupational_exposure.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="flsa_status">{{ form.all_occupational_exposure.label  | safe }}</label>
+												</div>
+											</div>
+				
+											<div class="row">
+												<div class="col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.all_occupational_exposure.errors|first }}</span>
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.all_occupational_exposure.name}}" {% if form.all_occupational_exposure.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>													
+												</div>
+											</div>
+										</div>
+									</div>
+				
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.some_occupational_exposure.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="flsa_status">{{ form.some_occupational_exposure.label   | safe}}</label>
+												</div>
+											</div>
+				
+											<div class="row">
+												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.some_occupational_exposure.errors|first }}</span>
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.some_occupational_exposure.name}}" {% if form.some_occupational_exposure.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>													
+												</div>
+											</div>
+										</div>
+									</div>
+				
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.exposure_to_chemicals.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="flsa_status">{{ form.exposure_to_chemicals.label }}</label>
+												</div>
+											</div>
+				
+											<div class="row">
+												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.exposure_to_chemicals.errors|first }}</span>
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.exposure_to_chemicals.name}}" {% if form.exposure_to_chemicals.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>													
+												</div>
+											</div>
+										</div>
+									</div>
+				
+								</div>
+				
+							<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group   {% if form.exposure_to_TB.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="flsa_status">{{ form.exposure_to_TB.label}}</label>
+												</div>
+											</div>
+				
+											<div class="row">
+												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+													<span class="label label-important">{{ form.exposure_to_TB.errors|first }}</span>
+													<label class="switch switch-iphone">													
+														<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.exposure_to_TB.name}}" {% if form.exposure_to_TB.value == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>													
+												</div>
+											</div>
+										</div>
+									</div>				
+								</div>
+				
+								<hr/>
+				
+							{% endfor %}
+				
+							<div class="row">
+								<div class="col-lg-12">
+									<p>
+										Please click the “Save & Next” button to continue.
+									</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<p class="text-center">
+										<a href="{{ back_button_url }}" class="btn btn-blue btn-wide setup-back-button hidden-print">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">Save
+											& Next
+										</button>
+									</p>								
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/job_title/js/job_title.js"></script>
+
+{% endblock %}

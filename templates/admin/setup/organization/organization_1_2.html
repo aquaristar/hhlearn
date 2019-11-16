@@ -1,0 +1,341 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Organizational Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+
+<div class="page page-admin-setup">
+	<div class="row">
+		 <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Administrator</a></li>
+                <li><a href="">Setup</a></li>
+                <li class="active"><a href="">Step1</a></li>
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-cogs"></span>&nbsp;&nbsp;Step&nbsp;&nbsp;1.2</strong>    				
+                </div>
+                <div class="panel-body row">
+					<div class="col-lg-12" style="padding: 0px; margin-top: -15px; ">
+						<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/01.jpg">					
+						<div class="setup-progress">
+							<div class="progress">
+								<div class="progress-bar progress1" style="width: 20%;">Organizational Setup
+									(20%)
+								</div>
+								<div class="progress-bar progress2" style="width: 20%;">
+									Location Setup (0%)
+								</div>
+								<div class="progress-bar progress3" style="width: 20%;">
+									Department Setup (0%)
+								</div>
+								<div class="progress-bar progress4" style="width: 20%;">
+									Region Setup (0%)
+								</div>
+								<div class="progress-bar progress5" style="width: 20%;">Job
+									Titles Setup (0%)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="post" action="{{ request.path }}" id="organization" ng-controller="OrganizationForm as settings">
+						{% csrf_token %}			
+						<div class="setup-help text-right">
+							<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i> Watch Me</a>
+						</div>
+						
+						<div class ="col-lg-12">	
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="setup-info-text text-left">
+										<p>
+											The following information pertains to the organization as a whole. We will allow
+											you to
+											further define your organization in upcoming pages.
+										</p>
+						
+										<p>
+											When it comes to grading tests on HHLEARN we allow you to decide what the
+											passing scores
+											are. We have 4 different types of tests: General Knowledge, Continuing
+											Education, Employee Competency,
+											and your own Custom Courses.
+										</p>
+						
+										<p>
+											HHLEARN has a Monthly Safety Inservice Program that is available to all
+											organizations. This provides a short (usually 30 minutes) course once a month on
+											a safety topic. The topics are pertinent to their job descriptions and have 12
+											courses preselected for each job description. If you have the <strong>Professional</strong>
+											version of HHLEARN, these 12 courses can be modified for each job description.
+											In the <strong>Professional</strong> version your organization also has the
+											ability to turn this feature on and/or off for every aspect of your
+											organization, e.g., company, region, location, and department.
+										</p>
+									</div>
+								</div>
+							</div>
+						
+						
+							<div class="row">
+						
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<label for="is_score_consistent">Do you want your minimum passing
+													scores to be
+													consistent across your entire organization?</label>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-sm-2 col-md-2 col-lg-2">
+												<label class="switch switch-iphone">
+													<input type="checkbox" name="is_score_consistent" {% if form.data.is_score_consistent|add:0 == 1 %}checked="true"{% endif %}>
+													<i></i>
+												</label>												
+											</div>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<label for="min_score_general_knowledge">What is your minimum
+													percent passing score for General Knowledge exams?
+													(These are a majority of all courses on HHLEARN)</label>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-sm-2 col-md-2 col-lg-2">
+											<div class="form-controls">
+												<span class="ui-select">
+													<select name="min_score_general_knowledge" class="select-block " id="selectpicker">
+														{% for min_score_general_knowledge in form.fields.min_score_general_knowledge.queryset %}
+															<option {% if min_score_general_knowledge.score  == form.data.min_score_general_knowledge|add:0 %}selected="selected"{% endif %} value="{{ min_score_general_knowledge.score }}">{{ min_score_general_knowledge.score }}</option>
+														{% endfor for %}													
+													</select>
+												</span>
+											</div>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+						
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<label for="min_score_continuing_education">What is your minimum
+													percent passing score for courses that have
+													Continuing Education credits?</label>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-sm-2 col-md-2 col-lg-2">
+											<div class="form-controls">
+												<span class="ui-select">
+													<select name="min_score_continuing_education" class="select-block " id="selectpicker">
+														{% for min_score_continuing_education in form.fields.min_score_continuing_education.queryset %}
+															<option {% if min_score_continuing_education.score  == form.data.min_score_continuing_education|add:0 %}selected="selected"{% endif %} value="{{ min_score_continuing_education.score }}">{{ min_score_continuing_education.score }}</option>
+														{% endfor for %}													
+													</select>
+												</span>
+											</div>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+						
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<label for="min_score_employee_competency">What is your minimum
+													percent passing score for Employee Competency exams?</label>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-sm-2 col-md-2 col-lg-2">
+											<div class="form-controls">
+												<span class="ui-select">
+													<select name="min_score_employee_competency" class="select-block " id="selectpicker">
+														{% for min_score_employee_competency in form.fields.min_score_employee_competency.queryset %}
+															<option {% if min_score_employee_competency.score  == form.data.min_score_employee_competency|add:0 %}selected="selected"{% endif %} value="{{ min_score_employee_competency.score }}">{{ min_score_employee_competency.score }}</option>
+														{% endfor for %}													
+													</select>
+												</span>
+											</div>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<label for="min_score_custom_courses">What is your minimum
+													percent passing score for Custom Courses that only belong to
+													your
+													organization?</label>
+											</div>
+										</div>
+						
+										<div class="row">
+											<div class="col-sm-2 col-md-2 col-lg-2">
+											<div class="form-controls">												
+												<span class="ui-select">													
+													<select name="min_score_custom_courses" class="select-block " id="selectpicker">
+														{% for min_score_custom_courses in form.fields.min_score_custom_courses.queryset %}
+															<option {% if min_score_custom_courses.score  == form.data.min_score_custom_courses|add:0 %}selected="selected"{% endif %} value="{{ min_score_custom_courses.score }}">{{ min_score_custom_courses.score }}</option>
+														{% endfor for %}													
+													</select>
+												</span>
+											</div>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+						
+						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<p>
+										HHLEARN has Monthly Safety Inservice Program that is available to all organizations.
+										This provides a short (usually 30 minutes) course once a month on a safety topic.
+										The topics are pertinent to their job descriptions. If you have
+										the <strong>Professional</strong> version of HHLEARN, these 12 courses can
+										be modified for each job description. In the <strong>Professional</strong>
+										version your organization also has the ability to turn this feature on and/or
+										off for every aspect of your organization, e.g., company, region, location, and
+										department.
+									</p>
+								</div>
+							</div>
+						
+							{% if monthly_safety_program == True %}
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="is_signup_monthly_safety_program">Would your organization
+														like to utilize this monthly safety program?</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-2 col-md-2 col-lg-2">
+													<label class="switch switch-iphone">
+														<input type="checkbox" name="is_signup_monthly_safety_program" {% if form.data.is_signup_monthly_safety_program|add:0 == 1 %}checked="true"{% endif %} ng-init="settings.is_signup_monthly_safety_program={{ form.data.is_signup_monthly_safety_program }}" ng-model="settings.is_signup_monthly_safety_program">
+														<i></i>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+						
+								<!--<div class="row"  ng-show="settings.federal_electronic_postings_feature==1">-->
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="is_course_selections_consistent">Do you want the
+														course
+														selections, either using the pre-selections we
+														provide or the ones you select, to be consistent across
+														your entire organization?</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+													<label class="switch switch-iphone">
+														<input type="checkbox" name="is_course_selections_consistent" {% if form.data.is_course_selections_consistent|add:0 == 1 %}checked="true"{% endif %}>
+														<i></i>
+													</label>													
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+							{% endif %}
+						
+							<div class="row ">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">						
+									<div class="callout callout-blue">
+										<p>
+											In some cases your grading choices will be superseded by more stringent
+											minimum passing scores. These situations include the anti-cheating
+											technology we have built-in and ensures that requirements of specific
+											continuing education organizations are met.
+										</p>
+									</div>						
+								</div>
+							</div>
+							
+							<hr>
+							
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<p class="text-center">
+										<a href="{% url 'admin_setup_organization_1_1' %}" class="btn btn-blue btn-wide setup-back-button hidden-print">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">Save
+											& Next
+										</button>
+									</p>								
+								</div>
+							</div>
+							
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/organization/js/organization.js"></script>
+{% endblock %}

@@ -1,0 +1,438 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="row">
+	<div class="col-lg-12">
+	<div class="tabbable">
+	<ul class="nav nav-tabs nav-append-content">
+		<li class=""><a href="{% url 'assignments' %}"><i class="fa fa-file-text"></i>
+			Assignments</a></li>
+		<li class=""><a href="{% url 'history' %}"><i class="fa fa-reply-all"></i>
+			History</a></li>
+		<li class=""><a href="{% url 'messages' %}"><i class="fa fa-comments"></i>
+			Messages</a></li>
+		<li class=""><a href="{% url 'metrics' %}"><i class="fa fa-signal"></i> Metrics</a>
+		</li>
+		<li class="active"><a href="{% url 'documents' %}"><i class="fa fa-paste"></i>
+			Documents</a></li>
+		<li class="">
+			<a href="{% url 'accreditation' %}"><i class="fa fa-certificate"></i>
+				Accreditation</a></li>
+
+	</ul>
+	<!-- /tabs -->
+	<div class="tab-content">
+
+	<div class="tab-pane active" id="Documents">
+
+	<!-- <div class="row">
+
+
+		<div class="col-lg-11">
+
+
+			<div class="text-center documents-download-buttons">
+
+
+				<button class="btn btn-info col-lg-1">PDF
+				</button>
+				<button class="btn btn-info col-lg-1 mll">XLSX
+				</button>
+				<button class="btn btn-info col-lg-1 mll">XLS
+				</button>
+				<button class="btn btn-info col-lg-1 mll">ZIP
+				</button>
+				<button class="btn btn-info col-lg-1 mll">RTF
+				</button>
+				<button class="btn btn-info col-lg-1 mll">PAGES
+				</button>
+				<button class="btn btn-info col-lg-1 mll">ODT
+				</button>
+				<button class="btn btn-info col-lg-1 mll">DOCX
+				</button>
+				<button class="btn btn-info col-lg-1 mll">DOC
+				</button>
+
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-1 text-right">
+			<button class="btn btn-info ">
+				<i class="fa fa-info-circle "></i>
+			</button>
+
+		</div>
+	</div> -->
+
+	<div class="row">
+	<div class="col-lg-12">
+	<div class="mtl most-common-documents">
+		<h6>MOST COMMON DOCUMENTS</h6>
+		<table class="table table-bordered">
+			<thead>
+			<tr>
+				<th>Form Name</th>
+				<th>Lang</th>
+				<th>Size</th>
+				<th>Revision</th>
+				<th>Info</th>
+				<th>Format</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/United-States.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i data-toggle="modal" href="#document_info_modal" class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/Mexico.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/Canada.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<div class="mtl company-forms">
+		<h6>{COMPANY NAME} FORMS</h6>
+		<table class="table table-bordered">
+			<thead>
+			<tr>
+				<th>Form Name</th>
+				<th>Lang</th>
+				<th>Size</th>
+				<th>Revision</th>
+				<th>Info</th>
+				<th>Format</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/United-States.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i data-toggle="modal" href="#document_info_modal" class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/Mexico.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/Canada.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<div class="mtl company-publications">
+		<h6>{COMPANY NAME} PUBLICATIONS</h6>
+		<table class="table table-bordered">
+			<thead>
+			<tr>
+				<th>Publication Name</th>
+				<th>Lang</th>
+				<th>Size</th>
+				<th>Revision</th>
+				<th>Info</th>
+				<th>Format</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/United-States.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i data-toggle="modal" href="#document_info_modal" class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/Mexico.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/Canada.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<div class="mtl company-videos">
+		<h6>{COMPANY NAME} VIDEOS</h6>
+		<table class="table table-bordered">
+			<thead>
+			<tr>
+				<th>Video Name</th>
+				<th>Lang</th>
+				<th>Size</th>
+				<th>Revision</th>
+				<th>Info</th>
+				<th>Format</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/United-States.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i data-toggle="modal" href="#document_info_modal" class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/Mexico.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Sharps Injury Logs</td>
+				<td class="text-center">
+					<img src="{{ STATIC_URL }}dashboard/common/images/flags/flat/32/Canada.png"/>
+				</td>
+				<td class="text-center">8.5x11
+				</td>
+				<td class="text-center">
+					07/12/2013
+				</td>
+				<td class="text-center">
+					<i class="fa fa-info-circle"></i>
+				</td>
+				<td class="text-center">
+					<button class="btn btn-info">
+						PDF
+						<i class="fa fa-download"></i>
+					</button>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	</div>
+	</div>
+
+	</div>
+
+	</div>
+	<!-- /tab-content -->
+	</div>
+	</div>
+	</div>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="document_info_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	     aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="row">
+
+
+						<div class="col-lg-12">
+							<h6>Sharps Injury Logs </h6>
+						</div>
+					</div>
+				</div>
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close
+					</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

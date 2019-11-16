@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	    <title>HHLEARN</title>
+		<link href="{{STATIC_URL}}dashboard/common/lib/fontawesome/v4.2.0/css/font-awesome.css" rel="stylesheet">
+		
+	    <!-- theme -->
+	    <link href="{{STATIC_URL}}website/rockox/css/rockox.css" rel="stylesheet">
+	    <link href="{{STATIC_URL}}website/rockox/css/rockox-main.css" rel="stylesheet">
+	    
+	    
+	    <!-- Bootstrap -->
+	    <link href="{{STATIC_URL}}website/rockox/css/bootstrap.css" rel="stylesheet">
+	    <!--<link href="{{STATIC_URL}}website/rockox/css/dark_theme.css" rel="stylesheet">-->
+	    
+	    <!-- Glyphicons-->
+	    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons-social.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/filetypes.css" />		
+		
+		
+		<!--<link href="{{STATIC_URL}}dashboard/common/css/style.css" rel="stylesheet">-->
+		
+	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+  	</head>
+  	<body class="fixed-header" data-spy="scroll" data-target=".navbar">
+  	
+    	<div id="wrapper">
+	    <!-- BEGIN HEADER -->
+	    <header id="home">
+		    <nav class="navbar navbar-default" role="navigation">
+	          <div class="container">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <div class="navbar-header">
+	              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	              </button>
+	              <!-- BEGIN LOGO -->
+	              <a class="navbar-brand" href="#home"><img src="{{STATIC_URL}}website/common/img/logo_305x100.png" height="82px" alt=""></a>
+	              <!-- END LOGO -->
+	            </div>
+	        
+	            <!-- Collect the nav links, forms, and other content for toggling -->
+	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	            	<!-- BEGIN NAVIGATION -->
+	                  <ul class="nav navbar-nav">
+	                    <li class="active">
+	                    	<a href="#" class="item" target="_self" data-toggle="modal" data-target=".menu-modal" data-placement="right">
+								<i class="icon glyphicons justify"></i>
+								<span>Menu</span>
+							</a>
+						</li>
+	                    <li>
+	                    	<a href="/login/" class="item" target="_self">
+								<i class="icon glyphicons user"></i>
+								<span>Login</span>
+							</a>
+	                    </li>
+	                    <li>
+	                    	<a href="" class="item" target="_self">
+								<i class="icon glyphicons home"></i>
+								<span>Home</span>
+							</a>
+	                    </li>                    
+	                  </ul>
+	            	<!-- END NAVIGATION -->
+	            </div><!-- /.navbar-collapse -->
+	          </div><!-- /.container-fluid -->
+	    </nav>
+	    </header>
+   		<!-- END HEADER --> 
+   		
+   		
+		<section class="terms no-padding-bottom">
+			<div id="canvas">
+				<div id="book-zoom">
+					<div class="sj-book">
+						<div depth="5" class="hard"> <div class="side"></div> </div>
+						<div depth="5" class="hard front-side"> <div class="depth"></div> </div>
+						<div class="own-size"></div>
+						<div class="own-size even"></div>
+						<div class="hard fixed back-side p111"> <div class="depth"></div> </div>
+						<div class="hard p112"></div>
+					</div>
+				</div>
+				<div id="slider-bar" class="turnjs-slider">
+					<div id="slider"></div>
+				</div>
+			</div>
+		</section> <!-- cd-faq -->
+   		
+	    <div class="modal fade menu-modal" role="dialog" aria-hidden="true" data-keyboard="true" data-backdrop="static" tabindex="-1">    
+		    <div class="modal-dialog">
+		    	<a href="#" class="fa fa-times cls-pop" data-dismiss="modal"></a>
+		    	<div class="modal-header">
+		    		<img src="/static//website/common/img/logo_305x100.png" alt="" class="logo-small" height="70px">
+				</div>
+				<div class="modal-content">			
+					<div class="menu-list">
+						<div class="item">
+							<a href="#home" data-dismiss="modal">					
+								<i class="glyphicons heart_empty icon" style="color:#D4145A;"></i>
+								<span class="title">Benefits</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#features" data-dismiss="modal">						
+								<i class="glyphicons show_big_thumbnails icon" style="color:#0000FF;"></i>
+								<span class="title">Features</span>
+							</a>										
+						</div>				
+						<div class="item">
+							<a href="#demos" data-dismiss="modal">						
+								<i class="glyphicons film icon" style="color:#FF00FF;"></i>
+								<span class="title">Demos</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#pricing" data-dismiss="modal">						
+								<i class="glyphicons usd icon" style="color:#59BA35;"></i>
+								<span class="title">Plans</span>
+							</a>										
+						</div>
+						<div class="item last">
+							<a href="/sandbox/signup/step1">						
+								<i class="glyphicons thumbs_up icon" style="color:#30D4D8;"></i>
+								<span class="title">Sign Up</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#courses" data-dismiss="modal">						
+								<i class="glyphicons imac icon" style="color:#FFCC00;"></i>
+								<span class="title">Courses</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#testing" data-dismiss="modal">						
+								<i class="glyphicons check icon" style="color:#009245;"></i>
+								<span class="title">Testing</span>
+							</a>									
+						</div>
+						<div class="item">
+							<a href="#certificates" data-dismiss="modal">						
+								<i class="glyphicons qrcode icon" style="color:#C7B299;"></i>
+								<span class="title">Certificates</span>	
+							</a>											
+						</div>
+						<div class="item" data-dismiss="modal">
+							<a href="#reports">						
+								<i class="fa fa-bar-chart-o icon" style="color:#70CEEF;"></i>
+								<span class="title">Reporting</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#testimonals" data-dismiss="modal">						
+								<i class="glyphicons quote icon" style="color:#D9E021;"></i>
+								<span class="title">Testimonals</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons ipad icon" style="color:#5BC5F2;"></i>
+								<span class="title">Responsive</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons stats icon" style="color:#FF7BAC;"></i>
+								<span class="title">Benchmark</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons calendar icon" style="color:#FF931E;"></i>
+								<span class="title">Events</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons newspaper icon" style="color:#FF2D55;"></i>
+								<span class="title">Newsletter</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons phone_alt icon" style="color:#E30613;"></i>
+								<span class="title">Contact</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons list-alt icon" style="color:#6C4796;"></i>
+								<span class="title">Terms</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons eye_open icon" style="color:#05BECC;"></i>
+								<span class="title">Privacy</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons parents icon" style="color:#ADDB21;"></i>
+								<span class="title">Conduct</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons lock icon" style="color:#D6B31D;"></i>
+								<span class="title">Security</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons circle_question_mark icon" style="color:#0069B4;"></i>
+								<span class="title">FAQs</span>
+							</a>									
+						</div>
+					</div>
+					<div class="social-menu-list">
+						<a href="#"><i class="social social-facebook"></i></a>
+						<a href="#"><i class="social social-twitter"></i></a>
+						<a href="#"><i class="social social-linked-in"></i></a>
+						<a href="#"><i class="social social-youtube"></i></a>
+						<a href="#"><i class="social social-pinterest"></i></a>
+						<a href="#"><i class="social social-instagram"></i></a>
+					</div>		
+				</div>
+		    </div>
+		</div>
+	    <!-- BEGIN FOOTER -->
+	    <div class="footer-wrapper"> 
+			<footer class="" style="overflow: hidden; padding-left: 0px;">			
+				<ul class="bottom-list row">
+					<li>
+						<a href="#features" class="item">						
+							<i class="glyphicons show_big_thumbnails icon"></i>
+							<span class="title">Features</span>
+							<p class="description">
+								HHLEARN is designed by industry professionals and we have built-in 
+								features that will provide immediate benefits to your organization.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#demos" class="item">
+							<i class="glyphicons film icon"></i>
+							<span class="title">Watch Demo</span>
+							<p class="description">
+								There's no better way to grasp how simple training employees can be
+								than watching videos that visually show you. See it for yourself!
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#courses" class="item">
+							<i class="glyphicons display icon"></i>
+							<span class="title">Courses</span>
+							<p class="description">
+								We utilize proven adult education teaching methods 
+								that include reading, visual aids, tts, and video.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#testing" class="item">
+							<i class="glyphicons check icon"></i>
+							<span class="title">Testing</span>
+							<p class="description">
+								Our testing and secure certificates of completion are so unique, they'are 
+								patent pending. Check out how we do it and how you will benefit
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#contacts" class="item">
+							<i class="glyphicons phone_alt icon"></i>
+							<span class="title">Contact Us</span>
+							<p class="description">
+								There are so many ways to find out about us and contact us. 
+								you can even connect through social media.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#pricing" class="item">
+							<i class="glyphicons usd icon"></i>
+							<span class="title">Pricing Plans</span>
+							<p class="description">
+								Find out how little it costs to become a member of the 
+								number 1 employee education system. Try it for FREE.
+							</p>
+						</a>
+					</li>				
+				</ul>
+			</footer>
+		</div>      
+	    <!-- END FOOTER -->
+	    
+	    <!-- BEGIN GO TO TOP --><a href="#." class="back-to-top" id="back-to-top"><i class="fa fa-angle-up"></i></a><!-- END GO TO TOP -->
+    
+    </div><!-- end #wrapper -->
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.min.js"></script>
+  	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>-->
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{STATIC_URL}}website/rockox/js/bootstrap.min.js"></script>
+    <!-- faq js-->
+    <script type="text/javascript" src="{{STATIC_URL}}website/turnjs4/extras/jquery-ui-1.8.20.custom.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}website/turnjs4/extras/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}website/turnjs4/extras/modernizr.2.5.3.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}website/turnjs4/lib/hash.js"></script>
+    <script type="text/javascript">
+			
+			function loadApp() {
+				
+				var flipbook = $('.sj-book');
+			
+				// Check if the CSS was already loaded
+				
+				if (flipbook.width()==0 || flipbook.height()==0) {
+					setTimeout(loadApp, 10);
+					return;
+				}
+			
+				// Mousewheel
+			
+				$('#book-zoom').mousewheel(function(event, delta, deltaX, deltaY) {
+			
+					var data = $(this).data(),
+						step = 30,
+						flipbook = $('.sj-book'),
+						actualPos = $('#slider').slider('value')*step;
+			
+					if (typeof(data.scrollX)==='undefined') {
+						data.scrollX = actualPos;
+						data.scrollPage = flipbook.turn('page');
+					}
+			
+					data.scrollX = Math.min($( "#slider" ).slider('option', 'max')*step,
+						Math.max(0, data.scrollX + deltaX));
+			
+					var actualView = Math.round(data.scrollX/step),
+						page = Math.min(flipbook.turn('pages'), Math.max(1, actualView*2 - 2));
+			
+					if ($.inArray(data.scrollPage, flipbook.turn('view', page))==-1) {
+						data.scrollPage = page;
+						flipbook.turn('page', page);
+					}
+			
+					if (data.scrollTimer)
+						clearInterval(data.scrollTimer);
+					
+					data.scrollTimer = setTimeout(function(){
+						data.scrollX = undefined;
+						data.scrollPage = undefined;
+						data.scrollTimer = undefined;
+					}, 1000);
+			
+				});
+			
+				// Slider
+			
+				$( "#slider" ).slider({
+					min: 1,
+					max: 100,
+			
+					start: function(event, ui) {
+			
+						if (!window._thumbPreview) {
+							_thumbPreview = $('<div />', {'class': 'thumbnail'}).html('<div></div>');
+							setPreview(ui.value);
+							_thumbPreview.appendTo($(ui.handle));
+						} else
+							setPreview(ui.value);
+			
+						moveBar(false);
+			
+					},
+			
+					slide: function(event, ui) {
+			
+						setPreview(ui.value);
+			
+					},
+			
+					stop: function() {
+			
+						if (window._thumbPreview)
+							_thumbPreview.removeClass('show');
+						
+						$('.sj-book').turn('page', Math.max(1, $(this).slider('value')*2 - 2));
+			
+					}
+				});
+			
+			
+				// URIs
+				
+				Hash.on('^page\/([0-9]*)$', {
+					yep: function(path, parts) {
+			
+						var page = parts[1];
+			
+						if (page!==undefined) {
+							if ($('.sj-book').turn('is'))
+								$('.sj-book').turn('page', page);
+						}
+			
+					},
+					nop: function(path) {
+			
+						if ($('.sj-book').turn('is'))
+							$('.sj-book').turn('page', 1);
+					}
+				});
+			
+				// Arrows
+			
+				$(document).keydown(function(e){
+			
+					var previous = 37, next = 39;
+			
+					switch (e.keyCode) {
+						case previous:
+			
+							$('.sj-book').turn('previous');
+			
+						break;
+						case next:
+							
+							$('.sj-book').turn('next');
+			
+						break;
+					}
+			
+				});
+			
+			
+				// Flipbook
+			
+				flipbook.bind(($.isTouch) ? 'touchend' : 'click', zoomHandle);
+			
+				flipbook.turn({
+					elevation: 50,
+					acceleration: !isChrome(),
+					autoCenter: true,
+					gradients: true,
+					duration: 1000,
+					pages: 112,
+					when: {
+						turning: function(e, page, view) {
+							
+							var book = $(this),
+								currentPage = book.turn('page'),
+								pages = book.turn('pages');
+			
+							if (currentPage>3 && currentPage<pages-3) {
+							
+								if (page==1) {
+									book.turn('page', 2).turn('stop').turn('page', page);
+									e.preventDefault();
+									return;
+								} else if (page==pages) {
+									book.turn('page', pages-1).turn('stop').turn('page', page);
+									e.preventDefault();
+									return;
+								}
+							} else if (page>3 && page<pages-3) {
+								if (currentPage==1) {
+									book.turn('page', 2).turn('stop').turn('page', page);
+									e.preventDefault();
+									return;
+								} else if (currentPage==pages) {
+									book.turn('page', pages-1).turn('stop').turn('page', page);
+									e.preventDefault();
+									return;
+								}
+							}
+			
+							updateDepth(book, page);
+							
+							if (page>=2)
+								$('.sj-book .p2').addClass('fixed');
+							else
+								$('.sj-book .p2').removeClass('fixed');
+			
+							if (page<book.turn('pages'))
+								$('.sj-book .p111').addClass('fixed');
+							else
+								$('.sj-book .p111').removeClass('fixed');
+			
+							Hash.go('page/'+page).update();
+								
+						},
+			
+						turned: function(e, page, view) {
+			
+							var book = $(this);
+			
+							if (page==2 || page==3) {
+								book.turn('peel', 'br');
+							}
+			
+							updateDepth(book);
+							
+							$('#slider').slider('value', getViewNumber(book, page));
+			
+							book.turn('center');
+			
+						},
+			
+						start: function(e, pageObj) {
+					
+							moveBar(true);
+			
+						},
+			
+						end: function(e, pageObj) {
+						
+							var book = $(this);
+			
+							updateDepth(book);
+			
+							setTimeout(function() {
+								
+								$('#slider').slider('value', getViewNumber(book));
+			
+							}, 1);
+			
+							moveBar(false);
+			
+						},
+			
+						missing: function (e, pages) {
+			
+							for (var i = 0; i < pages.length; i++) {
+								addPage(pages[i], $(this));
+							}
+			
+						}
+					}
+				});
+			
+			
+				$('#slider').slider('option', 'max', numberOfViews(flipbook));
+			
+				flipbook.addClass('animated');
+			
+				// Show canvas
+			
+				$('#canvas').css({visibility: ''});
+			}
+			
+			// Hide canvas
+			
+			$('#canvas').css({visibility: 'hidden'});
+			
+			// Load turn.js
+			
+			yepnope({
+				test : Modernizr.csstransforms,
+				yep: ['{{ STATIC_URL }}website/turnjs4/lib/turn.min.js'],
+				nope: ['{{ STATIC_URL }}website/turnjs4/lib/turn.html4.min.js', '{{ STATIC_URL }}website/turnjs4/samples/steve-jobs/css/jquery.ui.html4.css', '{{ STATIC_URL }}website/turnjs4/samples/steve-jobs/css/steve-jobs-html4.css'],
+				both: ['{{ STATIC_URL }}website/turnjs4/samples/steve-jobs/js/steve-jobs.js', '{{ STATIC_URL }}website/turnjs4/samples/steve-jobs/css/jquery.ui.css', '{{ STATIC_URL }}website/turnjs4/samples/steve-jobs/css/steve-jobs.css'],
+				complete: loadApp
+			});
+			
+		</script>
+		
+    </body>
+</html>

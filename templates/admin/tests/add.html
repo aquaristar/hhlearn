@@ -1,0 +1,1445 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Admin-Tests{% endblock %}
+{% block meta_title %}Admin-Tests{% endblock %}
+{% block meta_description %}Admin-Tests{% endblock %}
+{% block meta_keywords %}Admin-Tests{% endblock %}
+
+
+{% block content %}
+<div class="page page-admin-tests" ng-controller="testAddController">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{%  url 'admin_home' %}">Admin</a></li>
+                <li><a href="{% url 'admin_tests_home' %}">Tests</a></li>
+                <li class="active"><a href="">Add</a></li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="row" id="app_documents">		
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-check-square"></span> Tests</strong>    				
+                </div>
+                <div class="panel-body row">                	
+                    <div class="ui-tab">
+                        <tabset class="ui-tab">                        	
+                            <tab>
+                            	<tab-heading>
+                            		Info
+                            	</tab-heading>
+                            	<form action="{{ request.path }}" class="form-horizontal col-lg-12" method="post" enctype="multipart/form-data">
+                            		{% csrf_token %} 
+	                            	<div class="row">
+	                            		<div class="col-md-6 col-sm-6 col-lg-6">
+							                <div class="form-group">
+							                	<div class="col-sm-12 col-md-12 col-lg-12">
+													<label>
+														Test Type
+													</label>													
+												</div>
+							                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-12">
+								                	<div class="form-controls">
+														<span class="ui-select">
+															<select id="test_type" name="test_type" ng-model="type_id" ng-change="onTypeChange()">			
+	        													<option ng-selected="type_id==test_type.id" 
+	        															ng-repeat="test_type in test_types" value="{[test_type.id]}">
+	        														{[test_type.name]}
+	        													</option>
+															</select>
+														</span>										
+													</div>
+												</div>
+							                </div>
+							            </div>
+							            
+							            <div class="col-md-6 col-sm-6 col-lg-6">
+							                <div class="form-group">
+							                	<div class="col-sm-12 col-md-12 col-lg-12">
+													<label>
+														Course Title
+													</label>													
+												</div>
+							                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-12">
+								                	<div class="form-controls">
+														<span class="ui-select">
+															<select id="course_id" name="test_course" ng-model="course_id" ng-change="onCourseIDChange()" ng-disabled="courses.length==1">
+																<option value="-1">Select Course Title</option>																		
+	        													<option ng-selected="course_id==course.number" 
+	        															ng-repeat="course in courses" value="{[course.number]}">
+	        														{[course.name]}
+	        													</option>
+															</select>
+														</span>										
+													</div>
+												</div>
+							                </div>
+							            </div>
+							            
+	                            	</div>
+	                            	
+	                            	<div class="col-lg-12" style="margin-top:10px;	">
+		                            	<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<div class="form-group  ">
+													<div class="row">
+														<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+															<label for="total_number_of_employees">Questions on Test</label>
+															<span class="label label-important"></span>
+														</div>
+													</div>
+									
+													<div class="row">
+														<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+															<div class="input-group ui-spinner" data-ui-spinner="">
+																<span class="input-group-btn">
+										                            <button type="button" class="btn btn-default" data-spin="down">
+										                                <i class="fa fa-minus"></i>
+										                            </button>
+										                        </span>
+										                        <input type="text" id="questions_count" name="{{ form.questions_on_test.name }}" 
+										                        	class="spinner-input form-control" data-rule="quantity" ng-model="questions_count" ng-change="changeQuestionsCount()"
+										                        	placeholder="Hours"/>										                        
+										                        <span class="input-group-btn">
+										                            <button type="button" class="btn btn-primary" data-spin="up">
+										                                <i class="fa fa-plus"></i>
+										                            </button>
+										                        </span>										                        
+										                    </div>												
+														</div>											
+													</div>											
+													
+												</div>
+											</div>						
+										</div>	
+										
+										<div class="row">
+											<div class="col-sm-12 col-md-12 col-lg-12">
+												<div class="form-group">
+													<div class="row">
+														<div class="col-sm-12 col-md-12 col-lg-12">
+															<label for="is_use_ssn_for_user">Is Test Active?</label>
+														</div>
+													</div>
+									
+													<div class="row">
+														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+															<label class="switch switch-iphone">
+																<input type="checkbox" id="test_is_active" ng-model="is_active">
+																 <!--{% if form.is_active.value == 1 %}checked="true" value="1"{% else %}value="0"{% endif %} />-->
+																<i></i>
+															</label>												
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>								
+										<div class="col-lg-12 text-center" style="border-top: solid 1px #ccc;padding-top:20px;">
+											<a href="#" class="btn btn-blue" ng-click="saveTest()">										
+							            		Save & Update
+							            	</a>
+							            </div>
+									</div>
+								
+								</form>		            
+                            </tab>
+
+							<tab id="tab-questions" ng-show="questions_tab">
+                            	<tab-heading>
+                            		Questions
+                            	</tab-heading>
+                            	
+                            	<div class="form-horizontal col-lg-12">
+							        <div class="row">
+							            <div class="col-md-5 col-sm-5 col-lg-5">			                
+							                <div class="form-group">
+							                	<div class="col-sm-12 col-md-12 col-lg-12">
+													<label>
+														Course
+													</label>													
+												</div>
+							                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+								                	<span class="form-control" style="background: #eee;">{[ course_id ]}, {[course_name]}</span>
+												</div>
+							                </div>
+							            </div>
+							            <div class="col-md-7 col-sm-7 col-lg-7">
+								            <div style="width:50px; float:left; margin-right:10px;" class="text-center">			                
+								                <div class="form-group">
+								                	<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+														<label>
+															Regular
+														</label>													
+													</div>
+								                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+									                	<span class="form-control" style="background: #eee;">{[ regular_count ]}</span>
+													</div>
+								                </div>
+								            </div>
+								            
+								            <div style="width:50px; float:left; margin-right:10px;" class="text-center">			                
+								                <div class="form-group">
+								                	<div class="col-sm-12 col-md-12 col-lg-12">
+														<label>
+															Mand
+														</label>													
+													</div>
+								                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+									                	<span class="form-control" style="background: #eee;">{[ mand_count ]}</span>
+													</div>
+								                </div>
+								            </div>
+								            
+								            <div style="width:50px; float:left; margin-right:10px;" class="text-center">			                
+								                <div class="form-group">
+								                	<div class="col-sm-12 col-md-12 col-lg-12">
+														<label>
+															Comp
+														</label>													
+													</div>
+								                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+									                	<span class="form-control" style="background: #eee;">{[ comp_count ]}</span>
+													</div>
+								                </div>
+								            </div>
+								            
+								            <div style="width:50px; float:left; margin-right:10px;" class="text-center">			                
+								                <div class="form-group">
+								                	<div class="col-sm-12 col-md-12 col-lg-12">
+														<label>
+															Accredit
+														</label>													
+													</div>
+								                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+									                	<span class="form-control" style="background: #eee;">{[ accredited_count ]}</span>
+													</div>
+								                </div>
+								            </div>
+								            
+								            <div style="width:50px; float:left; margin-right:10px;" class="text-center">			                
+								                <div class="form-group">
+								                	<div class="col-sm-12 col-md-12 col-lg-12">
+														<label>
+															A Mand
+														</label>													
+													</div>
+								                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+									                	<span class="form-control" style="background: #eee;">{[ amand_count ]}</span>
+													</div>
+								                </div>
+								            </div>
+								            
+								            <div style="width:50px; float:left; margin-right:10px;" class="text-center">			                
+								                <div class="form-group">
+								                	<div class="col-sm-12 col-md-12 col-lg-12">
+														<label>
+															State
+														</label>													
+													</div>
+								                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+									                	<span class="form-control" style="background: #eee;">{[ state_count ]}</span>
+													</div>
+								                </div>
+								            </div>
+								            
+								            <div style="width:50px; float:left; margin-right:10px;" class="text-center">			                
+								                <div class="form-group">
+								                	<div class="col-sm-12 col-md-12 col-lg-12">
+														<label>
+															S Mand
+														</label>													
+													</div>
+								                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+									                	<span class="form-control" style="background: #eee;">{[ smand_count ]}</span>
+													</div>
+								                </div>
+								            </div>
+								            
+								            <div style="width:50px; float:left; margin-right:10px;" class="text-center">			                
+								                <div class="form-group">
+								                	<div class="col-sm-12 col-md-12 col-lg-12">
+														<label>
+															County
+														</label>													
+													</div>
+								                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+									                	<span class="form-control" style="background: #eee;">{[ county_count ]}</span>
+													</div>
+								                </div>
+								            </div>
+								            
+								            <div style="width:50px; float:left; margin-right:10px;" class="text-center">			                
+								                <div class="form-group">
+								                	<div class="col-sm-12 col-md-12 col-lg-12">
+														<label>
+															C Mand
+														</label>													
+													</div>
+								                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+									                	<span class="form-control" style="background: #eee;">{[ cmand_count ]}</span>
+													</div>
+								                </div>
+								            </div>
+								        </div>
+							        </div>
+							    </div>
+							    
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id = "question_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="questionSearchKeywords"
+						                               data-ng-keyup="searchQuestions()">
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[ filteredQuestions.length ]}/{[ questions.length ]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Action						                        
+						                    </div></th>
+						                    
+						                    <th><div class="th">
+						                        Question Type
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="questionSort = '-type.name'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="questionSort = 'type.name'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Question
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="questionSort = '-text'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="questionSort = 'text'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Active
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="questionSort = '-is_active'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="questionSort = 'is_active'; reverse=false"></span>
+						                    </div></th>						                    					                    
+						                </tr>
+						            </thead>
+						            <tbody>
+						            	 <tr ng-cloak ng-repeat="question in currentFilteredQuestions | orderBy:questionSort track by $index">
+											<td class="col-lg-1 text-center">
+												<!--<a href="#" ng-click="removeQuestion(question)"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;-->
+												<a href="#deactivate_question_modal" ng-show="question.is_active==1" ng-click="openDeactivateModal(question)" ><i class="fa fa-eye-slash size-h4"></i>&nbsp;</a>
+												<a href="#reactivate_question_modal" ng-show="question.is_active!=1" ng-click="openActivateModal(question)" ><i class="fa fa-eye size-h4"></i>&nbsp;</a>
+												<a ng-click="editQuestion(question)"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-2">
+												{[ converted_question_types[question.type] ]}
+											</td>
+											<td class="col-lg-8">
+												<span ng-bind-html="to_trusted(question.text)"></span>
+											</td>
+											<td class="col-lg-1 text-center">
+												<i ng-show="question.is_active==1" class="fa fa-check ce-icon"></i>
+											</td>																						
+										</tr>
+						            </tbody>
+						        </table>
+						        </div>					        
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <!--<span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                </span>-->
+						            	</div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentQuestionPage"
+						                                total-items="filteredQuestions.length"
+						                                max-size="4"
+						                                on-select-page="selectQuestionPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>						            
+						        </footer>
+						        
+						        <hr>
+						        <div class="col-lg-12 text-center" style="">
+						        	<a href="#add_question_modal" ng-click="initAddQuestionModal()" class="btn btn-blue">
+						        		Add Question
+						        	</a>
+						        </div>						        
+						    </tab>                                                        
+                        </tabset>
+                    </div>
+           		</div>
+           	</div>           
+        </div>
+	</div>
+	
+	<!-- Questions add modal -->
+	<!--<div class="modal fade" id="add_question_modal" tabindex="-1" role="dialog" aria-labelledby="test_activate_modal"
+	     aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">					
+					<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+									<strong ng-show="!current_question.id">Add Questions</strong>
+									<strong ng-show="current_question.id">Edit Questions</strong>
+								</h4> 
+								<span class="title"></span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>		
+				</div>
+				<div class="modal-body list-info">
+					<div class="row">						
+                        <div class="col-lg-12">
+							<div class="form-horizontal col-lg-12">
+						        <div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Question Type
+												</label>													
+											</div>
+						                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+							                	<div class="form-controls">
+													<span class="ui-select">
+														<select name="state" ng-model="current_question.type_id" ng-change="initAnswers()">			
+        													<option ng-selected="current_question.type_id==question_type.id" 
+        															ng-repeat="question_type in question_types" value="{[question_type.id]}">
+        														{[question_type.name]}
+        													</option>
+														</select>
+													</span>										
+												</div>
+											</div>
+						                </div>
+						            </div>						            
+						        </div>
+						        <div class="row">
+						        	<div class="col-md-12 col-sm-12 col-lg-12">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Question Topic (255 Characters Max)
+													<span class="label label-important" ng-bind="topic_validation_msg"></span>
+												</label>													
+											</div>
+						                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+						                		<div class="form-controls">			                		
+						                        	<input type="text" class="form-control important" placeholder="Enter Question Topic" ng-model="current_question.topic">
+						                        	<span class="icon glyphicon glyphicon-star"></span>
+						                        </div>			                        
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						        <div class="row">
+						        	<div class="col-md-12 col-sm-12 col-lg-12">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Test Question (500 Characters Max)
+													<span class="label label-important" ng-bind="question_validation_msg"></span>
+												</label>													
+											</div>
+						                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+						                		<div class="form-controls">			                		
+						                        	<input type="text" class="form-control important" placeholder="Enter Test Question" ng-model="current_question.text">
+						                        	<span class="icon glyphicon glyphicon-star"></span>
+						                        </div>			                        
+						                    </div>
+						                </div>
+						            </div>
+						        </div>						        
+						        
+						        <div class="row">
+							        <div class="col-sm-12 col-md-12 col-lg-12">
+										<label>
+											Answers
+										</label>
+										<a href="#" class="btn-blue" ng-show="current_question.type_id==2" ng-click="addAnswer();" style="position:absolute; right:0;padding:0 10px;">+</a>													
+									</div>
+								</div>
+											
+						        <div class="row" ng-cloak ng-repeat="answer in current_question.answers" 
+						        style="border: solid 1px #ccc; padding: 10px; background: #eee; margin-bottom: 10px;">
+						        	<a href="#" ng-show="current_question.type_id==2" ng-click="removeAnswer($index)" style="position:absolute; right:10px; z-index:10;">X</a>						        
+						            <div class="col-md-2 col-sm-2 col-lg-2">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Is Correct?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="assign_subordinates" ng-model="answer.is_correct" ng-change="validateAnswer($index)"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            <div class="col-md-10 col-sm-10 col-lg-10">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Answer Choice
+													<span class="label label-important" ng-bind="answer_text_validation_msg[$index]"></span>
+												</label>													
+											</div>
+						                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+						                		<div class="form-controls">			                		
+						                        	<input type="text" class="form-control important" required placeholder="Enter Answer Choice" ng-model="answer.text">
+						                        	<span class="icon glyphicon glyphicon-star"></span>
+						                        </div>			                        
+						                    </div>
+						                </div>
+						            </div>						            
+					            	<div class="col-md-12 col-sm-12 col-lg-12" ng-show="answer.is_correct==false">		                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Why Answer Choice is Wrong
+													<span class="label label-important" ng-bind="whythis_validation_msg[$index]"></span>
+												</label>													
+											</div>
+						                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+						                		<div class="form-controls">			                		
+						                        	<input type="text" class="form-control important" placeholder="Enter Why Answer is Incorrect" ng-model="answer.why_this_choice">
+						                        	<span class="icon glyphicon glyphicon-star"></span>
+						                        </div>			                        
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						        
+						        <div class="row">
+						            <div class="col-md-4 col-sm-4 col-lg-4">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Regular Question?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="regular_question" ng-model="current_question.is_regular"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            
+						            <div class="col-md-4 col-sm-4 col-lg-4">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Mandatory Question?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="mandatory_question" ng-model="current_question.is_mandatory"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            
+						            <div class="col-md-4 col-sm-4 col-lg-4">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Competency Question?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="competency_question" ng-model="current_question.is_competency"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						        </div>
+						        
+						        <div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Accreditation Specific?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="accreditation_specific" ng-model="current_question.is_accredited"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            
+						            <div class="col-md-6 col-sm-6 col-lg-6" ng-show="current_question.is_accredited == true">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Accreditation Mandatory?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="accreditation_mandatory" ng-model="current_question.accredited_is_mandatory"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						        </div>
+						        
+						        <div class="row" ng-show="current_question.is_accredited == true">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group ">
+											<div class="col-lg12 col-sm-12 col-md-12">
+												<label for="short_name">
+													Accreditation Organization
+													<span class="label label-important" ng-bind="accreditation_validation_msg"></span>
+												</label>
+												<span class="label label-important"></span>												
+												<select class="form-control" ng-model="current_question.accredited_agency_id">
+													<option value="0" selected="selected">Select Accreditation Agency</option>								
+													<option ng-repeat="accreditation_agency in accreditation_agencies" value="{[accreditation_agency.id]}">
+														{[accreditation_agency.name]}
+													</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													State Specific?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="state_specific" ng-model="current_question.is_state"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            
+						            <div class="col-md-6 col-sm-6 col-lg-6" ng-show="current_question.is_state == true">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													State Specific Mandatory?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="state_specific_mandatory" ng-model="current_question.state_is_mandatory"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						        </div>
+						        
+						        <div class="row" ng-show="current_question.is_state == true">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group ">
+											<div class="col-lg12 col-sm-12 col-md-12">
+												<label for="short_name">
+													Associated States
+													<span class="label label-important" ng-bind="state_validation_msg"></span>
+												</label>
+												<span class="label label-important"></span>
+												<select class="form-control" ng-model="current_question.state_id" ng-change="loadCountyFips()">
+													<option value="0" selected="selected">Select State</option>																
+													<option ng-selected="current_question.state_id==state.id" 
+															ng-repeat="state in states" value="{[state.id]}">
+														{[state.name]}
+													</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row" ng-show="current_question.is_state==true&&current_question.state_id!=0">
+						            <div class="col-md-6 col-sm-6 col-lg-6">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													County Specific?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="county_specific" ng-model="current_question.is_county"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						            
+						            <div class="col-md-6 col-sm-6 col-lg-6" ng-show="current_question.is_county == true">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													County Specific Mandatory?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="county_specific_mandatory" ng-model="current_question.county_fips_mandatory"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						        </div>
+						        
+						        <div class="row" ng-show="current_question.is_county == true && current_question.is_state == true&&current_question.state_id!=0">
+									<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group ">
+											<div class="col-lg12 col-sm-12 col-md-12">
+												<label for="short_name">
+													Associated Counties
+													<span class="label label-important" ng-bind="county_validation_msg"></span>
+												</label>
+												<span class="label label-important"></span>
+												<select class="form-control" ng-model="current_question.county_fips">
+													<option value="0" selected="selected">Select County</option>																
+													<option ng-selected="current_question.county_fips==county_fip.county_fips"
+														ng-repeat="county_fip in county_fips" value="{[county_fip.county_fips]}">
+														{[county_fip.county_name]}
+													</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+						            <div class="col-md-6 col-sm-6 col-lg-6">			                
+						                <div class="form-group">
+						                	<div class="col-sm-12 col-md-12 col-lg-12">
+												<label>
+													Is Question Active?
+												</label>													
+											</div>												
+						                	<div class="col-sm-12 col-lg-12 col-md-12">
+							                	<div class="form-controls">
+													<label class="switch switch-iphone">
+						            					<input type="checkbox" name="is_question_active" ng-model="current_question.is_active"><i></i>
+						            				</label>										
+												</div>
+											</div>
+						                </div>
+						            </div>
+						        </div>
+						        
+						    </div>	
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer" style="margin-top: 0px;">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					<button type="button" data-dismiss="modal" class="btn btn-blue" ng-click="saveQuestion()" ng-disabled="!is_valid_question()">Save Question</button>					
+				</div>
+			</div>
+		</div>
+	</div>-->
+	
+	<!-- Test Activate Modal -->
+	<div class="modal fade" id="reactivate_question_modal" tabindex="-1" role="dialog" aria-labelledby="test_activate_modal"
+	     aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">					
+					<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+									<strong>Reactivate Question</strong>
+								</h4> 
+								<span class="title"></span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>		
+				</div>
+				<div class="modal-body list-info">
+					<div class="row">						
+                        <div class="col-lg-12">
+                        	<div class="callout callout-danger">
+                        		<p>
+                        			You have Clicked on the Question Reactivation icon. If you want to make this question
+                        			 active, turn the slider icon on and click the "Reactivate Question" button. Please 
+                        			 note that for audit purposes the system will record which user reactivates a question.
+                        		</p>
+                        	</div>
+                        	<div class="col-sm-12 col-md-12 col-lg-12">
+								<div class="form-group " style="margin:0px;">
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+											<label for="is_entire_organization_accredited">
+												Reactivate Question
+											</label>
+											<span class="label label-important"></span>
+										</div>
+									</div>
+		
+									<div class="row">
+										<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+											<label class="switch switch-iphone">
+			                					<input type="checkbox" name="reactivate_question" ng-model="is_reactivate"><i></i>
+			                				</label>												
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+					</div>
+				</div>
+				<div class="modal-footer" style="margin-top: 0px;">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="activateQuestion(true)">Reactivate Question</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<!-- Test Deactivate Modal -->
+	<div class="modal fade" id="deactivate_question_modal" tabindex="-1" role="dialog" aria-labelledby="test_deactivate_modal"
+	     aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">					
+					<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<h4>
+									<img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+									<strong>Deactivate Question</strong>
+								</h4> 
+								<span class="title"></span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>		
+				</div>
+				<div class="modal-body list-info">
+					<div class="row">
+						<div class="col-lg-12">
+                        	<div class="callout callout-danger">
+                        		<p>
+                        			You have Clicked on the Test Deactivation icon. If you want to make this question
+                        			 inactive, turn the slider icon on and click the "Deactivate Question" button. Please 
+                        			 note that for audit purposes the system will record which user deactivates a question.
+                        		</p>
+                        	</div>
+                        	<div class="col-sm-12 col-md-12 col-lg-12">
+								<div class="form-group " style="margin:0px;">
+									<div class="row">
+										<div class="col-sm-12 col-md-12 col-lg-12">
+											<label for="is_entire_organization_accredited">
+												Deactivate Question
+											</label>
+											<span class="label label-important"></span>
+										</div>
+									</div>
+		
+									<div class="row">
+										<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+											<label class="switch switch-iphone">
+			                					<input type="checkbox" name="deactivate_question" ng-model="is_deactivate"><i></i>
+			                				</label>												
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+					</div>
+				</div>
+				<div class="modal-footer" style="margin-top: 0px;">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="activateQuestion(false)">Deactivate Question</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div><!-- /.modal -->    
+    
+</div>
+                
+{% endblock %}
+
+
+{% block extra_scripts %}
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('.ui-spinner').bind("keydown", function (event) {
+                event.preventDefault();
+            });
+            $('.ui-spinner').spinner();
+        });
+
+    </script>
+
+    <script type="text/ng-template" id="questionAddModal.html">
+        <div class="content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="title-section">
+                            <h4>
+                                <img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+                                <strong ng-show="!current_question.id">Add Questions</strong>
+                                <strong ng-show="current_question.id">Edit Questions</strong>
+                            </h4>
+                            <span class="title"></span>
+                        </div>
+                        <a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" ng-click="cancel()">X</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body list-info">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-horizontal col-lg-12">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Question Type
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                                            <div class="form-controls">
+                                                <span class="ui-select">
+                                                    <select name="state" ng-model="current_question.type_id" ng-change="initAnswers()">
+                                                        <option ng-selected="current_question.type_id==question_type.id"
+                                                                ng-repeat="question_type in question_types" value="{[question_type.id]}">
+                                                            {[question_type.name]}
+                                                        </option>
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-lg-12">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Question Topic (255 Characters Max)
+                                                <span class="label label-important" ng-bind="topic_validation_msg"></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                                            <div class="form-controls">
+                                                <input type="text" class="form-control important" placeholder="Enter Question Topic" ng-model="current_question.topic">
+                                                <span class="icon glyphicon glyphicon-star"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-lg-12">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Test Question (500 Characters Max)
+                                                <span class="label label-important" ng-bind="question_validation_msg"></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                                            <div class="form-controls">
+                                                <input type="text" class="form-control important" placeholder="Enter Test Question" ng-model="current_question.text">
+                                                <span class="icon glyphicon glyphicon-star"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <label>
+                                        Answers
+                                    </label>
+                                    <a href="#" class="btn-blue" ng-show="current_question.type_id==2" ng-click="addAnswer();" style="position:absolute; right:0;padding:0 10px;">+</a>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-cloak ng-repeat="answer in current_question.answers"
+                            style="border: solid 1px #ccc; padding: 10px; background: #eee; margin-bottom: 10px;">
+                                <a href="#" ng-show="current_question.type_id==2" ng-click="removeAnswer($index)" style="position:absolute; right:10px; z-index:10;">X</a>
+                                <div class="col-md-2 col-sm-2 col-lg-2">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Is Correct?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="assign_subordinates" ng-model="answer.is_correct" ng-change="validateAnswer($index)"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-lg-10">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Answer Choice
+                                                <span class="label label-important" ng-bind="answer_text_validation_msg[$index]"></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                                            <div class="form-controls">
+                                                <input type="text" class="form-control important" required placeholder="Enter Answer Choice" ng-model="answer.text">
+                                                <span class="icon glyphicon glyphicon-star"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-lg-12" ng-show="answer.is_correct==false">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Why Answer Choice is Wrong
+                                                <span class="label label-important" ng-bind="whythis_validation_msg[$index]"></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                                            <div class="form-controls">
+                                                <input type="text" class="form-control important" placeholder="Enter Why Answer is Incorrect" ng-model="answer.why_this_choice">
+                                                <span class="icon glyphicon glyphicon-star"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-lg-4">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Regular Question?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="regular_question" ng-model="current_question.is_regular"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4 col-lg-4">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Mandatory Question?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="mandatory_question" ng-model="current_question.is_mandatory"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4 col-lg-4">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Competency Question?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="competency_question" ng-model="current_question.is_competency"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Accreditation Specific?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="accreditation_specific" ng-model="current_question.is_accredited"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-lg-6" ng-show="current_question.is_accredited == true">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Accreditation Mandatory?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="accreditation_mandatory" ng-model="current_question.accredited_is_mandatory"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="current_question.is_accredited == true">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group ">
+                                        <div class="col-lg12 col-sm-12 col-md-12">
+                                            <label for="short_name">
+                                                Accreditation Organization
+                                                <span class="label label-important" ng-bind="accreditation_validation_msg"></span>
+                                            </label>
+                                            <span class="label label-important"></span>
+                                            <select class="form-control" ng-model="current_question.accredited_agency_id">
+                                                <option value="0" selected="selected">Select Accreditation Agency</option>
+                                                <option ng-repeat="accreditation_agency in accreditation_agencies" value="{[accreditation_agency.id]}">
+                                                    {[accreditation_agency.name]}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                State Specific?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="state_specific" ng-model="current_question.is_state"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-lg-6" ng-show="current_question.is_state == true">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                State Specific Mandatory?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="state_specific_mandatory" ng-model="current_question.state_is_mandatory"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="current_question.is_state == true">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group ">
+                                        <div class="col-lg12 col-sm-12 col-md-12">
+                                            <label for="short_name">
+                                                Associated States
+                                                <span class="label label-important" ng-bind="state_validation_msg"></span>
+                                            </label>
+                                            <span class="label label-important"></span>
+                                            <select class="form-control" ng-model="current_question.state_id" ng-change="loadCountyFips()">
+                                                <option value="0" selected="selected">Select State</option>
+                                                <option ng-selected="current_question.state_id==state.id"
+                                                        ng-repeat="state in states" value="{[state.id]}">
+                                                    {[state.name]}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="current_question.is_state==true&&current_question.state_id!=0">
+                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                County Specific?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="county_specific" ng-model="current_question.is_county"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-lg-6" ng-show="current_question.is_county == true">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                County Specific Mandatory?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="county_specific_mandatory" ng-model="current_question.county_fips_mandatory"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="current_question.is_county == true && current_question.is_state == true&&current_question.state_id!=0">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group ">
+                                        <div class="col-lg12 col-sm-12 col-md-12">
+                                            <label for="short_name">
+                                                Associated Counties
+                                                <span class="label label-important" ng-bind="county_validation_msg"></span>
+                                            </label>
+                                            <span class="label label-important"></span>
+                                            <select class="form-control" ng-model="current_question.county_fips">
+                                                <option value="0" selected="selected">Select County</option>
+                                                <option ng-selected="current_question.county_fips==county_fip.county_fips"
+                                                    ng-repeat="county_fip in county_fips" value="{[county_fip.county_fips]}">
+                                                    {[county_fip.county_name]}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <label>
+                                                Is Question Active?
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-12 col-md-12">
+                                            <div class="form-controls">
+                                                <label class="switch switch-iphone">
+                                                    <input type="checkbox" name="is_question_active" ng-model="current_question.is_active"><i></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="margin-top: 0px;">
+                <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+                <button type="button" data-dismiss="modal" class="btn btn-blue" ng-click="saveQuestion()" ng-disabled="!is_valid_question()">Save Question</button>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="testActivateModal.html">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-section">
+                        <h4>
+                            <img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+                            <strong>Reactivate Question</strong>
+                        </h4>
+                        <span class="title"></span>
+                    </div>
+                    <a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" ng-click="cancel()">X</a>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body list-info">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="callout callout-danger">
+                        <p>
+                            You have Clicked on the Question Reactivation icon. If you want to make this question
+                             active, turn the slider icon on and click the "Reactivate Question" button. Please
+                             note that for audit purposes the system will record which user reactivates a question.
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group " style="margin:0px;">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <label for="is_entire_organization_accredited">
+                                        Reactivate Question
+                                    </label>
+                                    <span class="label label-important"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <label class="switch switch-iphone">
+                                        <input type="checkbox" name="reactivate_question" ng-model="data.is_reactivate"><i></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="margin-top: 0px;">
+            <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+            <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="ok()">Reactivate Question</button>
+        </div>
+    </script>
+
+	<script type="text/ng-template" id="testDeactivateModal.html">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-section">
+                        <h4>
+                            <img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+                            <strong>Deactivate Question</strong>
+                        </h4>
+                        <span class="title"></span>
+                    </div>
+                    <a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" ng-click="cancel()">X</a>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body list-info">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="callout callout-danger">
+                        <p>
+                            You have Clicked on the Test Deactivation icon. If you want to make this question
+                             inactive, turn the slider icon on and click the "Deactivate Question" button. Please
+                             note that for audit purposes the system will record which user deactivates a question.
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group " style="margin:0px;">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <label for="is_entire_organization_accredited">
+                                        Deactivate Question
+                                    </label>
+                                    <span class="label label-important"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <label class="switch switch-iphone">
+                                        <input type="checkbox" name="deactivate_question" ng-model="data.is_deactivate"><i></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="margin-top: 0px;">
+            <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+            <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="ok()">Deactivate Question</button>
+        </div>
+    </script>
+
+{% endblock %}

@@ -1,0 +1,345 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Organizational Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="dashboard_admin_setup" id="organization"  ng-app="organization">
+	<form method="post" action="{{ request.path }}" id="organization"  ng-controller="OrganizationForm as settings">
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="heading">
+				<h4>Organizational Setup</h4>
+
+				<p>
+					<a href="{% url 'dashboard_admin_setup' %}">Home</a>
+					<i class="fa fa-angle-double-right"></i>
+					Organizational Setup
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/01.0.jpg">
+
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup_header_info_bar pam">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+						Organization Setup
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+						Step 1.5
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-progress">
+				<div class="progress">
+					<div class="progress-bar" style="width: 20%;">Organizational Setup
+						(50%)
+					</div>
+					<div class="progress-bar progress-bar-warning" style="width: 20%;">
+						Location Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-danger" style="width: 20%;">
+						Department Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-success" style="width: 20%;">
+						Region Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-info" style="width: 20%;">Job
+						Titles Setup (0%)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-help text-right">
+				<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i>
+					Watch Me</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-info-text text-left">
+				<p>
+					HHLEARN keeps track of the modules each organization has access to. We also
+					understand that your organization may need the ability to restrict regions,
+					locations, departments, and even individuals from having access to these
+					features.
+				</p>
+
+				<p>
+					The modules your organization has signed up for are checked below. Those
+					unchecked are modules that are optional upgrades.
+				</p>
+
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+						<label for="selected_services">Included Modules: </label>
+					</div>
+				</div>
+
+				<div class="row">
+
+				{% if organization.billing.plan.id == 1 %}
+					{% for module in list_of_available_modules %}
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+							<label class="checkbox" for="{{ module.short_code }}">
+								<input  type="checkbox" value="" id="{{ module.short_code }}" data-toggle="checkbox" checked disabled>
+								{{ module.name }}
+							</label>
+						</div>
+					{% endfor %}
+				{% endif %}
+
+				{% if organization.billing.plan.id == 2 %}
+						{% for module in list_of_available_modules %}
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+								<label class="checkbox" for="{{ module.short_code }}">
+									<input  type="checkbox" value="" id="{{ module.short_code }}" data-toggle="checkbox" checked disabled>
+									{{ module.name }}
+								</label>
+							</div>
+						{% endfor %}
+						{% for module in list_all_addon_modules %}
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+								<label class="checkbox" for="{{ module.short_code }}">
+									<input  type="checkbox" value="" id="{{ module.short_code }}" data-toggle="checkbox" disabled>
+									{{ module.name }}
+								</label>
+							</div>
+						{% endfor %}
+				{% endif %}
+
+
+
+					<!--	<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Adding Custom Courses
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Benchmarking
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Credential Monitoring
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Employee Handbook
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Employee Sanction Monitoring
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Event Tracking
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Forms (DRM)
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" checked disabled>
+							Forms Library
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Form Library (Custom)
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Human Resource Module
+						</label>
+
+
+					</div>
+
+
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" checked disabled>
+							Inservice Monitoring
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Internal Instant Messaging
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" checked disabled>
+							Monthly Safety Program
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Publications (DRM)
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" checked disabled>
+							Publications Library
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Publications Library (Custom)
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" disabled>
+							Verified Messages
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" checked disabled>
+							Videos Library
+						</label>
+
+
+						<label class="checkbox" for="checkbox1">
+							<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" checked disabled>
+							Videos Library (Custom)
+						</label>    -->
+
+
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	{% if organization.total_number_of_locations > 1 %}
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<p>
+				If you have aspects of your organiztion, e.g., regions, locations, departments, or indivudals
+				that you would like to restrict from some features, you will be given the opportunity to
+				further refine their module accessibility on upcoming pages. If you plan to use
+				restrictions select "No" for the question "Are modules consistent across entire
+				organization?" below.
+			</p>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+						<label for="modules_consistent">Are modules consistent across entire organization?*</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<select name="modules_consistent" class="select-block " id="selectpicker">
+
+							<optgroup label="modules_consistent">
+								{% for modules_consistent in form.fields.modules_consistent.queryset %}
+									<option {% if modules_consistent.value  == form.data.modules_consistent|add:0 %}selected="selected"{% endif %} value="{{ modules_consistent.value }}">{{ modules_consistent.name|capfirst }}</option>
+								{% endfor for %}
+							</optgroup>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	{% endif %}
+
+	<div class="row">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+			<p class="text-left">
+				<a href="{% url 'dashboard_admin_setup_organization_1_4' %}" class="btn btn-info btn-wide setup-back-button hidden-print">Back</a>
+			</p>
+
+		</div>
+
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+			<p class="text-right">
+				<button type="submit" class="btn btn-info btn-wide setup-next-button hidden-print">
+					Save
+					& Next
+				</button>
+
+			</p>
+
+		</div>
+
+	</div>
+
+	</form>
+
+	</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/organization/js/organization.js"></script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Dashboard -  Invalid Verification Code{% endblock %}
+{% block meta_title %}Dashboard -  Invalid Verification Code{% endblock %}
+{% block meta_description %}Dashboard -  Invalid Verification Code{% endblock %}
+{% block meta_keywords %}Dashboard -  Invalid Verification Code{% endblock %}
+{% block page_class %}page_signup_verification body-special{% endblock %}
+
+{% block content %}
+	<div class="page-err">
+		<div class="err-container">
+			<div class="text-center">
+				<div class="err-status">
+					<h1><i class="fa fa-thumbs-down"></i></h1>
+				</div>
+				<div class="err-message">
+					<h2>Invalid Verification Code</h2>
+				</div>
+				<div class="err-body">
+					<a href="{% url 'home' %}" class="btn btn-lg btn-goback">
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="space"></span>
+						Go Back to Home Page
+					</a>
+				</div>
+			</div>
+		</div>
+{#		<div class="footer text-center">#}
+{#			Copyright 2014 {{main.brand}}#}
+{#		</div>#}
+	</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

@@ -1,0 +1,313 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}	
+<div class="page page-groups" ng-controller="metricsController">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Dashboard</a></li>
+                <li class="active"><a href="">Metrics</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="row" id="app_metrics">		
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="glyphicons signal"></span> Metrics</strong>    				
+                </div>
+                <div class="panel-body row">
+                	<div class="col-lg-6 no-padding" >                	
+	                <div class="col-sm-6">
+	                    <section class="panel panel-box">
+	                        <div class="panel-top bg-btn1">
+	                            <div class="divider divider"></div>
+	                            <i class="glyphicons list size-h1"></i>
+	                            <div class="divider divider"></div>
+	                        </div>
+	                        <div class="panel-bottom bg-reverse">
+	                            <p class="size-h1">{[ metrics.assigned_course_count]}</p>
+	                            <p class="text-muted">Assigned Courses</p>
+	                        </div>
+	                    </section>
+	                </div>
+	                <div class="col-sm-6">
+	                    <section class="panel panel-box">
+	                        <div class="panel-top bg-btn9">
+	                            <div class="divider divider"></div>
+	                            <i class="glyphicons justify size-h1"></i>
+	                            <div class="divider divider"></div>
+	                        </div>
+	                        <div class="panel-bottom bg-reverse">
+	                            <p class="size-h1">{[ metrics.completed_course_count]}</p>
+	                            <p class="text-muted">Completed Courses</p>
+	                        </div>
+	                    </section>                        
+	                </div>
+	                </div>                
+                
+	                <div class="col-lg-6 no-padding" >
+	                <div class="col-sm-6">
+	                    <section class="panel panel-box">
+	                        <div class="panel-top bg-btn7">
+	                            <div class="divider divider"></div>
+	                            <i class="glyphicons history size-h1"></i>
+	                            <div class="divider divider"></div>
+	                        </div>
+	                        <div class="panel-bottom bg-reverse">
+	                            <p class="size-h1">{[ metrics.assigned_course_hours | number:1]}</p>
+	                            <p class="text-muted">Assigned Hours</p>
+	                        </div>
+	                    </section>                        
+	                </div>
+	                <div class="col-sm-6">
+	                    <section class="panel panel-box">
+	                        <div class="panel-top bg-btn3">
+	                            <div class="divider divider"></div>
+	                            <i class="glyphicons clock size-h1"></i>
+	                            <div class="divider divider"></div>
+	                        </div>
+	                        <div class="panel-bottom bg-reverse">
+	                            <p class="size-h1">{[ metrics.completed_course_hours | number:1]}</p>
+	                            <p class="text-muted">Completed Hours</p>
+	                        </div>
+	                    </section>                        
+	                </div>
+	                </div>
+	                
+	                <div class="col-lg-6 no-padding" >
+	                <div class="col-sm-6">
+	                    <section class="panel panel-box">
+	                        <div class="panel-top bg-btn8">
+	                            <div class="divider divider"></div>
+	                            <i class="glyphicons adjust size-h1"></i>
+	                            <div class="divider divider"></div>
+	                        </div>
+	                        <div class="list-justified-container">
+	                            <ul class="list-justified text-center">
+	                                <li>
+	                                    <p class="size-h3">{[ metrics.my_percent ]}%</p>
+	                                    <p class="text-muted">My%<br>Completion</p>
+	                                </li>
+	                                <li>
+	                                    <p class="size-h3">{[ metrics.location_percent ]}%</p>
+	                                    <p class="text-muted">Location%<br>Completion</p>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                    </section>
+	                </div>
+	                
+	                <div class="col-sm-6">
+	                    <section class="panel panel-box">
+	                        <div class="panel-top bg-btn5">
+	                            <div class="divider divider"></div>
+	                            <i class="glyphicons podium size-h1"></i>
+	                            <div class="divider divider"></div>
+	                        </div>
+	                        <div class="list-justified-container">
+	                            <ul class="list-justified text-center">
+	                                <li>
+	                                    <p class="size-h3">{[ metrics.my_gpa | number:2 ]}</p>
+	                                    <p class="text-muted">My <br>GPA</p>
+	                                </li>
+	                                <li>
+	                                    <p class="size-h3">{[ metrics.location_gpa | number:2 ]}</p>
+	                                    <p class="text-muted">Location <br>GPA</p>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                    </section>                        
+	                </div>
+	                </div>
+	                
+	                <div class="col-lg-6 no-padding" >
+	                <div class="col-sm-6">
+	                    <section class="panel panel-box">
+	                        <div class="panel-top bg-btn4">
+	                            <div class="divider divider"></div>
+	                            <i class="glyphicons check size-h1"></i>
+	                            <div class="divider divider"></div>
+	                        </div>
+	                        <div class="list-justified-container">
+	                            <ul class="list-justified text-center">
+	                                <li>
+	                                    <p class="size-h3">{[ metrics.my_avg_test_grade ]}</p>
+	                                    <p class="text-muted">My Average Test Grade</p>
+	                                </li>
+	                                <li>
+	                                    <p class="size-h3">{[ metrics.location_avg_test_grade ]}</p>
+	                                    <p class="text-muted">Location Avg Test Grade</p>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                    </section>                        
+	                </div>
+	                
+	                <div class="col-sm-6">
+	                    <section class="panel panel-box">
+	                        <div class="panel-top bg-btn6">
+	                            <div class="divider divider"></div>
+	                            <i class="glyphicons sort size-h1"></i>
+	                            <div class="divider divider"></div>
+	                        </div>
+	                        <div class="list-justified-container">
+	                            <ul class="list-justified text-center">
+	                                <li>
+	                                    <p class="size-h3">{[ metrics.my_avg_test_attempts | number:1 ]}</p>
+	                                    <p class="text-muted">My Average Test Attempts</p>
+	                                </li>
+	                                <li>
+	                                    <p class="size-h3">{[ metrics.location_avg_test_attempts | number:1 ]}</p>
+	                                    <p class="text-muted">Location Avg Test Attempts</p>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                    </section>                        
+	                </div>
+	                </div>               
+            	</div>
+            	
+           	</div>           
+        </div>
+        
+        <div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="glyphicons construction_cone"></span> Safety Course History</strong>    				
+                </div>
+                <div class="panel-body">
+                	<div class="table-responsive table-saftey-course-history">        
+    				<table class="table table-striped table-bordered table-saftey-course-history">
+						<thead>
+						<tr>
+							<th ng-cloak ng-repeat="course in safety_course_history"><div class="th">{[course.month]}</div></th>													
+						</tr>
+						</thead>
+						<tbody>
+						<tr class="years">
+							<td ng-cloak ng-repeat="course in safety_course_history">{[course.year]}</td>														
+						</tr>
+						<tr class="check-status">
+							<!--<td><i class="glyphicons more"></i></td>
+							<td><i class="glyphicons more"></i></td>
+							<td><i class="glyphicons circle_remove color8"></i></td>
+							<td><i class="glyphicons circle_ok color3"></i></td>
+							<td><i class="glyphicons circle_remove color8"></i></td>
+							<td><i class="glyphicons circle_ok color3"></i></td>
+							<td><i class="glyphicons circle_ok color3"></i></td>
+							<td><i class="glyphicons circle_ok color3"></i></td>
+							<td><i class="glyphicons circle_ok color3"></i></td>
+							<td><i class="glyphicons circle_ok color3"></i></td>
+							<td><i class="glyphicons circle_ok color3"></i></td>
+							<td><i class="glyphicons circle_ok color3"></i></td>-->
+							<td  ng-cloak ng-repeat="course in safety_course_history">
+								<i ng-show="course.value==1" popover="This monthly course was completed by the due date." popover-trigger="mouseenter" popover-title="{[course.course_id]}" class="glyphicons circle_ok color3"></i>															
+								<i ng-show="course.value==2" popover="This monthly course was completed after the due date." popover-trigger="mouseenter" popover-title="{[course.course_id]}" class="glyphicons circle_ok color5"></i>
+								<i ng-show="course.value==0" popover="This monthly course has not been completed, but you can still receive credit by completing it." popover-trigger="mouseenter" popover-title="{[course.course_id]}" class="glyphicons circle_remove color8"></i>
+								<i ng-show="course.value==-1" popover="No monthly safety course was assigned during this month." popover-trigger="mouseenter" class="glyphicons more"></i>
+							</td>
+						</tr>
+
+						</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-lg-12">
+    		<div class="panel panel-default">
+    			<div class="panel-heading">
+    				<strong><span class="glyphicons podium"></span> Trending Grade Point Average</strong>    				
+                </div>
+                
+                <div class="panel-body">
+                	<div id="flot-gpa"
+                		 data-flot-chart
+		                 data-data="gpa_chart.data"
+		                 data-options="gpa_chart.options"
+		                 style="width: 100%; height: 300px;"
+		                 ></div>
+                </div>                			     
+            </div>
+        </div> 
+        
+        <div class="col-lg-12">
+    		<div class="panel panel-default">
+    			<div class="panel-heading">
+    				<strong><span class="glyphicons flag"></span> Milestones</strong>    				
+                </div>   
+               	
+               	<div class="panel-body row">
+               		<div class="col-lg-2 col-md-3 col-xs-6 text-center" style="padding:0px 5px;">
+	               		<div class="panel-middle bg-milestone1">
+						   	<p class="panel-icon" style="font-size: 50px;"><i class="fa fa-trophy"></i></p>					                    
+							<p class="panel-title">1st</p>
+							<p class="panel-content">Courses<br>Completion</p>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-xs-6 text-center" style="padding:0px 5px;">
+						<div class="panel-middle bg-milestone2">
+						   	<p class="panel-icon" style="font-size: 50px;"><i class="fa fa-trophy"></i></p>					                    
+							<p class="panel-title">10</p>
+							<p class="panel-content">Courses<br>Completion</p>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-xs-6 text-center" style="padding:0px 5px;">						
+						<div class="panel-middle bg-milestone3">
+						   	<p class="panel-icon" style="font-size: 50px;"><i class="glyphicons group"></i></p>					                    
+							<p class="panel-title">10/2014</p>
+							<p class="panel-content">Employee of<br>the Month</p>
+						</div>
+					</div>
+					
+					<div class="col-lg-2 col-md-3 col-xs-6 text-center" style="padding:0px 5px;">						
+						<div class="panel-middle bg-milestone4" style="color: black; border:solid 2px black;">
+						   	<p class="panel-icon" style="font-size: 50px;"><i class="glyphicons construction_cone"></i></p>					                    
+							<p class="panel-title">12</p>
+							<p class="panel-content">Months Safety<br>Courses</p>
+						</div>
+					</div>
+					
+					<div class="col-lg-2 col-md-3 col-xs-6 text-center" style="padding:0px 5px;">
+	               		<div class="panel-middle bg-milestone-empty">
+						   	
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-xs-6 text-center" style="padding:0px 5px;">
+	               		<div class="panel-middle bg-milestone-empty">
+						   	
+						</div>
+					</div>
+               	</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}	
+
+	<!--<script src="/static/dashboard/common/lib/highcharts/highcharts.js"></script>
+	<script src="/static/dashboard/common/lib/highcharts/modules/data.js"></script>
+	<script src="/static/dashboard/common/lib/highcharts/modules/exporting.js"></script>-->
+
+	<!-- Additional files for the Highslide popup effect -->
+	<!--<script type="text/javascript" src="/static/dashboard/common/lib/highcharts/highslide/highslide-full.min.js"></script>
+	<script type="text/javascript" src="/static/dashboard/common/lib/highcharts/highslide/highslide.config.js" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="/static/dashboard/common/lib/highcharts/highslide/highslide.css" />-->
+
+	<script src="/static/dashboard/metrics/js/metrics.js"></script>	
+	
+{% endblock %}

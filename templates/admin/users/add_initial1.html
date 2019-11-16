@@ -1,0 +1,606 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Admin{% endblock %}
+{% block meta_title %}Admin{% endblock %}
+{% block meta_description %}Admin{% endblock %}
+{% block meta_keywords %}Admin{% endblock %}
+
+
+{% block content %}
+<div class="page page-admin-users" ng-controller="tasksController">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{%  url 'admin_home' %}">Admin</a></li>
+                <li><a href="#">Users</a></li>
+                <li class="active"><a href="">Add</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="row" id="app_documents">		
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-users"></span> Users</strong>    				
+                </div>
+                <div class="panel-body row">                	
+            		<div class="col-lg-12">
+            			<div class="callout callout-warning">
+			                <h4>Important</h4>
+			                <p>You have completed the setup process and the last thing you must complete before being allowed to add additional users is update your own record. You will
+notice that certain fields are disabled; these fields you cannot change on this page (you can edit these once you setup other users). Please fill in all the information below, upload a picture for yourself (or select from one of our samples), select which features/modules you want to access (by default all the modules you are
+eligible for are already activated; the disabled modules are optional and are not included in your subscription). After you have completed your record, click on the “Update User” button and you will be directed to the “Add New User” section.</p>
+        				</div>
+            		</div>
+                	
+					<form action="{{ request.path }}" class="form-horizontal col-lg-12" method="post">
+						{% csrf_token %}
+						<div class="row">
+				            <div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.email.errors|first }}</span>
+				                		<div class="form-controls">			                		
+					                        <!--<input type="email" class="form-control" placeholder="Email Address">-->					                        
+					                        {{ form.email }}
+					                        <span class="icon glyphicon glyphicon-star"></span>
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				            
+				            <div class="col-md-6 col-sm-6 col-lg-6">  
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.password.errors|first }}</span>
+				                		<div class="form-controls">			                		
+					                        <!--<input type="password" class="form-control" placeholder="Password">-->					                        
+					                        {{ form.password }}
+					                        <span class="icon glyphicon glyphicon-star"></span>
+					                   	</div>
+				                    </div>				                    
+				                </div>
+				            </div>
+				            
+			            </div>
+			          
+			            <div class="row">
+				            <div class="col-md-6 col-sm-6 col-lg-6">  
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.first_name.errors|first }}</span>
+				                		<div class="form-controls">			                		
+					                        <!--<input type="text" class="form-control" placeholder="First Name">-->					                        
+					                        {{ form.first_name }}
+					                        <span class="icon glyphicon glyphicon-star"></span>
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="col-md-6 col-sm-6 col-lg-6">  
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.last_name.errors|first }}</span>
+				                		<div class="form-controls">			                		
+					                        <!--<input type="text" class="form-control" placeholder="Last Name">-->
+					                        {{ form.last_name }}
+					                        <span class="icon glyphicon glyphicon-star"></span>
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				        
+			            <div class="row">
+			            	<div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+					                	<div class="form-controls">					                		
+											<span class="ui-select">
+												{{ form.user_type }}
+												<!--<select name="state" class="select-block " id="selectpicker">
+													<option value="">Organization Administrator</option>
+													<option value="Northern Mariana Islands">Northern Mariana Islands</option>												
+													<option value="N/A">N/A</option>																						
+												</select>-->
+											</span>										
+										</div>
+									</div>
+				                </div>
+				            </div>
+				            <div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+					                	<div class="form-controls">
+											<span class="ui-select">
+												<select name="state" class="select-block " id="selectpicker">
+													<option value="">Select Job Title</option>
+													<option value="Northern Mariana Islands">Northern Mariana Islands</option>												
+													<option value="N/A">N/A</option>																						
+												</select>
+											</span>										
+										</div>
+									</div>
+				                </div>
+				            </div>
+			            </div>
+			            
+			            <div class="row">
+				            <div class="col-md-6 col-sm-6 col-lg-6">			                
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+					                	<div class="form-controls">
+											<span class="ui-select">
+												<select name="state" class="select-block " id="selectpicker">
+													<option value="">Select Location</option>
+													<option value="Northern Mariana Islands">Northern Mariana Islands</option>												
+													<option value="N/A">N/A</option>																						
+												</select>
+											</span>										
+										</div>
+									</div>
+				                </div>
+				            </div>
+			            
+				            <div class="col-md-6 col-sm-6 col-lg-6">			                
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.home_phone_number.errors|first }}</span>
+					                	<div class="form-controls">
+											<!--<input type="text" name="phone" class="form-control" id="phone" placeholder="Home Phone Number" value="">-->
+											{{ form.home_phone_number }}										
+										</div>
+									</div>
+				                </div>
+				            </div>
+			            </div>
+			            
+			            <div class="row">
+				            <div class="col-md-6 col-sm-6 col-lg-6">			                
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.alt_phone_number.errors|first }}</span>
+				                		<div class="form-controls">			                		
+				                        	<!--<input type="password" class="form-control" placeholder="Alternate/Emergency Phone Number">-->
+				                        	{{ form.alt_phone_number }}
+				                        </div>			                        
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.on_call_phone_number.errors|first }}</span>
+				                		<div class="form-controls">			                		
+				                        	<!--<input type="password" class="form-control" placeholder="On-Call Phone Number">-->
+				                        	{{ form.on_call_phone_number }}
+				                        </div>			                        
+				                    </div>
+				                </div>
+				            </div>
+			            </div>
+			            
+			            <div class="row">
+				            <div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.employee_id.errors|first }}</span>
+				                		<div class="form-controls">			                		
+				                        	<!--<input type="password" class="form-control" placeholder="Employee ID">-->
+				                        	{{ form.employee_id }}
+				                        	<span class="icon glyphicon glyphicon-star"></span>
+				                        </div>			                        
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.social_security_number.errors|first }}</span>
+				                		<div class="form-controls">			                		
+				                        	<!--<input type="password" class="form-control" placeholder="Social Security Number">-->
+				                        	{{ form.social_security_number }}
+				                        	<span class="icon glyphicon glyphicon-star"></span>
+				                        </div>			                        
+				                    </div>
+				                    <div class="col-xs-2" style="line-height:30px; padding: 0 5px;">
+				                    	<i class="fa fa-info-circle icon-info-big"></i>
+				                    	&nbsp;
+				                    	<i class="glyphicons lock size-h4" style="color:#D6B31D;"></i>
+				                    </div>
+				                </div>                
+			                </div>
+			            </div>
+			            
+			            <div class="row">
+			            	<div class="col-lg-5">
+				            	<div class="photo-container">
+				            		<div class="photo">
+					            		<img width="150px" height="150px">
+					            		<span>Drag and drop profile picture here</span>
+				            		</div>
+				            	
+					            	<div class="buttons">
+					            		<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">
+											Choose File
+										</button>
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">
+											Sample Files
+										</button>
+					            	</div>
+					            </div>
+			            	</div>
+			            </div>	            
+			            
+		                <div class="row">
+		                	<div class="col-lg-10 col-sm-10">
+			                	<div class="col-md-6 col-sm-6 col-lg-6">
+			                		<div class="form-group">		                			
+			                			<div class="form-controls">
+			                				<div class="col-lg-8 col-md-8 col-sm-8">
+			                					<label>Adding Custom Courses</label>
+			                				</div>
+			                				<div class="col-lg-4 col-md-4 col-sm-4">
+				                				<label class="switch switch-iphone">
+				                					<!--<input type="checkbox" name="add_custom_courses"><i></i>-->
+				                					{{ form.is_adding_custom_course }}<i></i>
+				                				</label>
+				                			</div>
+			                			</div>
+			                		</div>
+			                	</div>
+			                	
+			                	
+			                	<div class="col-md-6 col-sm-6 col-lg-6">
+			                		<div class="form-group">		                			
+			                			<div class="form-controls">
+			                				<div class="col-lg-8 col-md-8 col-sm-8">
+			                					<label>Benchmarking(External)</label>
+			                				</div>
+			                				<div class="col-lg-4 col-md-4 col-sm-4">
+				                				<label class="switch switch-iphone">
+				                					<!--<input type="checkbox" name="benchmarking_external"><i></i>-->
+				                					{{ form.is_external_benchmarking }}<i></i>				                						
+				                				</label>
+				                			</div>
+			                			</div>
+			                		</div>
+			                	</div>
+			                </div>
+		                </div>
+		                	
+		                <div class="row">
+		                	<div class="col-lg-10 col-sm-10 col-md-10">
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Benchmarking(Internal)</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="benchmarking_internal"><i></i>-->
+			                					{{ form.is_internal_benchmarking }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Employee Handbook</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="employee_handbook"><i></i>-->
+			                					{{ form.is_employee_handbook }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	</div>
+		                </div>
+		                	
+		                <div class="row">
+		                	<div class="col-lg-10 col-sm-10 col-md-10">
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Employee-Sanction Monitoring</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="employee_saction_monitoring"><i></i>-->
+			                					{{ form.is_employee_saction_monitoring }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Forms Drm</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="forms_drm"><i></i>-->
+			                					{{ form.is_forms_drm }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	</div>
+		                </div>
+		                	
+		                <div class="row">
+		                	<div class="col-lg-10 col-sm-10 col-md-10">
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Forms Library</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="forms_library"><i></i>-->
+			                					{{ form.is_forms_library }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>		                	
+		                	
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Forms Library(Custom)</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="forms_library_custom"><i></i>-->
+			                					{{ form.is_custom_forms_library }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	</div>
+		                </div>
+		                	
+		                <div class="row">
+		                	<div class="col-lg-10 col-sm-10 col-md-10">
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Inservice Tracking</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="inservice_tracking"><i></i>-->
+			                					{{ form.is_inservice_tracking }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Inservice Tracking(Custom)</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="inservice_tracking_custom"><i></i>-->
+			                					{{ form.is_custom_inservice_tracking }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	</div>
+		                </div>
+		                	
+		                <div class="row">
+		                	<div class="col-lg-10 col-sm-10 col-md-10">
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Messaging</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="messaging"><i></i>-->
+			                					{{ form.is_messaging }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Monthly Safety Program</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="monthly_safety_program"><i></i>-->
+			                					{{ form.is_monthly_safety_program }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	</div>
+		                </div>
+		                	
+		                <div class="row">
+		                	<div class="col-lg-10 col-sm-10 col-md-10">
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Monthly Safety Program(Custom)</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="monthly_safety_program_custom"><i></i>-->
+			                					{{ form.is_custom_monthly_safety_program }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Publications Drm</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="publications_drm"><i></i>-->
+			                					{{ form.is_publications_drm }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	</div>
+		                </div>
+	                	
+	                	<div class="row">
+	                		<div class="col-lg-10 col-sm-10 col-md-10">
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Publications Library</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="publications_library"><i></i>-->
+			                					{{ form.is_publications_library }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Publications Library(Custom)</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="publications_library_custom"><i></i>-->
+			                					{{ form.is_custom_publications_library }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	</div>
+		                </div>
+	                	
+	                	<div class="row">
+	                		<div class="col-lg-10 col-sm-10 col-md-10">
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Verified Messaging</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="verified_messaging"><i></i>-->
+			                					{{ form.is_verified_messaging }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Videos Library</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="videos_library"><i></i>-->
+			                					{{ form.is_videos_library }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	</div>
+		                </div>
+	                	
+	                	<div class="row">
+	                		<div class="col-lg-10 col-sm-10 col-md-10">
+		                	<div class="col-md-6 col-sm-6 col-lg-6">
+		                		<div class="form-group">		                			
+		                			<div class="form-controls">
+		                				<div class="col-lg-8 col-md-8 col-sm-8">
+		                					<label>Custom Videos Library</label>
+		                				</div>
+		                				<div class="col-lg-4 col-md-4 col-sm-4">
+			                				<label class="switch switch-iphone">
+			                					<!--<input type="checkbox" name="custom_videos_library"><i></i>-->
+			                					{{ form.is_custom_videos_library }}<i></i>
+			                				</label>
+			                			</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	</div>
+	                	</div>
+	                	
+		                
+		                <hr>
+		                <div class="row">
+			                <div class="col-lg-12">
+			                	<p class="text-center">									
+									<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">
+										Update User
+									</button>
+								</p>
+			                </div>
+		                </div>		            	
+					</form>
+			    </div>
+           	</div>           
+        </div>
+	</div>
+
+</div>
+                
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

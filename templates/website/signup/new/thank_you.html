@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" class="signup-page">
+<head>
+	<title>HHLEARN</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+	<!-- CSS start here -->
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons.css" />
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons-social.css" />
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/dashboard/common/css/style.css" />
+	<!--<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/dashboard/common/css/style.css" />-->
+	<!-- CSS end here -->
+	<!-- Google fonts start here -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+	<!-- Google fonts end here -->
+</head>
+<body class="signup-body">
+	<div class="header-wrapper">		
+		<div class="container">
+		<div class="col-lg-6 col-md-6 text-center">			
+			<a href="/" target="_self">
+				<!-- <span class="logo-icon glyphicon glyphicon-fire"></span> -->
+				<img src="/static//website/common/img/logo_305x100.png" alt="" class="logo-small" height="82px">
+			</a>
+		</div>
+		<div class="header-menu col-lg-6 col-md-6">			
+			<div class="col-lg-4 col-md-4 text-center">
+				<a href="#" class="item" target="_self" data-toggle="modal" data-target=".menu-modal" data-placement="right">
+					<i class="icon glyphicons justify"></i>
+					<span>Menu</span>
+				</a>
+			</div>
+			<div class="col-lg-4 col-md-4 text-center">
+				<a href="/login/" class="item" target="_self">
+					<i class="icon glyphicons user"></i>
+					<span>Login</span>
+				</a>
+			</div>
+			<div class="col-lg-4 col-md-4 text-center">
+				<a href="/" class="item" target="_self">
+					<i class="icon glyphicons home"></i>
+					<span>Home</span>
+				</a>
+			</div>			
+		</div>
+		</div>
+	</div>
+	
+<!-- Contact Icon end here -->
+	<!-- Main container start here -->
+	<div class="main-container signup">		
+		<section class="container main-wrapper">
+			<div class="row signup-wrapper">				
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div data-ui-wizard-form="" role="application" class="wizard clearfix" id="steps-uid-0">
+						<div class="steps clearfix">
+							<ul role="tablist">
+								<li role="tab" class="first done" aria-disabled="false" aria-selected="false">
+									<a id="steps-uid-0-t-0" href="{% url 'signup' %}" aria-controls="steps-uid-0-p-0" class="signup-tab1">
+										<span class="current-info audible">current step: </span>
+										<span class="number">1.</span> Your Info
+									</a>
+								</li>
+								<li role="tab" class="done" aria-disabled="false" aria-selected="false">
+									<a id="steps-uid-0-t-1" href="{% url 'signup_terms' %}" aria-controls="steps-uid-0-p-1" class="signup-tab2">
+										<span class="number">2.</span> Terms of Use
+									</a>
+								</li>
+								<li role="tab" class="done" aria-disabled="false" aria-selected="false">
+									<a id="steps-uid-0-t-2" href="{% url 'signup_payment' %}" aria-controls="steps-uid-0-p-2" class="signup-tab3">
+										<span class="number">3.</span> Plan & Pay
+									</a>
+								</li>
+								<li role="tab" class="last current" aria-disabled="false" aria-selected="true">
+									<a id="steps-uid-0-t-3" href="{% url 'signup_thank_you' %}" aria-controls="steps-uid-0-p-3" class="signup-tab4">
+										<span class="number">4.</span> Last Step
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="content clearfix">
+			                <h1 id="steps-uid-0-h-0" tabindex="-1" class="title current">1. Your Info</h1>
+			                <div id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body" aria-hidden="false" style="display: none;">
+			                </div>		
+		                	<h1 id="steps-uid-0-h-1" tabindex="-1" class="title">2. Terms of Use</h1>
+		                	<div id="steps-uid-0-p-1" role="tabpanel" aria-labelledby="steps-uid-0-h-1" class="body" aria-hidden="true" style="display: none;">
+		                		Second Content
+		                	</div>		
+		                	<h1 id="steps-uid-0-h-2" tabindex="-1" class="title">3. Plan&Pay</h1>
+		                	<div id="steps-uid-0-p-2" role="tabpanel" aria-labelledby="steps-uid-0-h-2" class="body current" aria-hidden="true" style="display: none;">		                			                	
+		                	</div>		                  
+		                	<h1 id="steps-uid-0-h-3" tabindex="-1" class="title">4. Last Step</h1>
+		                	<div id="steps-uid-0-p-3" role="tabpanel" aria-labelledby="steps-uid-0-h-3" class="body" aria-hidden="true" style="display: block;">		                				                		
+		                		<div style="background: white; padding: 10px; border: solid: 1px black;margin-bottom: 20px;">
+		                			<p class="size-h4"><strong>Thank you!</strong></p>
+		                			<p>Your Registration is Complete</p>		                			
+		                			<p>
+		                				1. Please check your email for your next step<br>
+		                				2. Authenticate your email address.<br>
+		                				3. Login and load your organization's information. <br>
+		                				4. Load your organization's learners. <br>
+		                				5. Start Learning.<br>		                				
+		                			</p>		                			
+		                		</div>
+		                		<div style="background: white; padding: 10px; border: solid: 1px black;">
+		                			<p class="size-h4"><strong>Subscription Summary</strong></p>
+		                			<p>Subscription summary</p>		                			
+		                			<p>
+		                				<strong>Date</strong>: {{core_organizations.add_date}}
+		                			</p>
+		                			<p>
+		                				{{core_organization.name}} subscribed to the {{core_plans.name}},
+		                			</p>
+		                			<p>
+		                				<strong>Number of Learners:</strong> {{core_user_packs.description}}
+		                			</p>
+		                			<p>
+		                				<strong>Monthly Subscription Cost:</strong> {{core_user_packs.monthly_price}}
+		                			</p>
+		                			<p>
+		                				<strong>Note:</strong> This is where additional information will be displayed about their monthly fees and free periods.
+		                			</p>		                						                			
+		                		</div>
+		                	</div>
+            			</div>
+	            		<div class="actions clearfix">
+	            			<ul role="menu" aria-label="Pagination">
+	            				<li class="disabled" aria-disabled="true"><a href="#previous" role="menuitem">Previous</a></li>
+	            				<li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
+	            					<a href="{% url 'login' %}" role="menuitem">Login</a>
+	            				</li>	            				
+	            			</ul>
+	            		</div>
+            		</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	
+	<div class="modal fade menu-modal" role="dialog" aria-hidden="true" data-keyboard="true" data-backdrop="static" tabindex="-1">    
+	    <div class="modal-dialog">
+	    	<a href="#" class="fa fa-times cls-pop" data-dismiss="modal"></a>
+	    	<div class="modal-header">
+	    		<img src="/static//website/common/img/logo_305x100.png" alt="" class="logo-small" height="70px">
+			</div>
+			<div class="modal-content">			
+				<div class="menu-list">
+					<div class="item">
+						<a href="{% url 'features_benefits' %}" data-dismiss="modal">					
+							<i class="glyphicons heart_empty icon" style="color:#D4145A;"></i>
+							<span class="title">Benefits</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="{% url 'features_benefits' %}#features" data-dismiss="modal">						
+							<i class="glyphicons show_big_thumbnails icon" style="color:#0000FF;"></i>
+							<span class="title">Features</span>
+						</a>										
+					</div>				
+					<div class="item">
+						<a href="{% url 'features_benefits' %}#demos" data-dismiss="modal">						
+							<i class="glyphicons film icon" style="color:#FF00FF;"></i>
+							<span class="title">Demos</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="{% url 'features_benefits' %}#pricing" data-dismiss="modal">						
+							<i class="glyphicons usd icon" style="color:#59BA35;"></i>
+							<span class="title">Plans</span>
+						</a>										
+					</div>
+					<div class="item last">
+						<a href="{% url 'signup' %}">						
+							<i class="glyphicons thumbs_up icon" style="color:#30D4D8;"></i>
+							<span class="title">Sign Up</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="{% url 'features_courses' %}" data-dismiss="modal">						
+							<i class="glyphicons imac icon" style="color:#FFCC00;"></i>
+							<span class="title">Courses</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="{% url 'features_courses' %}#testing" data-dismiss="modal">						
+							<i class="glyphicons check icon" style="color:#009245;"></i>
+							<span class="title">Testing</span>
+						</a>									
+					</div>
+					<div class="item">
+						<a href="{% url 'features_courses' %}#certificates" data-dismiss="modal">						
+							<i class="glyphicons qrcode icon" style="color:#C7B299;"></i>
+							<span class="title">Certificates</span>	
+						</a>											
+					</div>
+					<div class="item" data-dismiss="modal">
+						<a href="{% url 'features_courses' %}#reports" data-dismiss="modal">						
+							<i class="fa fa-bar-chart-o icon" style="color:#70CEEF;"></i>
+							<span class="title">Reporting</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="{% url 'features_courses' %}#testimonals" data-dismiss="modal">						
+							<i class="glyphicons quote icon" style="color:#D9E021;"></i>
+							<span class="title">Testimonals</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="{% url 'features_responsive' %}" data-dismiss="modal">						
+							<i class="glyphicons ipad icon" style="color:#5BC5F2;"></i>
+							<span class="title">Responsive</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="{% url 'features_responsive' %}#benchmarking" data-dismiss="modal">						
+							<i class="glyphicons stats icon" style="color:#FF7BAC;"></i>
+							<span class="title">Benchmark</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="{% url 'features_responsive' %}#events" data-dismiss="modal">						
+							<i class="glyphicons calendar icon" style="color:#FF931E;"></i>
+							<span class="title">Events</span>
+						</a>										
+					</div>
+					<div class="item">
+						<a href="{% url 'features_responsive' %}#newsletter" data-dismiss="modal">						
+							<i class="glyphicons newspaper icon" style="color:#FF2D55;"></i>
+							<span class="title">Newsletter</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="{% url 'features_responsive' %}#contact-us" data-dismiss="modal">						
+							<i class="glyphicons phone_alt icon" style="color:#E30613;"></i>
+							<span class="title">Contact</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="{% url 'features_terms' %}" data-dismiss="modal">						
+							<i class="glyphicons list-alt icon" style="color:#6C4796;"></i>
+							<span class="title">Terms</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="{% url 'features_terms' %}" data-dismiss="modal">						
+							<i class="glyphicons eye_open icon" style="color:#05BECC;"></i>
+							<span class="title">Privacy</span>
+						</a>											
+					</div>
+					<div class="item">
+						<a href="{% url 'features_terms' %}" data-dismiss="modal">						
+							<i class="glyphicons parents icon" style="color:#ADDB21;"></i>
+							<span class="title">Conduct</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="{% url 'features_terms' %}" data-dismiss="modal">						
+							<i class="glyphicons lock icon" style="color:#D6B31D;"></i>
+							<span class="title">Security</span>
+						</a>												
+					</div>
+					<div class="item">
+						<a href="{% url 'faq' %}" data-dismiss="modal">						
+							<i class="glyphicons circle_question_mark icon" style="color:#0069B4;"></i>
+							<span class="title">FAQs</span>
+						</a>									
+					</div>
+				</div>
+				<div class="social-menu-list">
+					<a href="http://www.facebook.com/HHLEARN"><i class="social social-facebook"></i></a>
+					<a href="http://www.twitter.com/HHLEARN"><i class="social social-twitter"></i></a>
+					<a href="https://www.linkedin.com/company/hhlearn"><i class="social social-linked-in"></i></a>
+					<a href="http://www.youtube.com/channel/UCazOKONHKoBCc-UlmjU8OKQ"><i class="social social-youtube"></i></a>
+					<a href="http://www.pinterest.com/HHLEARN"><i class="social social-pinterest"></i></a>
+					<a href="http://www.instagram.com/HHLEARN"><i class="social social-instagram"></i></a>
+				</div>		
+			</div>
+	    </div>
+	</div>
+		
+	<div class="footer-wrapper"> 
+		<footer class="" style="overflow: hidden; padding-left: 0px;">			
+			<ul class="bottom-list row">
+				<li>
+					<a href="{% url 'features_benefits' %}#features" class="item">						
+						<i class="glyphicons show_big_thumbnails icon"></i>
+						<span class="title">Features</span>
+						<p class="description">
+							HHLEARN is designed by industry professionals, and we have built-in 
+							features that will provide immediate benefits to your organization.
+						</p>
+						<div class="left-bar"></div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'features_benefits' %}#demos" class="item">
+						<i class="glyphicons film icon"></i>
+						<span class="title">Watch Demo</span>
+						<p class="description">
+							There's no better way to grasp how simple training employees can be
+							than watching videos that visually show you. See it for yourself!
+						</p>
+						<div class="left-bar"></div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'features_courses' %}" class="item">
+						<i class="glyphicons display icon"></i>
+						<span class="title">Courses</span>
+						<p class="description">
+							We utilize proven adult education teaching methods 
+							that include reading, visual aids, tts, and video.
+						</p>
+						<div class="left-bar"></div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'features_courses' %}#testing" class="item">
+						<i class="glyphicons check icon"></i>
+						<span class="title">Testing</span>
+						<p class="description">
+							Our testing and secure certificates of completion are so unique, they're 
+							patent pending. Check out how we do it and how you will benefit
+						</p>
+						<div class="left-bar"></div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'features_responsive' %}#contact-us" class="item">
+						<i class="glyphicons phone_alt icon"></i>
+						<span class="title">Contact Us</span>
+						<p class="description">
+							There are so many ways to find out about us and contact us. 
+							You can even connect through social media.
+						</p>
+						<div class="left-bar"></div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'features_benefits' %}#pricing" class="item">
+						<i class="glyphicons usd icon"></i>
+						<span class="title">Pricing Plans</span>
+						<p class="description">
+							Find out how little it costs to become a member of the 
+							number 1 employee education system. Try it for FREE.
+						</p>
+					</a>
+				</li>				
+			</ul>
+		</footer>
+	</div>
+	
+	<!-- Main container start here -->
+	<!-- Javascript framework and plugins start here -->
+	<script type="text/javascript" src="{{STATIC_URL}}/website/countdown/js/jquery.js"></script> 
+	<script type="text/javascript" src="{{STATIC_URL}}/website/countdown/js/bootstrap.min.js"></script> 
+	<script src="{{STATIC_URL}}/website/countdown/js/jquery.validate.min.js"></script>
+	<script>
+		//slider
+		jQuery(function() {
+			//smooth scroll to href value
+			jQuery(".menu-list .item a").click(function(event){
+				 event.preventDefault();
+				 //calculate destination place
+				 var dest=0;
+				 if ($(this.hash).length == 0) {
+				 	window.location.href = this.href;
+				 	return;
+				 }
+				 if($(this.hash).offset().top > $(document).height()-$(window).height()){
+					  dest=$(document).height()-$(window).height();
+				 }else{
+					  dest=$(this.hash).offset().top;
+				 }
+				 //go to destination
+				 jQuery('html,body').animate({scrollTop:dest}, 1000,'swing');
+			 });
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+angular.module("course").directive('uiRangeSlider', [
+    function() {
+      return {
+        restrict: 'A',
+        link: function(scope, ele, attrs) {
+            console.log(scope);
+            ele.slider(scope);
+            ele.slider('setValue',scope.$parent.fontSize);
+            ele.slider().on('slideStop', function(ev){
+                scope.$parent.changeDemoFontSize();
+            });
+        }
+      };
+}]);

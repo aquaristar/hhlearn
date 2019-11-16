@@ -1,0 +1,67 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Dashboard Login{% endblock %}
+{% block meta_title %}Dashboard Login{% endblock %}
+{% block meta_description %}Dashboard Login{% endblock %}
+{% block meta_keywords %}Dashboard Login{% endblock %}
+{% block page_class %}page_login body-special{% endblock %}
+
+{% block content %}
+
+	<div class="page-signin" ng-controller="loginCtlr">
+
+		<div class="signin-header">
+			<div class="container text-center">
+				<section class="logo">
+					<a href="{% url 'home' %}">Login</a>
+				</section>
+			</div>
+		</div>
+
+		<div class="signin-body">
+			<div class="container">
+				<div class="form-container">
+
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<div class="input-group input-group-lg">
+					                                <span class="input-group-addon">
+					                                    <i class="fa fa-user"></i>
+					                                </span>
+									<input type="text" ng-model="username" name="username" class="form-control " placeholder="Username" autofocus>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="input-group input-group-lg">
+					                                <span class="input-group-addon">
+					                                    <span class="glyphicon glyphicon-lock"></span>
+					                                </span>
+									<input type="password" ng-model="password" name="password" class="form-control " placeholder="Password">
+								</div>
+							</div>
+							<div class="form-group">
+							</div>
+							<div class="form-group">
+								<a href="#/" class="btn btn-primary btn-lg btn-block" ng-click="loginUser()">Log in</a>
+							</div>
+						</fieldset>
+					</form>
+
+					<section>
+						<p class="text-center"><a href="">Forgot your password?</a></p>
+						<p class="text-center text-muted text-small">Don't have an account yet? <a href="">Sign up</a></p>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

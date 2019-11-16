@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="description" content="{% block meta_description %}{% endblock %}"/>
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}"/>
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet'
+          type='text/css'>
+
+    {% load compress %}
+
+    {% compress css %}
+
+        <link href="{{ STATIC_URL }}dashboard/common/lib/fontawesome/v4.1.0/css/font-awesome.css" rel="stylesheet">
+
+        <link href="{{ STATIC_URL }}dashboard/common/lib/toastr/v2.0.2/toastr.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}dashboard/common/lib/angularjs/third-party/angular-xeditable-0.1.8/css/xeditable.css"
+              rel="stylesheet">
+
+        <link href="{{ STATIC_URL }}dashboard/common/css/style.css" rel="stylesheet">
+
+        {% block extra_css %}{% endblock %}
+
+    {% endcompress %}
+</head>
+<body class="{% block page_class %}{% endblock %} {{ request.session.menu_type }} body-special" data-off-canvas-nav id="app">
+<span class="" us-spinner spinner-key="spinner-1"></span>
+<!--[if lt IE 9]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+
+<div class="view-container">
+    <section id="content" class="animate-fade-up">
+
+        {% block content %}{% endblock %}
+
+    </section>
+</div>
+
+<!-- /.container -->
+
+
+<!-- <footer>
+	<div id="footer" class="bottom-menu bottom-menu-inverse dash-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center mtl copyright">
+					© 2014 Telephonic, Inc. All rights reserved.
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>  -->
+
+{% load compress %}
+
+{% compress js %}
+    <!-- Load JS here for greater good =============================-->
+    <script src="{{ STATIC_URL }}dashboard/common/lib/jquery/v1.11.0/jquery-1.11.0.min.js"></script>
+
+
+    <script src="{{ STATIC_URL }}dashboard/common/lib/bootstrap-sortable/v2.0.0/js/bootstrap-sortable.js"></script>
+    <script src="{{ STATIC_URL }}dashboard/common/lib/jquery-tags-input/v1.3.3/jquery.tagsinput.js"></script>
+    <script src="{{ STATIC_URL }}dashboard/common/lib/jquery-placeholder/v2.0.7/jquery.placeholder.js"></script>
+    <script src="{{ STATIC_URL }}dashboard/common/lib/jquery-input-mask/v1.3.1/jquery.maskedinput.min.js"></script>
+
+    <script src="{{ STATIC_URL }}dashboard/common/lib/underscorejs/v1.6.0/underscore-min.js"></script>
+
+
+    <script src="{{ STATIC_URL }}dashboard/common/lib/angularjs/v1.3.0-beta.13/angular.min.js"></script>
+    <script src="{{ STATIC_URL }}dashboard/common/lib/angularjs/v1.3.0-beta.13/angular-cookies.min.js"></script>
+    <script src="{{ STATIC_URL }}dashboard/common/lib/angularjs/v1.3.0-beta.13/angular-resource.min.js"></script>
+    <script src="{{ STATIC_URL }}dashboard/common/lib/angularjs/third-party/angular-base64.min.js"></script>
+{#    <script src="{{ STATIC_URL }}dashboard/common/lib/angularjs/third-party/slider.js"></script>#}
+    <script src="{{ STATIC_URL }}dashboard/common/lib/angularjs/third-party/ui-bootstrap/v0.11.0/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="{{ STATIC_URL }}dashboard/common/lib/angularjs/third-party/angular-xeditable-0.1.8/js/xeditable.min.js"></script>
+
+
+    <script src="{{ STATIC_URL }}dashboard/common/lib/spinjs/hacked/spin.min.js"></script>
+    <script src="{{ STATIC_URL }}dashboard/common/lib/spinjs/hacked/angular-spinner.js"></script>
+
+    <script src="{{ STATIC_URL }}dashboard/common/lib/bootstrap/v3.1.1/js/bootstrap.min.js"></script>
+
+    <script src="{{ STATIC_URL }}dashboard/common/lib/toastr/v2.0.2/toastr.js"></script>
+
+    <script src="{{ STATIC_URL }}dashboard/common/lib/slim-scroll/v1.3.0/jquery.slimscroll.min.js"></script>
+
+    <script src="{{ STATIC_URL }}dashboard/common/lib/momentjs/v2.7.0/moment.min.js"></script>
+
+    <script src="{{ STATIC_URL }}dashboard/common/js/application.js"></script>
+
+
+{% endcompress %}
+
+{% block extra_scripts %}
+
+
+{% endblock %}
+
+
+</body>
+</html>

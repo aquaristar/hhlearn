@@ -1,0 +1,58 @@
+{% extends "website/_page.html" %}
+{% block title %}HHLEARN - Home{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+	{% load current_tags %}
+	{% get_prices as prices %}
+
+	<div class="row">
+		<div class="col-lg-12">
+
+			<h1>Pricing</h1>
+
+			<p>A subscription to HHLEARN is only pennies a day. The price to subscribe is based on the range
+				of employees
+				that are loaded. The pricing points have been designed for common organizational sizes.
+				There is no
+				prorating of each employee on the system. Once an employee is deactivated they cannot be
+				reactivated.
+				Their records are stored, but cannot be utilized like an active employee. This
+				limitation is only used to
+				prevent organizations from turning employees on and off to keep their employee limits
+				within the subscribed
+				quantity.</p>
+		</div>
+	</div>
+	<!-- {% autoescape off %}{{ content.body }}{% endautoescape %}      -->
+
+	<div id="priceWrap">
+		<div id="priceFloat">
+			{% for price in prices %}
+				<div style="float:left; width:52px; margin-right:3px; text-align:center;">
+					<sup class="pricesSup">$</sup>{{ price.price|truncatewords:"1"|slice:":1" }}<sup class="pricesSup">.00</sup>
+				</div>
+			{% endfor %}
+			<br clear="all"/>
+		</div>
+		<div id="pButtonFloat">
+			<a href="/signup/1" class="pButton">Sign Up</a>
+			<a href="/signup/2" class="pButton">Sign Up</a>
+			<a href="/signup/3" class="pButton">Sign Up</a>
+			<a href="/signup/4" class="pButton">Sign Up</a>
+			<a href="/signup/5" class="pButton">Sign Up</a>
+			<a href="/signup/6" class="pButton">Sign Up</a>
+			<a href="/signup/7" class="pButton">Sign Up</a>
+			<a href="/signup/8" class="pButton">Sign Up</a>
+			<a href="/signup/9" class="pButton">Sign Up</a>
+			<a href="/signup/10" class="pButton">Sign Up</a>
+			<a href="/signup/11" class="pButton">Sign Up</a>
+			<a href="/signup/12" class="pButton">Sign Up</a>
+		</div>
+	</div>
+{% endblock %}

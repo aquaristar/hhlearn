@@ -1,0 +1,297 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Location Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="dashboard_admin_setup" id="step_location" ng-app="step_location">
+	<form method="post" action="{{ request.path }}" ng-controller="LocationForm as settings">
+	{% csrf_token %}
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="heading">
+				<h4>Location Setup</h4>
+
+				<p>
+					<a href="{% url 'dashboard_admin_setup' %}">Home</a>
+					<i class="fa fa-angle-double-right"></i>
+					Welcome
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/2.2.jpg">
+
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup_header_info_bar pam">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+						Location Setup
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+						Step 2.3.1
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-progress">
+				<div class="progress">
+					<div class="progress-bar" style="width: 20%;">Organizational Setup
+						(100%)
+					</div>
+					<div class="progress-bar progress-bar-warning" style="width: 20%;">
+						Location Setup (40%)
+					</div>
+					<div class="progress-bar progress-bar-danger" style="width: 20%;">
+						Department Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-success" style="width: 20%;">
+						Region Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-info" style="width: 20%;">Job
+						Titles Setup (0%)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-help text-right">
+				<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i>
+					Watch Me</a>
+			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">HHLEARN -
+								Setup Help Video</h4>
+						</div>
+						<div class="modal-body">
+							<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Close
+							</button>
+
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+		</div>
+
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-info-text text-left">
+				<p>
+					The following infromation is displaying because earlier you entered that
+					your organization-wide grading was not going to be consistent.
+					This page gives you the opportunity to set minimum passing grades for
+					each location. We wil allow you to futher define your organization
+					(e.g., departments) in the upcoming pages. </p>
+
+				<p>
+					When It comes to grading tests on HHLEARN, we allow you to decide what the
+					passing scores ore. We have 4 different types of tests: General Knowledge,
+					Continuing Education, Employee Competence, and your own Custom Courses.
+				</p>
+
+				<p>
+					We have prepopulated the four choices with your company responses, please select
+					your location-specific minimum passing scores.*
+				</p>
+			</div>
+		</div>
+	</div>
+
+	{{ formset.management_form }}
+	{% for form in formset %}
+
+		{{ form.id }}
+
+
+
+		<div class="row">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<div class="form-group  {% if form.short_name.errors %}has-error{% endif %}">
+					<label for="short_name">
+						{{ form.short_name.label }}</label>
+					<span class="label label-important">{{ form.short_name.errors|first }}</span>
+					{{ form.short_name }}
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2">
+				<div class="form-group {% if form.min_score_general_knowledge.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<label for="min_score_general_knowledge">{{ form.min_score_general_knowledge.label }}</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+							<div>
+								<span class="label label-important">{{ form.min_score_general_knowledge.errors|first }}</span>
+							</div>
+
+							{{ form.min_score_general_knowledge }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-2">
+				<div class="form-group {% if form.min_score_continuing_education.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<label for="min_score_continuing_education">{{ form.min_score_continuing_education.label }}</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+							<div>
+								<span class="label label-important">{{ form.min_score_continuing_education.errors|first }}</span>
+							</div>
+
+							{{ form.min_score_continuing_education }}
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<div class="col-lg-2">
+				<div class="form-group {% if form.min_score_employee_competency.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<label for="min_score_continuing_education">{{ form.min_score_employee_competency.label }}</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+							<div>
+								<span class="label label-important">{{ form.min_score_employee_competency.errors|first }}</span>
+							</div>
+
+							{{ form.min_score_employee_competency }}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-lg-2">
+				<div class="form-group {% if form.min_score_custom_courses.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<label for="min_score_continuing_education">{{ form.min_score_custom_courses.label }}</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+							<div>
+								<span class="label label-important">{{ form.min_score_custom_courses.errors|first }}</span>
+							</div>
+
+							{{ form.min_score_custom_courses }}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<hr/>
+
+	{% endfor %}
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-info-text text-left">
+
+				<div class="alert alert-info">
+					<p>
+						In some cases your grading choices will be superseded by more stringent
+						minimum passing scores. These situations include the anti-cheating
+						technology we have built-in and ensures that requirements of specific
+						continuing education organizations are met.
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-info-text text-left">
+
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+						<p class="text-left">
+							<a href="{% url 'dashboard_admin_setup_location_2_3' %}" class="btn btn-info btn-wide setup-back-button hidden-print">Back</a>
+						</p>
+
+					</div>
+
+
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+						<p class="text-right">
+							<button type="submit" class="btn btn-info btn-wide setup-next-button hidden-print">
+								Save
+								& Next
+							</button>
+
+						</p>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	</form>
+	</div>
+
+
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/location/js/location.js"></script>
+
+{% endblock %}

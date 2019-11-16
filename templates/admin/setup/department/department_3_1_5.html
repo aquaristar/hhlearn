@@ -1,0 +1,302 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Location Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block content %}
+<div class="page page-admin-setup" id="step_department" ng-app="step_department">
+	<div class="row">
+		 <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Administrator</a></li>
+                <li><a href="">Setup</a></li>
+                <li class="active"><a href="">Step3</a></li>
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-cogs"></span>&nbsp;&nbsp;Step&nbsp;&nbsp;3.1.5</strong>    				
+                </div>
+                <div class="panel-body row">
+					<div class="col-lg-12" style="padding: 0px; margin-top: -15px; ">
+						<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/3.1.4.jpg">					
+						<div class="setup-progress">
+							<div class="progress">
+								<div class="progress-bar progress1" style="width: 20%;">Organizational Setup
+									(100%)
+								</div>
+								<div class="progress-bar progress2" style="width: 20%;">
+									Location Setup (100%)
+								</div>
+								<div class="progress-bar progress3" style="width: 20%;">
+									Department Setup (40%)
+								</div>
+								<div class="progress-bar progress4" style="width: 20%;">
+									Region Setup (0%)
+								</div>
+								<div class="progress-bar progress5" style="width: 20%;">Job
+									Titles Setup (0%)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="post" action="{{ request.path }}">
+						{% csrf_token %}
+						<div class="setup-help text-right">
+							<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i> Watch Me</a>
+						</div>
+						
+						<div class="col-lg-12">	
+							<div class="row">	
+								<!-- Modal -->
+								<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title" id="myModalLabel">HHLEARN -
+													Setup Help Video</h4>
+											</div>
+											<div class="modal-body">
+												<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													Close
+												</button>
+					
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
+							</div>		
+
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="setup-info-text text-left">
+										{% if organization.total_number_of_locations > 1 %}
+											<p>As we mentioned in step 2.3.4, you can further refine the designated
+												officials
+												for your departments. Below you will see a location/department
+												combination list
+												followed by the designated officials that you noted were not consistent
+												across
+												that entire location. Enter the correct information for the department
+												displayed
+												at the top. </p>
+						
+											<p>Because you have more than one location loaded, each department’s designated
+												officials will display one after another. Please enter their information
+												and hit
+												the Save & Next button to progress to the next department. Once you have
+												completed all departments, you will be directed to the next
+												section. </p>
+						
+										{% endif %}
+						
+										{% if organization.total_number_of_locations == 1 %}
+											<p>As we mentioned in step 2.3.4, you can further refine the designated officials
+											for your departments. Below you will see a list of departments followed by the
+											designated officials that you noted were not consistent across your entire
+											location.  </p>
+						
+											<p>Enter the correct information for the department displayed at the top.
+											Please click on the Save & Next button when you are finished.</p>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						
+						
+							{{ form.id }}
+						
+							<div class="row">
+								<div class="col-sm-4 col-md-4 col-lg-4">
+									<div class="form-group  {% if form.short_name.errors %}has-error{% endif %}">
+										<label for="short_name">
+											{{ form.short_name.label }}</label>
+										<span class="label label-important">{{ form.short_name.errors|first }}</span>
+										{{ form.short_name }}
+									</div>
+								</div>
+							</div>
+						
+						
+							{{ form_department.id }}
+						
+							<div class="row">
+								<div class="col-sm-4 col-md-4 col-lg-4">
+									<div class="form-group  {% if form_department.short_name.errors %}has-error{% endif %}">
+										<label for="short_name">
+											{{ form_department.short_name.label }}</label>
+										<span class="label label-important">{{ form_department.short_name.errors|first }}</span>
+										{{ form_department.short_name }}
+									</div>
+								</div>
+							</div>
+						
+						
+							{{ formset_officials.management_form }}
+						
+							{% for form_official in formset_officials %}
+						
+						
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label for="federal_electronic_postings">{{ form_official.question.value }}</label>
+										{{ form_official.question }}
+									</div>
+								</div>
+						
+								<div class="" id="official_box">
+						
+						
+									<div class="row">
+										<div class="col-sm-4 col-md-4 col-lg-4">
+											<div class="form-group">
+												<label for="id_officials-0-default_job_title">{{ form_official.default_job_title.label }}</label>
+												{{ form_official.default_job_title }}
+											</div>
+										</div>
+										<div class="col-sm-4 col-md-4 col-lg-4">
+											<div class="form-group  {% if form_official.organization_job_title.errors %}has-error{% endif %}">
+												<label for="id_officials-0-organization_job_title">{{ form_official.organization_job_title.label }}</label>
+												<span class="label label-important">{{ form_official.organization_job_title.errors|first }}</span>
+												<div class="form-controls">
+													{{ form_official.organization_job_title }}
+													<span class="icon glyphicon glyphicon-star"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+						
+									<div class="row">
+										<div class="col-sm-4 col-md-4 col-lg-4">
+											<div class="form-group {% if form_official.first_name.errors %}has-error{% endif %}  {% if form_official.last_name.errors %}has-error{% endif %}">
+						
+												<div class="row">
+													<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+														<label for="id_officials-0-first_name">First
+															and Last Name of
+															Contact*</label>						
+													</div>
+												</div>
+						
+												<div class="row">
+													<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+														<span class="label label-important">{{ form_official.first_name.errors|first }}</span>
+														<div class="form-controls">
+															{{ form_official.first_name }}
+															<span class="icon glyphicon glyphicon-star"></span>
+														</div>
+													</div>
+													<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+														<span class="label label-important">{{ form_official.last_name.errors|first }}</span>
+														<div class="form-controls">
+															{{ form_official.last_name }}
+															<span class="icon glyphicon glyphicon-star"></span>
+														</div>					
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4 col-md-4 col-lg-4">
+											<div class="form-group  {% if form_official.actual_job_title.errors %}has-error{% endif %}">
+												<label for="id_officials-0-actual_job_title">{{ form_official.actual_job_title.label }}</label>
+												<span class="label label-important">{{ form_official.actual_job_title.errors|first }}</span>
+												<div class="form-controls">
+													{{ form_official.actual_job_title }}
+													<span class="icon glyphicon glyphicon-star"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+						
+									<div class="row">
+										<div class="col-sm-4 col-md-4 col-lg-4">
+											<div class="form-group {% if form_official.email.errors %}has-error{% endif %}  ">
+												<label for="id_officials-0-email">{{ form_official.email.label }}</label>
+												<span class="label label-important">{{ form_official.email.errors|first }}</span>
+												<div class="form-controls">
+													{{ form_official.email }}
+													<span class="icon glyphicon glyphicon-star"></span>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-2 col-md-2 col-lg-2">
+											<div class="form-group {% if form_official.phone.errors %}has-error{% endif %} ">
+												<label for="id_officials-0-phone">{{ form_official.phone.label }}</label>
+												<span class="label label-important">{{ form_official.phone.errors|first }}</span>
+												<div class="form-controls">
+													{{ form_official.phone }}
+													<span class="icon glyphicon glyphicon-star"></span>
+												</div>
+											</div>
+										</div>
+						
+									</div>
+						
+						
+									<!--<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+												<div class="form-group">
+													<div class="row">
+														<div class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+															<label for="is_organization_wide">
+																{{ form_official.is_location_wide.label }}
+															</label>
+														</div>
+													</div>
+						
+													<div class="row">
+														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+															{{ form_official.is_location_wide }}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>   -->
+						
+						
+									{{ form_official.short_code }}
+						
+								</div>
+								<hr/>
+							{% endfor %}
+
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<p class="text-center">
+										<a href="{{ back_button_url }}" class="btn btn-blue btn-wide setup-back-button hidden-print">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">Save
+											& Next
+										</button>
+									</p>								
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/location/js/location.js"></script>
+
+{% endblock %}

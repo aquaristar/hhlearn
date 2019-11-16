@@ -1,0 +1,318 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}Documents{% endblock %}
+{% block meta_description %}Documents{% endblock %}
+{% block meta_keywords %}Documents{% endblock %}
+
+
+{% block content %}	
+<div class="page page-alerts" ng-controller="alertsController">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{%  url 'dashboard_home' %}">Dashboard</a></li>
+                <li class="active"><a href="">Alerts</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="row" id="app_documents">		
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-bell-o"></span> Alerts</strong>    				
+                </div>
+                <div class="panel-body row">                	
+                    <div class="ui-tab">
+                        <tabset class="ui-tab">                        	
+                            <tab>
+                            	<tab-heading>
+                            		Unread
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id = "alert_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="alertSearchKeywords"
+						                               data-ng-keyup="searchAlert()">
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[ filteredAlerts.length ]}/{[ alertData.length ]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            		<ul class="alerts-list">
+                            			<li ng-cloak ng-repeat="alert in currentFilteredAlerts | orderBy:alertSort track by $index">
+                            				<div class="alert"
+	                            				 ng-class="{'alert-danger': alert.core_messages_alerts.util_priorities.priority_desc == 'High',					
+									  						'alert-warning': alert.core_messages_alerts.util_priorities.priority_desc=='Normal',
+									  						'alert-info': alert.core_messages_alerts.util_priorities.priority_desc=='Low'}">
+												<button type="button" class="close" ng-click="changeAlertStatusToReaded(alert, $index)">×</button>
+												<div class="header">
+													<i ng-show="alert.core_messages_alerts.util_priorities.priority_desc == 'Low'" class="fa fa-info-circle bg-alert-icon-low"></i>
+													<i ng-show="alert.core_messages_alerts.util_priorities.priority_desc == 'Normal'" class="fa fa-exclamation-triangle bg-alert-icon-normal"></i>
+													<i ng-show="alert.core_messages_alerts.util_priorities.priority_desc == 'High'" class="fa fa-minus-circle bg-alert-icon-high"></i>
+												</div>
+												<div class="content">
+													<span class="col-sm-5 col-lg-5 col-md-5 col-xs-12"><strong>Subject:&nbsp;</strong> {[ alert.core_messages_alerts.message_alert_subject]}</span>
+													<span class="col-sm-4 col-lg-4 col-md-4 col-xs-12"><strong>Date:&nbsp;</strong>{[ alert.date_assigned_UTC | date : "M/d/yyyy h:mm a" ]} {[ tzCode ]}</span>
+				                                	<span class="col-sm-3 col-lg-3 col-md-3 col-xs-12"><strong>Alert ID:&nbsp;</strong> {[ encode(alert.id) ]}</span>				                                				                                	
+													<span style="padding:0 15px; display: inline-block;" ng-bind-html="to_trusted(alert.core_messages_alerts.message_alert_content)"></span>
+												</div>
+											</div>
+                            			</li>                            			
+                            		</ul>
+						        </div>
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                <!--    <span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 </span>-->
+						             </div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentAlertPage"
+						                                total-items="filteredAlerts.length"
+						                                max-size="4"
+						                                on-select-page="selectAlertPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>
+						        </footer>
+                            </tab>
+                            <tab>
+                            	<tab-heading>
+                            		Read
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id="read_alert_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="rAlertSearchKeywords"
+						                               data-ng-keyup="searchRAlert()"
+						                               >
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[filteredRAlerts.length]}/{[rAlertData.length]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+										<tr>
+											<th><div class="th">
+						                        View						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Subject
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="rAlertSort = '-core_messages_alerts.message_alert_subject'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="rAlertSort = 'core_messages_alerts.message_alert_subject'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Alert
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="rAlertSort = '-core_messages_alerts.message_alert_content'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="rAlertSort = 'core_messages_alerts.message_alert_content'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Priority
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="rAlertSort = '-core_messages_alerts.util_priorities.id'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="rAlertSort = 'core_messages_alerts.util_priorities.id'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Acknowledged
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="rAlertSort = '-date_acknowledged_UTC'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="rAlertSort = 'date_acknowledged_UTC'; reverse=false"></span>	
+						                    </div></th>					                    
+						                   
+										</tr>
+						            </thead>
+						            <tbody>						                
+										<tr ng-cloak ng-repeat="alert in currentFilteredRAlerts | orderBy:rAlertSort">
+											<td class="col-lg-1 text-center"> 
+												<!--<a data-toggle="modal" href="#alert_info_modal" ng-click="setCurrentAlert(alert)">-->
+												<a data-toggle="modal" href="#" ng-click="setCurrentAlert(alert)">
+													<i class="fa fa-eye size-h3 bg-alert-icon-eye"></i>
+												</a>												
+											</td>																								
+											<td class="col-lg-3" style="text-decoration: line-through;"> {[ alert.core_messages_alerts.message_alert_subject]}</td>
+											<td class="col-lg-4" style="text-decoration: line-through;">
+												<span style="padding:0 15px; display: inline-block;" ng-bind-html="to_trusted(trancateString(alert.core_messages_alerts.message_alert_content))"></span>
+											</td>
+											<td class="col-lg-1 text-center"> 
+												<a ng-show="alert.core_messages_alerts.util_priorities.priority_desc=='Low'" 
+													href="#"  popover="Low Priority Alert" popover-trigger="mouseenter">
+													<i class="fa fa-info-circle size-h3 bg-alert-icon-low"></i>
+												</a>
+												<a ng-show="alert.core_messages_alerts.util_priorities.priority_desc=='Normal'" 
+													href="#"  popover="Normal Priority Alert" popover-trigger="mouseenter">
+													<i class="fa fa-exclamation-triangle size-h3 bg-alert-icon-normal"></i>
+												</a>
+												<a ng-show="alert.core_messages_alerts.util_priorities.priority_desc=='High'" 
+													href="#"  popover="High Priority Alert" popover-trigger="mouseenter">
+													<i class="fa fa-minus-circle size-h3 bg-alert-icon-high"></i>
+												</a>												
+											</td>
+											<td class="col-lg-3 text-center" style="text-decoration: line-through;">{[ alert.date_acknowledged_UTC | date : "M/d/yyyy h:mm a" ]} {[ tzCode ]}</td>	
+										</tr>
+										
+						            </tbody>
+						        </table>
+						        </div>
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <!--<span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                	</span>-->
+						                </div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentRAlertPage"
+						                                total-items="filteredRAlerts.length"
+						                                max-size="4"
+						                                on-select-page="selectRAlertPage(page)"
+						                                items-per-page="rAlertPerPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>
+						        </footer>
+                            </tab>                        
+                        </tabset>
+                    </div>
+           		</div>
+           	</div>           
+        </div>
+	</div>	
+	
+	<div class="modal fade" id="alert_info_modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" style="z-index:15000 !important;">
+				<div class="modal-header">					
+					<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">							
+								<h4 ng-show="currentAlert.core_messages_alerts.util_priorities.priority_desc=='High'">
+									<i class="fa fa-minus-circle size-h3 bg-alert-icon-high"></i>
+									<strong>High Alert: </strong>
+								</h4>
+								<h4 ng-show="currentAlert.core_messages_alerts.util_priorities.priority_desc=='Normal'">
+									<i class="fa fa-exclamation-triangle size-h3 bg-alert-icon-normal"></i>
+									<strong>Normal Alert: </strong>
+								</h4>
+								<h4 ng-show="currentAlert.core_messages_alerts.util_priorities.priority_desc=='Low'">
+									<i class="fa fa-info-circle size-h3 bg-alert-icon-low"></i>
+									<strong>Low Alert: </strong>
+								</h4> 
+								<span class="title">{[ currentAlert.core_messages_alerts.message_alert_subject ]}</span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>		
+				</div>
+				<div class="modal-body" 
+					 ng-class="{'alert-danger': currentAlert.core_messages_alerts.util_priorities.priority_desc == 'High',					
+							  'alert-warning': currentAlert.core_messages_alerts.util_priorities.priority_desc=='Normal',
+							  'alert-info': currentAlert.core_messages_alerts.util_priorities.priority_desc=='Low'}">
+					<div class="row" style="margin-bottom:20px;">						
+						<span class="col-sm-6 col-lg-6 col-md-6 col-xs-12 text-left"><strong>Subject:&nbsp;</strong>{[ currentAlert.core_messages_alerts.message_alert_subject ]}</span>
+						<span class="col-sm-6 col-lg-6 col-md-6 col-xs-12 text-right"><strong>Date:&nbsp;</strong>{[ currentAlert.date_acknowledged_UTC | date : "M/d/yyyy h:mm a" ]} {[ tzCode ]}</span>
+					</div>
+					<span ng-bind-html="to_trusted(currentAlert.core_messages_alerts.message_alert_content)"></span>
+				</div>
+				<div class="modal-footer" style="margin-top: 0px;">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close
+					</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div><!-- /.modal -->	
+</div>
+
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="text/ng-template" id="my.html">
+	<div class="modal-header">					
+		<div class="row">
+			<div class="col-lg-12">						
+				<div class="title-section">							
+					<h4 ng-show="currentAlert.core_messages_alerts.util_priorities.priority_desc=='High'">
+						<i class="fa fa-minus-circle size-h3 bg-alert-icon-high"></i>
+						<strong>High Alert: </strong>
+					</h4>
+					<h4 ng-show="currentAlert.core_messages_alerts.util_priorities.priority_desc=='Normal'">
+						<i class="fa fa-exclamation-triangle size-h3 bg-alert-icon-normal"></i>
+						<strong>Normal Alert: </strong>
+					</h4>
+					<h4 ng-show="currentAlert.core_messages_alerts.util_priorities.priority_desc=='Low'">
+						<i class="fa fa-info-circle size-h3 bg-alert-icon-low"></i>
+						<strong>Low Alert: </strong>
+					</h4> 
+					<span class="title">{[ currentAlert.core_messages_alerts.message_alert_subject ]}</span>
+				</div>
+				<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" ng-click="cancel()">X</a>							
+			</div>
+		</div>		
+	</div>
+	<div class="modal-body" 
+		 ng-class="{'alert-danger': currentAlert.core_messages_alerts.util_priorities.priority_desc == 'High',					
+				  'alert-warning': currentAlert.core_messages_alerts.util_priorities.priority_desc=='Normal',
+				  'alert-info': currentAlert.core_messages_alerts.util_priorities.priority_desc=='Low'}">
+		<div class="row" style="margin-bottom:20px;">						
+			<span class="col-sm-6 col-lg-6 col-md-6 col-xs-12 text-left"><strong>Subject:&nbsp;</strong>{[ currentAlert.core_messages_alerts.message_alert_subject ]}</span>
+			<span class="col-sm-6 col-lg-6 col-md-6 col-xs-12 text-right"><strong>Date:&nbsp;</strong>{[ currentAlert.date_acknowledged_UTC | date : "M/d/yyyy h:mm a" ]} {[ tzCode ]}</span>
+		</div>
+		<span ng-html-compile="currentAlert.core_messages_alerts.message_alert_content"></span>
+	</div>
+	<div class="modal-footer" style="margin-top: 0px;">
+		<button type="button" class="btn btn-default" ng-click="cancel()">Close
+		</button>
+	</div>
+</script>
+{% endblock %}

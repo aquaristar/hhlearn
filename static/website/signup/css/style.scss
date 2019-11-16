@@ -1,0 +1,21 @@
+.form_register {
+
+  margin-top: 50px;
+  h6 {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+}
+
+.membership_type {
+
+  >.open {
+    .dropdown-menu, .dropdown-arrow {
+      display: block;
+
+    }
+  }
+  .dropdown-menu, .dropdown-arrow {
+    display: none;
+  }
+}

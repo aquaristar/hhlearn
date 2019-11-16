@@ -1,0 +1,409 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Admin{% endblock %}
+{% block meta_title %}Admin{% endblock %}
+{% block meta_description %}Admin{% endblock %}
+{% block meta_keywords %}Admin{% endblock %}
+
+
+{% block content %}
+<div class="page page-admin-users" ng-controller="tasksController">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{%  url 'admin_home' %}">Admin</a></li>
+                <li><a href="#">Users</a></li>
+                <li class="active"><a href="">Add</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="row" id="app_documents">		
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-users"></span> Users</strong>    				
+                </div>
+                <div class="panel-body row">                	
+            		<div class="col-lg-12">
+            			<div class="callout callout-warning">
+			                <h4>Important</h4>
+			                <p>You have completed the setup process and the last thing you must complete before being allowed to add additional users is update your own record. You will
+notice that certain fields are disabled; these fields you cannot change on this page (you can edit these once you setup other users). Please fill in all the information below, upload a picture for yourself (or select from one of our samples), select which features/modules you want to access (by default all the modules you are
+eligible for are already activated; the disabled modules are optional and are not included in your subscription). After you have completed your record, click on the “Update User” button and you will be directed to the “Add New User” section.</p>
+        				</div>
+            		</div>
+                	
+					<form action="{{ request.path }}" class="form-horizontal col-lg-12" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="row">
+				            <div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.email.errors|first }}</span>
+				                		<div class="form-controls">			                		
+					                        <!--<input type="email" class="form-control" placeholder="Email Address">-->					                        
+					                        {{ form.email }}
+					                        <span class="icon glyphicon glyphicon-star"></span>
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				            
+				            <div class="col-md-6 col-sm-6 col-lg-6">  
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.user_password.errors|first }}</span>
+				                		<div class="form-controls">			                		
+					                        <!--<input type="password" class="form-control" placeholder="Password">-->					                        
+					                        {{ form.user_password }}
+					                        <span class="icon glyphicon glyphicon-star"></span>
+					                   	</div>
+				                    </div>				                    
+				                </div>
+				            </div>
+				            
+			            </div>
+			          
+			            <div class="row">
+				            <div class="col-md-6 col-sm-6 col-lg-6">  
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.first_name.errors|first }}</span>
+				                		<div class="form-controls">			                		
+					                        <!--<input type="text" class="form-control" placeholder="First Name">-->					                        
+					                        {{ form.first_name }}
+					                        <span class="icon glyphicon glyphicon-star"></span>
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="col-md-6 col-sm-6 col-lg-6">  
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.last_name.errors|first }}</span>
+				                		<div class="form-controls">			                		
+					                        <!--<input type="text" class="form-control" placeholder="Last Name">-->
+					                        {{ form.last_name }}
+					                        <span class="icon glyphicon glyphicon-star"></span>
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				        
+			            <div class="row">
+			            	<div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+					                	<div class="form-controls">					                		
+											<span class="ui-select">
+												{{ form.user_type }}
+												<!--<select name="state" class="select-block " id="selectpicker">
+													<option value="">Organization Administrator</option>
+													<option value="Northern Mariana Islands">Northern Mariana Islands</option>												
+													<option value="N/A">N/A</option>																						
+												</select>-->
+											</span>										
+										</div>
+									</div>
+				                </div>
+				            </div>
+				            <div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+					                	<div class="form-controls">
+											<span class="ui-select">
+												{{ form.job_title }}
+												<!--<select name="state" class="select-block " id="selectpicker">
+													<option value="">Select Job Title</option>
+													<option value="Northern Mariana Islands">Northern Mariana Islands</option>												
+													<option value="N/A">N/A</option>																						
+												</select>-->
+											</span>										
+										</div>
+									</div>
+				                </div>
+				            </div>
+			            </div>
+			            
+			            <div class="row">
+				            <div class="col-md-6 col-sm-6 col-lg-6">			                
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+					                	<div class="form-controls">
+											<span class="ui-select">
+												{{ form.location }}
+												<!--<select name="state" class="select-block " id="selectpicker">
+													<option value="">Select Location</option>
+													<option value="Northern Mariana Islands">Northern Mariana Islands</option>												
+													<option value="N/A">N/A</option>																						
+												</select>-->
+											</span>										
+										</div>
+									</div>
+				                </div>
+				            </div>
+			            
+				            <div class="col-md-6 col-sm-6 col-lg-6">			                
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.phone_work.errors|first }}</span>
+					                	<div class="form-controls">
+											<!--<input type="text" name="phone" class="form-control" id="phone" placeholder="Home Phone Number" value="">-->
+											{{ form.phone_work }}										
+										</div>
+									</div>
+				                </div>
+				            </div>
+			            </div>
+			            
+			            <div class="row">
+				            <div class="col-md-6 col-sm-6 col-lg-6">			                
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.phone_alternate.errors|first }}</span>
+				                		<div class="form-controls">			                		
+				                        	<!--<input type="password" class="form-control" placeholder="Alternate/Emergency Phone Number">-->
+				                        	{{ form.phone_alternate }}
+				                        </div>			                        
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.phone_oncall.errors|first }}</span>
+				                		<div class="form-controls">			                		
+				                        	<!--<input type="password" class="form-control" placeholder="On-Call Phone Number">-->
+				                        	{{ form.phone_oncall }}
+				                        </div>			                        
+				                    </div>
+				                </div>
+				            </div>
+			            </div>
+			            {% if form.employee_id  or form.social_security_number %}			            
+			            <div class="row">
+			            	{% if form.employee_id %}
+				            <div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.employee_id.errors|first }}</span>
+				                		<div class="form-controls">			                		
+				                        	<!--<input type="password" class="form-control" placeholder="Employee ID">-->
+				                        	{{ form.employee_id }}
+				                        	<span class="icon glyphicon glyphicon-star"></span>
+				                        </div>			                        
+				                    </div>
+				                </div>
+				            </div>
+				            {% endif %}
+				            {% if form.social_security_number %}
+				            <div class="col-md-6 col-sm-6 col-lg-6">
+				                <div class="form-group">
+				                	<div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+				                		<span class="label label-important">{{ form.social_security_number.errors|first }}</span>
+				                		<div class="form-controls">			                		
+				                        	<!--<input type="password" class="form-control" placeholder="Social Security Number">-->
+				                        	{{ form.social_security_number }}
+				                        	<span class="icon glyphicon glyphicon-star"></span>
+				                        </div>			                        
+				                    </div>
+				                    <div class="col-xs-2" style="line-height:30px; padding: 0 5px;">
+				                    	<i class="fa fa-info-circle icon-info-big"></i>
+				                    	&nbsp;
+				                    	<i class="glyphicons lock size-h4" style="color:#D6B31D;"></i>
+				                    </div>
+				                </div>                
+			                </div>
+			                {% endif %}
+			            </div>
+			            {% endif %}
+			            
+			            <div class="row">
+			            	<div class="col-lg-5">
+				            	<div class="photo-container">				            		
+				            		<div class="photo" id="drop_zone">				            			
+					            		<img width="150px" height="150px" id="profile_photo" src="{{ form.photo_file.value }}?get=0001">
+					            		{% if form.photo_file.value == None %}
+					            		<span>Drag and drop profile picture here</span>
+					            		{% endif %}
+				            		</div>
+				            	
+					            	<div class="buttons">
+					            		<a href="#" class="btn btn-blue btn-wide setup-next-button hidden-print" onclick="$('#id_photo_file').click();">
+											Choose File
+										</a>										
+										<a data-toggle="modal" href="#sample_avatars_modal" class="btn btn-blue btn-wide setup-next-button">
+						            		Sample Files
+						            	</a>
+										<div style="display: none;">
+											<input type="file" id="id_photo_file" name="photo_file"/>
+										</div>
+					            	</div>
+					            </div>
+			            	</div>
+			            </div>	            
+			            
+			            {{ formset.management_form }}
+						{% for form in formset %}
+						
+						{{ form.id }}
+						{{ form.coremodules__name }}
+						
+						{% if forloop.first %}			            					
+		                <div class="row">
+		                	<div class="col-lg-10 col-sm-10">
+		               	{% endif %}
+			                	<div class="col-md-6 col-sm-6 col-lg-6">
+			                		<div class="form-group {% if form.is_accredited.errors %}has-error{% endif %}">	
+			                			<div class="form-controls">			                													
+											<div class="col-lg-8 col-md-8 col-sm-8">
+												<label>
+													{{ form.name.value }}
+												</label>
+											</div>
+											
+											<div class="col-sm-4 col-md-4 col-lg-4">																										
+												<label class="switch switch-iphone">													
+													<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.active_inactive.name}}" {% if form.active_inactive.value == 1 %}checked="true" value="1"{% else %}value="0"{% endif %} >
+													<i></i>
+												</label>					
+											</div>
+										</div>
+									</div>
+			                	</div>			                	
+			                	
+			            {% if forloop.last %}
+			                </div>
+		                </div>
+		                {% endif %}
+		                {% endfor %}
+		                
+		                <hr>
+		                <div class="row">
+			                <div class="col-lg-12">
+			                	<p class="text-center">									
+									<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">
+										Update User
+									</button>
+								</p>
+			                </div>
+		                </div>	
+		                
+		                <!-- sample image field-->
+		                <input type="hidden" name="sample_avatar" id="sample_avatar" value="">	            	
+					</form>
+			    </div>
+           	</div>           
+        </div>
+	</div>
+	
+	<div class="modal fade"  id="sample_avatars_modal" tabindex="-1" role="dialog" aria-labelledby="sample_avatars_modal"
+		aria-hidden="true">         
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   	<div class="row">
+						<div class="col-lg-12">						
+							<div class="title-section">
+								<!--<h4>
+									<img src="/static/dashboard/common/images/favicon.png" width="32px">									
+								</h4>--> 
+								<span class="title">Select Sample Avatar</span>
+							</div>
+							<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+						</div>
+					</div>
+                </div>
+                <div class="modal-body ptm">
+                   	<div class="row">
+                   		<div class="col-lg-12">
+                   			{% for url in sample_files %}
+                   			<a href="#" onclick="setSampleImage(this, '{{ url }}')" style="display:block; float:left; margin:10px;">
+                   				<img src="/static/dashboard/common/images/avatars/{{ url }}" width="58px" height="58px"/>
+                   			</a>
+                   			{% endfor %}
+                   		</div>
+                   	</div>
+                </div>
+                <button id="btn_sample_avatars_modal_hide" type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()" style="display:none;">Cancel</button>
+                <!--<div class="modal-footer">
+                	<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+                    <button type="button" class="btn btn-blue" data-dismiss="modal" ng-click="cancel()">Add</button>
+                </div>-->
+            </div>            
+        </div>        
+    </div>
+
+</div>
+                
+{% endblock %}
+
+
+{% block extra_scripts %}
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<script class="jsbin" src="{{ STATIC_URL }}dashboard/common/lib/dropzone/dropzone.js"></script>
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#profile_photo')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+            $('#drop_zone').children('span').hide();
+        }
+    }
+</script>
+
+<script>
+  function handleFileSelect(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    var files = evt.dataTransfer.files; 
+    document.getElementById('id_photo_file').files = files;
+    readURL(document.getElementById('id_photo_file'));
+  }
+  
+  $('#id_photo_file').change(function() {
+  	readURL(this);
+  });
+
+  function handleDragOver(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+  }
+
+  // Setup the dnd listeners.
+  var dropZone = document.getElementById('drop_zone');
+  dropZone.addEventListener('dragover', handleDragOver, false);
+  dropZone.addEventListener('drop', handleFileSelect, false);
+  
+  var selected_sample;
+  
+  function setSampleImage(obj, url) {  	
+  	$(selected_sample).css('border', "none");
+  	$(selected_sample).css('margin', "10px");
+  	$("#sample_avatar").val(url);
+  	selected_sample = obj;
+  	$(selected_sample).css('border', "2px solid rgb(200, 200, 200)");
+  	$(selected_sample).css('margin', "8px");
+  	$('#profile_photo').attr('src', "/static/dashboard/common/images/avatars/" + url);
+  	$('#btn_sample_avatars_modal_hide').click();
+  }
+  $(function() {
+  	$("#id_phone_alternate, #id_phone_work, #id_phone_oncall").mask("(999) 999-9999");
+  	$('#id_social_security_number').mask("999-99-9999"); 	
+  	
+  });
+</script>
+
+{% endblock %}

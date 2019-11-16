@@ -1,0 +1,23 @@
+INSERT INTO `core_modules` (`id`, `name`, `short_code`, `description`, `is_active`, `is_addon`)
+VALUES
+	(1, 'Monthly Safety Program', 'monthly_safety_program', 'Monthly Safety Program', 1, 0),
+	(2, 'Monthly Safety Program (Custom)', 'monthly_safety_program_custom', 'Monthly Safety Program (Custom)', 1, 1),
+	(4, 'Forms Library', 'forms_library', 'Forms Library', 1, 0),
+	(5, 'Forms Library (Custom)', 'forms_library_custom', 'Forms Library (Custom)', 1, 1),
+	(6, 'Publications Library', 'publications_library', 'Publications Library', 1, 0),
+	(7, 'Publications Library (Custom)', 'publications_library_custom', 'Publications Library (Custom)', 1, 1),
+	(8, 'Videos Library', 'videos_library', 'Videos Library', 1, 0),
+	(9, 'Videos Library (Custom)', 'videos_library_custom', 'Videos Library (Custom)', 1, 1),
+	(10, 'Verified Messaging', 'verified_messaging', 'Verified Messaging', 1, 1),
+	(11, 'Inservice Tracking', 'inservice _tracking', 'Inservice Tracking', 1, 0),
+	(12, 'Event Tracking', 'event_tracking', 'Event Tracking', 0, 0),
+	(13, 'Employee Handbook', 'employee_handbook', 'Employee Handbook', 1, 1),
+	(14, 'Forms (DRM)', 'forms_drm', 'Forms (DRM)', 1, 1),
+	(15, 'Human Resource Module', 'human_resource_module', 'Human Resource Module', 0, 1),
+	(16, 'Internal Instant Messaging', 'internal_instant_messaging', 'Internal Instant Messaging', 0, 1),
+	(17, 'Employee Sanction Monitoring', 'employee_sanction_monitoring', 'Employee Sanction Monitoring', 1, 1),
+	(18, 'Credential Monitoring', 'credential_monitoring', 'Credential Monitoring', 0, 1),
+	(19, 'Benchmarking', 'benchmarking', 'Benchmarking', 1, 1),
+	(20, 'Adding Custom Courses', 'adding_custom_courses', 'Adding Custom Courses', 1, 1),
+	(21, 'Publications (DRM)', 'publications_drm', 'Publications (DRM)', 1, 1),
+	(22, 'Inservice Tracking (Custom)', 'inservice_tracking_custom', 'Inservice Tracking (Custom)', 1, 1);

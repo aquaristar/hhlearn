@@ -1,0 +1,100 @@
+# Ubuntu 14.04
+
+sudo apt-get update
+
+sudo apt-get install python-django python-mysqldb python-markdown python-bs4 python-django-south python-beautifulsoup python-boto python-appconf python-compressor python-django-filter python-tastypie python-djangorestframework python-httplib2 python-django-jsonfield python-dateutil python-mimeparse python-requests python-six python-wsgiref python-pip apache2 apache2-mpm-prefork apache2-utils libapache2-mod-wsgi mysql-client-5.5 mysql-common mysql-server mysql-server-5.5 fail2ban git
+
+# http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html
+sudo groupadd www
+sudo usermod -a -G www ubuntu
+
+<logout and log back in>
+
+sudo chown -R root:www /var/www
+sudo chmod 2775 /var/www
+find /var/www -type d -exec sudo chmod 2775 {} +
+find /var/www -type f -exec sudo chmod 0664 {} +
+
+# https://help.github.com/articles/generating-ssh-keys
+
+ssh-keygen -t rsa -C "email address"
+
+cd /var/www
+git clone git@github.com:HHLEARN/www_hhlearn_com.git hhlearn.com
+
+chmod -R 0777 hhlearn.com/static/CACHE/
+
+sudo vim /etc/apache2/sites-available/hhlearn.conf
+< copy hhlearn.conf >
+
+sudo a2ensite hhlearn.conf
+sudo service apache2 reload
+
+sudo pip install paypalrestsdk
+
+sudo mysql_secure_installation
+  Remove anonymous users? Y
+  Disallow root login remotely? Y
+  Remove test database and access to it? Y
+  Reload privilege tables now? Y
+
+mysql -u root --password
+
+CREATE DATABASE hhlearn;
+GRANT ALL ON hhlearn.* TO 'hhlearn_user'@'localhost' IDENTIFIED BY 'jh%sAj*FPSHhLDl2#APR$I7n&6WnfPbN';
+GRANT ALL ON hhlearn.* TO 'rc_thompson'@'%' IDENTIFIED BY 'wismonvattennybu';
+exit
+
+mysql -u hhlearn_user --password='jh%sAj*FPSHhLDl2#APR$I7n&6WnfPbN' hhlearn < <sqlfile>.sql
+
+# allow remote connections for Robert
+sudo vim /etc/mysql/my.cnf
+
+> bind-address = 0.0.0.0
+
+
+
+Django==1.6.3
+Markdown==2.4
+MySQL-python==1.2.4
+South==0.8.4
+beautifulsoup4==4.3.2
+boto==2.24.0
+django-appconf==0.6
+django-bower==4.8.1 **
+django-compressor==1.3
+django-filter==0.7
+django-post-office==0.8.3  **
+django-tastypie==0.11.0
+djangorestframework==2.3.13
+httplib2==0.8
+jsonfield==0.9.20
+paypalrestsdk==0.6.4 **
+python-dateutil==2.2
+python-mimeparse==0.1.4
+requests==2.2.1
+six==1.5.2
+wsgiref==0.1.2
+pycrypto==2.6.1
+reportlab
+pytz
+
+Install PIL
+
+sudo apt-get install libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev
+sudo ln -s /lib/x86_64-linux-gnu/libz.so.1 /lib/
+sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so.6 /usr/lib/
+sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so.62 /usr/lib/
+pip install PIL --allow-external PIL --allow-unverified PIL
+
+
+mysql:
+root:E$6jpen$V@cKIWL5ksceecel!!b9xi6J
+
+MYSQL SECTION
+
+id_rsa passphrase: vnDZFjnk1@Dfzbbm^YZd%ExolzPI5xLB
+
+database
+load code
+

@@ -1,0 +1,35 @@
+angular.module("tests").directive('dynamic', function ($compile) {
+    return {
+        restrict: 'A',
+        replace: true,
+        scope: { dynamic: '=dynamic'},
+        link: function (scope, ele, attrs) {
+            scope.$watch(attrs.dynamic, function(pageHTML) {
+                ele.html(pageHTML);
+                $compile(ele.contents())(scope);
+            });
+        }
+    };
+}).directive('ngSparkline', function() {
+        return {
+            restrict: 'A',
+            replace: true,
+            template: '<div class="sparkline">wewrwerwerwe</div>',
+            link: function (scope, ele, attrs) {
+                scope.$watch(attrs.dynamic, function(pageHTML) {
+                    ele.html(pageHTML);
+                    $compile(ele.contents())(scope);
+                });
+            }
+        }
+    }).directive('ngHtmlCompile', function($compile) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                scope.$watch(attrs.ngHtmlCompile, function(newValue, oldValue) {
+                    element.html(newValue);
+                    $compile(element.contents())(scope);
+                });
+            }
+        }
+    });;

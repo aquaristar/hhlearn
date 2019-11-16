@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	    <title>HHLEARN</title>
+		<link href="{{STATIC_URL}}dashboard/common/lib/fontawesome/v4.2.0/css/font-awesome.css" rel="stylesheet">
+		
+		<!-- animation -->
+	    <link href="{{STATIC_URL}}website/rockox/css/animate.css" rel="stylesheet">
+		
+	    <!-- theme -->
+	    <link href="{{STATIC_URL}}website/rockox/css/rockox.css" rel="stylesheet">
+	    <link href="{{STATIC_URL}}website/rockox/css/rockox-main.css" rel="stylesheet">
+	    
+	    <!-- piecharts -->
+    	<link rel="stylesheet" href="{{STATIC_URL}}website/rockox/css/pie-charts-style.css">
+		
+	    <!-- Add fancyBox -->
+		<link rel="stylesheet" href="{{STATIC_URL}}website/rockox/css/jquery.fancybox.css?v=2.1.5" media="screen">
+	
+		<!-- jcarousel styling -->
+		<link rel="stylesheet" href="{{STATIC_URL}}website/rockox/css/skin.css">
+	    
+	    <!-- Bootstrap -->
+	    <link href="{{STATIC_URL}}website/rockox/css/bootstrap.css" rel="stylesheet">
+	    <!--<link href="{{STATIC_URL}}website/rockox/css/dark_theme.css" rel="stylesheet">-->
+	    
+	    <!-- Glyphicons-->
+	    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/glyphicons-social.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/website/countdown/css/filetypes.css" />
+		
+		
+		<link rel="stylesheet" href="{{STATIC_URL}}website/rockox/css/responsiveslides.css">
+		
+		<!--<link href="{{STATIC_URL}}dashboard/common/css/style.css" rel="stylesheet">-->
+		
+	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+  	</head>
+  	<body class="fixed-header" data-spy="scroll" data-target=".navbar">
+  	
+    	<div id="wrapper">
+	    <!-- BEGIN HEADER -->
+	    <header id="home">
+		    <nav class="navbar navbar-default" role="navigation">
+	          <div class="container">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <div class="navbar-header">
+	              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	              </button>
+	              <!-- BEGIN LOGO -->
+	              <a class="navbar-brand" href="#home"><img src="{{STATIC_URL}}website/common/img/logo_305x100.png" height="82px" alt=""></a>
+	              <!-- END LOGO -->
+	            </div>
+	        
+	            <!-- Collect the nav links, forms, and other content for toggling -->
+	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	            	<!-- BEGIN NAVIGATION -->
+	                  <ul class="nav navbar-nav">
+	                    <li class="active">
+	                    	<a href="#" class="item" target="_self" data-toggle="modal" data-target=".menu-modal" data-placement="right">
+								<i class="icon glyphicons justify"></i>
+								<span>Menu</span>
+							</a>
+						</li>
+	                    <li>
+	                    	<a href="/login/" class="item" target="_self">
+								<i class="icon glyphicons user"></i>
+								<span>Login</span>
+							</a>
+	                    </li>
+	                    <li>
+	                    	<a href="" class="item" target="_self">
+								<i class="icon glyphicons home"></i>
+								<span>Home</span>
+							</a>
+	                    </li>                    
+	                  </ul>
+	            	<!-- END NAVIGATION -->
+	            </div><!-- /.navbar-collapse -->
+	          </div><!-- /.container-fluid -->
+	    </nav>
+	    </header>
+   		<!-- END HEADER --> 
+    
+    	<section class="no-padding-bottom">
+    		<video autoplay="autoplay" poster="/static/website/rockox/images/features3/responsive.png" autobuffer="autobuffer" muted="muted" id="bgvid" showcontrol="true">
+			    <source src="/static/website/rockox/videos/responsive.mp4" type="video/mp4" />
+			    <object type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="640" height="360">
+			        <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
+			        <param name="allowFullScreen" value="true" />
+			        <param name="wmode" value="transparent" />
+			        <param name="flashVars" value="config={'playlist':['http%3A%2F%2Fsandbox.thewikies.com%2Fvfe-generator%2Fimages%2Fbig-buck-bunny_poster.jpg',{'url':'http%3A%2F%2Fclips.vorwaerts-gmbh.de%2Fbig_buck_bunny.mp4','autoPlay':false}]}" />
+			        <img alt="Big Buck Bunny" src="http://sandbox.thewikies.com/vfe-generator/images/big-buck-bunny_poster.jpg" width="640" height="360" title="No video playback capabilities, please download the video below" />
+			    </object>
+			</video>            
+    	</section>
+    	
+		<section class="no-padding-bottom experience learn-it-your-way" id="learn_way">
+			<div class="container">
+		    	<!-- BEGIN HEADING -->
+		    	<h1 class="text-center">
+		    		Learn it &nbsp;<font style="color:#0069B4">Your</font>&nbsp; Way 
+		    		<span>Our site is responive to your devices and browser sizes.</span>
+		    	</h1>
+		        <!-- END HEADING -->
+		        <div class="row">
+		            <div class="col-md-12">
+		            	<!-- BEGIN EXPERIENCE CONTENT -->
+		            	<div class="experience-content text-center bounceIn" data-delay="100">
+		            		<div class="col-lg-6">
+		            			<a href="#fancybox-ipad" class="mobile-item-link fancybox">
+		            				<span>Watch the Site on an Tablet</span>
+		            				<i class="glyphicons ipad"></i>		            				
+		            			</a>
+		            			<div id="fancybox-ipad" style="display: none;">
+		            				<video controls style="width:100%;">
+									  <source src="{{STATIC_URL}}website/rockox/videos/ipad4.mp4" type="video/mp4">									  
+									</video>
+		            			</div>
+		            		</div>
+		            		<div class="col-lg-6">
+		            			<a href="#fancybox-iphone" class="mobile-item-link fancybox">
+		            				<span>Watch the Site on a Smartphone</span>
+		            				<i class="glyphicons iphone"></i>
+		            			</a>
+		            			<div id="fancybox-iphone" style="display: none;">
+		            				<video controls style="width:100%;">
+									  <source src="{{STATIC_URL}}website/rockox/videos/iphone6plus.mp4" type="video/mp4">									  
+									</video>
+		            			</div>
+		            		</div>
+						</div>
+		                <!-- END EXPERIENCE CONTENT -->
+		            </div>
+		            </div>
+		            <div class="row">
+		            	<!-- BEGIN DEVICES -->
+		                <div class="col-md-12 text-center devices bounceInUp" data-delay="100">
+		                	<img src="/static/website/rockox/images/features3/responsive2.png" alt=""></div>
+		                <!-- END DEVICES -->
+		            </div>
+		    </div>
+		</section>
+    	
+    	<section class="services-sec gray-bg border" id="services">
+        	<div class="container">
+                <ul class="row clearfix">
+	                <li class="col-md-4 col-sm-4 bounceIn" data-delay="100">
+	                    <div class="service-sec">
+	                   
+	                        <a href="#."><span class="yellow"><i class="glyphicons hospital_h img-circle open"></i></span></a>
+	                        <h3>No Apps Needed</h3>
+	                        <p>
+	                        	That's right, no special Apps are needed <br>
+	                        	to view HHLEARN on tablets and smartphones.<br>
+	                        	Just open your browser and login.
+	                        </p>
+	                    </div>
+	                </li>
+	                
+	                <li class="col-md-4 col-sm-4 bounceIn" data-delay="200">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="red"><i class="glyphicons ipad img-circle open"></i></span></a>
+	                        <h3>Tablets</h3>
+	                        <p>
+	                        	We have tested our site on common<br>
+	                        	tablets and HHLEARN will function in landscape<br>
+	                        	or portrait orientations.
+	                        </p>
+	                    </div>
+	                </li>
+	                <li class="col-md-4 col-sm-4 bounceIn" data-delay="300">
+	                    <div class="service-sec">
+	                        <a href="#."><span class="green"><i class="glyphicons iphone_shake img-circle open"></i></span></a>
+	                        <h3>Smartphones</h3>
+	                        <p>
+	                        	We have tested our site on smaller smartphones, <br>
+	                        	e.g., iPhone 4, iPhone 5, and on larger phone screens.<br>
+	                        	We are HD/Retina display optimized.
+	                        </p>
+	                    </div>
+	                </li>
+	            </ul>
+            	<div class="clearfix"></div>
+        	</div>
+    		<div class="clearfix"></div>
+    	</section>
+    	
+    	<section class="no-padding-bottom benchmarking" id="benchmarking">
+	    	<img style="width:100%; height:100%;" src="/static/website/rockox/images/features3/benchmarking_1920x801.jpg">
+	    </section>
+	    
+	    <section class="piecharts no-margin-bottom" id="pie-charts" data-stellar-background-ratio="-0.2">
+			<div class="overlay"></div>
+				<div class="container">
+				   <div class="row">
+				   <div class="col col-12">
+				    	<!-- BEGIN HEADING -->
+				        <h2>Internal and external benchmarking</h2>
+				        <p>
+				        	At HHLEARN, we believe that knowledge is power, and the information that is collected by 
+				        	each organization can be shared in ways that allows for the comparison of like data. 
+				        	In our Small Business Edition we incorporate internal benchmarking where your data is 
+				        	compared within your organization. For our Professional Edition subscribers, we allow 
+				        	your data to be compared to compiled data from other subscribers. SEE HOW YOU STACK UP.
+				        </p>
+						<!-- END HEADING -->
+				        
+				        <!-- BEGIN PIECHART -->
+				        <span class="chart blue-circle" data-percent="58" data-delay="100">
+				            <span class="percent">58</span>
+				            <span class="skill-name">Complete</span>
+				        <canvas height="170" width="170"></canvas></span>
+				        <!-- END PIECHART -->
+				        <!-- BEGIN PIECHART -->
+				        <span class="circle green-circle" data-percent="96" data-delay="300">
+				            <span class="percent">96</span>
+				            <span class="skill-name">Satisfaction</span>
+				        <canvas height="170" width="170"></canvas></span>
+				        <!-- END PIECHART -->
+				        <!-- BEGIN PIECHART -->
+				        <span class="circle red-circle" data-percent="87" data-delay="500">
+				            <span class="percent">87</span>
+				            <span class="skill-name">On Time</span>
+				        <canvas height="170" width="170"></canvas></span>
+				        <!-- END PIECHART -->
+				        <!-- BEGIN PIECHART -->
+				        <span class="circle yellow-circle" data-percent="99" data-delay="700">
+				            <span class="percent">99</span>
+				            <span class="skill-name">Compliance</span>
+				        <canvas height="170" width="170"></canvas></span>
+				        <!-- END PIECHART -->
+				        <!-- BEGIN PIECHART -->
+				        <span class="circle purple-circle" data-percent="91" data-delay="900">
+				            <span class="percent">91</span>
+				            <span class="skill-name">Percentile</span>
+				        <canvas height="170" width="170"></canvas></span>
+				        <!-- END PIECHART -->
+				    </div>
+				</div>
+			</div>
+        </section>
+        
+        <section class="team" id="team">
+	    	<div class="container text-center">
+	        	<!-- BEGIN HEADING -->
+	        	<h1 class="yellow">Events
+	        		<span>
+	        		HHLEARN will be at the following industry events. #<font color="#CCC">HHLEARN</font>&nbsp;Events
+	        		</span>
+	        	</h1>
+	            <!-- END HEADING -->
+	            <div class="row">
+	                <div class="col-md-4 bounceIn" data-delay="100">
+	                	<!-- BEGIN TEAM -->
+	                    <div class="team-image-sec">
+	                        <div class="img-overlay"></div>
+	                        <figure><img title="Image" alt="image" src="{{STATIC_URL}}website/rockox/images/features3/medtrade_spring_370x322.png" ></figure>
+	                        <ul>
+	                            <li><a href="http://www.medtrade.com/spring/index.shtml" target="_blank">
+	                            	<i class="glyphicons global"></i></a></li>	                            
+	                        </ul>
+	                   </div>
+	                    <div class="team-detail-sec">
+	                        <h3 class="red">Medtrade Spring<span>March 30 - April 1, 2015</span></h3>
+	                        <p>Medtrade Spring is the second largest tradeshow in the U.S. focused exclusively on the 
+	                        	home medical equipment market.
+	                        </p>
+	                    </div>
+	                	<!-- END TEAM -->
+	                </div>
+	                <div class="col-md-4 bounceIn" data-delay="400">
+	                	<!-- BEGIN TEAM -->
+	                    <div class="team-image-sec">
+	                        <div class="img-overlay"></div>
+	                        <figure><img title="Image" alt="image" src="{{STATIC_URL}}website/rockox/images/features3/namps_370x322.png"></figure>
+	                        <ul>
+	                            <li><a href="http://www.namps.org/meeting_schedule_02.asp" target="_blank">
+	                            	<i class="glyphicons global"></i></a></li>                           
+	                        </ul>
+	                   </div>
+	                    <div class="team-detail-sec">
+	                        <h3 class="green">NAMPS Spring<span>April 1, 2015</span></h3>
+	                        <p>
+	                        	NAMPS Spring meeting in Las Vegas, NV at the Sunset Station Casino.
+	                        </p>
+	                    </div>
+	                    <!-- END TEAM -->
+	                </div>
+	                <div class="col-md-4 bounceIn" data-delay="900">
+	                	<!-- BEGIN TEAM -->
+	                    <div class="team-image-sec">
+	                        <div class="img-overlay"></div>
+	                        <figure><img title="Image" alt="image" src="{{STATIC_URL}}website/rockox/images/features3/mames_spring_370x322.png"></figure>
+	                        <ul>
+	                            <li><a href="http://www.mames.com" target="_blank">
+	                            	<i class="glyphicons global"></i></a></li>	                            
+	                        </ul>
+	                    </div>
+	                    <div class="team-detail-sec">
+	                        <h3 class="blue">MAMES Spring Convention<span>April 22 - 24, 2015</span></h3>
+	                        <p>
+	                        	 Join the Midwest Association for Medical Equipment Services for their Spring 
+	                        	 Convention at the DoubleTree by Hilton Downtown in Omaha, NE.
+	                        </p>
+	                    </div>
+	                    <!-- END TEAM -->
+	                </div>
+	           </div>
+	        </div>
+	    </section>
+	    
+	    <section class="newsletter" id="newsletter">
+	     	<div class="container">
+	        	<!-- BEGIN HEADING -->
+	        	<h1 class="orange text-center">
+	        		<font style="color:#f94b75;">News</font>
+	        		<font style="color:#FF2D55;">letter</font>
+	        		<span style="color: #ccc;">
+	        			If you need to contact us, please fill in the following form and we will get right back to you.
+	        		</span>
+	        	</h1>
+	            <!-- END HEADING -->
+	            
+	            <!-- BEGIN THANK YOU MESSAGE -->
+	            <div id="contact_message" class="success-msg">Thank you for contact us.</div>
+	            <!-- END THANK YOU MESSAGE -->
+	            
+	            <div class="form rollIn">
+	            <!-- BEGIN FORM -->
+	            <form id="contact_form" method="post" onSubmit="return false">
+	            <div class="row">
+	                <div class="col-md-6">
+	                    <label>Your Name:</label>
+	                    <input type="text" name="first_name" id="newsletter_first_name">
+	                </div>
+	                <div class="col-md-6">
+	                    <label>Your Name:</label>
+	                    <input type="text" name="last_name" id="newsletter_last_name">
+	                </div>	                
+	            </div>
+	            <div class="row">
+	                <div class="col-md-6">
+	                    <label>Company:</label>
+	                    <input type="text" name="company" id="newsletter_company">
+	                </div>
+	                <div class="col-md-6">
+	                    <label>Learning System:</label>
+	                    <select name="newletter_lms" id="newsletter_lms">
+	                    	<option value="">Select Learning System</option>
+	                    </select>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-md-6">
+	                    <label>Email:</label>
+	                    <input type="text" name="email" id="email">
+	                </div>
+	                <div class="col-md-6">
+	                    <label>Confirm Email:</label>
+	                    <input type="text" name="email" id="email">
+	                </div>
+	            </div>
+	            <p class="text-center" style="margin-top:20px;">
+	            	Our newsletter is a professional resource and contains no advertisements. You may also receive relevant information 
+	            	about our events and products.<br>
+	            	We never sell our email addresses to 3rd parites and you can unsubscribe at any time.
+	            </p>
+	            <div class="row">
+	                <div class="col-md-12">
+	                	<div class="col-lg-6 col-md-6"></div>
+	                	<div class="col-lg-6 col-md-6">
+		                	<div class="col-lg-8 text-center">             		
+		                		<span class="checkbox-title">I agree to receive HHLEARN's newsletter</span>
+		                		<input type="checkbox" value=""/>
+		                    </div>
+		                    <div class="col-lg-4 text-center">
+		                    	<input type="submit" value="subscribe" class="btn btn-orange" id="btn_subscribe">
+		                    </div>
+	                    </div>
+	                </div>
+	            </div>            
+	            </form>
+	            <!-- END FORM -->
+	            </div>
+	        </div>
+	        <div class="clearfix"></div>	                
+     	</section>
+	    
+	    <section class="contact-us no-padding-bottom" id="contact-us">
+	     	<div class="container">
+	        	<!-- BEGIN HEADING -->
+	        	<h1 class="orange text-center">Contact us
+	        		<span>If you need to contact us, please fill in the following form and we will get right back to you.</span>
+	        	</h1>
+	            <!-- END HEADING -->
+	            
+	            <!-- BEGIN THANK YOU MESSAGE -->
+	            <div id="contact_message" class="success-msg">Thank you for contact us.</div>
+	            <!-- END THANK YOU MESSAGE -->
+	            
+	            <div class="form rollIn">
+	            <!-- BEGIN FORM -->
+	            <form id="contact_form" method="post" onSubmit="return false">
+	            <div class="row">
+	                <div class="col-md-6">
+	                    <label>Your Name:</label>
+	                    <input type="text" name="name" id="name">
+	                </div>
+	                <div class="col-md-6">
+	                    <label>Email Address:</label>
+	                    <input type="text" name="email" id="email">
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-md-6">
+	                    <label>Company:</label>
+	                    <input type="text" name="company" id="company">
+	                </div>
+	                <div class="col-md-6">
+	                    <label>Website:</label>
+	                    <input type="text" name="website" id="website">
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-md-12">
+	                	<div class="message">
+	                        <label>Message:</label>
+	                        <textarea name="message" id="message"></textarea>
+	                        <input type="submit" value="submit" class="btn btn-orange" id="btn_submit" onClick="proceed();">
+	                    </div>
+	                </div>
+	            </div>	            
+	            </form>
+	            <!-- END FORM -->
+	            </div>
+	        </div>
+	        <div class="clearfix"></div>
+	        <div class="container text-center">
+	        	<!-- BEGIN SOCIAL -->
+	        	<ul class="social">
+	            	<li class="bounceIn" data-delay="0"><a href="http://www.facebook.com/HHLEARN" target="_blank"><i class="fa fa-facebook"></i></a></li>
+	            	<li class="bounceIn" data-delay="100"><a href="http://www.twitter.com/HHLEARN" target="_blank"><i class="fa fa-twitter"></i></a></li>
+	            	<li class="bounceIn" data-delay="200"><a href="https://www.linkedin.com/company/hhlearn" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+	            	<li class="bounceIn" data-delay="300"><a href="http://www.youtube.com/channel/UCazOKONHKoBCc-UlmjU8OKQ" target="_blank"><i class="fa fa-youtube"></i></a></li>	            	
+	            	<li class="bounceIn" data-delay="400"><a href="http://www.pinterest.com/HHLEARN" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+	            	<li class="bounceIn" data-delay="500"><a href="http://www.instagram.com/HHLEARN" target="_blank"><i class="fa fa-instagram"></i></a></li>
+	            </ul>
+	            <!-- BEGIN SOCIAL -->
+	            <!-- BEGIN COPYRIGHT -->
+	            <p class="copyright">Phone: (844) 801-8100 | Fax: (855) 661-6109 | Email: info@hhlearn.com</p>
+	            <!-- END COPYRIGHT -->
+	        </div>        
+     	</section>
+     		    
+	    <div class="modal fade menu-modal" role="dialog" aria-hidden="true" data-keyboard="true" data-backdrop="static" tabindex="-1">    
+		    <div class="modal-dialog">
+		    	<a href="#" class="fa fa-times cls-pop" data-dismiss="modal"></a>
+		    	<div class="modal-header">
+		    		<img src="/static//website/common/img/logo_305x100.png" alt="" class="logo-small" height="70px">
+				</div>
+				<div class="modal-content">			
+					<div class="menu-list">
+						<div class="item">
+							<a href="#home" data-dismiss="modal">					
+								<i class="glyphicons heart_empty icon" style="color:#D4145A;"></i>
+								<span class="title">Benefits</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#features" data-dismiss="modal">						
+								<i class="glyphicons show_big_thumbnails icon" style="color:#0000FF;"></i>
+								<span class="title">Features</span>
+							</a>										
+						</div>				
+						<div class="item">
+							<a href="#demos" data-dismiss="modal">						
+								<i class="glyphicons film icon" style="color:#FF00FF;"></i>
+								<span class="title">Demos</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#pricing" data-dismiss="modal">						
+								<i class="glyphicons usd icon" style="color:#59BA35;"></i>
+								<span class="title">Plans</span>
+							</a>										
+						</div>
+						<div class="item last">
+							<a href="/sandbox/signup/step1">						
+								<i class="glyphicons thumbs_up icon" style="color:#30D4D8;"></i>
+								<span class="title">Sign Up</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#courses" data-dismiss="modal">						
+								<i class="glyphicons imac icon" style="color:#FFCC00;"></i>
+								<span class="title">Courses</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#testing" data-dismiss="modal">						
+								<i class="glyphicons check icon" style="color:#009245;"></i>
+								<span class="title">Testing</span>
+							</a>									
+						</div>
+						<div class="item">
+							<a href="#certificates" data-dismiss="modal">						
+								<i class="glyphicons qrcode icon" style="color:#C7B299;"></i>
+								<span class="title">Certificates</span>	
+							</a>											
+						</div>
+						<div class="item" data-dismiss="modal">
+							<a href="#reports">						
+								<i class="fa fa-bar-chart-o icon" style="color:#70CEEF;"></i>
+								<span class="title">Reporting</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#testimonals" data-dismiss="modal">						
+								<i class="glyphicons quote icon" style="color:#D9E021;"></i>
+								<span class="title">Testimonals</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons ipad icon" style="color:#5BC5F2;"></i>
+								<span class="title">Responsive</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons stats icon" style="color:#FF7BAC;"></i>
+								<span class="title">Benchmark</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons calendar icon" style="color:#FF931E;"></i>
+								<span class="title">Events</span>
+							</a>										
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons newspaper icon" style="color:#FF2D55;"></i>
+								<span class="title">Newsletter</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons phone_alt icon" style="color:#E30613;"></i>
+								<span class="title">Contact</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons list-alt icon" style="color:#6C4796;"></i>
+								<span class="title">Terms</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons eye_open icon" style="color:#05BECC;"></i>
+								<span class="title">Privacy</span>
+							</a>											
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons parents icon" style="color:#ADDB21;"></i>
+								<span class="title">Conduct</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons lock icon" style="color:#D6B31D;"></i>
+								<span class="title">Security</span>
+							</a>												
+						</div>
+						<div class="item">
+							<a href="#">						
+								<i class="glyphicons circle_question_mark icon" style="color:#0069B4;"></i>
+								<span class="title">FAQs</span>
+							</a>									
+						</div>
+					</div>
+					<div class="social-menu-list">
+						<a href="#"><i class="social social-facebook"></i></a>
+						<a href="#"><i class="social social-twitter"></i></a>
+						<a href="#"><i class="social social-linked-in"></i></a>
+						<a href="#"><i class="social social-youtube"></i></a>
+						<a href="#"><i class="social social-pinterest"></i></a>
+						<a href="#"><i class="social social-instagram"></i></a>
+					</div>		
+				</div>
+		    </div>
+		</div>
+	    <!-- BEGIN FOOTER -->
+	    <div class="footer-wrapper"> 
+			<footer class="" style="overflow: hidden; padding-left: 0px;">			
+				<ul class="bottom-list row">
+					<li>
+						<a href="#features" class="item">						
+							<i class="glyphicons show_big_thumbnails icon"></i>
+							<span class="title">Features</span>
+							<p class="description">
+								HHLEARN is designed by industry professionals and we have built-in 
+								features that will provide immediate benefits to your organization.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#demos" class="item">
+							<i class="glyphicons film icon"></i>
+							<span class="title">Watch Demo</span>
+							<p class="description">
+								There's no better way to grasp how simple training employees can be
+								than watching videos that visually show you. See it for yourself!
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#courses" class="item">
+							<i class="glyphicons display icon"></i>
+							<span class="title">Courses</span>
+							<p class="description">
+								We utilize proven adult education teaching methods 
+								that include reading, visual aids, tts, and video.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#testing" class="item">
+							<i class="glyphicons check icon"></i>
+							<span class="title">Testing</span>
+							<p class="description">
+								Our testing and secure certificates of completion are so unique, they'are 
+								patent pending. Check out how we do it and how you will benefit
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#contacts" class="item">
+							<i class="glyphicons phone_alt icon"></i>
+							<span class="title">Contact Us</span>
+							<p class="description">
+								There are so many ways to find out about us and contact us. 
+								you can even connect through social media.
+							</p>
+							<div class="left-bar"></div>
+						</a>
+					</li>
+					<li>
+						<a href="#pricing" class="item">
+							<i class="glyphicons usd icon"></i>
+							<span class="title">Pricing Plans</span>
+							<p class="description">
+								Find out how little it costs to become a member of the 
+								number 1 employee education system. Try it for FREE.
+							</p>
+						</a>
+					</li>				
+				</ul>
+			</footer>
+		</div>      
+	    <!-- END FOOTER -->
+	    
+	    <!-- BEGIN GO TO TOP --><a href="#." class="back-to-top" id="back-to-top"><i class="fa fa-angle-up"></i></a><!-- END GO TO TOP -->
+    
+    </div><!-- end #wrapper -->
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.min.js"></script>
+    <!-- parallax -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.stellar.js"></script>
+    <script src="{{STATIC_URL}}website/rockox/js/custom.js"></script>
+    <!-- jcarousel -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.jcarousel.min.js"></script>
+    <!-- way point -->
+    <script src="{{STATIC_URL}}website/rockox/js/waypoints.js"></script>
+    <!-- Add piecharts -->
+	<script src="{{STATIC_URL}}website/rockox/js/jquery.easypiechart.min.js"></script>
+    <!-- navigation classes change on scroll -->
+	<script src="{{STATIC_URL}}website/rockox/js/nimble.js"></script>
+    <script src="{{STATIC_URL}}website/rockox/js/scrollspy.js"></script>
+    <!-- fancybox -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <!-- appear -->
+    <script src="{{STATIC_URL}}website/rockox/js/jquery.appear.js"></script>
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{STATIC_URL}}website/rockox/js/bootstrap.min.js"></script>
+    
+    <script src="{{STATIC_URL}}website/rockox/js/counters.js"></script>
+    
+    <script src="{{STATIC_URL}}website/rockox/js/responsiveslides.min.js"></script>
+
+    <!-- nimble effect -->
+    <script>
+		//slider
+	jQuery(function() {
+		//parallaax
+		jQuery.stellar({
+			horizontalScrolling: false,
+			verticalOffset: 0
+		});
+		//smooth scroll to href value
+		jQuery(".menu-list .item a").click(function(event){
+			 event.preventDefault();
+			 //calculate destination place
+			 var dest=0;
+			 if ($(this.hash).length == 0) {
+			 	window.location.href = this.href;
+			 	return;
+			 }
+			 if($(this.hash).offset().top > $(document).height()-$(window).height()){
+				  dest=$(document).height()-$(window).height();
+			 }else{
+				  dest=$(this.hash).offset().top;
+			 }
+			 //go to destination
+			 jQuery('html,body').animate({scrollTop:dest}, 1000,'swing');
+		 });
+		 //toggle map
+		 jQuery(".map-title h4 span").click(function(e) {
+		  	jQuery(".map iframe").slideToggle();  
+			jQuery(".map-title h4 span i").toggleClass("fa-angle-up fa-angle-down");
+		 });
+		 
+		jQuery(window).scroll(function(){
+			if(jQuery(window).scrollTop() > 200){
+				jQuery("#back-to-top").fadeIn(200);
+			} else{
+				jQuery("#back-to-top").fadeOut(200);
+			}
+		});
+		
+		jQuery('#back-to-top, .back-to-top').click(function() {
+			  jQuery('html, body').animate({ scrollTop:0 }, '800');
+			  return false;
+		});
+		jQuery('#mycarousel').jcarousel({
+			vertical: true
+		});
+		
+		$('[data-toggle="popover"]').popover();
+		$('[data-toggle="content-popover"]').popover({ 
+	        html : true, 
+	        content: function() {
+	          return $(this).find('.popover-content').html();
+	        }
+	    });
+		
+		jQuery(".mobile-item-link.fancybox").fancybox();
+
+		jQuery(".various").fancybox({
+			maxWidth	: 1100,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: '70%',
+			height		: '70%',
+			autoSize	: false,
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});		
+		
+		jQuery("#slider1").responsiveSlides({
+			manualControls: '#slider1-pager',
+		});
+		jQuery("#slider2").responsiveSlides({
+			manualControls: '#slider2-pager',
+		});
+		jQuery("#slider3").responsiveSlides({
+			manualControls: '#slider3-pager',
+		});
+		jQuery("#slider4").responsiveSlides({
+			manualControls: '#slider4-pager',
+		});
+		
+		//pie charts	
+			jQuery('#pie-charts').waypoint(function(direction) {			
+				jQuery('.chart').easyPieChart({
+					 barColor: "#5ecae6",
+					onStep: function(from, to, percent) {
+						jQuery(this.el).find('.percent').text(Math.round(percent));
+					}
+				});
+				}, {
+				offset: function() {
+					return jQuery.waypoints('viewportHeight') - jQuery(this).height() + 100;
+				}
+			});
+			
+			jQuery('#pie-charts').waypoint(function(direction) {			
+				jQuery('.green-circle').easyPieChart({
+					 barColor: "#bed431",
+					onStep: function(from, to, percent) {
+						jQuery(this.el).find('.percent').text(Math.round(percent));
+					}
+				});
+				}, {
+				offset: function() {
+					return jQuery.waypoints('viewportHeight') - jQuery(this).height() + 100;
+				}
+				
+			});
+			
+			jQuery('#pie-charts').waypoint(function(direction) {			
+				jQuery('.red-circle').easyPieChart({
+					 barColor: "#e11e24",
+					onStep: function(from, to, percent) {
+						jQuery(this.el).find('.percent').text(Math.round(percent));
+					}
+				});
+				}, {
+				offset: function() {
+					return jQuery.waypoints('viewportHeight') - jQuery(this).height() + 100;
+				}
+				
+			});
+			
+			jQuery('#pie-charts').waypoint(function(direction) {			
+				jQuery('.yellow-circle').easyPieChart({
+					 barColor: "#f6c715",
+					onStep: function(from, to, percent) {
+						jQuery(this.el).find('.percent').text(Math.round(percent));
+					}
+				});
+				}, {
+				offset: function() {
+					return jQuery.waypoints('viewportHeight') - jQuery(this).height() + 100;
+				}
+				
+			});
+			
+			jQuery('#pie-charts').waypoint(function(direction) {			
+				jQuery('.purple-circle').easyPieChart({
+					 barColor: "#7251a2",
+					onStep: function(from, to, percent) {
+						jQuery(this.el).find('.percent').text(Math.round(percent));
+					}
+				});
+				}, {
+				offset: function() {
+					return jQuery.waypoints('viewportHeight') - jQuery(this).height() + 100;
+				}
+				
+			});
+	});	
+	</script>
+  </body>
+</html>

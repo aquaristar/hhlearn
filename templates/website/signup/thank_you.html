@@ -1,0 +1,77 @@
+{% extends "website/_page.html" %}
+{% block title %}HHLEARN - Home{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+	<div class="row">
+		<h1 class="span12">Signup</h1>
+		<div class="span12">
+			<ul class="breadcrumb">
+				<li><a href="{% url 'signup' %}">Signup</a> <span class="divider">/</span></li>
+				<li><a href="{% url 'signup' %}">Contact Info</a> <span class="divider">/</span></li>
+				<li><a href="{% url 'signup_terms' %}">Terms</a> <span class="divider">/</span></li>
+				<li><a href="{% url 'signup_payment' %}">Payment</a> <span class="divider">/</span></li>
+
+				<li class="active">Thank You</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div class="row">
+	<div class="span12 plan-box">
+
+	<ul id="planTab" class="nav nav-tabs">
+
+		<li class="">
+			<a href="{% url 'signup' %}">
+				Contact Info
+			</a>
+		</li>
+
+		<li class="">
+			<a href="{% url 'signup_terms' %}">
+				Terms
+			</a>
+		</li>
+
+		<li class="">
+			<a href="{% url 'signup_payment' %}">
+				Payment Info
+			</a>
+		</li>
+
+		<li class="active">
+			<a href="{% url 'signup_thank_you' %}">
+				Complete
+			</a>
+		</li>
+
+
+	</ul>
+	<div id="planTabmyTabContent" class="tab-content">
+
+
+	<div class="tab-pane active" id="complete">
+		<h2 class="mbl mtl text-center">Thank you!</h2>
+
+		<h2 class="mbl text-center">Your Registration is Complete.</h2>
+
+		<h2 class="mbl text-center">Please Check Your Email for Your Next Step.</h2>
+
+
+	</div>
+
+
+	</div>
+	</div>
+	</div>
+	</div>
+
+{% endblock %}

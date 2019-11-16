@@ -1,0 +1,86 @@
+<!DOCTYPE document SYSTEM "rml_1_0.dtd"> 
+<document filename="test_001_imagereflect.pdf" invariant="1">
+
+<template pageSize="612,792" leftMargin="72">
+	<pageTemplate id="main" pageSize="612,792">
+	<pageGraphics>
+	<setFont name="Helvetica-Bold" size="18"/>
+		<image file="static/dashboard/certificate/images/bk_course_additional_documentation_report.png" x="0" y="0" width="612" height="792" anchor="sw"/>
+		<image file="static/temp/qr1.png" x="25" y="25" width="70" height="70" anchor="sw"/>
+		<image file="static/temp/qr2.png" x="105" y="25" width="70" height="70" anchor="sw"/>		
+        <setFont name="Helvetica-Oblique" size="12" />        
+	</pageGraphics>
+	<frame id="1" x1="23" y1="-17" width="560" height="700"/>
+	</pageTemplate>
+</template>
+
+<stylesheet>
+	<initialize>
+	<alias id="style.normal" value="style.Normal"/>
+	</initialize>
+	<paraStyle name="h1" fontName="Helvetica-BoldOblique" fontSize="32" leading="36"/>
+	<paraStyle name="normal" fontName="Helvetica" fontSize="10" leading="12"/>
+	<paraStyle name="spaced" fontName="Helvetica" fontSize="10" leading="12" 
+		spaceBefore="12" spaceAfter="12"/>
+	<paraStyle 
+        name="intro" 
+        fontName="Helvetica" 
+        fontSize="8" 
+        leading="12"
+    spaceAfter="12"/>
+    
+    <paraStyle 
+        name="introHead" 
+        fontName="Helvetica" 
+        fontSize="9" 
+        leading="12"
+        textTransform="uppercase"
+    spaceAfter="12"/>
+</stylesheet>
+
+<story>
+	<storyPlace x="54" y="662" width="100" height="50" origin="page">
+		<para style="introHead">
+			{{ user.first_name}} {{ user.last_name}}			
+		</para>
+	</storyPlace>
+	<storyPlace x="218" y="662" width="200" height="50" origin="page">
+		<para style="introHead">
+			{{ test.test.course.number }}, {{ test.test.course.name }}			
+		</para>
+	</storyPlace>
+	<storyPlace x="528" y="662" width="100" height="50" origin="page">
+		<para style="introHead">
+			{{ test_completed_date | date:"m-d-Y"  }}			
+		</para>
+	</storyPlace>
+	<storyPlace x="25" y="249" width="525" height="300" origin="page">	
+	{% for objective in objectives %}
+		<ul>
+			<li>
+			<para style="intro">{{ objective | safe }}</para>
+			</li>			
+		</ul>
+	{% endfor %}
+	</storyPlace>
+	<storyPlace x="100" y="276.5" width="460" height="50" origin="page">
+		<para style="introHead">
+			{{ author_info.authors.author_fullname_or_business | safe  }}
+		</para>
+	</storyPlace>
+	<storyPlace x="25" y="0" width="525" height="300" origin="page">	
+		<para style="intro">{{ author_info.author_course_qualifications | safe }}</para>	
+	</storyPlace>
+	<storyPlace x="200" y="-15" width="525" height="50" origin="page">	
+		<para style="intro"> {{ copyright }}</para>	
+	</storyPlace>
+	<storyPlace x="89" y="63" width="525" height="50" origin="page">	
+		<para style="introHead">{{ verification_code }}</para>	
+	</storyPlace>
+	<para style="intro">		
+		COURSE SUMMARY: {{ course_description | safe}}
+	</para>
+	
+</story>
+
+</document>

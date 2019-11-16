@@ -1,0 +1,47 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Reporting{% endblock %}
+{% block meta_title %}Reporting{% endblock %}
+{% block meta_description %}Reporting{% endblock %}
+{% block meta_keywords %}Reporting{% endblock %}
+
+
+{% block content %}
+<div class="page page-resources" ng-controller="profileCtrl">
+	<div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'reporting_home' %}">Reporting</a></li>
+                <li class="active"><a href="">Administration</a></li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="row">
+        {% for report in reports %}
+        <div class="col-lg-6">
+            <div class="panel super-mini-box">
+                <a href="{{ report.report_url }}">
+	                <span class="box-icon" style="background:{{ report.tile_hex_color }}; color: white;">
+	                   <i class="{{ report.icon }}"></i>
+	                </span>
+	                <div class="box-info">
+	                    <p class="text-muted"><span>{{ report.report_title }}</span></p>
+	                </div>
+               </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

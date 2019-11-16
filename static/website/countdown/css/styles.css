@@ -1,0 +1,270 @@
+/* Preloader */
+
+#preloader { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #f2f3f7; /* change if the mask should have another color then white */ z-index: 9999999; /* makes sure it stays on top */ }
+#status { width: 200px; height: 200px; position: absolute; left: 50%; /* centers the loading animation horizontally one the screen */ top: 50%; /* centers the loading animation vertically one the screen */ background-image: url(../img/status.gif); /* path to your loading animation */ background-repeat: no-repeat; background-position: center; margin: -100px 0 0 -100px; /* is width and height divided by two */ }
+body {font-family: 'Open Sans', sans-serif; color: #8a8b8b; font-size: 18px; line-height: 22px; background-color: #f2f3f7; font-weight: normal;}
+body.yellow {background-color: #ffcc00;}
+body.green {background-color: #aaee06;}
+body.blue {background-color: #00d2ff;}
+h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; }
+.homepage #logo {margin: 0 0 26px 0;}
+.home{ background:#e6e9ed url(../img/bg-body.png) left top repeat-x; }
+.main-wrapper { padding: 60px 20px 0 20px; margin: 0 auto ;}
+
+/* Header Start here */
+.header-wrapper { background: black; padding: 5px;}
+.header-wrapper .header-menu { padding: 20px;}
+.header-wrapper .header-menu .icon {background: black; color: white; font-size: 26px;}
+.header-wrapper .header-menu .item {background: black; color: white; font-size: 21px; text-transform: uppercase; font-weight: bold; line-height: 30px;}
+
+/*Logo Start Here*/
+#logo {text-align: center; margin: 0 0 30px 0; padding:0;}
+#logo a {display: inline-block; padding: 4px;}
+/*Logo End Here*/
+/*Slogan start here*/
+.slogan { margin-bottom: 76px; text-align: center;}
+.slogan img {max-width: 100%; height: auto; margin-bottom: 20px;}
+.slogan p { margin: 10px 0; padding: 0; color: #3e3d3d; }
+/*SLogan end here*/
+/*Countdown start here*/
+.count-down { margin: 0 0 85px 0; padding: 0; font-family: 'Roboto', sans-serif; text-align:center; height: 240px; height: auto;}
+.count-down li { margin: 0; padding: 0; list-style: none; font-size: 28px; display: inline-block; min-height: 250px;}
+.count-down li div { margin: 0 !important; padding: 0;}
+.count-down li input { font-family: 'Roboto', sans-serif !important; font-size: 88px!important; color: #000000!important; width: 154px!important; height: 98px!important; margin:70px 0 0 -210px !important; font-weight: normal!important;}
+#days-title, #hours-title, #mins-title, #secs-title { display:block; color: #000000; text-transform: uppercase; margin-top: -94px; font-size: 30px; position: relative; z-index:9 !important;}
+/*Countdown end here*/
+/*Newsletter subscribe start here*/
+.contact-form .form-group {position: relative; width: 100%; margin-bottom: 4px !important; }
+.contact-form {color: #8C8C8C; float: none; margin: 0 auto 60px auto; }
+.contact-form input {background-color: #ffffff; border: none; height: 60px; width: 100%; padding:0 22% 0 70px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
+.contact-form .error:focus, .contact-form .error {border: 1px solid #ff0000;}
+.contact-form label.error {color: #fff; font-size: 14px; line-height: 18px; font-weight: normal; position: absolute; right: 0; text-transform: none; top: -28px; border: none; background-color: #FF0000; padding: 4px; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
+.contact-form .email-ico{ position: absolute; top:-6px; left:12px; font-size: 24px;}
+.contact-form .btn-submit{ position: absolute; top:10px; right:12px; font-size: 20px; border: none; background-color: #ff382e; -webkit-border-radius: 4px; -moz-border-radius: 4px;border-radius: 4px; font-size: 20px; color: #ffffff; line-height: 22px; font-family: 'Roboto', sans-serif; width: 90px; height: 40px; font-weight: bold ; line-height: 24px;}
+.form-respond .content-message {border-radius: 4px; margin: 0 0 50px; padding: 30px; }
+.form-respond .success { color: #fff; background-color: green;}
+.form-respond .content-message {border-radius: 4px; margin: 0 0 50px; padding: 4px 8px; color:#fff; background-color: #FF0000;} 
+.form-respond .content-message h2, .form-respond .content-message p { display: inline; font-size: 15px;}
+/*Newsletter subscribe end here*/
+/*Social Links start here*/
+.connect-us { margin: 0 0 28px 0; padding: 0; text-align: center;}
+.connect-us li {display: inline-block; font-size: 28px;}
+.connect-us li a {display: block; margin: 10px; width: 40px; height: 40px; line-height: 36px; color: #000;}
+.connect-us li a.fb:hover{color: #507cbe;}
+.connect-us li a.twitter:hover{color: #62cdf2;}
+.connect-us li a.gplus:hover{color: #ec5d48;}
+.connect-us li a.linkedin:hover{color: #1e88c9;}
+.connect-us li a.ytube:hover{color: #e64c38;}
+.connect-us li a.dribbble:hover{color: #d34e95;}
+.connect-us li a.pinterest:hover{color: #e94546;}
+/*Social Links end here*/
+
+/* about us */
+.aboutus-videos { margin-top: 30px; }
+.aboutus-videos .item { width: 250px; height: 150px; background-color: #ccc; margin-right: 40px; float: left;}
+
+/*Footer start here*/
+.footer-wrapper { background: #e7e7e7;}
+footer  { text-align: center; font-size:16px;}
+footer a {color: #8a8b8b; text-decoration: underline;}
+footer a:hover { text-decoration: none; color: #8a8b8b;}
+
+footer .bottom-list { list-style: none; color: #5d5d5d; padding-top: 10px;}
+footer .bottom-list li { list-style: none; display: inline-block;}
+footer .bottom-list li .item { display: inline-block; width:200px; height:150px; background:#e7e7e7; position: relative; color: #5d5d5d; text-decoration: none;}
+footer .bottom-list li .item:hover { color: #999;}
+footer .bottom-list li .item .left-bar { position:absolute; width:2px; height: 90px; border: 0px; border-left:solid 1px; border-style: dashed; top: 25px; right: 0px;}
+footer .bottom-list li .item .icon{text-align: center; font-size: 40px; display: block; margin:10px 0;}
+footer .bottom-list li .item .title{font-size:20px; font-weight: bold;}
+footer .bottom-list li .item .description { font-size: 8px; padding:0 15px; line-height: 10px;}
+/*Footer start here*/
+/*About/Contact css start here*/
+.about-us a { position: absolute; top: 50%; height: 40px; width: 40px; background-color: #ff3b30; border-radius: 50%; color: #ffffff; text-align: center; line-height: 40px; left: 1%; font-size: 22px; z-index: 999;}
+.about-us .tooltip-inner, .contact-us .tooltip-inner { background: none; border-radius: 0; color: #3e3d3d; font-size: 14px; text-transform: uppercase; padding: 0;}
+.about-us .tooltip-arrow, .contact-us .tooltip-arrow { display: none;}
+.contact-us a { position: absolute; top: 50%; height: 40px; width: 40px; background-color: #ff3b30; border-radius: 50%; color: #ffffff; text-align: center; line-height: 40px; right: 1%; font-size: 22px; z-index: 999;}
+.about-us a:hover, .contact-us a:hover{text-decoration: none;}
+/*About/Contact css end here*/
+.tictoc .modal { background: rgba(31, 31, 31, 0.96)}
+.pop-up {padding: 20px; border-radius: 0; box-shadow:none; background: none; border: none;}
+.cls-pop { position: absolute; right: 10px; top: 10px; font-size: 30px; line-height: 40px; color: #ffffff; font-weight: normal; z-index: 999;}
+.cls-pop:hover {color: #ff382e; text-decoration: none;}
+.pop-up h3{ font-size: 34px; line-height: 40px; margin: 0 0 60px 0; padding: 0; color: #ff382e; text-align: center; font-family: 'Roboto', sans-serif; font-weight: normal; text-transform: uppercase; position: relative;}
+.pop-up h3:before {background-color: #ff382e; bottom: -30px; content: ""; display: block; height: 1px; position: absolute; 
+width: 300px; }
+.pop-up h3:before {left: 50%; margin-left: -150px; }
+.pop-up p {margin: 10px 0; padding: 0; font-size: 15px; line-height: 24px; color: #dadada;}
+.pop-up-cnt { text-align: center;}
+.pop-up-cnt i {height: 40px; width: 40px; background-color: #ff3b30; border-radius: 50%; color: #ffffff; line-height: 40px; margin-bottom: 10px;}
+.pop-up-cnt h4 {font-size: 22px; line-height: 28px; margin: 0; padding: 0; color: #ffffff;}
+.pop-up-cnt .cnt-wrap { padding-top: 30px;}
+.features { margin:20px 0 0 0; padding: 0 0 0 14px;}
+.features li { margin:0; padding: 0; font-size: 14px; line-height: 28px; color: #dadada; width: 33%; float: left;}
+.gmap { margin: 20px 0; position: relative; width: 100%; height: 400px;}
+.bg-overlay{background:url(../img/bg-overlay.png) repeat left top; opacity:0.5; position:fixed; height:100%; width:100%; z-index:99;}
+/*Template color option start here*/
+.template-colors{ margin: 40px 0 0 0; padding: 0; list-style: none; display: block;}
+.template-colors li { margin:0 2px; padding: 0; display: inline-block; font-size: 26px;}
+.template-colors li a { margin: 0; padding: 0; outline: none; display: block; width:42px; height: 42px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+.template-colors li a:hover { border:1px solid #999;}
+.template-colors li a.blue{background-color: #00d2ff;}
+.template-colors li a.green{background-color: #aaee06;}
+.template-colors li a.yellow{background-color: #ffcc00;}
+/*Template color option end here*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.count-down li input {margin-top:60px !important;}
+}
+
+.main-container { 
+	/*background: url(/static/dashboard/common/images/bk_login1.png);*/
+	background-size: cover;
+	/*min-height: 1000px ;*/
+}}
+/*Responsive css start here*/
+@media only screen and (max-device-width : 1150px) {
+	.about-us a { top: 2%; margin-left:-20px; left: 47.5%; }
+	.contact-us a { top: 2%; margin-right:-20px; right: 47.5%; }
+	.about-us .tooltip, .contact-us .tooltip{ display: none !important;}
+	.about-us .tooltip-arrow, .contact-us .tooltip-arrow {display: none;}
+
+}
+@media only screen and (max-width : 1024px) {
+	.count-down li div, .count-down li canvas { width: 230px !important; height: 230px !important;}
+	.contact-form input {padding: 0 26% 0 17%;}
+	.count-down li input {margin:36px 0 0 -187px !important;}
+	.hide-med {display: none !important;}
+	.contact-form .btn-submit {font-size: 18px;}
+	.features li {width: 50%;}
+}
+@media only screen and (max-device-width : 767px) {
+	.about-us a {left: 46%; }
+	.contact-us a {right: 46%; }
+}
+@media only screen and (max-device-width : 600px) {
+	.about-us a {left: 44%; }
+	.contact-us a {right: 44%; }
+	.features li {width: 100%; float: none;}
+}
+@media only screen and (max-device-width : 568px) {
+	footer .bottom-list li .item .left-bar { display: none;}	
+	.contact-form input {padding: 0 40% 0 24%;}
+	.paw-carousel-item {height: 320px !important;}
+	.contact-form .btn-submit {font-size: 15px; padding: 0; margin: 0; width: 80px;}
+}
+/*Responsive css end here*/
+
+.menu-modal {	
+	margin: 0 auto;	
+}
+.menu-modal .modal-header {
+	text-align: center;
+	padding: 10px;
+}
+.menu-modal .modal-dialog{	
+	background: black;
+	padding: 10px;
+	border-radius: 10px;
+	border: solid 2px;
+}
+
+.menu-modal .modal-dialog .modal-content {
+	background: black;
+}
+.menu-list { text-align: center; border-bottom: solid 2px;}
+.menu-list .item { display: inline-block; width:100px; height:100px; position: relative; text-align: center; font-weight:bold; margin-right:10px; }
+.menu-list .item a {text-decoration: none; color: #ccc; font-size: 18px;}
+.menu-list .item .icon{text-align: center; font-size: 40px; display: block; margin:10px 0;}
+.menu-list .item.last { margin-right: 0px;}
+.menu-list .item a:hover {color: white;}
+
+.social-menu-list { text-align: center; padding: 15px 0;}
+.social-menu-list a{ color: #ccc; font-size:40px; margin: 0 10px; line-height: 50px;}
+.social-menu-list a:hover{color: white;}
+
+/* styles for signup page */
+.signup-page { overflow: auto;}
+body.signup-body {font-family: 'Open Sans', sans-serif;}
+body.signup-body .form-control { height: 50px;}
+
+body.signup-body .form-group .form-controls .icon {
+	top: 18px;
+}
+
+.main-container.signup{
+	background: url(/static/dashboard/common/images/bk_signup.png);
+	background-size: cover;	
+}
+
+.main-container.signup .main-wrapper{
+	padding: 60px 20px 60px 20px;
+}
+.main-container.signup .signup-wrapper {
+	background: white;
+	padding: 20px 0;
+}	
+.main-container.signup .wizard > .content {
+	background: #d9e021;
+}
+.main-container.signup .wizard > .steps a.signup-tab1, .main-container.signup .wizard > .steps a.signup-tab1:hover {
+	background: #59ba35;
+	opacity: 1;
+}
+.main-container.signup .wizard > .steps a.signup-tab2, .main-container.signup .wizard > .steps a.signup-tab2:hover {
+	background: #569e38;
+	opacity: 1;
+}
+.main-container.signup .wizard > .steps a.signup-tab3, .main-container.signup .wizard > .steps a.signup-tab3:hover {
+	background: #3b8221;
+	opacity: 1;
+}
+.main-container.signup .wizard > .steps a.signup-tab4, .main-container.signup .wizard > .steps a.signup-tab4:hover {
+	background: #006837;
+	opacity: 1;
+}
+.main-container.signup .wizard > .steps a.signup-tab1.disabled, .main-container.signup .wizard > .steps a.signup-tab1.disabled:hover {
+	background: #ccc;
+	opacity: 1;
+	pointer-events: none;
+    cursor: default;
+    color: #fff;
+}
+.main-container.signup .wizard > .steps a.signup-tab2.disabled, .main-container.signup .wizard > .steps a.signup-tab2.disabled:hover {
+	background: #ccc;
+	opacity: 1;
+	pointer-events: none;
+   	cursor: default;
+   	color: #fff;
+}
+.main-container.signup .wizard > .steps a.signup-tab3.disabled, .main-container.signup .wizard > .steps a.signup-tab3.disabled:hover {
+	background: #ccc;
+	opacity: 1;
+	pointer-events: none;
+   	cursor: default;
+   	color: #fff;
+}
+.main-container.signup .wizard > .steps a.signup-tab4.disabled, .main-container.signup .wizard > .steps a.signup-tab4.disabled:hover {
+	background: #ccc;
+	opacity: 1;
+	pointer-events: none;
+   	cursor: default;
+   	color: #fff;
+}
+
+.main-container.signup .wizard > .steps .current a, .main-container.signup .wizard > .steps .current a:hover {
+	pointer-events: none;
+   	cursor: default;
+}
+.main-container.signup .wizard > .content > .body { width: 100%; height: 100%; position: relative;}
+/* end signup page */
+
+.header-wrapper{ position: fixed; z-index:1000; width: 100%; top:0px;}
+@media (min-width: 992px) {	
+	.main-container{ padding: 92px 0 0 0;}
+}
+@media (max-width: 991px) {	
+	.main-container{ padding: 230px 0 0 0;}
+}
+
+.wizard > .content > .body .switch input[type="checkbox"] { display: none;}
+.wizard > .content > .body .ui-select > select { height: 50px;}
+	

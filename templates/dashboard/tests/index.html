@@ -1,0 +1,469 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+{% block content %}
+
+
+<div class="page page-profile" ng-controller="testController">
+	
+	<div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{% url 'dashboard_home' %}">Dashboard</a></li>
+                <li class=""><a href="{% url 'assignments' %}">Assignments</a></li>
+                <li class=""><a href="{[courseUrl]}">{[ courseData.name ]}</a></li>
+                <li class="active"><a>Test</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    
+    <div class="row">
+        <div class="col-lg-12">
+    	<div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+			        <div class="col-xs-4   col-lg-4 text-left">
+			            <strong><i class="fa fa-check-square-o"></i> {[ courseData.name ]}</strong>
+			        </div>
+			        <div class="col-xs-4   col-lg-4 text-center">
+			            <strong ng-show="testData.test.type.id!=3"> 
+			                    <span>Questions</span>: {[testData.cur_total_questions_count]}
+			            </strong>
+			        </div>
+			        <div class="col-xs-4   col-lg-4 text-right">
+			            <strong> {[ courseData.number ]} </strong>
+			        </div>
+			    </div>
+			</div>
+            <div class="panel-body">            	
+            	            
+            	<div class="row">
+		        	<div class="col-lg-12" ng-show="courseData.number">
+		                <img width="100%" src="{{ STATIC_URL }}dashboard/courses/images/banners/{[ courseData.number ]}.jpg"
+		                     alt="{[ courseData.number ]}" title="{[ courseData.name ]}" name="{[ courseData.name ]}">
+		            </div>
+		            
+		            <div class="col-xs-12  text-right pull-right intro-tool-bar">
+	                    <div class="course-toolbar pull-right">
+	                        <ul class="list-unstyled list-inline">
+	                            <li id="tools">
+	                                <a href="#" data-toggle="tooltip" data-placement="top" title="Tools"
+	                                   ng-click="toggleTools()"><i class="fa fa-cog fa-spin fa-3"></i></a>
+	                            </li>
+	
+	                            <li class="" id="notes" ng-hide="tools">
+	                                <a href="#" data-toggle="tooltip" data-placement="top" title="Notes">
+                                        <!--<i
+	                                        data-toggle="modal"
+	                                        data-target="#courseNotes"
+	                                        class="fa fa-pencil fa-3"></i>-->
+                                        <i  data-target="#"
+	                                        class="fa fa-pencil fa-3"
+                                            ng-click="openCourseNotesModal()"></i>
+                                    </a>
+	                            </li>
+	
+	                            <!--<li class="" id="readLoud" ng-hide="tools">
+	                                <a href="#" data-toggle="tooltip" data-placement="top" title="Listen to Text"><i
+	                                        class="fa fa-volume-up fa-3"></i></a>
+	                            </li>-->
+	
+	                            <li class="" id="fontSize" ng-hide="tools">
+	                                <a href="#" data-toggle="tooltip" data-placement="top" title="Font Size">
+                                        <!--<i data-toggle="modal" data-target="#textSize" class="fa fa-text-height fa-3"></i>-->
+                                        <i ng-click="openTextSizeModal()" class="fa fa-text-height fa-3"></i>
+                                    </a>
+	                            </li>
+	
+	                        </ul>
+	                    </div>
+	
+	                </div>
+                </div>
+                </br>
+
+
+				<!-- Modal -->
+			    <!--<div class="modal fade" id="courseNotes" tabindex="-1" role="dialog" aria-labelledby="courseNotes"
+			         aria-hidden="true">-->
+                <!--<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="courseNotes" aria-hidden="true">
+			        <div class="modal-dialog">
+			            <div class="modal-content">
+			                <div class="modal-header">                   
+			                    <div class="row">
+									<div class="col-lg-12">						
+										<div class="title-section">
+											<h4>
+												<img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+												<strong>Course Notes: </strong>
+											</h4> 
+											<span class="title">{[ courseData.number ]}</span>
+										</div>
+										<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+									</div>
+								</div>
+			                </div>
+			                
+			                <div class="modal-body">
+			                    <textarea class="form-control" rows="3" maxlength="{[courseNotesLimit]}" id="text_course_notes"
+			                              ng-maxlength="{[courseNotesLimit]}" ng-model="courseNotes" value="{[courseData.user_notes]}">{[courseData.user_notes]}</textarea>
+			                    <span class="form-help">{[courseNotes.length]}-{[courseNotesLimit]} Characters</span>
+			                    <p id="p_course_notes" style="display:none;"></p>
+			                </div>
+			                
+			                <div class="modal-footer">
+			                    <div class="row">                       
+			                        <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 screen text-center">
+			                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			                            <button type="button" class="btn btn-primary" ng-click="saveUserNote(courseNotes)"
+			                                    ng-disabled="courseNotes.length > courseNotesLimit">Save Notes
+			                            </button>
+			                            <button type="button" class="btn btn-print print screen">
+			                                PRINT
+			                            </button>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>-->
+			
+			
+			    <!-- Modal -->
+			    <!--<div class="modal fade" id="textSize" tabindex="-1" role="dialog" aria-labelledby="courseNotes" aria-hidden="true">
+			        <div class="modal-dialog">
+			            <div class="modal-content">
+			                <div class="modal-header">                    
+			                    <div class="row">
+									<div class="col-lg-12">						
+										<div class="title-section">
+											<h4>
+												<img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+												<strong>Font Size: </strong>
+											</h4> 
+											<span class="title">{[ courseData.number ]}</span>								
+										</div>							
+										<a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" data-dismiss="modal">X</a>							
+									</div>
+								</div>
+			                </div>
+			                <div class="modal-body">
+			                    <p>
+			                        Please select font size. Your selection will be saved and selected font size will
+			                        be used as default font size for your courses.
+			                    </p>
+
+			
+			                    <div class="row">
+			                        <div class="col-lg-12">
+			                            <div style="margin: 15px;">                                   
+						                   	<input id="font_slider" 
+						                   		type="text"
+					                           ui-range-slider
+					                           data-slider-min="1"
+					                           data-slider-max="3"
+					                           data-slider-step="1"
+					                           data-slider-orientation="horizontal"
+					                           data-slider-value="1"
+					                           data-slider-selection="before"
+					                           data-slider-tooltip="show"
+					                           data-slider-handle="round"
+					                           ng-model="fontsize">			                   			                    
+			                            </div>
+			                        </div>
+			                    </div>
+			                    <div class="row">
+			                        <div class="col-lg-12">
+			                            <strong>Sample Text</strong>
+			
+			                            <p ng-style="{'font-size':fontSizeSlider}">Home health professionals can take the best care
+			                                of
+			                                themselves and their patients by learning about their diagnosis and being able to
+			                                discuss with
+			                                them the signs, symptoms, and range of emotions they may be going through.</p>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="modal-footer">
+			                    <div class="row">                        
+			                        <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 screen text-center">
+			                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			                            <button type="button" class="btn btn-primary" ng-click="saveTextSize(fontsize)">Save
+			                            </button>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>-->
+			
+                
+                <div class="row" ng-show="testData.current_test_attempt_number == 1">
+	                <div class="col-lg-12">
+	                    <!--<p class="course-summary">  
+							<b>Instructions:</b> Your examination consists of {[testData.cur_total_questions_count]} random questions and the passing score is set at {[testData.min_score]}% by {[testData.location_name]}. You may only make three attempts on any one examination. You may use your notes on the exam and nothing else. If you cannot pass the examination within the three attempts, your manager will be notified via email of your performance and you will be prohibited from taking the exam again for 24 hours. 
+							
+							Please keep in mind that all of your learning activities are graded both in percentage and letter grade and are used to calculate your grade point average. Your overall performance is measured and compared with others at your organization and benchmarked against other organizations, so please do your best and read each question carefully and completely.
+						</p>-->
+						<div class="course-summary" ng-show="testData.test.type.id==1">  
+							<b>Instructions:</b> 
+							Your examination consists of {[testData.cur_total_questions_count]} random questions and the passing score is set at 80% by {[testData.location_name]}. 
+							You may only make three attempts on any one examination. You may use your notes on the exam and nothing else. 
+							If you cannot pass the examination within the three attempts, your manager will be notified via email of your 
+							performance and you will be prohibited from taking the exam again for 24 hours. Please keep in mind that all 
+							of your learning activities are graded both in percentage and letter grade and are used to calculate your grade 
+							point average. Your overall performance is measured and compared with others at your organization and benchmarked 
+							against other organizations, so please do your best and read each question carefully and completely.
+							
+							<div class="callout callout-blue" ng-show="testData.test.course.requires_additional_documentation == 1">
+								<h4>Note:</h4>
+								<p>This course requires additional documentation beyond the course certificate of completion. 
+									After you pass this examination, you will be allowed to download this additional required documentation. 
+									After you complete this examination, make sure you print this additional documentation and provide it to 
+									the individual that maintains your staff education records. </p>
+							</div>							
+						</div>						
+						<div class="course-summary" ng-show="testData.test.type.id==4">
+							<b>Instructions:</b> 
+							Your examination requires a 100% passing score and consists of {[testData.cur_total_questions_count]} random questions. You may only make three 
+							attempts on any one examination. You may use your notes on the exam and nothing else. If you cannot pass 
+							the examination within the three attempts, your manager will be notified via email of your performance and 
+							you will be prohibited from taking the exam again for 24 hours. Please keep in mind that every attempt you 
+							make is recorded and both you and {[testData.location_name]} are benchmarked by the number of attempts it takes to pass 
+							an exam as well as whether you completed the test on or before the assigned due date. Your overall performance 
+							is measured and compared with others at your organization and benchmarked against other organizations, so please
+							 do your best and read each question carefully and completely.							
+							<div class="callout callout-red" ng-show="testData.test.course.requires_additional_documentation == 1">
+								<h4>Note:</h4>
+								<p>This course requires additional documentation beyond the course certificate of completion. After you pass 
+									this examination, you will be allowed to download this additional required documentation. After you complete 
+									this examination, make sure you print this additional documentation and provide it to individual that 
+									maintains your staff education record. </p>
+							</div>
+						</div>
+						<div class="course-summary" ng-show="testData.test.type.id==3">
+							<b>Instructions:</b> 
+							The course you just completed does <u>not</u> require a test. Each course page had a minimum time period before 
+							being able to proceed to the next page. The exact time it took you to complete each page was recorded. As you can 
+							see below, there is an “I acknowledge that I understand the course content” checkbox. You must check this box to 
+							enable the course “Acknowledge” button.  By checking the box and clicking on the “Acknowledge” button, you are 
+							agreeing that you have comprehended the course material. Your acknowledgement will be stored digitally along 
+							with your completion record. Acknowledge-only courses do <u>not</u> affect your grade point average. Please 
+							keep in mind that all of your learning activities are recorded and used for reporting and benchmarking purposes, 
+							and that includes whether this course was passed on or before its assigned due date.
+
+							<div class="callout callout-green" ng-show="testData.test.course.requires_additional_documentation == 1">
+								<h4>Note:</h4>
+								<p>This course requires additional documentation beyond the course certificate of completion. 
+									After you acknowledge you comprehend the course material, you will be allowed to download this 
+									additional required documentation. Make sure you print this additional documentation and provide 
+									it to the individual that maintains your staff education records. </p>
+							</div>
+							<div class="text-center" style="margin-top:20px;">
+								<label class="ui-checkbox" for="agree_acknowledge">
+									<input type="checkbox" id="agree_acknowledge" name="agree_acknowledge" data-toggle="checkbox" ng-model="checkAck">
+									<span>I acknowledge that I understand the course content" and then "Acknowledge</span>														
+								</label>
+								<div>
+									<button type="submit" ng-disabled="checkAck==false" class="btn btn-blue btn-wide setup-next-button hidden-print" ng-click="endTest()">
+										Acknowlege
+									</button>
+								</div>
+							</div>							
+						</div>
+						
+						<div class="course-summary" ng-show="testData.test.type.id==2">
+							<b>Instructions:</b> Your employee competency examination consists of 50 random questions that were obtained 
+							from your assigned courses. Your employee competency examination requires a minimum passing score of  
+							{[testData.min_score]}. You may only make three attempts on any one examination. If you cannot pass 
+							the examination within the three attempts, your manager will be notified via email of your performance and you 
+							will be prohibited from taking the exam again for 24 hours. Please keep in mind that every attempt you make is 
+							recorded and both you and {[testData.location_name]} are benchmarked by the number of attempts it takes to pass an exam 
+							as well as whether you completed the competency test on or before the assigned due date. Your competency test 
+							score will be measured and compared with others at your organization and benchmarked against other organizations, 
+							so please do your best and read each question carefully and completely.
+							<div class="callout callout-yellow">
+								<h4>Note:</h4>
+								<p>This is the knowledge portion of your employee competency program. {[testData.location_name]} may require you 
+									to display competence in the performance of practical skills associated with your job title.</p>
+							</div>
+						</div>
+	                </div>
+	            </div>
+	            
+	            <div class="row" ng-show="testData.current_test_attempt_number > 1">
+	                <div class="col-lg-12">
+	                    <p class="course-summary"> You did not pass your examination. 
+	                    	The question(s) you did not answer correctly will appear below. 
+	                    	All questions that were answered correctly were removed. You have <b><i>{[4-testData.current_test_attempt_number]}</i></b> 
+	                    	remaining attempts to pass this examination. 
+	                    	Remember, if you do not pass within three attempts, your manager will be notified via email.
+	                    </p>
+						<div class="callout callout-red" ng-show="mandTestFailed == 1">
+							<h4>Mandatory Question Alert:</h4>
+							<p>Even though you did meet or exceed the passing percentage, some questions 
+								are <b><i>required</i></b> to be answered correctly. Once you correctly answer the mandatory question(s), 
+								you will pass this examination.
+							</p>
+						</div>
+	                </div>
+	            </div>
+	            
+	            <div ng-show = "testData.test.type.id != 3">
+		            <div class="progress ng-isolate-scope" max="max" value="dynamic" style="margin-top:20px;">
+		            	<div class="progress-bar" ng-class="type &amp;&amp; 'progress-bar-' + type" ng-transclude="" style="width: {[(testData.current_question_number+1)/testData.cur_total_questions_count*100]}%">
+		            		<span class="ng-binding ng-scope">Question {[testData.current_question_number + 1]} of {[testData.cur_total_questions_count]}</span>
+		            	</div>
+		            </div>
+	                
+	                <div class="row" ng-show="testData != 'test_complete'">
+	                    <div class="col-lg-12">                        
+	                        <p class="" ng-bind-html="to_trusted(testData.current_question.text)"></p>
+	                        <ol class="">
+	                            <li ng-repeat="answer in testData.current_question.answers"><label class="ui-radio block"><input name="answerRadio" type="radio"
+	                                                           value="{[answer.id]}"><span ng-bind-html="to_trusted(answer.coreanswers.text)"></span></label></li>
+	                        </ol>
+	                    </div>
+	                </div>
+	                <div class="row text-center" ng-show="testData != 'test_complete'">
+	                    <a href="" ng-show="testData.current_question_number == testData.total_questions_count-1" 
+	                    			ng-click="loadNextQuestion(testData.current_question_number)" 
+	                    			class="btn btn-w-md btn-gap-v btn-info">Grade</a>
+	                    <a href="" ng-show="testData.current_question_number < testData.total_questions_count-1" 
+	                    			ng-click="loadNextQuestion(testData.current_question_number)" 
+	                    			class="btn btn-w-md btn-gap-v btn-info">Next</a>
+	                </div>
+	                
+	                <div class="row mll" ng-show="testData == 'test_complete'">
+	                    <div class="col-lg-12">
+	                        <h4>Test Result</h4>
+	                        <p class="mlm" ng-bind-html="to_trusted(testData.current_question.text)"></p>
+	                        <ol class="mll">
+	                            <li ng-repeat="answer in testData.current_question.answers"><label class="ui-radio block"><input name="answerRadio" type="radio"
+	                                                           value="{[answer.id]}"><span ng-bind-html="to_trusted(answer.coreanswers.text)"></span></label></li>
+	                        </ol>
+	                    </div>
+	                </div>
+                </div>
+            </div>            
+        </div>
+       	</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+    <script type="text/ng-template" id="courseNotes.html">
+        <div class="print-window">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="title-section">
+                            <h4>
+                                <img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+                                <strong>Course Notes: </strong>
+                            </h4>
+                            <span class="title">{[ courseData.number ]}</span>
+                        </div>
+                        <a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" ng-click="cancel()">X</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <textarea class="form-control text_course_notes" rows="3" maxlength="{[courseNotesLimit]}"
+                          ng-maxlength="{[courseNotesLimit]}" ng-model="courseData.user_notes">{[courseData.user_notes]}</textarea>
+                <span class="form-help">{[courseData.user_notes.length]}-{[courseNotesLimit]} Characters</span>
+                <p class="p_course_notes" style="display:none;"></p>
+            </div>
+
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 screen text-center">
+                        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                        <button type="button" class="btn btn-primary" ng-click="saveUserNote(courseNotes)"
+                                ng-disabled="courseNotes.length > courseNotesLimit">Save Notes
+                        </button>
+                        <button type="button" class="btn btn-print print screen" onclick="printCourseNotes();">
+                            PRINT
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="textSize.html">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-section">
+                        <h4>
+                            <img src="{{ STATIC_URL }}dashboard/common/images/favicon.png" width="32px">
+                            <strong>Font Size: </strong>
+                        </h4>
+                        <span class="title">{[ courseData.number ]}</span>
+                    </div>
+                    <a class="" style="float: right; position: absolute; right: 10px;top: 4px;" href="#" ng-click="cancel()">X</a>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <p>
+                Please select font size. Your selection will be saved and selected font size will
+                be used as default font size for your courses.
+            </p>
+            <!--<span class="ui-select">
+                <select ng-model="fontsize" id="font-size">
+                    <option ng-repeat="fontsize in userData.all_fontsizes" name="fontsize.short_code" value="{[fontsize.id]}" ng-selected="fontsize.id==userData.fontsize.id">{[fontsize.font_size]}</option>
+                </select>
+            </span>-->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="margin: 15px;">
+                        <input id="font_slider"
+                            type="text"
+                           ui-range-slider
+                           data-slider-min="1"
+                           data-slider-max="3"
+                           data-slider-step="1"
+                           data-slider-orientation="horizontal"
+                           data-slider-selection="before"
+                           data-slider-tooltip="show"
+                           data-slider-handle="round"
+                           >
+                    </div>
+                    <!--data-slider-value="2"-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <strong>Sample Text</strong>
+
+                    <p ng-style="{'font-size':fontSizeSlider}">Home health professionals can take the best care
+                        of
+                        themselves and their patients by learning about their diagnosis and being able to
+                        discuss with
+                        them the signs, symptoms, and range of emotions they may be going through.</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 screen text-center">
+                    <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveTextSize(fontsize)">Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </script>
+{% endblock %}

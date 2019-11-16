@@ -1,0 +1,238 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Job Titles Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="admin_setup" id="job_titles">
+
+
+	<form method="post" action="{{ request.path }}">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="heading">
+					<h4>Job Titles Setup</h4>
+
+					<p>
+						<a href="{% url 'admin_setup' %}">Home</a>
+						<i class="fa fa-angle-double-right"></i>
+						Welcome
+					</p>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/5.3.jpg">
+
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="setup_header_info_bar pam">
+					<div class="row">
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+							Job Titles Setup
+						</div>
+
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+							Step 5.4.1
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="setup-progress">
+					<div class="progress">
+						<div class="progress-bar" style="width: 20%;">Organizational Setup
+							(100%)
+						</div>
+						<div class="progress-bar progress-bar-warning" style="width: 20%;">
+							Location Setup (100%)
+						</div>
+						<div class="progress-bar progress-bar-danger" style="width: 20%;">
+							Department Setup (100%)
+						</div>
+						<div class="progress-bar progress-bar-success" style="width: 20%;">
+							Region Setup (100%)
+						</div>
+						<div class="progress-bar progress-bar-info" style="width: 20%;">Job
+							Titles Setup (80%)
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="setup-help text-right">
+					<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i>
+						Watch Me</a>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">HHLEARN -
+									Setup Help Video</h4>
+							</div>
+							<div class="modal-body">
+								<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Close
+								</button>
+
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+			</div>
+
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="setup-info-text text-left">
+					<p>
+						Fill in the # of Days for each added course. The # of Days is a means to
+						make predefined due dates for the courses. If you put a 0 in a field, it
+						makes the course due the day an employee is added to HHLEARN. If you
+						enter a 4, the due date will be 4 days from the date the employee was
+						added to HHLEARN. This makes it easy to assign due dates when you use
+						your custom job title.
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+
+
+			{{ form.id }}
+
+			<div class="row">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group  {% if form.name.errors %}has-error{% endif %}">
+						<label for="short_name">
+							{{ form.name.label }}</label>
+						<span class="label label-important">{{ form.name.errors|first }}</span>
+						{{ form.name }}
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 mll">
+					<div class="form-group">
+
+						<label for="">Course Name  </label>
+
+					</div>
+
+				</div>
+
+				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+					<div class="form-group">
+
+						<label for=""># of Days  </label>
+
+					</div>
+				</div>
+
+
+			</div>
+			{{ formset.management_form }}
+			{% for form in formset %}
+
+				{{ form.id }}
+				<div class="row">
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 mll">
+						<div class="form-group  {% if form.name.errors %}has-error{% endif %}">
+
+							<span class="label label-important">{{ form.name.errors|first }}</span>
+							{{ form.name }}
+						</div>
+
+					</div>
+
+					<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+						<div class="form-group  {% if form.number_of_days.errors %}has-error{% endif %}">
+
+							<span class="label label-important">{{ form.number_of_days.errors|first }}</span>
+							{{ form.number_of_days }}
+						</div>
+					</div>
+
+
+				</div>
+
+
+			{% endfor %}
+
+
+
+
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+				<div class="setup-info-text text-left">
+
+					<div class="row">
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+							<p class="text-left">
+								<a href="{{ back_button_url }}" class="btn btn-info btn-wide setup-back-button hidden-print">Back</a>
+							</p>
+
+						</div>
+
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+							<p class="text-right">
+								<button type="submit" class="btn btn-info btn-wide setup-next-button hidden-print">
+									Save
+									& Next
+								</button>
+
+							</p>
+
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+	</form>
+	</div>
+
+
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/job_title/js/job_title.js"></script>
+
+{% endblock %}

@@ -1,0 +1,161 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Organizational Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+<div class="page page-admin-setup">
+	<div class="row">
+		 <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Administrator</a></li>
+                <li><a href="">Setup</a></li>
+                <li class="active"><a href="">Step1</a></li>
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-cogs"></span>&nbsp;&nbsp;Step&nbsp;&nbsp;1.6</strong>    				
+                </div>
+                <div class="panel-body row">
+					<div class="col-lg-12" style="padding: 0px; margin-top: -15px; ">
+						<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/01.jpg">					
+						<div class="setup-progress">
+							<div class="progress">
+								<div class="progress-bar progress1" style="width: 20%;">Organizational Setup
+									(100%)
+								</div>
+								<div class="progress-bar progress2" style="width: 20%;">
+									Location Setup (0%)
+								</div>
+								<div class="progress-bar progress3" style="width: 20%;">
+									Department Setup (0%)
+								</div>
+								<div class="progress-bar progress4" style="width: 20%;">
+									Region Setup (0%)
+								</div>
+								<div class="progress-bar progress5" style="width: 20%;">Job
+									Titles Setup (0%)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="post" action="{{ request.path }}" id="organization">
+						{% csrf_token %}			
+						<div class="setup-help text-right">
+							<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i> Watch Me</a>
+						</div>
+						
+						<div class="col-lg-12">						
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="setup-info-text text-left">
+										<p>
+											HHLEARN would like to record the social media sites your organization has so that we can provide you with a promotional/motivational tool. This tool 
+											allows for the posting of outstanding achievements (which you will have control over) on your social media sites, e.g., reaching milestones, benchmarking
+											performance, accreditation awards, etc.
+										</p>
+						
+										<p>
+											This step is optional, but we encourage it because it will enhance your organization’s social media presence and will complement your search engine
+											optimization (SEO) program.											
+										</p>
+						
+										<p>
+											For the social media sites you would like to link to HHLEARN, turn the slider on and you will be asked to enter your administrative password for that
+											site (which we do not record) so that a link can be established; you may terminate this link at anytime in the Admin/Setup section.	
+										</p>
+						
+									</div>
+								</div>
+							</div>
+							<br>
+							<br>
+							
+							<div class="row social-links">
+			                	<div class="col-sm-3">
+				                	<a href="javascript:;" class="btn-icon btn-social btn-facebook"><i popover="Facebook" popover-trigger="mouseenter" class="fa fa-facebook size-h1"></i></a>
+				                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="facebookOn" class="ng-valid ng-dirty"><i></i></label>
+			                	</div>
+			                	
+			                	<div class="col-sm-3">
+				                	<a href="javascript:;" class="btn-icon btn-social btn-twitter"><i popover="Twitter" popover-trigger="mouseenter" class="fa fa-twitter size-h1"></i></a>
+				                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="twitterOn" class="ng-valid ng-dirty"><i></i></label>
+			                	</div>     
+			                	
+			                	<div class="col-sm-3">
+				                	<a href="javascript:;" class="btn-icon btn-social btn-google-plus"><i popover="Google Plus" popover-trigger="mouseenter" class="fa fa-google-plus size-h1"></i></a>
+				                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="googlePlusOn" class="ng-valid ng-dirty"><i></i></label>
+			                	</div>     
+			                	
+			                	<div class="col-sm-3">
+				                	<a href="javascript:;" class="btn-icon btn-social btn-youtube"><i popover="Youtube" popover-trigger="mouseenter" class="fa fa-youtube size-h1"></i></a>
+				                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="youtubeOn" class="ng-valid ng-dirty"><i></i></label>
+			                	</div>
+			                	
+			                	<div class="col-sm-3">
+				                	<a href="javascript:;" class="btn-icon btn-social btn-pinterest"><i popover="Pinterest" popover-trigger="mouseenter" class="fa fa-pinterest size-h1"></i></a>
+				                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="pinterestOn" class="ng-valid ng-dirty"><i></i></label>
+			                	</div>
+			                	
+			                	<div class="col-sm-3">
+				                	<a href="javascript:;" class="btn-icon btn-social btn-linkedin"><i popover="Linkedin" popover-trigger="mouseenter" class="fa fa-linkedin size-h1"></i></a>
+				                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="linkedinOn" class="ng-valid ng-dirty"><i></i></label>
+			                	</div>     
+			                	
+			                	<div class="col-sm-3" style="height:50px;">
+			                		<a href="javascript:;" class="btn-icon btn-social btn-g-wordpress glyphicons-social wordpress size-h1" popover="Wordpress" popover-trigger="mouseenter" style="padding: 0px;height: 45px;overflow: hidden;"></a>				                	
+				                	<label class="switch switch-iphone disp"><input type="checkbox" ng-model="wordpressOn" class="ng-valid ng-dirty"><i></i></label>
+			                	</div>     
+			                	
+			                	<div class="col-sm-3">
+			                		<a href="javascript:;" class="btn-icon btn-social btn-instagram"><i popover="Instagram" popover-trigger="mouseenter" class="fa fa-instagram size-h1"></i></a>				                	
+				                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="instagramOn" class="ng-valid ng-dirty"><i></i></label>
+			                	</div>
+			                	
+			                	<div class="col-sm-3">
+				                	<a href="javascript:;" class="btn-icon btn-social btn-tumblr"><i popover="Tumblr" popover-trigger="mouseenter" class="fa fa-tumblr size-h1"></i></a>
+				                	<label class="switch switch-iphone disp" style="dispaly:table-cell; vertical-align: middle;"><input type="checkbox" ng-model="tumblrtOn" class="ng-valid ng-dirty"><i></i></label>
+			                	</div>     
+			                	
+			                	<div class="col-sm-3" style="height:50px;">
+				                	<a href="javascript:;" class="btn-icon btn-social btn-g-flicker glyphicons-social flickr size-h1" popover="Flickr" popover-trigger="mouseenter" style="padding: 0px;height: 45px;overflow: hidden;"></a>
+				                	<label class="switch switch-iphone disp"><input type="checkbox" ng-model="dribbbleOn" class="ng-valid ng-dirty" ><i></i></label>
+			                	</div>
+			                </div>
+							
+							<br>
+							<hr>
+							
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<p class="text-center">
+										<a href="{{ back_button_url }}" class="btn btn-blue btn-wide setup-back-button hidden-print">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">Save
+											& Next
+										</button>
+									</p>								
+								</div>
+							</div>					
+							
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/organization/js/organization.js"></script>
+{% endblock %}

@@ -1,0 +1,1649 @@
+
+{% extends "dashboard/_master.html" %}
+{% block title %}Admin{% endblock %}
+{% block meta_title %}Admin{% endblock %}
+{% block meta_description %}Admin{% endblock %}
+{% block meta_keywords %}Admin{% endblock %}
+
+
+{% block content %}
+<div class="page page-admin-users" >
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{%  url 'admin_home' %}">Admin</a></li>
+                <li class="active"><a href="">Users</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="row" id="app_documents" ng-controller="usersListController">		
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-users"></span> Users</strong>    				
+                </div>
+                <div class="panel-body row">                	
+                    <div class="ui-tab">
+                        <tabset class="ui-tab">                        	
+                            <tab>
+                            	<tab-heading>
+                            		<i class="fa fa-eye"></i> Active Users
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id = "ep_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="ePostingsSearchKeywords"
+						                               data-ng-keyup="searchEPostings()">
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[ filteredEPostings.length ]}/{[ ePostings.length ]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Action						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        User Full Name
+												<span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Date Added
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Last Login
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Info
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resource_revision_date_or_version'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resource_revision_date_or_version'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Job Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>						                    
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Anderson, Glenda
+											</td>
+											<td class="col-lg-2 text-center">
+												9/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Christopherson, Henry
+											</td>
+											<td class="col-lg-2 text-center">
+												9/12/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Customer Service Specialist Supervisor											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Effrin, Zack
+											</td>
+											<td class="col-lg-2 text-center">
+												9/1/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Registered Respiratory Therapist											
+											</td>											
+										</tr>									
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Klien, Jeffery
+											</td>
+											<td class="col-lg-2 text-center">
+												8/31/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Rehabilitation Processing Assistant											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Thompson, Cheryl
+											</td>
+											<td class="col-lg-2 text-center">
+												8/28/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Registered Respiratory Therapist											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Washington, Dawn
+											</td>
+											<td class="col-lg-2 text-center">
+												8/18/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Rehibilitation Processing Assistant											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Effrin, Zack
+											</td>
+											<td class="col-lg-2 text-center">
+												8/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>									
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Klien, Jeffery
+											</td>
+											<td class="col-lg-2 text-center">
+												8/1/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Customer Service Specialist Supervisor											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Thompson, Cheryl
+											</td>
+											<td class="col-lg-2 text-center">
+												7/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Washington, Dawn
+											</td>
+											<td class="col-lg-2 text-center">
+												7/10/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home health Aide											
+											</td>											
+										</tr>
+						            </tbody>
+						        </table>
+						        </div>
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 	</span>
+						            	</div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentEPostingPage"
+						                                total-items="filteredEPostings.length"
+						                                max-size="4"
+						                                on-select-page="selectEPostingPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>						            
+						        </footer>						        
+					            <div class="col-lg-12" style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+					            	<a href="{% url 'admin_users_add' %}" class="btn btn-blue">
+					            		<span class="glyphicons user_add"></span> Add User
+					            	</a>
+					            </div>					            
+                            </tab>
+                            
+                            <tab>
+                            	<tab-heading>
+                            		<i class="fa fa-building"></i> Location Users
+                            	</tab-heading>
+                            	<accordion close-others="oneAtATime" class="ui-accordion ui-accordion-info">
+		                        <accordion-group is-open="true">
+		                        	<accordion-heading>
+		                        		<i class="fa fa-building"></i> Location Name Goes Here
+		                        	</accordion-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id = "ep_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="ePostingsSearchKeywords"
+						                               data-ng-keyup="searchEPostings()">
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[ filteredEPostings.length ]}/{[ ePostings.length ]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>						        
+						        
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Action						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        User Full Name
+												<span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Date Added
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Last Login
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Info
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resource_revision_date_or_version'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resource_revision_date_or_version'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Job Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>						                    
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Anderson, Glenda
+											</td>
+											<td class="col-lg-2 text-center">
+												9/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Christopherson, Henry
+											</td>
+											<td class="col-lg-2 text-center">
+												9/12/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Customer Service Specialist Supervisor											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Effrin, Zack
+											</td>
+											<td class="col-lg-2 text-center">
+												9/1/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Registered Respiratory Therapist											
+											</td>											
+										</tr>									
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Klien, Jeffery
+											</td>
+											<td class="col-lg-2 text-center">
+												8/31/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Rehabilitation Processing Assistant											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Thompson, Cheryl
+											</td>
+											<td class="col-lg-2 text-center">
+												8/28/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Registered Respiratory Therapist											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Washington, Dawn
+											</td>
+											<td class="col-lg-2 text-center">
+												8/18/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Rehibilitation Processing Assistant											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Effrin, Zack
+											</td>
+											<td class="col-lg-2 text-center">
+												8/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>									
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Klien, Jeffery
+											</td>
+											<td class="col-lg-2 text-center">
+												8/1/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Customer Service Specialist Supervisor											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Thompson, Cheryl
+											</td>
+											<td class="col-lg-2 text-center">
+												7/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Washington, Dawn
+											</td>
+											<td class="col-lg-2 text-center">
+												7/10/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home health Aide											
+											</td>											
+										</tr>
+						            </tbody>
+						        </table>
+						        </div>
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 	</span>
+						            	</div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentEPostingPage"
+						                                total-items="filteredEPostings.length"
+						                                max-size="4"
+						                                on-select-page="selectEPostingPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>						            
+						        </footer>						        
+					            <div class="col-lg-12" style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+					            	<a href="{% url 'admin_users_add' %}" class="btn btn-blue">
+					            		<span class="glyphicons user_add"></span> Add User
+					            	</a>
+					            </div>
+					            </accordion-group>
+					            <accordion-group is-open="false">
+		                        	<accordion-heading>
+		                        		<i class="fa fa-building"></i> Location Name Goes Here
+		                        	</accordion-heading>
+		                       	</accordion-group>
+		                       	<accordion-group is-open="false">
+		                        	<accordion-heading>
+		                        		<i class="fa fa-building"></i> Location Name Goes Here
+		                        	</accordion-heading>
+		                       	</accordion-group>
+					            </accordion>					            				            
+                            </tab>
+                            
+                            <tab>
+                            	<tab-heading>
+                            		<i class="fa fa-building-o"></i> Department Users
+                            	</tab-heading>
+                            	<accordion close-others="oneAtATime" class="ui-accordion ui-accordion-info">
+		                        <accordion-group is-open="true">
+		                        	<accordion-heading>
+		                        		<i class="fa fa-building"></i> Location Name/Department Name Goes Here
+		                        	</accordion-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id = "ep_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="ePostingsSearchKeywords"
+						                               data-ng-keyup="searchEPostings()">
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[ filteredEPostings.length ]}/{[ ePostings.length ]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>						        
+						        
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Action						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        User Full Name
+												<span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Date Added
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Last Login
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Info
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resource_revision_date_or_version'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resource_revision_date_or_version'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Job Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>						                    
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Anderson, Glenda
+											</td>
+											<td class="col-lg-2 text-center">
+												9/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Christopherson, Henry
+											</td>
+											<td class="col-lg-2 text-center">
+												9/12/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Customer Service Specialist Supervisor											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Effrin, Zack
+											</td>
+											<td class="col-lg-2 text-center">
+												9/1/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Registered Respiratory Therapist											
+											</td>											
+										</tr>									
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Klien, Jeffery
+											</td>
+											<td class="col-lg-2 text-center">
+												8/31/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Rehabilitation Processing Assistant											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Thompson, Cheryl
+											</td>
+											<td class="col-lg-2 text-center">
+												8/28/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Registered Respiratory Therapist											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Washington, Dawn
+											</td>
+											<td class="col-lg-2 text-center">
+												8/18/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Rehibilitation Processing Assistant											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Effrin, Zack
+											</td>
+											<td class="col-lg-2 text-center">
+												8/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>									
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Klien, Jeffery
+											</td>
+											<td class="col-lg-2 text-center">
+												8/1/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Customer Service Specialist Supervisor											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Thompson, Cheryl
+											</td>
+											<td class="col-lg-2 text-center">
+												7/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Washington, Dawn
+											</td>
+											<td class="col-lg-2 text-center">
+												7/10/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home health Aide											
+											</td>											
+										</tr>
+						            </tbody>
+						        </table>
+						        </div>
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 	</span>
+						            	</div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentEPostingPage"
+						                                total-items="filteredEPostings.length"
+						                                max-size="4"
+						                                on-select-page="selectEPostingPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>						            
+						        </footer>						        
+					            <div class="col-lg-12" style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+					            	<a href="{% url 'admin_users_add' %}" class="btn btn-blue">
+					            		<span class="glyphicons user_add"></span> Add User
+					            	</a>
+					            </div>
+					            </accordion-group>
+					            <accordion-group is-open="false">
+		                        	<accordion-heading>
+		                        		<i class="fa fa-building"></i> Location Name/Department Name Goes Here
+		                        	</accordion-heading>
+		                       	</accordion-group>
+		                       	<accordion-group is-open="false">
+		                        	<accordion-heading>
+		                        		<i class="fa fa-building"></i> Location Name/Department Name Goes Here
+		                        	</accordion-heading>
+		                       	</accordion-group>
+					            </accordion>				            				            
+                            
+                            </tab>
+                            
+                            <tab>
+                            	<tab-heading>
+                            		<i class="glyphicons globe"></i> Region Users
+                            	</tab-heading>
+                            	<accordion close-others="oneAtATime" class="ui-accordion ui-accordion-info">
+		                        <accordion-group is-open="true">
+		                        	<accordion-heading>
+		                        		<i class="fa fa-building"></i> Region Name Goes Here
+		                        	</accordion-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id = "ep_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="ePostingsSearchKeywords"
+						                               data-ng-keyup="searchEPostings()">
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[ filteredEPostings.length ]}/{[ ePostings.length ]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>						        
+						        
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Action						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        User Full Name
+												<span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Date Added
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Last Login
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Info
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resource_revision_date_or_version'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resource_revision_date_or_version'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Job Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>						                    
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Anderson, Glenda
+											</td>
+											<td class="col-lg-2 text-center">
+												9/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Christopherson, Henry
+											</td>
+											<td class="col-lg-2 text-center">
+												9/12/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Customer Service Specialist Supervisor											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Effrin, Zack
+											</td>
+											<td class="col-lg-2 text-center">
+												9/1/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Registered Respiratory Therapist											
+											</td>											
+										</tr>									
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Klien, Jeffery
+											</td>
+											<td class="col-lg-2 text-center">
+												8/31/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Rehabilitation Processing Assistant											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Thompson, Cheryl
+											</td>
+											<td class="col-lg-2 text-center">
+												8/28/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Registered Respiratory Therapist											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Washington, Dawn
+											</td>
+											<td class="col-lg-2 text-center">
+												8/18/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Rehibilitation Processing Assistant											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Effrin, Zack
+											</td>
+											<td class="col-lg-2 text-center">
+												8/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>									
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Klien, Jeffery
+											</td>
+											<td class="col-lg-2 text-center">
+												8/1/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Customer Service Specialist Supervisor											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Thompson, Cheryl
+											</td>
+											<td class="col-lg-2 text-center">
+												7/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye-slash size-h4"></i></a> &nbsp;
+												<a href="#"><i class="glyphicons edit size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Washington, Dawn
+											</td>
+											<td class="col-lg-2 text-center">
+												7/10/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home health Aide											
+											</td>											
+										</tr>
+						            </tbody>
+						        </table>
+						        </div>
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 	</span>
+						            	</div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentEPostingPage"
+						                                total-items="filteredEPostings.length"
+						                                max-size="4"
+						                                on-select-page="selectEPostingPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>						            
+						        </footer>						        
+					            <div class="col-lg-12" style="border-top: solid 1px #ccc;padding-top:20px;">						            	
+					            	<a href="{% url 'admin_users_add' %}" class="btn btn-blue">
+					            		<span class="glyphicons user_add"></span> Add User
+					            	</a>
+					            </div>
+					            </accordion-group>
+					            <accordion-group is-open="false">
+		                        	<accordion-heading>
+		                        		<i class="fa fa-building"></i> Region Name Goes Here
+		                        	</accordion-heading>
+		                       	</accordion-group>
+		                       	<accordion-group is-open="false">
+		                        	<accordion-heading>
+		                        		<i class="fa fa-building"></i> Region Name Goes Here
+		                        	</accordion-heading>
+		                       	</accordion-group>
+					            </accordion>
+                            </tab>
+                            
+                            <tab>
+                            	<tab-heading>
+                            		<i class="fa fa-eye-slash"></i> Inactive Users
+                            	</tab-heading>
+                            	<div class="table-filters">
+						            <div class="row">
+						                <div class="col-sm-4 col-xs-6">
+						                    <form>
+						                        <input id = "ep_search"
+						                        	   type="text"
+						                               placeholder="search"
+						                               class="form-control"
+						                               data-ng-model="ePostingsSearchKeywords"
+						                               data-ng-keyup="searchEPostings()">
+						                    </form>
+						                </div>
+						                <div class="col-sm-3 col-xs-6 filter-result-info">
+						                    <span>
+						                        Showing {[ filteredEPostings.length ]}/{[ ePostings.length ]} entries
+						                    </span>              
+						                </div>
+						            </div>
+						        </div>
+						        <div class="table-responsive">
+                            	<table class="table table-bordered table-striped table-responsive">
+						            <thead>
+						                <tr>
+						                    <th><div class="th">
+						                        Action						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        User Full Name
+												<span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Date Added
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Date Deactivated
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>						                        
+						                    </div></th>
+						                    <th><div class="th">
+						                        Info
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resource_revision_date_or_version'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resource_revision_date_or_version'; reverse=false"></span>
+						                    </div></th>
+						                    <th><div class="th">
+						                        Job Title
+						                        <span class="glyphicon glyphicon-chevron-up"
+						                              ng-click="ePostingSort = '-resourcesizes.size'; reverse=false"></span>
+						                        <span class="glyphicon glyphicon-chevron-down"
+						                              ng-click="ePostingSort = 'resourcesizes.size'; reverse=false"></span>
+						                    </div></th>						                    
+						                </tr>
+						            </thead>
+						            <tbody>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye size-h4"></i></a>												
+											</td>
+											<td class="col-lg-3">
+												Anderson, Glenda
+											</td>
+											<td class="col-lg-2 text-center">
+												9/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Christopherson, Henry
+											</td>
+											<td class="col-lg-2 text-center">
+												9/12/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Customer Service Specialist Supervisor											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Effrin, Zack
+											</td>
+											<td class="col-lg-2 text-center">
+												9/1/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Registered Respiratory Therapist											
+											</td>											
+										</tr>									
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Klien, Jeffery
+											</td>
+											<td class="col-lg-2 text-center">
+												8/31/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Rehabilitation Processing Assistant											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Thompson, Cheryl
+											</td>
+											<td class="col-lg-2 text-center">
+												8/28/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Registered Respiratory Therapist											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Washington, Dawn
+											</td>
+											<td class="col-lg-2 text-center">
+												8/18/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Rehibilitation Processing Assistant											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Effrin, Zack
+											</td>
+											<td class="col-lg-2 text-center">
+												8/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>									
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Klien, Jeffery
+											</td>
+											<td class="col-lg-2 text-center">
+												8/1/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Customer Service Specialist Supervisor											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Thompson, Cheryl
+											</td>
+											<td class="col-lg-2 text-center">
+												7/13/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home Health Aide											
+											</td>											
+										</tr>
+										<tr>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-eye size-h4"></i></a>
+											</td>
+											<td class="col-lg-3">
+												Washington, Dawn
+											</td>
+											<td class="col-lg-2 text-center">
+												7/10/2014
+											</td>											
+											<td class="col-lg-2 text-center">
+												9/13/2014 3:52 PM PDT
+											</td>
+											<td class="col-lg-1 text-center">
+												<a href="#"><i class="fa fa-info-circle icon-info-big ng-scope"></i></a>
+											</td>
+											<td class="col-lg-3">																									
+												Home health Aide											
+											</td>											
+										</tr>										
+						            </tbody>
+						        </table>
+						        </div>
+						
+						        <footer class="table-footer">
+						            <div class="row">
+						                <div class="col-md-6 page-num-info">
+						                    <span>
+						                        Show 
+						                        <select data-ng-model="numPerPage"
+						                                data-ng-options="num for num in numPerPageOpt"
+						                                data-ng-change="onNumPerPageChange()">
+						                        </select> 
+						                        entries per page
+						                 	</span>
+						            	</div>
+						                <div class="col-md-6 text-right pagination-container">
+						                    <pagination class="pagination-sm"
+						                                page="currentEPostingPage"
+						                                total-items="filteredEPostings.length"
+						                                max-size="4"
+						                                on-select-page="selectEPostingPage(page)"
+						                                items-per-page="perPage"
+						                                rotate="false"
+						                                boundary-links="true"></pagination>
+						                </div>
+						            </div>						            
+						        </footer>					        
+					            
+                            </tab>
+                        </tabset>
+                    </div>
+           		</div>
+           	</div>           
+        </div>
+	</div>
+</div>
+                
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

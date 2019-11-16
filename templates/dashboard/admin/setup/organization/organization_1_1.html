@@ -1,0 +1,403 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Organizational Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="dashboard_admin_setup" id="organization" ng-app="organization">
+
+		<form method="post" action="{{ request.path }}" id="organization" ng-controller="OrganizationForm as settings">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="heading">
+						<h4>Organizational Setup</h4>
+
+						<p>
+							<a href="{% url 'dashboard_admin_setup' %}">Home</a>
+							<i class="fa fa-angle-double-right"></i>
+							Organizational Setup
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/01.0.jpg">
+
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+					<div class="setup_header_info_bar pam">
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+								Organization Setup
+							</div>
+
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+								Step 1.1
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+					<div class="setup-progress">
+						<div class="progress">
+							<div class="progress-bar" style="width: 20%;">Organizational Setup
+								(10%)
+							</div>
+							<div class="progress-bar progress-bar-warning" style="width: 20%;">
+								Location Setup (0%)
+							</div>
+							<div class="progress-bar progress-bar-danger" style="width: 20%;">
+								Department Setup (0%)
+							</div>
+							<div class="progress-bar progress-bar-success" style="width: 20%;">
+								Region Setup (0%)
+							</div>
+							<div class="progress-bar progress-bar-info" style="width: 20%;">Job
+								Titles Setup (0%)
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+					<div class="setup-help text-right">
+						<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i>
+							Watch Me</a>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+					<div class="setup-info-text text-left">
+						<p>
+							Throughout course presentations and in management reporting, we need to know the
+							Corporate name you would like
+							to appear on/in these documents. Don't worry if you have multiple locations with
+							different names and DBAs,
+							we will get to those location names in future pages.
+						</p>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<div class="form-group  {% if form.org_name.errors %}has-error{% endif %}">
+						<label for="org_name">Organization Name*</label>
+						<span class="label label-important">{{ form.org_name.errors|first }}</span>
+						<input type="text" name="org_name" class="form-control" id="org_name" placeholder="Organization Name" value="{{ form.data.org_name }}">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<div class="form-group  {% if form.street_address_1.errors %}has-error{% endif %}">
+						<label for="street_address_1">Address 1*</label>
+						<span class="label label-important">{{ form.street_address_1.errors|first }}</span>
+						<input type="text" name="street_address_1" class="form-control" id="street_address_1" placeholder="Address 1" value="{{ form.data.street_address_1 }}">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<div class="form-group  {% if form.street_address_2.errors %}has-error{% endif %}">
+						<label for="street_address_2">Address 2</label>
+						<span class="label label-important">{{ form.street_address_2.errors|first }}</span>
+						<input type="text" name="street_address_2" class="form-control" id="street_address_2" placeholder="Address 2" value="{{ form.data.street_address_2 }}">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group {% if form.city.errors %}has-error{% endif %}">
+						<label for="city">City*</label>
+						<span class="label label-important">{{ form.city.errors|first }}</span>
+						<input type="text" name="city" class="form-control" id="city" placeholder="City" value="{{ form.data.city }}">
+					</div>
+				</div>
+
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group {% if form.state.errors %}has-error{% endif %}">
+						<label for="state">State*</label>
+						<span class="label label-important">{{ form.state.errors|first }}</span>
+						<select name="state" class="select-block " id="selectpicker">
+
+							<optgroup label="state">
+								<option value="">Select State</option>
+								{% for state in form.fields.state.queryset %}
+									<option {% if state.name  == form.data.state %}selected="selected"{% endif %} value="{{ state.name }}">{{ state.name }}</option>
+								{% endfor for %}
+							</optgroup>
+						</select>
+
+
+					</div>
+				</div>
+
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group {% if form.zip_code.errors %}has-error{% endif %}">
+						<label for="zip_code">Zip Code*</label>
+						<span class="label label-important">{{ form.zip_code.errors|first }}</span>
+						<input type="text" name="zip_code" class="form-control" id="zip_code" placeholder="Zip Code" value="{{ form.data.zip_code }}">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group {% if form.type.errors %}has-error{% endif %}">
+						<label for="country">Organization Type*</label>
+						<span class="label label-important">{{ form.type.errors|first }}</span>
+						<select name="type" class="select-block " id="selectpicker">
+
+							<optgroup label="Company Type">
+								<option value="">Select Organization Type</option>
+								{% for type in form.fields.type.queryset %}
+									<option {% if type.id  == form.data.type|add:0 %}selected="selected"{% endif %} value="{{ type.id }}">{{ type.name }}</option>
+								{% endfor for %}
+
+							</optgroup>
+						</select>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group {% if form.phone.errors %}has-error{% endif %}">
+						<label for="phone">Phone*</label>
+						<span class="label label-important">{{ form.phone.errors|first }}</span>
+						<input type="text" name="phone" class="form-control" id="phone" placeholder="(xxx) xxx-xxxx" value="{{ form.data.phone }}">
+					</div>
+				</div>
+
+
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group {% if form.fax.errors %}has-error{% endif %}">
+						<label for="fax">Fax*</label>
+						<span class="label label-important">{{ form.fax.errors|first }}</span>
+						<input type="text" name="fax" class="form-control" id="fax" placeholder="(xxx) xxx-xxxx" value="{{ form.data.fax }}">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group {% if form.point_of_contact_name.errors %}has-error{% endif %}">
+						<label for="point_of_contact_name">Point of Contact*</label>
+						<span class="label label-important">{{ form.point_of_contact_name.errors|first }}</span>
+						<input type="text" name="point_of_contact_name" class="form-control" id="point_of_contact_name" placeholder="Point of Contact" value="{{ form.data.point_of_contact_name|default_if_none:"" }}">
+					</div>
+				</div>
+
+
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group {% if form.point_of_contact_title.errors %}has-error{% endif %}">
+						<label for="point_of_contact_title">Point of Contact Title*</label>
+						<span class="label label-important">{{ form.point_of_contact_title.errors|first }}</span>
+						<input type="text" name="point_of_contact_title" class="form-control" id="point_of_contact_title" placeholder="Point of Contact Title" value="{{ form.data.point_of_contact_title|default_if_none:"" }}">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group {% if form.point_of_contact_phone.errors %}has-error{% endif %}">
+						<label for="point_of_contact_phone">Point of Contact Phone*</label>
+						<span class="label label-important">{{ form.point_of_contact_phone.errors|first }}</span>
+						<input type="text" name="point_of_contact_phone" class="form-control" id="point_of_contact_phone" placeholder="(xxx) xxx-xxxx" value="{{ form.data.point_of_contact_phone|default_if_none:"" }}">
+					</div>
+				</div>
+
+
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="form-group {% if form.point_of_contact_email.errors %}has-error{% endif %}">
+						<label for="point_of_contact_email">Point of Contact Email*</label>
+						<span class="label label-important">{{ form.point_of_contact_email.errors|first }}</span>
+						<input type="text" name="point_of_contact_email" class="form-control" id="point_of_contact_email" placeholder="Point of Contact Email" value="{{ form.data.point_of_contact_email|default_if_none:"" }}">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+					<div class="form-group {% if form.is_organization_accredited.errors %}has-error{% endif %}">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+								<label for="is_organization_accredited">
+									Is your organization accredited*
+								</label>
+								<span class="label label-important">{{ form.is_organization_accredited.errors|first }}</span>
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								{% comment %}
+										Using angularjs for initialiing of data
+								{% endcomment %}
+								<select name="is_organization_accredited" class="select-block " id="selectpicker" ng-init="settings.is_organization_accredited={{ form.data.is_organization_accredited }}" ng-model="settings.is_organization_accredited">
+
+									<optgroup label="is_organization_accredited">
+
+										{% for is_organization_accredited in form.fields.is_organization_accredited.queryset %}
+											<option {% if is_organization_accredited.value  == form.data.is_organization_accredited|add:0 %}selected="selected"{% endif %} value="{{ is_organization_accredited.value }}">{{ is_organization_accredited.name|capfirst }}</option>
+										{% endfor for %}
+									</optgroup>
+								</select>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div ng-show="settings.is_organization_accredited==1">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+						<div class="form-group {% if form.is_entire_organization_accredited.errors %}has-error{% endif %}">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+									<label for="is_entire_organization_accredited">
+										Entire organization accredited*
+									</label>
+									<span class="label label-important">{{ form.is_entire_organization_accredited.errors|first }}</span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+									<select name="is_entire_organization_accredited" class="select-block " id="selectpicker">
+
+										<optgroup label="is_entire_organization_accredited">
+											{% for is_entire_organization_accredited in form.fields.is_entire_organization_accredited.queryset %}
+												<option {% if is_entire_organization_accredited.value  == form.data.is_entire_organization_accredited|add:0 %}selected="selected"{% endif %} value="{{ is_entire_organization_accredited.value }}">{{ is_entire_organization_accredited.name|capfirst }}</option>
+											{% endfor for %}
+
+										</optgroup>
+									</select>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+						<div class="form-group {% if form.is_accredited_by_same_agency.errors %}has-error{% endif %}">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+									<label for="is_accredited_by_same_agency">
+										Is every part of your organization accredited by
+										the same agency?*
+									</label>
+									<span class="label label-important">{{ form.is_accredited_by_same_agency.errors|first }}</span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+									<select name="is_accredited_by_same_agency" class="select-block " id="selectpicker">
+
+										<optgroup label="is_accredited_by_same_agency">
+											{% for is_accredited_by_same_agency in form.fields.is_accredited_by_same_agency.queryset %}
+												<option {% if is_accredited_by_same_agency.value  == form.data.is_accredited_by_same_agency|add:0 %}selected="selected"{% endif %} value="{{ is_accredited_by_same_agency.value }}">{{ is_accredited_by_same_agency.name|capfirst }}</option>
+											{% endfor for %}
+
+										</optgroup>
+									</select>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						<div class="form-group {% if form.accreditation_agency.errors %}has-error{% endif %}">
+							<label for="accreditation_agency">Please select your accreditation
+								agency*</label>
+							<span class="label label-important">{{ form.accreditation_agency.errors|first }}</span>
+							<select name="accreditation_agency" class="select-block " id="selectpicker">
+
+								<optgroup label="accreditation_agency">
+									<option value="">Select Accreditation Agency</option>
+									{% for accreditation_agency in form.fields.accreditation_agency.queryset %}
+										<option {% if accreditation_agency.id  == form.data.accreditation_agency|add:0 %}selected="selected"{% endif %} value="{{ accreditation_agency.id }}">{{ accreditation_agency.name }}</option>
+									{% endfor for %}
+								</optgroup>
+							</select>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+					<p class="text-left">
+						<a href="{% url 'dashboard_admin_setup' %}" class="btn btn-info btn-wide setup-back-button hidden-print">Back</a>
+					</p>
+
+				</div>
+
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+					<p class="text-right">
+						<button type="submit" class="btn btn-info btn-wide setup-next-button hidden-print">Save
+							& Next
+						</button>
+
+					</p>
+
+				</div>
+
+			</div>
+
+		</form>
+	</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+	<script src="{{ STATIC_URL }}dashboard/admin/setup/organization/js/organization.js"></script>
+{% endblock %}

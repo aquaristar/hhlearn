@@ -1,0 +1,314 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Location Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="dashboard_admin_setup" id="step_location" ng-app="step_location">
+
+	<form method="post" action="{{ request.path }}"  ng-controller="LocationForm as settings">
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="heading">
+				<h4>Location Setup</h4>
+
+				<p>
+					<a href="{% url 'dashboard_admin_setup' %}">Home</a>
+					<i class="fa fa-angle-double-right"></i>
+					Welcome
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/2.2.jpg">
+
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup_header_info_bar pam">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+						Location Setup
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+						Step 2.2
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="setup-progress">
+				<div class="progress">
+					<div class="progress-bar" style="width: 20%;">Organizational Setup
+						(100%)
+					</div>
+					<div class="progress-bar progress-bar-warning" style="width: 20%;">
+						Location Setup (20%)
+					</div>
+					<div class="progress-bar progress-bar-danger" style="width: 20%;">
+						Department Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-success" style="width: 20%;">
+						Region Setup (0%)
+					</div>
+					<div class="progress-bar progress-bar-info" style="width: 20%;">Job
+						Titles Setup (0%)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="setup-help text-right">
+				<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i>
+					Watch Me</a>
+			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">HHLEARN -
+								Setup Help Video</h4>
+						</div>
+						<div class="modal-body">
+							<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Close
+							</button>
+
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+			{% if organization.total_number_of_locations == 1 %}
+			<p>
+
+				For each of the locations you have loaded we need to collect information that ensures
+				that we educate your staff on the exact information that they need so that your
+				organization meets all geographic regulatory requirements. Please provide the
+				information
+				below for each location.
+			</p>
+
+			{% endif %}
+
+			{% if organization.total_number_of_locations > 1 %}
+
+			<p>
+				For the location you loaded we need to collect information that ensures that we educate
+				your staff on the exact information that they need so that your organization meets all
+				geographic regulatory requirements. Please provide the information below for your
+				location.
+			</p>
+			{% endif %}
+		</div>
+	</div>
+
+	{{ formset.management_form }}
+	{% for form in formset %}
+
+		{{ form.id }}
+
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<div class="form-group  {% if form.short_name.errors %}has-error{% endif %}">
+					<label for="short_name">
+						{{ form.short_name.label }}</label>
+					<span class="label label-important">{{ form.short_name.errors|first }}</span>
+					{{ form.short_name }}
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="form-group  {% if form.hippa_notice_location.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+							<label for="hippa_notice_location">
+								{{ form.hippa_notice_location.label }}</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+							<span class="label label-important">{{ form.hippa_notice_location.errors|first }}</span>
+							{{ form.hippa_notice_location }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="form-group  {% if form.emergency_location.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+							<label for="emergency_locationv">
+								{{ form.emergency_location.label }}</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+							<span class="label label-important">{{ form.emergency_location.errors|first }}</span>
+							{{ form.emergency_location }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		{% if organization.is_electronic_postings_enabled.value == 1  and organization.is_electronic_postings_consistent.value == 0 %}
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="form-group   {% if form.use_electronic_posting.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<label for="use_electronic_posting">{{ form.use_electronic_posting.label }}</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+							<span class="label label-important">{{ form.use_electronic_posting.errors|first }}</span>
+							{{ form.use_electronic_posting }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		{% endif %}
+
+		{% if organization.is_organization_accredited.value == 1 and organization.is_accredited_by_same_agency.value == 0 %}
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="form-group   {% if form.is_accredited.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<label for="use_electronic_posting">{{ form.is_accredited.label }}</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+							<span class="label label-important">{{ form.is_accredited.errors|first }}</span>
+							{{ form.is_accredited }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		{% endif %}
+
+		{% if organization.is_organization_accredited.value == 1  and organization.is_accredited_by_same_agency.value == 0 %}
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="form-group   {% if form.accreditation_agency.errors %}has-error{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<label for="accreditation_agency">{{ form.accreditation_agency.label }}</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+							<span class="label label-important">{{ form.accreditation_agency.errors|first }}</span>
+							{{ form.accreditation_agency }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		{% endif %}
+		<hr/>
+
+	{% endfor %}
+
+
+
+
+
+
+
+
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-xs-1 col-sm-1 col-md-1 col-lg-12">
+			<div class="setup-info-text text-left">
+
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+						<p class="text-left">
+							<a href="{% url 'dashboard_admin_setup_location_2_1' %}" class="btn btn-info btn-wide setup-back-button hidden-print">Back</a>
+						</p>
+
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+						<p class="text-right">
+							<button type="submit" class="btn btn-info btn-wide setup-next-button hidden-print">
+								Save
+								& Next
+							</button>
+
+						</p>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	</form>
+	</div>
+
+
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/location/js/location.js"></script>
+
+{% endblock %}

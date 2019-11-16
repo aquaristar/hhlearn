@@ -1,0 +1,448 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard - Department Setup{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+<div class="page page-admin-setup" id="step_department" ng-app="step_department">
+	<div class="row">
+		 <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Administrator</a></li>
+                <li><a href="">Setup</a></li>
+                <li class="active"><a href="">Step3</a></li>
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="fa fa-cogs"></span>&nbsp;&nbsp;Step&nbsp;&nbsp;3.1.1</strong>    				
+                </div>
+                <div class="panel-body row">
+					<div class="col-lg-12" style="padding: 0px; margin-top: -15px; ">
+						<img width="100%" src="{{ STATIC_URL }}admin/images/setup/headers/3.1.4.jpg">					
+						<div class="setup-progress">
+							<div class="progress">
+								<div class="progress-bar progress1" style="width: 20%;">Organizational Setup
+									(100%)
+								</div>
+								<div class="progress-bar progress2" style="width: 20%;">
+									Location Setup (100%)
+								</div>
+								<div class="progress-bar progress3" style="width: 20%;">
+									Department Setup (20%)
+								</div>
+								<div class="progress-bar progress4" style="width: 20%;">
+									Region Setup (0%)
+								</div>
+								<div class="progress-bar progress5" style="width: 20%;">Job
+									Titles Setup (0%)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="post" action="{{ request.path }}">
+						{% csrf_token %}
+						<div class="setup-help text-right">
+							<a href="#" data-toggle="modal" data-target="#help-video"><i class="fa fa-film"></i> Watch Me</a>
+						</div>
+						
+						<div class="col-lg-12">	
+							<div class="row">	
+								<!-- Modal -->
+								<div class="modal fade" id="help-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title" id="myModalLabel">HHLEARN -
+													Setup Help Video</h4>
+											</div>
+											<div class="modal-body">
+												<iframe width="560" height="315" src="//www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													Close
+												</button>
+					
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
+							</div>
+
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="setup-info-text text-left">
+										{% if organization.total_number_of_locations > 1 %}
+											<p>
+												Below you will see information that must be gathered for each department. The system will address (in
+												consecutive order) each location with added departments. Please pay attention to the “Location Name” at the top
+												of the page. Provide the name of the department and other requested information and then click on the “Save &
+												Next” button to move to the next location. Once you have addressed all your departments, you will proceed to the
+												next step.
+											</p>
+										{% endif %}
+						
+										{% if organization.total_number_of_locations == 1 %}
+											<p>
+						
+												Below you will see information that must be gathered for each department. The system will address (in
+												consecutive order) each location with added departments. Please pay attention to the “Location Name” at the top
+												of the page. Provide the name of the department and other requested information and then click on the “Save &
+												Next” button to move to the next location. Once you have addressed all your departments, you will proceed to the
+												next step.
+											</p>
+										{% endif %}
+						
+									</div>
+								</div>
+							</div>
+						
+						
+							{{ form.id }}
+						
+							<div class="row">
+								<div class="col-sm-4 col-md-4 col-lg-4">
+									<div class="form-group  {% if form.short_name.errors %}has-error{% endif %}">
+										<label for="short_name">{{ form.short_name.label }}</label>										
+										<span class="label label-important">{{ form.short_name.errors|first }}</span>
+										{{ form.short_name }}										
+									</div>
+								</div>
+							</div>
+						
+							{{ formset.management_form }}
+							{% for form in formset %}
+								<div class="row">
+									<div class="col-sm-6 col-md-6 col-lg-6">
+										<div class="form-group  {% if form.short_name.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="name">
+														{{ form.short_name.label }}
+													</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-8 col-md-8 col-lg-8">
+													<div class="form-group">
+														<span class="label label-important">{{ form.short_name.errors|first }}</span>
+														<div class="form-controls">														
+															{{ form.short_name }}
+															<span class="icon glyphicon glyphicon-star"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+									{% if organization.is_organization_accredited.value == 1 and organization.is_accredited_by_same_agency.value == 0 %}
+										{% if location.is_accredited.value == 1 %}
+											<div class="col-sm-6 col-md-6 col-lg-6">
+												<div class="form-group {% if form.is_accredited.errors %}has-error{% endif %}">
+													<div class="row">
+														<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+															<label for="is_accredited">{{ form.is_accredited.label }}
+															</label>
+														</div>
+													</div>
+						
+													<div class="row">
+														<div class="col-sm-4 col-md-4 col-lg-4">
+															<span class="label label-important">{{ form.is_accredited.errors|first }}</span>															
+															<label class="switch switch-iphone">													
+																<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.is_accredited.name}}" {% if form.is_accredited.value == 1 %}checked="true"{% endif %}>
+																<i></i>
+															</label>					
+														</div>
+													</div>
+												</div>
+											</div>
+										{% endif %}
+									{% endif %}
+						
+								</div>
+						
+						
+								{% if organization.is_organization_accredited.value == 1 and organization.is_accredited_by_same_agency.value == 0 %}
+									{% if location.is_accredited.value == 1 %}
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<div class="form-group   {% if form.accreditation_agency.errors %}has-error{% endif %}">
+													<div class="row">
+														<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+															<label for="accreditation_agency">{{ form.accreditation_agency.label }}</label>
+														</div>
+													</div>
+						
+													<div class="row">
+														<div class="col-sm-5 col-md-5 col-lg-5">
+															<span class="label label-important">{{ form.accreditation_agency.errors|first }}</span>															
+															<div class="form-controls">
+																<span class="ui-select">
+																	<select name="form-{{ forloop.counter0 }}-{{ form.accreditation_agency.name }}" class="select-block " id="selectpicker">
+																		<option value="">Accrediting Agency</option>
+																		{% for accreditation_agency in form.fields.accreditation_agency.queryset %}
+																			<option {% if accreditation_agency.id  == form.accreditation_agency.value %}selected="selected"{% endif %} value="{{ accreditation_agency.id }}">{{ accreditation_agency.name }}</option>
+																		{% endfor for %}										
+																	</select>
+																</span>										
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+						
+										</div>
+						
+									{% endif %}
+								{% endif %}
+						
+						
+						
+						
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group  {% if form.where_written_hazard_located.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="eer_location">
+														{{ form.where_written_hazard_located.label }}</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-4 col-md-4 col-lg-4">
+													<span class="label label-important">{{ form.where_written_hazard_located.errors|first }}</span>
+													<div class="form-controls">
+														{{ form.where_written_hazard_located }}
+														<span class="icon glyphicon glyphicon-star"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+						
+						
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group  {% if form.when_hazard_prog_available.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="eer_location">
+														{{ form.when_hazard_prog_available.label }}</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-4 col-md-4 col-lg-4">
+													<span class="label label-important">{{ form.when_hazard_prog_available.errors|first }}</span>
+													<div class="form-controls">
+														{{ form.when_hazard_prog_available }}
+														<span class="icon glyphicon glyphicon-star"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+						
+						
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="form-group  {% if form.where_safety_data_located.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="eer_location">
+														{{ form.where_safety_data_located.label }}</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-4 col-md-4 col-lg-4">
+													<span class="label label-important">{{ form.where_safety_data_located.errors|first }}</span>
+													<div class="form-controls">
+														{{ form.where_safety_data_located }}
+														<span class="icon glyphicon glyphicon-star"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>						
+								</div>						
+						
+								<div class="row">
+									<div class="col-sm-6 col-md-6 col-lg-6">
+										<div class="form-group  {% if form.no_of_fire_exists.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="name">
+														{{ form.no_of_fire_exists.label }}
+													</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-8 col-md-8 col-lg-8">
+													<div class="form-group">
+														<span class="label label-important">{{ form.no_of_fire_exists.errors|first }}</span>														
+														<div class="input-group ui-spinner" data-ui-spinner>
+									                        <span class="input-group-btn">
+									                            <button type="button" class="btn btn-primary" data-spin="up">
+									                                <i class="fa fa-plus"></i>
+									                            </button>
+									                        </span>
+									                        <input type="text" name="form-{{ forloop.counter0 }}-{{ form.no_of_fire_exists.name }}" class="spinner-input form-control" value="{{ form.no_of_fire_exists.value }}">
+									                        <span class="input-group-btn">
+									                            <button type="button" class="btn btn-default" data-spin="down">
+									                                <i class="fa fa-minus"></i>
+									                            </button>
+									                        </span>
+									                    </div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>						
+						
+								<div class="row">
+									<div class="col-sm-6 col-md-6 col-lg-6">
+										<div class="form-group  {% if form.emergency_location.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="name">
+														{{ form.emergency_location.label }}
+													</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-8 col-md-8 col-lg-8">
+													<div class="form-group">
+														<span class="label label-important">{{ form.emergency_location.errors|first }}</span>
+														<div class="form-controls">
+															{{ form.emergency_location }}
+															<span class="icon glyphicon glyphicon-star"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+						
+						
+						
+						
+								<div class="row">
+									<div class="col-sm-6 col-md-6 col-lg-6">
+										<div class="form-group  {% if form.hippa_notice_location.errors %}has-error{% endif %}">
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<label for="name">
+														{{ form.hippa_notice_location.label }}
+													</label>
+												</div>
+											</div>
+						
+											<div class="row">
+												<div class="col-sm-8 col-md-8 col-lg-8">
+													<div class="form-group">
+														<span class="label label-important">{{ form.hippa_notice_location.errors|first }}</span>
+														<div class="form-controls">
+															{{ form.hippa_notice_location }}
+															<span class="icon glyphicon glyphicon-star"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>
+						
+						
+								{% if organization.is_electronic_postings_enabled.value == 1 and organization.is_electronic_postings_consistent.value == 0 %}
+									{% if location.use_electronic_posting.value == 1 %}
+										<div class="row">
+											<div class="col-sm-6 col-md-6 col-lg-6">
+												<div class="form-group {% if form.use_electronic_posting.errors %}has-error{% endif %}">
+													<div class="row">
+														<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+															<label for="is_accredited">{{ form.use_electronic_posting.label }}
+															</label>
+														</div>
+													</div>
+						
+													<div class="row">
+														<div class="col-sm-4 col-md-4 col-lg-4">
+															<span class="label label-important">{{ form.use_electronic_posting.errors|first }}</span>
+															<!--{{ form.use_electronic_posting }}-->
+															<label class="switch switch-iphone">													
+																<input type="checkbox" name="form-{{ forloop.counter0 }}-{{form.use_electronic_posting.name}}" {% if form.use_electronic_posting.value == 1 %}checked="true"{% endif %}>
+																<i></i>
+															</label>					
+														</div>
+													</div>
+												</div>
+											</div>
+						
+										</div>
+						
+									{% endif %}
+								{% endif %}
+						
+						
+								<hr/>
+						
+							{% endfor %}
+
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<p class="text-center">
+										<a href="{{ back_button_url }}" class="btn btn-blue btn-wide setup-back-button hidden-print">Back</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="submit" class="btn btn-blue btn-wide setup-next-button hidden-print">Save
+											& Next
+										</button>
+									</p>								
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="/static/dashboard/admin/setup/department/js/department.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery('.ui-spinner').spinner();			
+		});
+	</script>
+{% endblock %}

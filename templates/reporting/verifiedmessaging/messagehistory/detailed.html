@@ -1,0 +1,284 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Reporting{% endblock %}
+{% block meta_title %}Reporting{% endblock %}
+{% block meta_description %}Reporting{% endblock %}
+{% block meta_keywords %}Reporting{% endblock %}
+
+
+{% block content %}
+<div class="page page-resources">
+	<div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'reporting_home' %}">Reporting</a></li>
+                <li><a  href="{%  url 'reporting_verified_messaging' %}">Verified Messaging</a></li>
+                <li class="active"><a href="">Message History Detailed</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="panel panel-default" style="margin-bottom: 0px;">
+	    <div class="panel-heading">
+	        <div class="row">
+	
+	            <div class="col-xs-6 col-lg-6 text-left">
+	                <strong><i class="fa fa-paper-plane-o"></i> &nbsp;&nbsp;Message History Detailed</strong>
+	            </div>
+	            
+	            <div class="col-xs-6 col-lg-6 text-right">
+	                <a href="#" style="color:#767676">
+	                	<strong><i class="fa fa-print"></i> &nbsp;&nbsp;Print Report</strong>
+	                </a>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="panel-body table-dynamic">	    	
+	    	<div class="row">
+	    		<div class="col-lg-12">	    		
+					<div class="table-filters">
+			            <div class="row">
+			                <div class="col-sm-4 col-xs-6">
+			                    <form>
+			                        <input id = "alert_search"
+			                        	   type="text"
+			                               placeholder="search"
+			                               class="form-control"
+			                               data-ng-model="alertSearchKeywords"
+			                               data-ng-keyup="searchAlert()">
+			                    </form>
+			                </div>
+			                <div class="col-sm-3 col-xs-6 filter-result-info">
+			                    <span>
+			                        Showing {[ filteredAlerts.length ]}/{[ alertData.length ]} entries
+			                    </span>              
+			                </div>
+			            </div>
+			        </div>
+			        <div class="table-responsive ">
+                    	<table class="table table-bordered table-striped table-responsive">
+				            <thead>
+								<tr>
+									<th><div class="th">
+				                        View						                        
+				                    </div></th>
+				                    <th><div class="th">
+				                        Subject
+				                        <span class="glyphicon glyphicon-chevron-up"
+				                              ng-click="rAlertSort = '-core_messages_alerts.message_alert_subject'; reverse=false"></span>
+				                        <span class="glyphicon glyphicon-chevron-down"
+				                              ng-click="rAlertSort = 'core_messages_alerts.message_alert_subject'; reverse=false"></span>						                        
+				                    </div></th>
+				                    <th><div class="th">
+				                        Alert
+				                        <span class="glyphicon glyphicon-chevron-up"
+				                              ng-click="rAlertSort = '-core_messages_alerts.message_alert_content'; reverse=false"></span>
+				                        <span class="glyphicon glyphicon-chevron-down"
+				                              ng-click="rAlertSort = 'core_messages_alerts.message_alert_content'; reverse=false"></span>						                        
+				                    </div></th>
+				                    <th><div class="th">
+				                        Priority
+				                        <span class="glyphicon glyphicon-chevron-up"
+				                              ng-click="rAlertSort = '-core_messages_alerts.util_priorities.id'; reverse=false"></span>
+				                        <span class="glyphicon glyphicon-chevron-down"
+				                              ng-click="rAlertSort = 'core_messages_alerts.util_priorities.id'; reverse=false"></span>						                        
+				                    </div></th>
+				                    <th><div class="th">
+				                        Date Added
+				                        <span class="glyphicon glyphicon-chevron-up"
+				                              ng-click="rAlertSort = '-date_acknowledged_UTC'; reverse=false"></span>
+				                        <span class="glyphicon glyphicon-chevron-down"
+				                              ng-click="rAlertSort = 'date_acknowledged_UTC'; reverse=false"></span>	
+				                    </div></th>
+				                    
+				                    <th><div class="th">
+				                        Active
+				                        <span class="glyphicon glyphicon-chevron-up"
+				                              ng-click="rAlertSort = '-date_acknowledged_UTC'; reverse=false"></span>
+				                        <span class="glyphicon glyphicon-chevron-down"
+				                              ng-click="rAlertSort = 'date_acknowledged_UTC'; reverse=false"></span>	
+				                    </div></th>					                    
+				                   
+								</tr>
+				            </thead>
+				            <tbody>						                
+								<tr>
+									<td class="col-lg-1 text-center"> 
+										<a data-toggle="modal" href="{% url 'message_history_detailed_report' %}"><i class="fa fa-eye size-h3 bg-alert-icon-eye"></i></a>
+									</td>
+									<td class="col-lg-3"> Columbus Day</td>
+									<td class="col-lg-4">All regular hourly employees will be off on ...</td>
+									<td class="col-lg-1 text-center"> 
+										<a href="#"  popover="Low Priority" popover-trigger="mouseenter">
+											<i class="fa fa-info-circle size-h3 bg-alert-icon-low"></i>
+										</a>												
+									</td>
+									<td class="col-lg-2 text-center"> 10/13/2014 12:00 PM PDT</td>
+									<td class="col-lg-1 text-center"> <i class="fa fa-check ce-icon"></i></td>
+								</tr>
+								<tr>
+									<td class="col-lg-1 text-center"> 
+										<a data-toggle="modal" href="{% url 'message_history_detailed_report' %}"><i class="fa fa-eye size-h3 bg-alert-icon-eye"></i></a>
+									</td>
+									<td class="col-lg-3">Halloween Party RSVP</td>
+									<td class="col-lg-4">We will be having an after work party at the ...</td>
+									<td class="col-lg-1 text-center"> 
+										<a href="#" popover="Normal Priority" popover-trigger="mouseenter">
+											<i class="fa fa-exclamation-triangle size-h3 bg-alert-icon-normal"></i>
+										</a>
+									</td>
+									<td class="col-lg-2 text-center"> 10/10/2014 11:15 AM PDT</td>	
+									<td class="col-lg-1 text-center"> <i class="fa fa-check ce-icon"></i></td>
+								</tr>
+								<tr>
+									<td class="col-lg-1 text-center"> 
+										<a data-toggle="modal" href="{% url 'message_history_detailed_report' %}"><i class="fa fa-eye size-h3 bg-alert-icon-eye"></i></a>
+									</td>
+									<td class="col-lg-3"> New Medicare LCD</td>
+									<td class="col-lg-4">There is a new Medicare LCD for RAD that ... </td>
+									<td class="col-lg-1 text-center" >
+										<a href="#"  popover="High Priority Message" popover-trigger="mouseenter">
+											<i class="fa fa-minus-circle size-h3 bg-alert-icon-high"></i>
+										</a>
+									</td>
+									<td class="col-lg-2 text-center"> 10/06/2014 09:00 AM PDT</td>
+									<td class="col-lg-1 text-center">  <i class="fa fa-check ce-icon"></i></td>	
+								</tr>
+								<tr>
+									<td class="col-lg-1 text-center"> 
+										<a data-toggle="modal" href="{% url 'message_history_detailed_report' %}"><i class="fa fa-eye size-h3 bg-alert-icon-eye"></i></a>
+									</td>
+									<td class="col-lg-3">End of Month Reports</td>
+									<td class="col-lg-4">September's End of Month Reports are due...</td>
+									<td class="col-lg-1 text-center"> 
+										<a href="#"  popover="Normal Priority" popover-trigger="mouseenter">
+											<i class="fa fa-exclamation-triangle size-h3 bg-alert-icon-normal"></i>
+										</a>												
+									</td>
+									<td class="col-lg-2 text-center"> 10/01/2014 10:15 PM PDT</td>
+									<td class="col-lg-1 text-center"> <i class="fa fa-check ce-icon"></i></td>
+								</tr>
+								<tr>
+									<td class="col-lg-1 text-center"> 
+										<a data-toggle="modal" href="{% url 'message_history_detailed_report' %}"><i class="fa fa-eye size-h3 bg-alert-icon-eye"></i></a>
+									</td>
+									<td class="col-lg-3">Breakroom Cleanliness</td>
+									<td class="col-lg-4">The recent decline in the cleanliness of the...</td>
+									<td class="col-lg-1 text-center"> 
+										<a href="#" popover="Low Priority" popover-trigger="mouseenter">
+											<i class="fa fa-info-circle size-h3 bg-alert-icon-low"></i>
+										</a>
+									</td>
+									<td class="col-lg-2 text-center"> 09/20/2014 01:03 PM PDT</td>	
+									<td class="col-lg-1 text-center"> <i class="fa fa-check ce-icon"></i></td>
+								</tr>
+								<tr>
+									<td class="col-lg-1 text-center"> 
+										<a data-toggle="modal" href="{% url 'message_history_detailed_report' %}"><i class="fa fa-eye size-h3 bg-alert-icon-eye"></i></a>
+									</td>
+									<td class="col-lg-3">Hand Sanitizer</td>
+									<td class="col-lg-4">The new supply of personal-size hand sanitizer...</td>
+									<td class="col-lg-1 text-center" >
+										<a href="#"  popover="Low Priority Message" popover-trigger="mouseenter">
+											<i class="fa fa-info-circle size-h3 bg-alert-icon-low"></i>
+										</a>
+									</td>
+									<td class="col-lg-2 text-center"> 09/13/2014 11:08 AM PDT</td>
+									<td class="col-lg-1 text-center">  <i class="fa fa-check ce-icon"></i></td>	
+								</tr>
+								<tr>
+									<td class="col-lg-1 text-center"> 
+										<a data-toggle="modal" href="{% url 'message_history_detailed_report' %}"><i class="fa fa-eye size-h3 bg-alert-icon-eye"></i></a>
+									</td>
+									<td class="col-lg-3">Modified PTO Policy</td>
+									<td class="col-lg-4">Effective 10/01/2014 the new policy for PTO...</td>
+									<td class="col-lg-1 text-center" >
+										<a href="#"  popover="High Priority Message" popover-trigger="mouseenter">
+											<i class="fa fa-minus-circle size-h3 bg-alert-icon-high"></i>
+										</a>
+									</td>
+									<td class="col-lg-2 text-center"> 09/13/2014 10:03 AM PDT</td>
+									<td class="col-lg-1 text-center">  <i class="fa fa-check ce-icon"></i></td>	
+								</tr>
+								<tr>
+									<td class="col-lg-1 text-center"> 
+										<a data-toggle="modal" href="{% url 'message_history_detailed_report' %}"><i class="fa fa-eye size-h3 bg-alert-icon-eye"></i></a>
+									</td>
+									<td class="col-lg-3">New Employee Orientation</td>
+									<td class="col-lg-4">September's new employee orientation will start...</td>
+									<td class="col-lg-1 text-center" >
+										<a href="#"  popover="Normal Priority Message" popover-trigger="mouseenter">
+											<i class="fa fa-exclamation-triangle size-h3 bg-alert-icon-normal"></i>
+										</a>
+									</td>
+									<td class="col-lg-2 text-center"> 08/31/2014 08:13 AM PDT</td>
+									<td class="col-lg-1 text-center">  <i class="fa fa-check ce-icon"></i></td>	
+								</tr>
+								<tr>
+									<td class="col-lg-1 text-center"> 
+										<a data-toggle="modal" href="{% url 'message_history_detailed_report' %}"><i class="fa fa-eye size-h3 bg-alert-icon-eye"></i></a>
+									</td>
+									<td class="col-lg-3">Employee Security</td>
+									<td class="col-lg-4">Effective immediately no employee that goes out...</td>
+									<td class="col-lg-1 text-center" >
+										<a href="#"  popover="High Priority Message" popover-trigger="mouseenter">
+											<i class="fa fa-minus-circle size-h3 bg-alert-icon-high"></i>
+										</a>
+									</td>
+									<td class="col-lg-2 text-center"> 08/23/2014 04:45 AM PDT</td>
+									<td class="col-lg-1 text-center">  <i class="fa fa-check ce-icon"></i></td>	
+								</tr>
+								<tr>
+									<td class="col-lg-1 text-center"> 
+										<a data-toggle="modal" href="{% url 'message_history_detailed_report' %}"><i class="fa fa-eye size-h3 bg-alert-icon-eye"></i></a>
+									</td>
+									<td class="col-lg-3">The Joint Commission</td>
+									<td class="col-lg-4">Our triennial survey by TJC will take place on...</td>
+									<td class="col-lg-1 text-center" >
+										<a href="#"  popover="High Priority Message" popover-trigger="mouseenter">
+											<i class="fa fa-minus-circle size-h3 bg-alert-icon-high"></i>
+										</a>
+									</td>
+									<td class="col-lg-2 text-center"> 09/13/2014 11:08 AM PDT</td>
+									<td class="col-lg-1 text-center">  <i class="fa fa-check ce-icon"></i></td>	
+								</tr>
+				            </tbody>
+				        </table>
+				    </div>
+			
+			        <footer class="table-footer">
+			            <div class="row">
+			                <div class="col-md-6 page-num-info">
+			                  	<span>
+			                        Show 
+			                        <select data-ng-model="numPerPage"
+			                                data-ng-options="num for num in numPerPageOpt"
+			                                data-ng-change="onNumPerPageChange()">
+			                        </select> 
+			                        entries per page
+			                 	</span>
+			             	</div>
+			                <div class="col-md-6 text-right pagination-container">
+			                    <pagination class="pagination-sm"
+			                                page="currentAlertPage"
+			                                total-items="filteredAlerts.length"
+			                                max-size="4"
+			                                on-select-page="selectAlertPage(page)"
+			                                items-per-page="perPage"
+			                                rotate="false"
+			                                boundary-links="true"></pagination>
+			                </div>
+			            </div>
+			        </footer>
+		        </div>  
+	        </div>
+	    </div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

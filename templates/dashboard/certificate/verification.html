@@ -1,0 +1,18 @@
+<html>
+<head>    
+     <script type="text/javascript">
+     function load()
+     {
+          window.document.result.submit();
+          return;
+     }
+     </script>
+</head>
+<body onload="load()">
+<form name="result" method="post" action="/certificate/result">
+	 {% csrf_token %}
+    <input type="hidden" name="testAttemptId" value="{{ testAttemptId }}" />
+    <input type="hidden" name="additional" value="{{ additional }}" />
+</form>
+</body>
+</html>

@@ -1,0 +1,129 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}	
+<div class="page page-groups" ng-controller="metricsController">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Dashboard</a></li>
+                <li class="active"><a href="">Milestones</a></li>
+            </ol>
+        </div>
+
+    </div>
+    
+    <div class="row" id="app_metrics">
+    	<div class="col-lg-12">
+	    <div class="ui-timline-container">
+	        <section class="ui-timeline">
+	            <article class="tl-item">
+	                <div class="tl-body">
+	                    <div class="tl-entry">
+	                        <div class="tl-caption">
+	                            <a href="javascript:;" class="btn btn-primary btn-block">Today</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </article>
+	
+	            <article class="tl-item">
+	                <div class="tl-body">
+	                    <div class="tl-entry">
+	                        <div class="tl-time">09:45AM</div>
+	                        <div class="tl-icon square-icon sm bg-btn5"><i class="glyphicons construction_cone"></i></div>
+	                        <div class="tl-content">
+	                            <h4 class="tl-tile text-primary" style="color:#FFCC00;">12-Month safety on Time Training</h4>
+	                            <p>You completed all monthly safety courses on time for an entire year.</p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </article>
+	
+	            <article class="tl-item alt">
+	                <div class="tl-body">
+	                    <div class="tl-entry">
+	                        <div class="tl-time">08:12 AM</div>
+	                        <div class="tl-icon square-icon sm bg-btn3"><i class="glyphicons user_add"></i></div>
+	                        <div class="tl-content">
+	                            <h4 class="tl-tile text-danger" style="color:#52AE32;">Completed 1st HHLEARN Course</h4>
+	                            <p>You completed your first course on HHLEARN.</p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </article>
+
+	            <article class="tl-item">
+	                <div class="tl-body">
+	                    <div class="tl-entry">
+	                        <div class="tl-caption">
+	                            <a href="javascript:;" class="btn btn-primary btn-block">01-04-2014</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </article>
+	
+	
+	            <article class="tl-item">
+	                <div class="tl-body">
+	                    <div class="tl-entry">
+	                        <div class="tl-time">2:15 PM</div>
+	                        <div class="tl-icon square-icon sm bg-btn9"><i class="fa fa-asterisk"></i></div>
+	                        <div class="tl-content">
+	                            <h4 class="tl-tile" style="color:#F39433;">First HHLEARN Login</h4>
+	                            <p>Thanks for logging in for the first time.</p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </article>
+	
+	            <article class="tl-item alt">
+	                <div class="tl-body">
+	                    <div class="tl-entry">
+	                        <div class="tl-time">12:33 PM</div>
+	                        <div class="tl-icon square-icon sm bg-btn3"><i class="glyphicons user_add"></i></div>
+	                        <div class="tl-content">
+	                            <h4 class="tl-tile text-warning" style="color:#52AE32;">Added to HHLEARN</h4>
+	                            <p>On this date you were added to HHLEARN. Let the learning begin!</p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </article>
+				
+				<article class="tl-item">
+	                <div class="tl-body">
+	                    <div class="tl-entry">
+	                        <div class="tl-caption">
+	                            <a href="javascript:;" class="btn btn-primary btn-block">01-03-2014</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </article>
+	        </section>
+	    </div>			
+	</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}	
+
+	<!--<script src="/static/dashboard/common/lib/highcharts/highcharts.js"></script>
+	<script src="/static/dashboard/common/lib/highcharts/modules/data.js"></script>
+	<script src="/static/dashboard/common/lib/highcharts/modules/exporting.js"></script>-->
+
+	<!-- Additional files for the Highslide popup effect -->
+	<!--<script type="text/javascript" src="/static/dashboard/common/lib/highcharts/highslide/highslide-full.min.js"></script>
+	<script type="text/javascript" src="/static/dashboard/common/lib/highcharts/highslide/highslide.config.js" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="/static/dashboard/common/lib/highcharts/highslide/highslide.css" />-->
+
+	<script src="/static/dashboard/metrics/js/metrics.js"></script>	
+	
+{% endblock %}

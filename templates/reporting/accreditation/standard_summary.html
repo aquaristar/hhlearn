@@ -1,0 +1,495 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Reporting- Accreditation Standards Summary {% endblock %}
+{% block meta_title %}Reporting- Accreditation Standards Summary{% endblock %}
+{% block meta_description %}Reporting- Accreditation Standards Summary{% endblock %}
+{% block meta_keywords %}Reporting- Accreditation Standards Summary{% endblock %}
+
+{% load sort_dicts %}
+
+
+{% block content %}
+<div class="page page-resources" ng-controller="profileCtrl">
+	<div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a href="{% url 'reporting_home' %}">Reporting</a></li>
+                <li><a href="{% url 'reporting_accreditation' %}">Accreditation Standards</a></li>
+                <li class="active"><a href="">Accreditation Standards Summary</a></li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default table-dynamic">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-8 col-lg-8 text-left">
+                            <strong><span class="fa fa-list-alt"></span>&nbsp;&nbsp;Accreditation Standards Summary</strong>
+                        </div>
+                        <div class="col-xs-4 col-lg-4 text-right">
+                            <strong>Print Report &nbsp;&nbsp;<span class="fa fa-print"></span></strong>
+                        </div>
+                    </div>
+                </div>
+				<div class="panel-body">
+                    {% if accreditations %}
+                    <div class="row" style="margin-bottom:20px;">
+                        <form name="frmSummary" method="post" action="{% url 'reporting_accreditation_standard_summary' %}">
+                        {% csrf_token %}
+                            <div class="col-lg-12 text-center">
+                                <h3><strong> Accreditation Standards Summary</strong></h3>
+                                <div class="row form-group">
+                                    <div class="col-sm-offset-3 col-sm-6 col-md-6 col-lg-6 form-group">
+                                        <div class="form-controls">
+                                            <span class="ui-select">
+                                                <select name="org" class="select-block " id="selectpicker">
+                                                    <option value="" selected="selected">Select Organization</option>
+                                                    {% for accreditation in accreditations %}
+                                                        <option value="{{ accreditation.id }}">{{ accreditation.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-offset-3 col-sm-6 col-md-6 col-lg-6 ">
+                                        <div class="form-controls">
+                                            <div class="input-group ui-datepicker">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input name="date" type="text" class="form-control ng-pristine ng-valid ng-valid-required"
+                                                       datepicker-popup="dd-MMMM-yyyy"
+                                                       ng-model="dt"
+                                                       is-open="opened"
+                                                       max="dt"
+                                                       ng-required="true" close-text="Close"
+                                                       required="required">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn bg-btn1 btn-lg">Report</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    {% else %}
+
+                    <div class="row" style="margin-bottom:10px;">
+                        <div class="col-lg-12 text-center">
+                            <h3><strong> {{ accreditation_agency.acronym }}&nbsp;Standard Summary:</strong> as of {{ cur_date | date:"F d, Y"}}</h3>
+                        </div>
+                    </div>
+
+                    {% if accreditation_agency.id == 11 %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-report">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="th">Categories</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Subcategories</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Standards</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-xs-4 col-lg-4"><h1>{{ categories_count }}</h1></td>
+                                            <td class="col-xs-4 col-lg-4"><h1>{{ subcategories_count }}</h1></td>
+                                            <td class="col-xs-4 col-lg-4"><h1>{{ standards_count }}</h1></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {% for k, v in standards.items %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-report table-report-no-border" style="margin:0px;">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="th back1">{{ k }}</div>
+                                            </th>
+                                            <th>
+                                                <div class="th back1">Effective Date</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for standard in v %}
+                                        <tr>
+                                            <td class="col-xs-9 col-lg-9" style="text-align:left;">
+                                                <ul>
+                                                    <li>
+                                                        {{ standard.description | truncatechars:100 }}
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="col-xs-3 col-lg-3" style="text-align: center;">
+                                                {{ standard.effective_date | date:"m/d/Y" }}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% elif accreditation_agency.id == 9 %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-report">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="th">Chapters</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Standards</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">EOPs</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-xs-4 col-lg-4"><h1>{{ categories_count }}</h1></td>
+                                            <td class="col-xs-4 col-lg-4"><h1>{{ subcategories_count }}</h1></td>
+                                            <td class="col-xs-4 col-lg-4"><h1>{{ standards_count }}</h1></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {% for k, v in standards.items %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                            {% for k1, standard in v.items|sort_dict %}
+                                <table class="table table-bordered table-responsive table-report table-report-no-border" style="margin:0px;">
+                                    <thead>
+                                        {% if forloop.counter == 1 %}
+                                        <tr>
+                                            <th colspan="2">
+                                                <div class="th back1">{{ k }}</div>
+                                            </th>
+                                        </tr>
+                                        {% endif %}
+                                        <tr>
+                                            <th>
+                                                <div class="th" style="text-align: left;">{{ k1 | safe }}</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Effective Date</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for it in standard %}
+                                        <tr>
+                                            <td class="col-xs-9 col-lg-9" style="text-align:left;">
+                                                <ul>
+                                                    <li>
+                                                        {{ it.description | truncatechars:100  }}
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="col-xs-3 col-lg-3" style="text-align: center;">
+                                                {{ it.effective_date | date:"m/d/Y" }}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    {% elif accreditation_agency.id == 586 %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-report">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="th">Categories</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Subcategories</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Standards</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-xs-4 col-lg-4"><h1>{{ categories_count }}</h1></td>
+                                            <td class="col-xs-4 col-lg-4"><h1>{{ subcategories_count }}</h1></td>
+                                            <td class="col-xs-4 col-lg-4"><h1>{{ standards_count }}</h1></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {% for k, v in standards.items|sort_dict %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                            {% for k1, standard in v.items %}
+                                <table class="table table-bordered table-responsive table-report table-report-no-border" style="margin:0px;">
+                                    <thead>
+                                        {% if forloop.counter == 1 %}
+                                        <tr>
+                                            <th colspan="2">
+                                                <div class="th back1">{{ k }}</div>
+                                            </th>
+                                        </tr>
+                                        {% endif %}
+                                        <tr>
+                                            <th>
+                                                <div class="th">{{ k1 | safe }}</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Effective Date</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for it in standard %}
+                                        <tr>
+                                            <td class="col-xs-9 col-lg-9" style="text-align:left;">
+                                                <ul>
+                                                    <li>
+                                                        {{ it.description | truncatechars:100  }}
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="col-xs-3 col-lg-3" style="text-align: center;">
+                                                {{ it.effective_date | date:"m/d/Y" }}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    {% elif accreditation_agency.id == 588 %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-report">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="th">Categories</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Subcategories</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Standards</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Substandards</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-xs-3 col-lg-3"><h1>{{ categories_count }}</h1></td>
+                                            <td class="col-xs-3 col-lg-3"><h1>{{ subcategories_count }}</h1></td>
+                                            <td class="col-xs-3 col-lg-3"><h1>{{ standards_count }}</h1></td>
+                                            <td class="col-xs-3 col-lg-3"><h1>{{ sub_standards_count }}</h1></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {% for k, v in standards.items|sort_dict_acronym %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-report" style="margin:0px;">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">
+                                                <div class="th back1">{{ k }}</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for k1, subcats in v.items|sort_dict_acronym %}
+                                        <tr>
+                                            <td style="text-transform: uppercase; font-weight:bold;">{{ k1 | safe }}</td>
+                                        </tr>
+                                        {% for k2, standard in subcats.items|sort_dict_acronym %}
+                                        <tr>
+                                            <td style="padding:0px;">
+                                                <table class="table table-bordered table-responsive table-report table-report-no-border" style="margin:0px;background: #fff;border-left: 0;border-right: 0;border-top: 0;border-bottom: 0;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <div class="th" style="text-align:left;">{{ k2 | safe }}</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="th">Effective Date</div>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for it in standard %}
+                                                        <tr>
+                                                            <td class="col-xs-9 col-lg-9" style="text-align:left;">
+                                                                <ul>
+                                                                    <li>
+                                                                        {{ it.description | truncatechars:100 | safe }}
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                            <td class="col-xs-3 col-lg-3" style="text-align: center;">
+                                                                {{ it.effective_date | date:"m/d/Y" }}
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    {% elif accreditation_agency.id == 587 %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-report">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="th">Categories</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Subcategories</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">Standards</div>
+                                            </th>
+                                            <th>
+                                                <div class="th">EOCs</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-xs-3 col-lg-3"><h1>{{ categories_count }}</h1></td>
+                                            <td class="col-xs-3 col-lg-3"><h1>{{ subcategories_count }}</h1></td>
+                                            <td class="col-xs-3 col-lg-3"><h1>{{ standards_count }}</h1></td>
+                                            <td class="col-xs-3 col-lg-3"><h1>{{ sub_standards_count }}</h1></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {% for k, v in standards.items %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <table class="table table-bordered table-responsive table-report" style="margin:0px;">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">
+                                                <div class="th back1">{{ k }}</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for k1, subcats in v.items %}
+                                        <tr>
+                                            <td style="text-transform: uppercase;font-weight:bold;">{{ k1 | safe }}</td>
+                                        </tr>
+                                        {% for k2, standard in subcats.items|sort_dict %}
+                                        <tr>
+                                            <td style="padding:0px;">
+                                                <table class="table table-bordered table-responsive table-report table-report-no-border" style="margin:0px;background: #fff;border-left: 0;border-right: 0;border-top: 0;border-bottom: 0;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <div class="th" style="text-align: left;">{{ k2 | safe }}</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="th">Effective Date</div>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for it in standard %}
+                                                        <tr>
+                                                            <td class="col-xs-9 col-lg-9" style="text-align:left;">
+                                                                <ul>
+                                                                    <li>
+                                                                        {{ it.description | truncatechars:100 | safe }}
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                            <td class="col-xs-3 col-lg-3" style="text-align: center;">
+                                                                {{ it.effective_date | date:"m/d/Y" }}
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    {% endif %}
+
+                    <div class="callout callout-red">
+                        <h4>DISCLAIMER:</h4>
+                        <p>{{ disclaimer }}</p>
+                    </div>
+
+                    <div class="row" style="margin-top:30px; font-size: 12px;">
+                        <p class="text-center">{{ copyright_code | safe }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}Dashboard - Accreditation{% endblock %}
+{% block meta_title %}Dashboard - Accreditation{% endblock %}
+{% block meta_description %}Dashboard - Accreditation{% endblock %}
+{% block meta_keywords %}Dashboard - Accreditation{% endblock %}
+{% block page_class %}page_dashboard_history{% endblock %}
+
+{% block content %}
+<div class="page page-accreditation">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb-alt">
+                <li><a  href="{%  url 'dashboard_home' %}">Dashboard</a></li>
+                <li class="active"><a href="">Accreditation</a></li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="row" id="">   	
+    	<div class="col-lg-12">
+    		<div class="panel panel-default table-dynamic">
+    			<div class="panel-heading">
+    				<strong><span class="glyphicons certificate"></span> {{ accreditation.name }}
+    				
+                </div>
+                <div class="panel-body">
+                	<div class="page page-contact">
+					    <div class="contactmap-container">
+					        <map class="ui-map" zoom="17" center="[{{ accreditation.map_position.lat }}, {{ accreditation.map_position.lng }}]" scrollwheel="false">
+					            <marker position="[{{ accreditation.map_position.lat}}, {{ accreditation.map_position.lng }}]" title="marker" animation="Animation.DROP"></marker>
+					        </map>
+					    </div>
+					
+					    <div class="contact-info-container clearfix">
+					        <ul class="contact-info">
+					            <li class="col-lg-5 col-md-4"><i class="fa fa-map-marker"></i><span>{{ accreditation.address}},&nbsp;{{ accreditation.city}},&nbsp;{{ accreditation.state}}&nbsp;{{ accreditation.zip }}</span></li>
+					            <li class="col-lg-3 col-md-4"><i class="fa fa-phone"></i><span>{{ accreditation.phone }}</span></li>
+					            <li class="col-lg-4 col-md-4"><i class="fa fa-envelope-o"></i><span><a href="mailto:contact@mail.com">{{ accreditation.email }}</a></span></li>
+					        </ul>
+					    </div>					    
+						
+					    <div class="social-item-container">
+					        <div class="row text-center">
+					        	{% for obj in accreditation.social_medias %}
+					            <!--<div class="col-md-3 col-xsm-6 social-item text-center"><a href="javascript:;" class="btn btn-facebook btn-metro"><i class="fa fa-facebook"></i></a></div>
+					            <div class="col-md-3 col-xsm-6 social-item text-center"><a href="javascript:;" class="btn btn-twitter btn-metro"><i class="fa fa-twitter"></i></a></div>
+					            <div class="col-md-3 col-xsm-6 social-item text-center"><a href="javascript:;" class="btn btn-gplus btn-metro"><i class="fa fa-google-plus"></i></a></div>
+					            <div class="col-md-3 col-xsm-6 social-item text-center"><a href="javascript:;" class="btn btn-instagram btn-metro"><i class="fa fa-instagram"></i></a></div>-->
+					            <!--<div class="col-md-3 col-xsm-6 social-item text-center">-->
+					            	<a href="{{ obj.websites }}" target="_blank" class="btn btn-{{ obj.short_code | lower}} btn-metro social-item" style="margin:15px;">
+					            		<i class="{{ obj.icon }}"></i>
+					            	</a>
+					            <!--</div>-->
+					            {% endfor %}					            
+					        </div>
+					    </div>						
+					</div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+<script type="text/javascript">
+	//https://maps.googleapis.com/maps/api/geocode/json?address=One+Renaissance%20Blvd.,+Oakbrook+Terrace
+	jQuery(document).ready(function(){
+		url='https://maps.googleapis.com/maps/api/geocode/json?address=';
+	});	
+</script>
+
+
+{% endblock %}

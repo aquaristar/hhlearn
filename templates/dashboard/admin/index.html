@@ -1,0 +1,157 @@
+{% extends "dashboard/_master.html" %}
+{% block title %}HHLEARN - Dashboard{% endblock %}
+{% block meta_title %}HHLEARN{% endblock %}
+{% block meta_description %}HHLEARN{% endblock %}
+{% block meta_keywords %}HHLEARN{% endblock %}
+
+
+
+{% block content %}
+	<div class="dashboard_admin">
+	<div class="row">
+		<div class="col-lg-3">
+			<a href="{% url 'dashboard_admin_company' %}"><button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Company</span> <i class="fa fa-building-o pull-right"></i>
+			</button> </a>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Users</span> <i class="fa fa-user pull-right"></i>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<a href=""><button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Courses</span> <i class="fa fa-columns pull-right"></i>
+			</button>    </a>
+		</div>
+
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Test</span> <i class="fa fa-check-square-o pull-right"></i>
+			</button>
+		</div>
+	</div>
+
+<div class="row mtl">
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Curriculum</span> <i class="fa fa-bars pull-right"></i>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Regulatory Agency</span> <i class="fa fa-sitemap pull-right"></i>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Images</span> <i class="fa fa-camera pull-right"></i>
+			</button>
+		</div>
+
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Forms</span> <i class="fa fa-file-text-o pull-right"></i>
+			</button>
+		</div>
+	</div>
+
+<div class="row mtl">
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Monthly Curriculum</span> <i class="fa fa-calendar-o pull-right"></i>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Regulations</span> <i class="fa fa-book pull-right"></i>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">URLs</span> <i class="fa fa-code pull-right"></i>
+			</button>
+		</div>
+
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Publications</span> <i class="fa fa-files-o pull-right"></i>
+			</button>
+		</div>
+	</div>
+
+<div class="row mtl">
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Job Titles</span> <i class="fa fa-shield pull-right"></i>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Referral Agencies</span> <i class="fa fa-hospital-o pull-right"></i>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">CE Authorization</span> <i class="fa fa-leaf pull-right"></i>
+			</button>
+		</div>
+
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Videos</span> <i class="fa fa-film pull-right"></i>
+			</button>
+		</div>
+	</div>
+
+	        <hr/>
+
+<div class="row mtl">
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Professional Licenses</span>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Prof. Licenses Credentials</span>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">CE Organizations</span>
+			</button>
+		</div>
+
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Course Services</span>
+			</button>
+		</div>
+	</div>
+
+<div class="row mtl">
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Messages</span>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">State Prof. Licenses</span>
+			</button>
+		</div>
+		<div class="col-lg-3">
+			<a href="{% url 'dashboard_admin_setup' %}"><button class="btn btn-hg btn-info btn-block ">
+				<span class="pull-left">Setup</span>
+			</button>   </a>
+		</div>
+
+	</div>
+
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+
+{% endblock %}

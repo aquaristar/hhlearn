@@ -1,0 +1,41 @@
+<div id="nav-wrapper">
+
+    <ul id="nav" data-slim-scroll data-collapse-nav>        
+        <li {% if path == 'dashboard' %} class="active"{% endif %}>
+            <a href="{% url 'dashboard_home' %}"> <i class="fa fa-tachometer"></i><span data-i18n="Dashboard"></span>
+            </a>
+           <!--<ul>
+                <li><a href="{% url 'assignments' %}"> <span data-i18n="Assignments"></span> </a></li>
+                <li><a href="{% url 'history' %}"> <span data-i18n="History"></span> </a></li>
+                <li><a href="{% url 'messages' %}"> </i><span data-i18n="Messages"></span> </a></li>
+                <li><a href="{% url 'metrics' %}"> <span data-i18n="Metrics"></span> </a></li>
+                <li><a href="{% url 'documents' %}"> <span data-i18n="Documents"></span> </a></li>
+                <li><a href="{% url 'accreditation' %}"> <span data-i18n="Accreditation"></span> </a></li>
+           </ul>-->
+
+        </li>
+        <li {% if path == 'resources' %} class="active"{% endif %}>
+            <a href="{% url 'resources_home' %}"> <i class="fa fa-cubes"></i><span data-i18n="Resources"></span>
+            </a>
+        </li>
+        <li {% if path == 'reporting' %} class="active"{% endif %}>
+            <a href="{% url 'reporting_home' %}"> <i class="fa fa-bar-chart-o"></i><span data-i18n="Reporting"></span>
+            </a>
+        </li>
+
+        <li {% if path == 'support' %} class="active"{% endif %}>
+            <a href="{% url 'support_home' %}"> <i class="fa fa-life-ring"></i><span data-i18n="Support"></span>
+            </a>
+
+        </li>
+        <li {% if path == 'inservices' %} class="active"{% endif %}>
+            <a href="{% url 'inservices_home' %}"> <i class="glyphicons projector"></i><span data-i18n="Inservices"></span>
+            </a>
+        </li>
+        <li {% if path == 'admin' %} class="active"{% endif %}>
+            <a href="{% url 'admin_home' %}"> <i class="fa fa-shield"></i><span data-i18n="Admin"></span>
+            </a>
+        </li>        
+    </ul>
+
+</div>
